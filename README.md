@@ -1,2 +1,1 @@
-# docs
-WPN-XM Documentation
+# WPN-XM Documentation
