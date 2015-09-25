@@ -9,7 +9,7 @@ commit_website_files() {
   git fetch origin
   git checkout -b gh-pages
   git add . *.html
-  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
+  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER -- [skip ci]"
 }
 
 upload_files() {
