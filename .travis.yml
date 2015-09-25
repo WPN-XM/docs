@@ -9,12 +9,10 @@ before_script:
 
 script:
   - asciidoctor en/book.asciidoc -o output/en/index.html
-
-after_script:
   - ls -alF output
 
 after_success:
-  - publish.sh
+  - ./publish.sh
 
 # reduce commit history of git checkout
 git:
