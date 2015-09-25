@@ -1,6 +1,6 @@
 language: ruby
 install:
-  - gem install asciidoctor tilt haml
+  - gem install -​-no-document asciidoctor tilt haml
 before_script:
   - asciidoctor --version
   - ls -alF
