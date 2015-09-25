@@ -1,0 +1,13 @@
+language: ruby
+
+install:
+  - gem install asciidoctor tilt haml
+
+script:
+  - asciidoctor --version
+  - ls -alF
+  - asciidoctor en/book.asciidoc -o output/en/index.html
+  - ls -alF output
+
+after_success:
+  - publish.sh
