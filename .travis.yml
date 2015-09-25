@@ -3,11 +3,19 @@ language: ruby
 install:
   - gem install asciidoctor tilt haml
 
-script:
+before_script:
   - asciidoctor --version
   - ls -alF
+
+script:
   - asciidoctor en/book.asciidoc -o output/en/index.html
+
+after_script:
   - ls -alF output
 
 after_success:
   - publish.sh
+
+# reduce commit history of git checkout
+git:
+  depth: 5
