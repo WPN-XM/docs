@@ -1,6 +1,9 @@
 language: ruby
 install:
-  - gem install -​-no-document asciidoctor tilt haml
+  - gem install asciidoctor tilt haml
+  # diagram support
+  #- gem install asciidoctor-diagram
+  #- apt-get install dot
 before_script:
   - asciidoctor --version
   - ls -alF
