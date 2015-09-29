@@ -13,6 +13,12 @@ commit_website_files() {
 }
 
 upload_files() {
+  # make sure we have a the Github Token
+  if [ -z $GH_TOKEN ]; then
+    echo "Please set your Github token as secret GH_TOKEN env var."
+    exit 1
+  fi
+  # git push
   git remote add origin-pages https://${GH_TOKEN}@github.com/WPN-XM/docs > /dev/null 2>&1
   git push -f --set-upstream origin-pages gh-pages
 }
