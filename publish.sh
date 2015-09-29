@@ -20,7 +20,7 @@ upload_files() {
   fi
   # git push
   git remote add origin-pages https://${GH_TOKEN}@github.com/WPN-XM/docs > /dev/null 2>&1
-  git push -f --set-upstream origin-pages gh-pages
+  git push -f --set-upstream origin-pages gh-pages > /dev/null 2>&1
 }
 
 setup_git
