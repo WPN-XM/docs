@@ -8,18 +8,18 @@ install:
   # syntax highlighter
   - gem install --no-ri --no-rdoc coderay pygments.rb
   # diagram support
-  - gem install --no-ri --no-rdoc asciidoctor-diagram
+  #- gem install --no-ri --no-rdoc asciidoctor-diagram
   # install diagram tools: blockdiag, seqdiag, actdiag and nwdiag
-  - wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python
-  - easy_install "blockdiag[pdf]"
-  - easy_install seqdiag
-  - easy_install actdiag
-  - easy_install nwdiag
+  #- wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python
+  #- easy_install "blockdiag[pdf]"
+  #- easy_install seqdiag
+  #- easy_install actdiag
+  #- easy_install nwdiag
   #- gem install slim tilt haml
 before_script:
   - asciidoctor --version
   - asciidoctor-pdf --version
-  - asciidoctor-diagram --version
+  #- asciidoctor-diagram --version
   - ls -alF
 script:
   - asciidoctor en/book.asciidoc -o output/en/index.html
