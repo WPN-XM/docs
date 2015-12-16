@@ -8,4 +8,8 @@
 | Wiki              | https://github.com/WPN-XM/WPN-XM/wiki  |      |     |
 | Github Pages      | http://wpn-xm.github.io/docs/          |      |     |
 
+#### Using AsciiDoc
 
+- [AsciiDoc Syntax Reference](http://asciidoctor.org/docs/asciidoc-syntax-quick-reference)
+- [Asciidoctor Manual](http://asciidoctor.org/docs/user-manual)
+- [Asciidoctor PDF Theming Guide](https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc)
