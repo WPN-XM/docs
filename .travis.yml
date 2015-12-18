@@ -20,12 +20,11 @@ install:
   - gem install --version '0.12.7' compass --no-ri --no-rdoc
   - gem install --version '4.3.2' zurb-foundation --no-ri --no-rdoc
   # AsciiDoctor Stylesheet Factory
+  - mkdir -p output/css
   - wget https://github.com/asciidoctor/asciidoctor-stylesheet-factory/archive/master.zip
   - unzip master.zip
   - cd asciidoctor-stylesheet-factory-master
   - compass compile
-  - mkdir ../output/css
-  - ls -alF ../output
   - cp -pr stylesheets ../output/css
   - cd..
 before_script:
