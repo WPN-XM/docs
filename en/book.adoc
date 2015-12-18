@@ -32,8 +32,6 @@ include::preface.adoc[]
 
 include::chapter01.adoc[]
 
-include::sourcecode.adoc[]
-
 //include::feedback.adoc[]
 
 //include::glossar.adoc[]
