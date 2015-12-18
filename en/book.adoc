@@ -20,7 +20,7 @@ WPN-XM Manual
 
 :linkcss:
 :stylesheet:          colony.css
-:stylesdir:           ../stylesheets
+:stylesdir:           ./css
 
 :source-highlighter:  pygments
 ifdef::asciidoctor[]
