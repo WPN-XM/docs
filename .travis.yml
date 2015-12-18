@@ -35,7 +35,7 @@ before_script:
 script:
   - asciidoctor -a VERSION=$TRAVIS_TAG en/book.adoc -o output/en/index.html
   - ls -alF output
-  - ls -alF output/stylesheets
+  - ls -alF output/css
   - rm -r asciidoctor-stylesheet-factory-master/
 after_success:
   - ./publish.sh
