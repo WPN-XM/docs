@@ -26,7 +26,7 @@ install:
   - cd asciidoctor-stylesheet-factory-master
   - compass compile
   - cp -pr stylesheets ../output/css
-  - cd..
+  - cd ..
 before_script:
   - asciidoctor --version
   - asciidoctor-pdf --version
