@@ -1,0 +1,31 @@
+WPN-XM Manual
+=============
+:author:              Jens A. Koch
+:email:               jakoch@web.de
+:revdate:             December, 2015
+:revnumber:           dev-master
+
+:doctype:             book
+:encoding:            utf-8
+:lang:                en
+:gitrepo:             https://github.com/WPN-XM/docs/en
+:ascii-ids:
+:icons:               font
+:numbered:
+:max-width:           48em
+:source-highlighter:  pygments
+ifdef::asciidoctor[]
+:source-highlighter:  highlightjs
+:highlightjs-theme:   monokai_sublime
+endif::asciidoctor[]
+
+
+include::preface.adoc[]
+
+include::chapter01.adoc[]
+
+include::sourcecode.adoc[]
+
+//include::feedback.adoc[]
+
+//include::glossar.adoc[]

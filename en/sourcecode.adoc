@@ -1,0 +1,19 @@
+= Source code listing
+
+Code listings look cool with Asciidoctor and highlight.js with {highlightjs-theme} theme.
+
+[source,php]
+----
+// file: user.php
+class User {
+    String username
+}
+----
+
+[source,sql]
+----
+CREATE TABLE USER (
+    ID INT NOT NULL,
+    USERNAME VARCHAR(40) NOT NULL
+);
+----
