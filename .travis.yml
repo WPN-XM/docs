@@ -24,7 +24,7 @@ install:
   - unzip master.zip
   - cd asciidoctor-stylesheet-factory-master
   - compass compile
-  - cp -pr stylesheets
+  - cp -pr stylesheets ./output/css
   - cd..
 before_script:
   - asciidoctor --version
@@ -32,10 +32,10 @@ before_script:
   #- asciidoctor-diagram --version
   - ls -alF
 script:
-  - if [ "$TRAVIS_TAG" ]; then
-  - asciidoctor -b html5 -d book -a VERSION=$TRAVIS_TAG en/book.adoc -o output/en/index.html
+  - asciidoctor -a VERSION=$TRAVIS_TAG en/book.adoc -o output/en/index.html
   - ls -alF output
-  #- ls -alF output/css
+  - ls -alF output/css
+  - rm -r asciidoctor-stylesheet-factory-master/
 after_success:
   - ./publish.sh
 git:
