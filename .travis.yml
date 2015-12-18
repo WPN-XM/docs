@@ -15,14 +15,25 @@ install:
   #- easy_install seqdiag
   #- easy_install actdiag
   #- easy_install nwdiag
-  #- gem install slim tilt haml
+  - gem install slim tilt haml
+  # AsciiDoctor Stylesheet Factory - Dependencies
+  - gem install --version '0.12.7' compass --no-ri --no-rdoc
+  - gem install --version '4.3.2' zurb-foundation --no-ri --no-rdoc
+  # AsciiDoctor Stylesheet Factory
+  - wget https://github.com/asciidoctor/asciidoctor-stylesheet-factory/archive/master.zip
+  - unzip master.zip
+  - cd asciidoctor-stylesheet-factory-master
+  - compass compile
+  - cp -pr stylesheets
+  - cd..
 before_script:
   - asciidoctor --version
   - asciidoctor-pdf --version
   #- asciidoctor-diagram --version
   - ls -alF
 script:
-  - asciidoctor -b html5 -d book en/book.adoc -o output/en/index.html
+  - if [ "$TRAVIS_TAG" ]; then
+  - asciidoctor -b html5 -d book -a VERSION=$TRAVIS_TAG en/book.adoc -o output/en/index.html
   - ls -alF output
   #- ls -alF output/css
 after_success:
