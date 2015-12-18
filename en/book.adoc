@@ -4,6 +4,7 @@ WPN-XM Manual
 :email:               jakoch@web.de
 :revdate:             December, 2015
 :revnumber:           dev-master
+:description:         This document is the WPN-XM Manual.
 
 :doctype:             book
 :encoding:            utf-8
@@ -18,7 +19,7 @@ ifdef::asciidoctor[]
 :source-highlighter:  highlightjs
 :highlightjs-theme:   monokai_sublime
 endif::asciidoctor[]
-
+:toc:                 left
 
 include::preface.adoc[]
 
