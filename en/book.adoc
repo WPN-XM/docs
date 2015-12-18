@@ -7,19 +7,22 @@ WPN-XM Manual
 :description:         This document is the WPN-XM Manual.
 
 :doctype:             book
-:encoding:            utf-8
 :lang:                en
+:encoding:            utf-8
 :gitrepo:             https://github.com/WPN-XM/docs/en
+
+:toc:                 left
+:toc-title:           Contents
 :ascii-ids:
 :icons:               font
 :numbered:
 :max-width:           48em
+
 :source-highlighter:  pygments
 ifdef::asciidoctor[]
 :source-highlighter:  highlightjs
 :highlightjs-theme:   monokai_sublime
 endif::asciidoctor[]
-:toc:                 left
 
 include::preface.adoc[]
 
