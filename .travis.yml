@@ -22,7 +22,7 @@ before_script:
   #- asciidoctor-diagram --version
   - ls -alF
 script:
-  - asciidoctor en/book.asciidoc -o output/en/index.html
+  - asciidoctor en/book.adoc -o output/en/index.html
   - ls -alF output
 after_success:
   - ./publish.sh
