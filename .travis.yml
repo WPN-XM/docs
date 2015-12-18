@@ -24,7 +24,7 @@ before_script:
 script:
   - asciidoctor -b html5 -d book en/book.adoc -o output/en/index.html
   - ls -alF output
-  - ls -alF output/css
+  #- ls -alF output/css
 after_success:
   - ./publish.sh
 git:
