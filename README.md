@@ -1,6 +1,6 @@
-# WPN-XM Documentation [![Build Status](https://travis-ci.org/WPN-XM/docs.svg)](https://travis-ci.org/WPN-XM/docs)
+# WPN-XM Server Stack - Documentation [![Build Status](https://travis-ci.org/WPN-XM/docs.svg)](https://travis-ci.org/WPN-XM/docs)
 
-| Resource          | Format | Language                               |
+| Resource          | Format | Language / Link                        |
 |-------------------|--------|----------------------------------------|
 | User Manual       | HTML   | [EN][USR-MAN-EN]                       |
 |                   | PDF    |                                        |
