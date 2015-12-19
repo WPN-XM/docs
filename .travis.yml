@@ -20,22 +20,23 @@ install:
   - gem install --version '0.12.7' compass --no-ri --no-rdoc
   - gem install --version '4.3.2' zurb-foundation --no-ri --no-rdoc
   # AsciiDoctor Stylesheet Factory
-  - mkdir -p output/css
+  - mkdir -p output
   - wget https://github.com/asciidoctor/asciidoctor-stylesheet-factory/archive/master.zip
   - unzip master.zip
   - cd asciidoctor-stylesheet-factory-master
+  #- ./build-stylesheet.sh colony.css
   - compass compile
-  - cp -pr stylesheets ../output/css
+  - cp -pr stylesheets ../output/
   - cd ..
+  - rm master.zip
 before_script:
   - asciidoctor --version
   - asciidoctor-pdf --version
   #- asciidoctor-diagram --version
   - ls -alF
 script:
-  - asciidoctor -a VERSION=$TRAVIS_TAG en/book.adoc -o output/en/index.html
+  - asciidoctor -a stylesheet=./output/stylesheets/colony.css -a source-highlighter=highlightjs -a VERSION=$TRAVIS_TAG en/book.adoc -o output/en/index.html
   - ls -alF output
-  - ls -alF output/css
   - rm -r asciidoctor-stylesheet-factory-master/
 after_success:
   - ./publish.sh
