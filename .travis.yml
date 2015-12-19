@@ -35,7 +35,7 @@ before_script:
   #- asciidoctor-diagram --version
   - ls -alF
 script:
-  - asciidoctor -a stylesheet=../stylesheets/colony.css -a source-highlighter=highlightjs -a linkcss -a revnumber=$TRAVIS_TAG en/book.adoc -o output/en/index.html
+  - asciidoctor -a stylesheet=../stylesheets/colony.css -a source-highlighter=highlightjs -a toc=left -a linkcss -a revnumber=$TRAVIS_TAG en/book.adoc -o output/en/index.html
   - ls -alF output
   - rm -r asciidoctor-stylesheet-factory-master/
 after_success:
