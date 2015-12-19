@@ -1,12 +1,17 @@
 # WPN-XM Documentation [![Build Status](https://travis-ci.org/WPN-XM/docs.svg)](https://travis-ci.org/WPN-XM/docs)
 
-| Resource          | Link                                   | HTML | PDF |
-|-------------------|----------------------------------------|------|-----|
-| User Manual       |                                        |      |     |
-| Developer Manual  |                                        |      |     |
-| API Documentation | http://wpn-xm.org/api-docu/api-doc.htm |      |     |
-| Wiki              | https://github.com/WPN-XM/WPN-XM/wiki  |      |     |
-| Github Pages      | http://wpn-xm.github.io/docs/          |      |     |
+| Resource          | Format | Language                               |
+|-------------------|--------|----------------------------------------|
+| User Manual       | HTML   | [EN][USR-MAN-EN]                       |
+|                   | PDF    |                                        |
+| Developer Manual  | HTML   |                                        |
+|                   | PDF    |                                        |
+| API Documentation | HTML   | [EN][API-DOC-EN]                       |
+| Wiki              | HTML   | https://github.com/WPN-XM/WPN-XM/wiki  |
+| Github Pages      | HTML   | http://wpn-xm.github.io/docs/          | 
+
+[USR-MAN-EN]: http://wpn-xm.github.io/docs/manual/en/
+[API-DOC-EN]: http://wpn-xm.org/api-docu/api-doc.htm
 
 #### Using AsciiDoc
 
