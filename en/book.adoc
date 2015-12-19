@@ -18,8 +18,8 @@ WPN-XM Manual
 :numbered:
 :max-width:           48em
 
-:linkcss:
-:stylesheet:          ../css/colony.css
+//:linkcss:
+//:stylesheet:          ../css/colony.css
 
 :source-highlighter:  pygments
 ifdef::asciidoctor[]
