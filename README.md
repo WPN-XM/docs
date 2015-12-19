@@ -6,12 +6,11 @@
 |                   | PDF    |                                        |
 | Developer Manual  | HTML   |                                        |
 |                   | PDF    |                                        |
-| API Documentation | HTML   | [EN][API-DOC-EN]                       |
+| API Documentation | HTML   | http://wpn-xm.org/api-docu/api-doc.htm |
 | Wiki              | HTML   | https://github.com/WPN-XM/WPN-XM/wiki  |
 | Github Pages      | HTML   | http://wpn-xm.github.io/docs/          | 
 
 [USR-MAN-EN]: http://wpn-xm.github.io/docs/manual/en/
-[API-DOC-EN]: http://wpn-xm.org/api-docu/api-doc.htm
 
 #### Using AsciiDoc
 
