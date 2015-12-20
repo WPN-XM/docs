@@ -1,12 +1,16 @@
 language: ruby
 rvm:
   - 2.2.2
+addons:
+  apt:
+    packages:
+    # fetch Ghostscript to optimize/minimize the PDF, if > 5MB
+    - ghostscript
+    - graphviz
 install:
   - gem install asciidoctor
   # PDF generator
   - gem install --no-ri --no-rdoc --pre asciidoctor-pdf
-  # fetch Ghostscript to optimize/minimize the PDF, if > 5MB
-  #- sudo apt-get install -y ghostscript
   # syntax highlighter
   - gem install --no-ri --no-rdoc coderay pygments.rb
   # diagram support
