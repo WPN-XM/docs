@@ -38,10 +38,12 @@ before_script:
   - ls -alF
 script:
   - asciidoctor -a stylesheet=../stylesheets/colony.css -a source-highlighter=highlightjs -a toc=left -a linkcss -a revnumber=$TRAVIS_TAG en/book.adoc -o manual/en/index.html -v
-  - asciidoctor -r asciidoctor-pdf -b pdf -a revnumber=$TRAVIS_TAG en/book.adoc -o manual/en/book.pdf -v
+  - asciidoctor -r asciidoctor-pdf -b pdf -a pdf-style=pdf/theme.yaml -a pdf-fontsdir=pdf/fonts -a revnumber=$TRAVIS_TAG en/book.adoc -o manual/en/book.pdf -v
   #- ./bin/optimize-pdf manual/en/book.pdf
   - ls -alF manual
+  # cleanup (remove folders before commiting to gh-pages)
   - rm -r asciidoctor-stylesheet-factory-master/
+  - rm -r pdf/
 after_success:
   - ./publish.sh
 git:

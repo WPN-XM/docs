@@ -1,0 +1,71 @@
+font:
+  catalog:
+    Roboto:
+      normal: Roboto-Regular.ttf
+      italic: Roboto-Italic.ttf
+      bold: Roboto-Bold.ttf
+      bold_italic: Roboto-Bold_Italic.ttf
+    Roboto-Condensed:
+      normal: RobotoCondensed-Regular.ttf
+      italic: RobotoCondensed-Italic.ttf
+      bold: RobotoCondensed-Bold.ttf
+      bold_italic: RobotoCondensed-Bold_Italic.ttf
+    NotoSans:
+      normal: NotoSans-Regular.ttf
+      italic: NotoSans-Regular.ttf
+      bold: NotoSans-Regular.ttf
+      bold_italic: NotoSans-Regular.ttf
+    DejaVuSans:
+      normal: DejaVuSans.ttf
+      italic: DejaVuSans.ttf
+      bold: DejaVuSans.ttf
+      bold_italic: DejaVuSans.ttf
+  fallbacks: [DejaVuSans]
+
+title_page:
+  align: right
+  background_image: image:images/frontpage.png[]
+
+page:
+  layout: portrait
+  margin: [0.75in, 1in, 0.75in, 1in]
+  size: Letter
+base:
+  font_color: #333333
+  font_family: Roboto
+  font_size: 12
+  line_height_length: 17
+  line_height: $base_line_height_length / $base_font_size
+vertical_rhythm: $base_line_height_length
+heading:
+  font_family: Roboto-Condensed
+  font_color: #880000
+  font_size: 17
+  font_style: bold
+  line_height: 1.2
+  margin_bottom: $vertical_rhythm
+link:
+  font_color: #002FA7
+outline_list:
+  indent: $base_font_size * 1.5
+
+
+header:
+  height: 0.75in
+  line_height: 1
+  recto_content:
+    center: '{docdate}'
+  verso_content:
+    center: '{docdate}'
+footer:
+  height: 0.75in
+  line_height: 1
+  recto_content:
+    right: '{chapter-title} | *{page-number}*'
+  verso_content:
+    left: '*{page-number}* | {chapter-title}'
+
+caption:
+  align: center
+  font_color: #444444
+  font_size: 10
