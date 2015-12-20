@@ -12,7 +12,11 @@ WPN-XM Manual
 :gitrepo:             https://github.com/WPN-XM/docs/en
 
 :toc:                 left
+ifdef::backend-pdf[]
+:toc:
+endif::[]
 :toc-title:           Contents
+
 :ascii-ids:
 :icons:               font
 :numbered:
