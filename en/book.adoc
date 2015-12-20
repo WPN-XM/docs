@@ -31,6 +31,8 @@ ifdef::asciidoctor[]
 :highlightjs-theme:   monokai_sublime
 endif::asciidoctor[]
 
+:!sectnums:
+
 include::preface.adoc[]
 
 :sectnums:
