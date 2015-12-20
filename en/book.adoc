@@ -39,4 +39,4 @@ include::chapter01.adoc[]
 
 //include::glossar.adoc[]
 
-include::colophon.adoc
+include::colophon.adoc[]
