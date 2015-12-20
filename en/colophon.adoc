@@ -1,6 +1,6 @@
 [colophon]
 [[colophon]]
-= Colophon
+== Colophon
 
 (C) 2015 Jens A. Koch
 
