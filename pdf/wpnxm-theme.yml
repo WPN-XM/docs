@@ -23,12 +23,12 @@ font:
   fallbacks: [DejaVuSans]
 
 title_page:
-  align: center
+  align: right
   logo:
     image: image:images/frontpage.png[]
     top: 12%
   title:
-    top: 25%
+    top: 13%
     font_size: 30
 
 page:
