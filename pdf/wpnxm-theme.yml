@@ -27,6 +27,9 @@ title_page:
   logo:
     image: image:images/frontpage.png[]
     top: 12%
+  title:
+    top: 25%
+    font_size: 30
 
 page:
   layout: portrait
@@ -66,6 +69,8 @@ footer:
     right: '{chapter-title} | *{page-number}*'
   verso_content:
     left: '*{page-number}* | {chapter-title}'
+  border_color: dddddd
+  border_width: 0.25
 
 caption:
   align: center
