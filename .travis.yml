@@ -5,6 +5,8 @@ install:
   - gem install asciidoctor
   # PDF generator
   - gem install --no-ri --no-rdoc --pre asciidoctor-pdf
+  # fetch Ghostscript to optimize/minimize the PDF, if > 5MB
+  #- sudo apt-get install -y ghostscript
   # syntax highlighter
   - gem install --no-ri --no-rdoc coderay pygments.rb
   # diagram support
@@ -37,6 +39,7 @@ before_script:
 script:
   - asciidoctor -a stylesheet=../stylesheets/colony.css -a source-highlighter=highlightjs -a toc=left -a linkcss -a revnumber=$TRAVIS_TAG en/book.adoc -o manual/en/index.html
   - asciidoctor -r asciidoctor-pdf -b pdf -a revnumber=$TRAVIS_TAG en/book.adoc -o manual/en/book.pdf
+  #- ./bin/optimize-pdf manual/en/book.pdf
   - ls -alF manual
   - rm -r asciidoctor-stylesheet-factory-master/
 after_success:
