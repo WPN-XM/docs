@@ -24,7 +24,9 @@ font:
 
 title_page:
   align: right
-  background_image: image:images/frontpage.png[]
+  logo:
+    image: image:images/frontpage.png[]
+    top: 10%
 
 page:
   layout: portrait
@@ -53,10 +55,10 @@ outline_list:
 header:
   height: 0.75in
   line_height: 1
-  recto_content:
-    center: '{docdate}'
-  verso_content:
-    center: '{docdate}'
+  #recto_content:
+    #center: '{docdate}'
+  #verso_content:
+    #center: '{docdate}'
 footer:
   height: 0.75in
   line_height: 1
