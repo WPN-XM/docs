@@ -38,3 +38,5 @@ include::chapter01.adoc[]
 //include::feedback.adoc[]
 
 //include::glossar.adoc[]
+
+include::colophon.adoc
