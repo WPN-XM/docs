@@ -1,0 +1,25 @@
+# WPN-XM Server Stack - Documentations
+
+image:https://travis-ci.org/WPN-XM/docs.svg["Build Status", link="https://travis-ci.org/WPN-XM/docs"]
+
+:USR-MAN-HTML-EN:   http://wpn-xm.github.io/docs/manual/en/[EN]
+:USR-MAN-PDF-EN:    http://wpn-xm.github.io/docs/manual/en/book.pdf[EN]
+
+[width="100%",options="header"]
+|====================
+| Resource          | Format | Language / Link
+| User Manual       | HTML   | {USR-MAN-HTML-EN}
+|                   | PDF    | {USR-MAN-PDF-EN}
+| Developer Manual  | HTML   |
+|                   | PDF    |
+| API Documentation | HTML   | http://wpn-xm.org/api-docu/api-doc.htm
+| Wiki              | HTML   | https://github.com/WPN-XM/WPN-XM/wiki
+| Github Pages      | HTML   | http://wpn-xm.github.io/docs/
+|====================
+
+#### Using AsciiDoc
+
+- http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Reference]
+- http://asciidoctor.org/man/asciidoctor/[Asciidoctor CLI Commands]
+- http://asciidoctor.org/docs/user-manual/[Asciidoctor Manual]
+- https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide]
