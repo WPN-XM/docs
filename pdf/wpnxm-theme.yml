@@ -22,14 +22,14 @@ font:
       bold_italic: DejaVuSans.ttf
   fallbacks: [DejaVuSans]
 
-title_page:
-  align: right
-  logo:
-    image: image:images/frontpage.png[]
-    top: 12%
-  title:
-    top: 13%
-    font_size: 30
+#title_page:
+#  align: right
+#  logo:
+#    image: image:images/frontpage.png[]
+#    top: 12%
+#  title:
+#    top: 13%
+#    font_size: 30
 
 page:
   layout: portrait
