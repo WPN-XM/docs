@@ -33,10 +33,18 @@ endif::asciidoctor[]
 
 include::preface.adoc[]
 
+:sectnums:
+
 include::chapter01.adoc[]
 
 //include::feedback.adoc[]
 
-//include::glossar.adoc[]
+:!sectnums:
+
+//include::appendix.adoc[]
+
+//include::bibliography.adoc[]
+
+//include::glossary.adoc[]
 
 include::colophon.adoc[]
