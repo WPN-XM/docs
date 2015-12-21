@@ -25,7 +25,11 @@ endif::[]
 :linkcss:
 :stylesheet:          ../stylesheets/colony.css
 
+ifdef::backend-pdf[]
 :source-highlighter:  pygments
+:pygments-style:      bw
+endif::[]
+
 ifdef::asciidoctor[]
 :source-highlighter:  highlightjs
 :highlightjs-theme:   monokai_sublime
