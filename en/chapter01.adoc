@@ -25,3 +25,25 @@ CREATE TABLE USER (
     USERNAME VARCHAR(40) NOT NULL
 );
 ----
+
+== Software Components
+
+=== Pickle
+
+Pickle is a cross-platform PHP Extension installer.
+
+==== Usage
+
+For example, to install the memcache extension run the following command:
+
+[source,shell]
+----
+$ pickle install memcache
+----
+
+Its also possible to require a specific version:
+
+[source,shell]
+----
+$ pickle install <extension>@<version>
+----
