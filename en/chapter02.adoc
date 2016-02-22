@@ -11,11 +11,15 @@ The default installaton folder is `server\bin\nginx`.
 
 The file `nginx.conf` in `server\bin\nginx\conf\` is the main configuration file.
 
+The stack ships also a very minimal configuration for debugging purposes: https://github.com/WPN-XM/software/blob/master/nginx/config/nginx.conf.debug[`nginx.conf.debug`].
+
 ==== Server Blocks (domains-enabled and domains-disabled)
 
 This config file includes other configuration files from the folder `server\bin\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications correctly and support their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
 
 The server stack ships several server blocks by default in the folder `server\bin\nginx\conf\domains-disabled`. To use one of these files, simply move or copy them to the `server\bin\nginx\conf\domains-enabled` folder and restart Nginx. The new server block configuration is then automatically included.
+
+The configs are also on Github: https://github.com/WPN-XM/software/tree/master/nginx/config/conf/domains-disabled
 
 ==== root and server_name
 
