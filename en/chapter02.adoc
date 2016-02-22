@@ -5,17 +5,17 @@
 Nginx ("engine x") is a web server written by Igor Sysoev in 2002. It can act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache. Nginx runs on Unix, Linux, BSD variants, OS X, Solaris, AIX, HP-UX, and Windows.
 Nginx is free and open source software and released under the terms of a BSD-like license.
 
-The default installaton folder is `server\nginx`.
+The default installaton folder is `server\bin\nginx`.
 
 ==== Configuration
 
-The file `nginx.conf` in `server\nginx\conf\` is the main configuration file.
+The file `nginx.conf` in `server\bin\nginx\conf\` is the main configuration file.
 
 ==== Server Blocks (domains-enabled and domains-disabled)
 
-This config file includes other configuration files from the folder `server\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications correctly and support their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
+This config file includes other configuration files from the folder `server\bin\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications correctly and support their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
 
-The server stack ships several server blocks by default in the folder `server\nginx\conf\domains-disabled`. To use one of these files, simply move or copy them to the `server\nginx\conf\domains-enabled` folder and restart Nginx. The new server block configuration is then automatically included.
+The server stack ships several server blocks by default in the folder `server\bin\nginx\conf\domains-disabled`. To use one of these files, simply move or copy them to the `server\bin\nginx\conf\domains-enabled` folder and restart Nginx. The new server block configuration is then automatically included.
 
 ==== root and server_name
 
