@@ -2,10 +2,10 @@
 
 === Nginx
 
-Nginx
+Nginx ("engine x") is a web server written by Igor Sysoev in 2002. It can act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache. Nginx runs on Unix, Linux, BSD variants, OS X, Solaris, AIX, HP-UX, and Windows.
+Nginx is free and open source software and released under the terms of a BSD-like license.
 
 The default installaton folder is `server\nginx`.
-
 
 ===== Configuration
 
