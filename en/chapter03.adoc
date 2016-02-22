@@ -1,0 +1,76 @@
+== PHP Applications
+
+=== Drupal 7
+
+Drupal is a PHP content management software. Initially written in the year 2000 by two University of Antwerp students, Dries Buytaert and Hans Snijder. The first release was in Januar 2001.
+
+Nowadays the development is driven by Acquia Drupal and a vibrant open-source community.
+
+Drupal 7.0 was released on January 5, 2011 (after being in development since July 2008).
+
+===== Installation
+
+The following step-by-step tutorial guides you through the process of installing and
+setting up Drupal 7.
+
+The first few steps cover the installation of Drupal into the folder `server\www\drupal7`.
+Our goal is to have a working Drupal 7 installation accessible at `http://localhost/drupal7/`.
+
+1. Download: https://ftp.drupal.org/files/projects/drupal-7.42.zip
+2. Extract into `server\www` folder
+   - Drupal brings its own folder: `drupal-7.42`. Simply rename it to `drupal7`.
+3. Open in browser: http://localhost/drupal7/install.php
+4. Select "standard"
+5. enable PHP Extension "gd"
+   - `php.ini`: `extension=php_gd2.dll`
+6. create database with Adminer
+   - Open in browser: http://localhost/tools/adminer/adminer.php
+   - Note: in case you need to change root pw, use `reset-db-pw.bat` from the servers root folder
+   - create table "test"
+   - create new user and pw
+7. use the "database", "user" and "pw" in the Drupal installation dialog
+8. follow dialog and configure site
+
+Finally Drupal is installed.
+
+The URL is `http://localhost/drupal7/` and the installation folder is `server\www\drupal7`
+
+The next few steps cover how to get of the `http://localhost` domain and enable a shorter and more nice appealing local development domain instead.
+
+===== Setup local domain http://drupal7.dev/
+
+Apache users refer to this as setting up a "virtual host".
+Nginx doesn't know what "virtual hosts" are
+With Nginx we simply define a new "server block" and use a `server_name` directive.
+
+WPN-XM ships several "server block" configurations by default.
+You find them in the `server\bin\nginx\config\conf\domains-disabled\` folder.
+
+1. copy the `drupal7.conf` from the `domains-disabled` to the `domains-enabled` folder
+   - configs are also on Github: https://github.com/WPN-XM/software/blob/master/nginx/config/conf/domains-disabled/drupal7.conf
+2. edit the file and check that the following directives are defined:
+   - `root www/drupal7`;
+   - `server_name drupal7.dev`;
+3. then add a new "vhost" by using the Server Control Panel
+   - right-click on the Tray
+   - then click "Manage Hosts"
+   - click "Add"
+   - enter "127.0.0.1" and "drupal7.dev"
+   - click "Ok" and again "Ok" (this changes your local `hosts` file)
+4. restart Nginx
+5. finally, open the URL http://drupal7.dev/
+
+===== Enabling clean URLs for Drupal 7
+
+1. Open http://drupal7.dev/
+2. login
+   - after login the URL is: http://drupal7.dev/?q=node
+3. To enable clean urls go to "Configuration > Clean-Urls" or directly to
+   - http://drupal7.dev/admin/config/search/clean-urls
+   - alternatively: http://drupal7.dev/?q=admin/config/search/clean-urls
+4. enable checkbox "enable clean urls", then submit the form
+5. finally, open any clean URL, e.g. http://drupal7.dev/admin/content
+
+We successfully installed Drupal 7 into `server\www\drupal7`, created a local server domain
+`drupal7.dev` and enabled clean URLs.
+

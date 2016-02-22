@@ -45,6 +45,14 @@ include::chapter01.adoc[]
 
 //include::feedback.adoc[]
 
+include::chapter02.adoc[]
+
+//include::feedback.adoc[]
+
+include::chapter03.adoc[]
+
+//include::feedback.adoc[]
+
 :!sectnums:
 
 //include::appendix.adoc[]
