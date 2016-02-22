@@ -8,7 +8,7 @@ Nowadays the development is driven by Acquia Drupal and a vibrant open-source co
 
 Drupal 7.0 was released on January 5, 2011 (after being in development since July 2008).
 
-===== Installation
+==== Installation
 
 The following step-by-step tutorial guides you through the process of installing and
 setting up Drupal 7.
@@ -37,7 +37,7 @@ The URL is `http://localhost/drupal7/` and the installation folder is `server\ww
 
 The next few steps cover how to get of the `http://localhost` domain and enable a shorter and more nice appealing local development domain instead.
 
-===== Setup local domain http://drupal7.dev/
+==== Setup local domain http://drupal7.dev/
 
 Apache users refer to this as setting up a "virtual host".
 Nginx doesn't know what "virtual hosts" are
@@ -60,7 +60,7 @@ You find them in the `server\bin\nginx\config\conf\domains-disabled\` folder.
 4. restart Nginx
 5. finally, open the URL http://drupal7.dev/
 
-===== Enabling clean URLs for Drupal 7
+==== Enabling clean URLs for Drupal 7
 
 1. Open http://drupal7.dev/
 2. login
