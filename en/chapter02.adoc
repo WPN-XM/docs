@@ -7,11 +7,11 @@ Nginx is free and open source software and released under the terms of a BSD-lik
 
 The default installaton folder is `server\nginx`.
 
-===== Configuration
+==== Configuration
 
 The file `nginx.conf` in `server\nginx\conf\` is the main configuration file.
 
-===== Server Blocks (domains-enabled and domains-disabled)
+==== Server Blocks (domains-enabled and domains-disabled)
 
 This config file includes other configuration files from the folder `server\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications correctly and support their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
 
