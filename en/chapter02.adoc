@@ -13,14 +13,13 @@ The file `nginx.conf` in `server\nginx\conf\` is the main configuration file.
 
 ===== Server Blocks (domains-enabled and domains-disabled)
 
-This config file includes other configuration files from the folder `server\nginx\conf\domains-enabled`. These configuration files are mostly server blocks and contain Nginx configuration directives to serve specific PHP application correctly and support their URL rewrite rules
-to enable nice looking URLs.
+This config file includes other configuration files from the folder `server\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications correctly and support their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
 
 The server stack ships several server blocks by default in the folder `server\nginx\conf\domains-disabled`. To use one of these files, simply move or copy them to the `server\nginx\conf\domains-enabled` folder and restart Nginx. The new server block configuration is then automatically included.
 
 ==== root and server_name
 
-The most important directives in a server blocka are `root` and `server_name`, next to the configuration of the rewrite rules for the specific application.
+The most important directives in a server block are `root` and `server_name`, next to the configuration of the rewrite rules for the specific application.
 
 The `root` directive defines a relative path to the project, e.g. `www/<my_project_folder>`.
 But a hardcoded path will work too, e.g. `c:\server\www\my_project_folder`.
@@ -28,7 +27,7 @@ The `server_name` directive defines which server block is used for a given reque
 
 A very basic example for Wordpress: `root www/wordpress` and `server_name wordpress.dev`.
 This makes Wordpress available at the URLs http://localhost/wordpress and http://wordpress.dev.
-The "wordpress.dev" URL needs an additional entry in your `hosts`file. So, don't forget to adjust your `hosts` file accordingly!
+The URL http://wordpress.dev needs an additional entry in your `hosts` file. So, don't forget to adjust your `hosts` file accordingly!
 
 === Pickle
 
