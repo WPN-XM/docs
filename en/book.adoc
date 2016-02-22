@@ -16,6 +16,7 @@ ifdef::backend-pdf[]
 :toc:
 endif::[]
 :toc-title:           Contents
+:toclevels:           4
 
 :ascii-ids:
 :icons:               font
