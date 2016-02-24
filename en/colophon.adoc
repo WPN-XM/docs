@@ -2,7 +2,7 @@
 [[colophon]]
 == Colophon
 
-(C) 2015 Jens A. Koch
+(C) 2015 - 2016 Jens A. Koch
 
 License: Creative Commons 3.0
 

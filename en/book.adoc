@@ -1,10 +1,10 @@
-WPN-XM Manual
-=============
-:author:              Jens A. Koch
+= WPN-XM Server Stack - Manual
+Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :email:               jakoch@web.de
-:revdate:             December, 2015
+//:revdate:             December, 2015
 :revnumber:           dev-master
 :description:         This document is the WPN-XM Manual.
+:keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB
 
 :doctype:             book
 :lang:                en
@@ -35,6 +35,13 @@ ifdef::asciidoctor[]
 :source-highlighter:  highlightjs
 :highlightjs-theme:   monokai_sublime
 endif::asciidoctor[]
+
+//// Links
+:license: https://github.com/WPN-XM/WPN-XM/blob/master/LICENSE
+:jakoch: http://github.com/jakoch
+:issue-ref: https://github.com/WPN-XM/WPN-XM/issues
+:uri-wpnxm-github-issues: https://github.com/WPN-XM/WPN-XM/issues
+////
 
 :!sectnums:
 
