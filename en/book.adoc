@@ -36,11 +36,13 @@ ifdef::asciidoctor[]
 :highlightjs-theme:   monokai_sublime
 endif::asciidoctor[]
 
-//// Links
+////
+
 :license: https://github.com/WPN-XM/WPN-XM/blob/master/LICENSE
 :jakoch: http://github.com/jakoch
 :issue-ref: https://github.com/WPN-XM/WPN-XM/issues
 :uri-wpnxm-github-issues: https://github.com/WPN-XM/WPN-XM/issues
+
 ////
 
 :!sectnums:
