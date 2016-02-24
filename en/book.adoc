@@ -11,13 +11,16 @@ Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :encoding:            utf-8
 :gitrepo:             https://github.com/WPN-XM/docs/en
 
-:toc-title:           Contents
-:toclevels:           4
 :toc:                 left
 ifdef::backend-pdf[]
 :toc:
 endif::[]
+:toc-title:           Contents
+:toclevels:           4
+:sectnums:
+:sectnumlevels:       4
 
+:experimental:
 :ascii-ids:
 :icons:               font
 :numbered:
@@ -36,14 +39,11 @@ ifdef::asciidoctor[]
 :highlightjs-theme:   monokai_sublime
 endif::asciidoctor[]
 
-////
-
+// Refs
 :license: https://github.com/WPN-XM/WPN-XM/blob/master/LICENSE
 :jakoch: http://github.com/jakoch
 :issue-ref: https://github.com/WPN-XM/WPN-XM/issues
 :uri-wpnxm-github-issues: https://github.com/WPN-XM/WPN-XM/issues
-
-////
 
 :!sectnums:
 
