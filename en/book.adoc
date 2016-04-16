@@ -55,7 +55,7 @@ include::chapter01.adoc[]
 
 //include::feedback.adoc[]
 
-include::chapter02.adoc[]
+include::chapter02components.adoc[]
 
 //include::feedback.adoc[]
 

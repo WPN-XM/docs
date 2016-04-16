@@ -1,0 +1,52 @@
+=== Redis
+
+==== What is Redis?
+
+Redis is an open source (BSD licensed), in-memory data structure store, used as database, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs and geospatial indexes with radius queries. Redis has built-in replication, Lua scripting, LRU eviction, transactions and different levels of on-disk persistence, and provides high availability via Redis Sentinel and automatic partitioning with Redis Cluster.
+
+Resources
+---------
+Website:       http://redis.io/
+Documentation: http://redis.io/documentation
+
+==== Redis on Windows
+
+Redis for Windows is build by MSOpenTech - https://github.com/MSOpenTech/redis
+
+==== Installation Location
+
+The default installaton folder is `server\bin\redis`.
+
+==== Configuration
+
+Redis config is located at `\server\bin\redis\redis.conf`. 
+
+==== Working with Redis from PHP
+
+You need a PHP client to interact with Redis.
+
+There are several to chose from: http://redis.io/clients#php
+
+===== PHP extension
+
+There is a redis client written in C as a PHP extension.
+
+- https://github.com/phpredis/phpredis
+- https://pecl.php.net/package/redis 
+
+===== PHP library
+
+You need a PHP library to interact with Redis.
+
+There are several to chose from:
+
+- https://github.com/amphp/redis
+- https://github.com/cheprasov/php-redis-client
+- https://github.com/nrk/predis
+- https://github.com/Shumkov/Rediska
+- https://github.com/colinmollenhour/credis
+- https://github.com/ptrofimov/tinyredisclient
+
+==== Working with Redis from Node
+
+A library for Node.js: Mranney Node Redis.

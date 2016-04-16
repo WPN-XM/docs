@@ -1,9 +1,9 @@
-== Software Components
-
 === Nginx
 
 Nginx ("engine x") is a web server written by Igor Sysoev in 2002. It can act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache. Nginx runs on Unix, Linux, BSD variants, OS X, Solaris, AIX, HP-UX, and Windows.
 Nginx is free and open source software and released under the terms of a BSD-like license.
+
+==== Installation Location
 
 The default installaton folder is `server\bin\nginx`.
 
@@ -32,23 +32,3 @@ The `server_name` directive defines which server block is used for a given reque
 A very basic example for Wordpress: `root www/wordpress` and `server_name wordpress.dev`.
 This makes Wordpress available at the URLs http://localhost/wordpress and http://wordpress.dev.
 The URL http://wordpress.dev needs an additional entry in your `hosts` file. So, don't forget to adjust your `hosts` file accordingly!
-
-=== Pickle
-
-Pickle is a cross-platform PHP Extension installer.
-
-==== Usage
-
-For example, to install the memcache extension run the following command:
-
-[source,shell]
-----
-$ pickle install memcache
-----
-
-Its also possible to require a specific version:
-
-[source,shell]
-----
-$ pickle install <extension>@<version>
-----
