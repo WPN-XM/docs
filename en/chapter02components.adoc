@@ -1,5 +1,7 @@
 == Software Components
 
 include::chapter02-nginx.adoc[]
+
 include::chapter02-redis.adoc[]
+
 include::chapter02-pickle.adoc[]
