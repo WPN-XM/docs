@@ -59,7 +59,7 @@ Whats the difference?
 The CGI approach means, that for every incoming request a new CGI process is spawned in the background to process the request, 
 just to shut down at the end of processing. This wastes a lot of resources and is slow.
 
-===== MOD_PHP
+====== MOD_PHP
 
 The `mod_php` approach is probably the default way to combine PHP and Apache. 
 Here the PHP interpreter is "embedded" inside the Apache process as "Module PHP". 
@@ -67,7 +67,7 @@ Based on the Apache config and especially your worker configuration,
 it will automatically spawn new workers (childs) to process the incoming requests. 
 Apache handles worker respawns and multiple requests.
 
-===== MOD_FCGI and FCGI
+====== MOD_FCGI and FCGI
 
 The `mod_fcgi` approach is also an Apache Module living inside the Apache process.
 It starts a sufficient number instances of the CGI program to handle concurrent requests, 
