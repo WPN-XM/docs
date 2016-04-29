@@ -7,6 +7,63 @@ If you find errors or omissions in this document, please don't hesitate to {uri-
 [preface]
 == Preface
 
-=== Conventions Used in This Book
+The WPN-XM server stack is a software bundle for web developers
+and a profound base for the development of web applications.
 
-Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This book is a comprehensive guide to getting started and working with WPN-XM.
+It includes details of the installation, the architecture, folder layout and 
+the different applications shipped and their default configurations.
+
+WPN-XM provides a number of advantages:
+
+- multiple installers
+  - the prepackaged installers ship software components as a bundle
+  - the webinstaller allows the selection of components to download
+- two software catalogs to chose applications from
+  - Stack components 
+  - PHP applications
+- all components are also available for selective manual download on our website
+- the updater 
+  - indicates updates for installed software components
+  - allows to keep your stack up-to-date by updating already installed components
+  - allows to install additional (not-yet-installed) components
+- it is a preconfigured development environment, ready to work out-of-the-box
+- Sever Control Panel
+- Webinterface
+- fully Open-Source
+  - build using an open-source build toolchain
+  - providing reliable and continous open-source builds
+
+WPN-XM has several goals:
+
+- convenient local web development environment with a focus on PHP
+- simple and fast installation
+- out-of-the-box configuration for servers
+- simple start and stop of servers
+- easy to start new projects
+- support for multiple user projects
+- seamless automatic updates
+
+== Reasons
+
+There are already several server stacks for Windows out there.
+Why another one?
+
+Just to name a few reasons:
+
+- well, a PHP server stack like i imagined didn't exist (until now :). 
+- i love tooling and making things. things which actually make it easier to make new shiny web tech things.
+- the stack addresses the fundamental problem of Windows: the missing package management,
+  but only for a small subset of the software ecosystem: for web development relevant software.
+- i imagined to build an environment, where it is easy to pull in new web development related packages and tools,
+  while things are pre-configured and ready work right out-of-the-box.
+  A system where all the hassle of settings things up is greatly reduced and 
+  developer life-time is saved by getting rid of daunting repeating tasks (update monitoring is one of them)
+- i started the project as a true open-source project, because other server stacks were (and are still not) really open-source
+- the project solves the i'm not in charge and cannot modify the project like i want problem
+- i'm trying to close the gap between third-party vendors, providing tools and servers, and PHP.
+  Examplewise, let's take a look at DB vendors: 
+  The combination of PHP and MySQL as RDBMS helped PHP to get used in lots of places and use-cases.
+  But, nowadays, there are other interesting database solutions out there,
+  including NOSQL, Graph, RDF and realtime databases.
+- let's partly quote the auto maker Renault: i needed to "drive the change".
