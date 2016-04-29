@@ -13,9 +13,11 @@ The file `nginx.conf` in `server\bin\nginx\conf\` is the main configuration file
 
 The stack ships also a very minimal configuration for debugging purposes: https://github.com/WPN-XM/software/blob/master/nginx/config/nginx.conf.debug[`nginx.conf.debug`].
 
+Note: If you want to pass environment variables to PHP, you might set them as FGCI parameters (`fastcgi_param`) in the config.
+
 ==== Server Blocks (domains-enabled and domains-disabled)
 
-This config file includes other configuration files from the folder `server\bin\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications correctly and support their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
+This config file includes other configuration files from the folder `server\bin\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications and define their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
 
 The server stack ships several server blocks by default in the folder `server\bin\nginx\conf\domains-disabled`. To use one of these files, simply move or copy them to the `server\bin\nginx\conf\domains-enabled` folder and restart Nginx. The new server block configuration is then automatically included.
 
@@ -31,4 +33,88 @@ The `server_name` directive defines which server block is used for a given reque
 
 A very basic example for Wordpress: `root www/wordpress` and `server_name wordpress.dev`.
 This makes Wordpress available at the URLs http://localhost/wordpress and http://wordpress.dev.
-The URL http://wordpress.dev needs an additional entry in your `hosts` file. So, don't forget to adjust your `hosts` file accordingly!
+The URL http://wordpress.dev needs an additional entry in your `hosts` file. 
+
+IMPORTANT: Don't forget to adjust your `hosts` file accordingly!
+
+==== Defining an upstream pool and using "load balancing"
+
+This section explains what an upstream pool is and how to configure it.
+
+We start with a brief explanation on how web servers interface with servers that generate web pages dynamically.
+The web server itself doesn't know about the language your are programming in.
+But how can the web server process and respond to requests for dynamically generated pages?
+
+The web server communicates with a third-party server in a standardized way.
+This is often the Common Gateway Interface (CGI), a standard way for web servers to 
+interface with executable programs installed on a server that generate web pages dynamically.
+
+For processing PHP requests this CGI server is `php-cgi`.
+
+For request processing Apache supports either `CGI` or `mod_php` or `mod_fcgi`, while Nginx supports `fcgi`.
+Whats the difference?
+
+====== CGI
+
+The CGI approach means, that for every incoming request a new CGI process is spawned in the background to process the request, 
+just to shut down at the end of processing. This wastes a lot of resources and is slow.
+
+===== MOD_PHP
+
+The `mod_php` approach is probably the default way to combine PHP and Apache. 
+Here the PHP interpreter is "embedded" inside the Apache process as "Module PHP". 
+Based on the Apache config and especially your worker configuration, 
+it will automatically spawn new workers (childs) to process the incoming requests. 
+Apache handles worker respawns and multiple requests.
+
+===== MOD_FCGI and FCGI
+
+The `mod_fcgi` approach is also an Apache Module living inside the Apache process.
+It starts a sufficient number instances of the CGI program to handle concurrent requests, 
+and these programs remain running to handle further incoming requests.
+
+The difference between Apache and Nginx in regard to FCGI handling is, 
+that Apache manages the number of instances, while Nginx doesn't.
+When using Nginx you have to make sure that the third-party FCGI servers are started and listening,
+that the number is sufficent to process your requests and 
+that the servers are properly defined in Nginx's upstream configuration.
+
+Then requests are accepted by Nginx and forwarded to the external FCGI server for processing.
+
+`Requests -> Nginx -> Rule for ".php" files -> fastcgi_pass -> external FCGI (php-cgi) -> Response (dynamically generated) -> Nginx -> Response`
+
+====== Whats the difference between FCGI and CGI?
+
+FCGI is basically CGI, but without the shutdown. The FCGI process is spawned once and stays in listening mode.
+The upside is that the response/request latency is lower than with CGI, leading to faster response times, 
+because the "boottime" of CGI is gone and consuming less resources.
+
+But, the downside is, that it is only one process. When multiple requests need to be processed, 
+but the FCGI server is already processing a long running request, then the stack will "block". 
+
+Now, in order to handle even more requests: you could setup one or more Nginx processes accepting requests, 
+which pass requests forward to one or more external FCGI servers, and these can also have childs. 
+Example: 8 Nginx processes passing requests to a pool of 8 FCGI servers with 10 childs each.
+
+===== Nginx "Load Balancing" algorithms
+
+====== What's the best "load balancing" configuration?
+
+It's hard to answer this question in general. 
+There is no single best "load balancing" configuration, because it depends on your use-case.
+In order to compare configurations, you would need to come up with some alternative configurations,
+measure them under a high request load and finally compare the results to draw a conclusion.
+
+Nginx provides numerous ways to configure the balancing:
+1. `round-robin` - default
+2. `least_conn` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn
+3. `ip_hash` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash
+4. `hash key [consistent]` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash (ketama)
+5. `least_time` (only Nginx+) - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time
+
+For instance, you could use `ip_hash` to allow session persistence (for login/re-login), but `hash key [consistent]` 
+has probably the same effect, but uses a different algorithm in the background (libketama). 
+
+When you just want to spread load across servers and the application has no demand for session consistency, 
+then the default "round robin" balancing is better and faster, because it doesn't spend time and resources 
+on hashing a given key or client IP address.
