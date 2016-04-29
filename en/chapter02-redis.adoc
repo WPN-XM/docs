@@ -26,7 +26,11 @@ Redis config is located at `\server\bin\redis\redis.conf`.
 
 ==== Working with Redis from PHP
 
-You need a PHP client to interact with Redis.
+Redis is an independent server, which can be called by any other process. 
+This calls for a bridge between the calling process and the Redis service.
+
+In other words: you need a PHP client to interact with Redis.
+This client is either a PHP extensions or a PHP library.
 
 There are several to chose from: http://redis.io/clients#php
 
@@ -52,4 +56,27 @@ There are several to chose from:
 
 ==== Working with Redis from Node
 
-A library for Node.js: Mranney Node Redis.
+A redis client for for Node.js is Mranney's "Node Redis".
+ - https://github.com/NodeRedis/node_redis 
+
+==== Administration Tools for Redis
+
+There are several administration tools for Redis available:
+
+- Redisk Desktop Manager
+  - http://redisdesktop.com/download
+  - https://github.com/uglide/RedisDesktopManager/releases
+- Redis-Commander for Node/NPM
+  - https://github.com/joeferner/redis-commander
+- FastoRedis
+  - http://fastoredis.com/download_windows.html
+- PHPRedisAdmin
+  - https://github.com/erikdubbelboer/phpRedisAdmin
+
+==== Redis compared with Memcached
+
+Both Redis and Memcached are data cache systems and open source. 
+Redis allows to store abstract data types, while Memcached stores only strings. 
+Redis has snapshoting and journaling capabilites, which means that saved data stays even after a system restart, 
+while Memcache's memory stored-data is lost. Memcached is basically a memory store for short-lived data. 
+Redis provides several finetuning options and features like advanced memory management and a better data eviction control.
