@@ -68,7 +68,7 @@ There are several administration tools for Redis available:
 - PHPRedisAdmin
   - https://github.com/erikdubbelboer/phpRedisAdmin
 
-==== Redis compared with Memcached
+==== Redis compared to Memcached
 
 Both Redis and Memcached are data cache systems and open source. 
 Redis allows to store abstract data types, while Memcached stores only strings. 
