@@ -15,6 +15,12 @@ The stack ships also a very minimal configuration for debugging purposes: https:
 
 Note: If you want to pass environment variables to PHP, you might set them as FGCI parameters (`fastcgi_param`) in the config.
 
+==== SSL Configuration
+
+You might use [Mozilla's SSL Configuration Generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) to create a decent SSL configuration for Nginx.
+There are also [Mozilla's Server Side TLS Guidelines](https://wiki.mozilla.org/Security/Server_Side_TLS) with more details on these configurations.
+If you need to test the configuration of a live servers you could use [SSLLabs](https://www.ssllabs.com/ssltest/).
+
 ==== Server Blocks (domains-enabled and domains-disabled)
 
 This config file includes other configuration files from the folder `server\bin\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications and define their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
@@ -118,3 +124,5 @@ has probably the same effect, but uses a different algorithm in the background (
 When you just want to spread load across servers and the application has no demand for session consistency, 
 then the default "round robin" balancing is better and faster, because it doesn't spend time and resources 
 on hashing a given key or client IP address.
+
+include::edit-page.adoc[]
