@@ -18,7 +18,7 @@ In other words: the PHP interpreter in the `bin\php` folder is the active and us
 
 Please keep in mind that configuration and installed extensions might differ!
 
-=== What does NTS and TS mean?
+==== What does NTS and TS mean?
 
 NTS and TS are abbreviations for `non-thread safe` and `thread-safe`.
 
