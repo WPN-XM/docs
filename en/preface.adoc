@@ -53,12 +53,13 @@ Just to name a few reasons:
 
 * Well, a PHP server stack like i imagined didn't exist (until now :). 
 * I love tooling and making things. Things which actually make it easier, to make new shiny web tech things.
-* I imagined to build an environment, where pulling in new web development related packages and tools is easy.
-  A system where all the hassle of settings things up is greatly reduced and everything is ready to work right out-of-the-box. 
-* I wanted to save my life-time and the life-time of other developers by getting rid of the daunting, 
-  repeated tasks of searching for software and installing stuff manually. 
-* The stack addresses the fundamental problem of Windows: the missing package management.
-  But, only for a small subset of the software ecosystem: for software, relevant for web developers.
+* Mainly because installing things on Windows isn’t straightforward.
+  I wanted to save my life-time and the life-time of other developers by getting rid of the daunting, 
+  repeated tasks of searching for software and installing stuff manually.
+  I imagined to build an environment, where pulling in new web development related packages and tools is easy.
+  A system where all the hassle of settings things up is greatly reduced and everything is ready to work right out-of-the-box.
+  The stack addresses the fundamental problem of Windows: the missing package management.
+  But, only for a small subset of the software ecosystem: for software, relevant for web developers. 
 * I started the project as a true open-source project, because other server stacks were (and are still) not really open-source.
 * The project solves the i'm not in charge and cannot modify the project like i want problem. 
 * I'm trying to close the gap between third-party vendors, which provide tools and servers, and PHP.

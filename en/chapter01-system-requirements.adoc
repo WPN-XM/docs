@@ -1,0 +1,10 @@
+=== System Requirements
+
+Windows 7 (32-Bit) Professional
+Windows 7 (64-Bit) Home Premium and Professional
+Windows 7 SP 1 (32-Bit) Home Premium, Professional, and Enterprise
+Windows 7 SP 1 (64-Bit) Home Premium, Professional, Enterprise, and Ultimate
+Windows 8 (32-Bit and 64 Bit) Core, Professional, and Enterprise
+Windows 8.1 (32-Bit and 64 Bit) Core, Professional, and Enterprise
+Windows 8.1 Update (32-Bit and 64 Bit) Core, Professional, and Enterprise
+Windows 10

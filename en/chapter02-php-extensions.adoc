@@ -1,0 +1,8 @@
+=== PHP Extensions
+
+==== Installation Location
+
+The default installaton folder for extensions is `server\bin\php\ext`.
+
+==== Configuration
+

@@ -1,0 +1,104 @@
+=== Memcached
+
+Memcached is a free & open source, high-performance, distributed memory object caching system, 
+generic in nature, but intended for use in speeding up dynamic web applications by alleviating database load.
+
+Its an in-memory key-value store for small chunks of arbitrary data (strings, objects) 
+from results of database calls, API calls, or page rendering.
+Memcached is a developer tool, not a "code accelerator" nor a database middleware.
+
+Its is a simple key/value store.
+The server does not care what your data looks like. 
+Items are made up of a key, an expiration time, optional flags, and raw data. 
+It does not understand data structures; you must upload data that is pre-serialized. 
+Some commands, like `incr` or `decr` may operate on the underlying data, but in a simple manner.
+
+Memcached is, by default, a Least Recently Used cache. Items expire after a specified amount of time.
+
+Website:            http://www.memcached.org/
+Github:             https://github.com/memcached/memcached/
+Memcached Protocol: https://github.com/memcached/memcached/blob/master/doc/protocol.txt
+
+==== Installation Location
+
+The default installaton folder is `server\bin\memcached`.
+
+==== Configuration
+
+Memcached doesn't have a config file. 
+
+The default configuration is the creation of a `64MB` memory pool and listening on port `11211`.
+
+===== Memcached CLI 
+
+You might print the list of available CLI options using
+
+`C:\server\bin\memcached>memcached.exe -h`
+
+Result:
+
+```
+memcached 1.4.5_4_gaa7839e
+-p <num>      TCP port number to listen on (default: 11211)
+-U <num>      UDP port number to listen on (default: 11211, 0 is off)
+-s <file>     UNIX socket path to listen on (disables network support)
+-a <mask>     access mask for UNIX socket, in octal (default: 0700)
+-l <ip_addr>  interface to listen on (default: INADDR_ANY, all addresses)
+-d            run as a daemon
+-r            maximize core file limit
+-u <username> assume identity of <username> (only when run as root)
+-m <num>      max memory to use for items in megabytes (default: 64 MB)
+-M            return error on memory exhausted (rather than removing items)
+-c <num>      max simultaneous connections (default: 1024)
+-k            lock down all paged memory.  Note that there is a
+              limit on how much memory you may lock.  Trying to
+              allocate more than that would fail, so be sure you
+              set the limit correctly for the user you started
+              the daemon with (not for -u <username> user;
+              under sh this is done with 'ulimit -S -l NUM_KB').
+-v            verbose (print errors/warnings while in event loop)
+-vv           very verbose (also print client commands/reponses)
+-vvv          extremely verbose (also print internal state transitions)
+-h            print this help and exit
+-i            print memcached and libevent license
+-P <file>     save PID in <file>, only used with -d option
+-f <factor>   chunk size growth factor (default: 1.25)
+-n <bytes>    minimum space allocated for key+value+flags (default: 48)
+-L            Try to use large memory pages (if available). Increasing
+              the memory page size could reduce the number of TLB misses
+              and improve the performance. In order to get large pages
+              from the OS, memcached will allocate the total item-cache
+              in one large chunk.
+-D <char>     Use <char> as the delimiter between key prefixes and IDs.
+              This is used for per-prefix stats reporting. The default is
+              ":" (colon). If this option is specified, stats collection
+              is turned on automatically; if not, then it may be turned on
+              by sending the "stats detail on" command to the server.
+-t <num>      number of threads to use (default: 4)
+-R            Maximum number of requests per event, limits the number of
+              requests process for a given connection to prevent
+              starvation (default: 20)
+-C            Disable use of CAS
+-b            Set the backlog queue limit (default: 1024)
+-B            Binding protocol - one of ascii, binary, or auto (default)
+-I            Override the size of each slab page. Adjusts max item size
+              (default: 1mb, min: 1k, max: 128m)
+```
+
+===== `run.bat`
+
+The batch file uses the following command to start Memcached:
+
+    `memcached.exe -p 11211 -U 0 -t 2 -c 2048 -m 2048`.
+
+This means Memcached will listen on 
+- TCP port 11211, 
+- but not on UDP and
+- will use 2 threads, 
+- accept a maximum of 2048 simultaneous connections and 
+- use 2048 megabytes max memory.
+
+===== PHP extension
+
+There is a Memcached client written in C as a PHP extension.
+
