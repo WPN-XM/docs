@@ -1,6 +1,7 @@
 == Getting started
 
 include::chapter01-system-requirements.adoc[]
+
 include::chapter01-installation.adoc[]
 
 include::edit-page.adoc[]
