@@ -15,9 +15,12 @@ Some commands, like `incr` or `decr` may operate on the underlying data, but in 
 
 Memcached is, by default, a Least Recently Used cache. Items expire after a specified amount of time.
 
-Website:            http://www.memcached.org/
-Github:             https://github.com/memcached/memcached/
-Memcached Protocol: https://github.com/memcached/memcached/blob/master/doc/protocol.txt
+[NOTE]
+====
+.Resources
+- http://www.memcached.org/[Website]
+- https://github.com/memcached/memcached/[Github "Memcached/Memcached"]
+- https://github.com/memcached/memcached/blob/master/doc/protocol.txt[Memcached Protocol]
 
 ==== Installation Location
 
