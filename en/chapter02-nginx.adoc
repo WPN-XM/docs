@@ -112,11 +112,12 @@ In order to compare configurations, you would need to come up with some alternat
 measure them under a high request load and finally compare the results to draw a conclusion.
 
 Nginx provides numerous ways to configure the balancing:
-1. `round-robin` - default
-2. `least_conn` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn
-3. `ip_hash` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash
-4. `hash key [consistent]` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash (ketama)
-5. `least_time` (only Nginx+) - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time
+
+. `round-robin` - default
+. `least_conn` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn
+. `ip_hash` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash
+. `hash key [consistent]` - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash (ketama)
+. `least_time` (only Nginx+) - http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time
 
 For instance, you could use `ip_hash` to allow session persistence (for login/re-login), but `hash key [consistent]` 
 has probably the same effect, but uses a different algorithm in the background (libketama). 
