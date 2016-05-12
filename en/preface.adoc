@@ -67,4 +67,4 @@ Just to name a few reasons:
   The combination of PHP and MySQL as RDBMS helped PHP to get used in lots of places and use-cases.
   But, nowadays, there are other interesting database solutions out there,
   including NOSQL, Graph, RDF and realtime databases.
-* Finally, let's partly quote the auto maker Renault: i needed to "drive the change".
+* Finally, let's partly quote the auto maker Renault: i need to "drive the change".
