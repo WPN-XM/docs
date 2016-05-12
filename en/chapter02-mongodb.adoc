@@ -22,11 +22,15 @@ To access MongoDB from PHP you need two things:
 
 the MongoDB server `mongod` running and the PHP driver installed.
 
-* [Docs](https://docs.mongodb.org/ecosystem/drivers/php/)
-* [Website](http://pecl.php.net/package/mongodb)
-* [Source](https://github.com/mongodb/mongo-php-driver)
-* [Issues](https://jira.mongodb.org/browse/PHPC)
-* [PHP API](http://php.net/mongodb)
+[NOTE]
+====
+.Links
+- https://docs.mongodb.org/ecosystem/drivers/php/[Docs]
+- http://pecl.php.net/package/mongodb[Website]
+- https://github.com/mongodb/mongo-php-driver[Source]
+- https://jira.mongodb.org/browse/PHPC[Issues]
+- http://php.net/mongodb[PHP API]
+====
 
 ===== Driver Compatibility
 
