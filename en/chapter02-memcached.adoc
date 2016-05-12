@@ -37,7 +37,7 @@ You might print the list of available CLI options using
 
 Result:
 
-```
+....
 memcached 1.4.5_4_gaa7839e
 -p <num>      TCP port number to listen on (default: 11211)
 -U <num>      UDP port number to listen on (default: 11211, 0 is off)
@@ -83,7 +83,7 @@ memcached 1.4.5_4_gaa7839e
 -B            Binding protocol - one of ascii, binary, or auto (default)
 -I            Override the size of each slab page. Adjusts max item size
               (default: 1mb, min: 1k, max: 128m)
-```
+....
 
 ===== `run.bat`
 
