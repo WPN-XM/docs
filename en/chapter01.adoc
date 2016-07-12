@@ -6,4 +6,6 @@ include::chapter01-installation.adoc[]
 
 include::chapter01-files-and-folders.adoc[]
 
+include::chapter01-running.adoc
+
 include::edit-page.adoc[]
