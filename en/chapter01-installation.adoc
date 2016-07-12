@@ -1,3 +1,3 @@
-=== Installation of the WPN-XM Server Stack
+=== Installation
 
 Todo 
