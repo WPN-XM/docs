@@ -22,14 +22,14 @@ which might ship new configuration directives in their new main config file .
 
 ==== Running Go Git Service
 
-=== Server
+===== Server
 
 By default the server runs at http://localhost:3000/
 
-=== Nginx Server Block
+===== Nginx Server Block
 
 The is a default Nginx server block configuration file `go-git-service.conf`.
 Nginx will accept requests at `http://gogs.dev` forwarding them to `http://localhost:3000/` internally.
 
-=== As a Windows Service
+===== As a Windows Service
 
