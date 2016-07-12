@@ -4,4 +4,6 @@ include::chapter01-system-requirements.adoc[]
 
 include::chapter01-installation.adoc[]
 
+include::chapter01-files-and-folders.adoc[]
+
 include::edit-page.adoc[]

@@ -1,0 +1,40 @@
+==== Files and Folders
+
+This section describes the Files and Folders of the WPN-XM server stack after a successfull installation.
+It refers to "c:\server\" as default location for the installation.
+
+
+### Files
+
+[options="header"]
+|===========
+| File                         | Installed with Component    | Description
+| c:\server\wpn-xm.exe         | WPN-XM Server Control Panel | Executable of the WPN-XM Server Control Panel.
+| c:\server\start-wpnxm.bat    | always                      | Batch file for starting all daemons.
+| c:\server\stop-wpnxm.bat     | always                      | Batch file for stopping all daemons.
+| c:\server\reset-db-pw.bat    | always                      | Batch file for resetting the MariaDB database password
+| c:\server\status-wpnxm.bat   | always                      | Batch file for displaying the daemon state.
+| c:\server\start-mongodb.bat  | MongoDB                     | Batch file for starting MongoDB
+| c:\server\stop-mongodb.bat   | MongoDB                     | Batch file for stopping MongoDB
+|===========
+
+### Folders
+
+[options="header"]
+|===========
+| Folder               | Description                           |
+| \bin\mariadb\        | MariaDB executables, config and data.
+| \bin\mongodb\        | MongoDB executables, config and data.
+| \bin\memcached\      | Memcached executables.
+| \bin\nginx\          | Nginx executable and config.
+| \bin\openssl\        | OpenSSL executable and config.
+| \bin\php\            | PHP executables and config.
+| \bin\sendmail\       | Sendmail emulator executable and config.
+| \bin\tools\          | Additional tools, e.g. RunHiddenConsole.
+| \temp\               | Temporary folder. You might trash it from time to time.
+| \logs\               | Log file folder.
+| \www\                | The root folder for all web projects.
+| \www\tools\          | The root folder for web-based administration tools.
+| \bin\nginx\conf\sites-enabled  | The folder for all enabled Nginx domains. Place your server blocks here.
+| \bin\nginx\conf\sites-disabled | The folder for disabled Nginx domains.
+|===========
