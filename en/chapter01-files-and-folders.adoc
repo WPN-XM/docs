@@ -1,9 +1,9 @@
-==== Files and Folders
+=== Files and Folders
 
 This section describes the Files and Folders of the WPN-XM server stack after a successfull installation.
 It refers to "c:\server\" as default location for the installation.
 
-===== Files
+==== Files
 
 [options="header"]
 |===========
@@ -17,7 +17,7 @@ It refers to "c:\server\" as default location for the installation.
 | c:\server\stop-mongodb.bat   | MongoDB                     | Batch file for stopping MongoDB
 |===========
 
-===== Folders
+==== Folders
 
 [options="header"]
 |===========
