@@ -26,6 +26,7 @@ endif::[]
 :numbered:
 :max-width:           48em
 
+:imagesdir:           ../images
 :linkcss:
 :stylesheet:          ../stylesheets/colony.css
 
