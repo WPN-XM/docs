@@ -8,3 +8,20 @@
 * Windows 8.1 (32-Bit and 64 Bit) Core, Professional, and Enterprise
 * Windows 8.1 Update (32-Bit and 64 Bit) Core, Professional, and Enterprise
 * Windows 10
+
+==== Minimum Requirements (todo)
+
+* OS
+* Processor
+* Memory
+* Storage
+* Additional Notes
+
+==== Recommended Requirements (todo)
+
+* OS
+* Processor
+* Memory
+* Storage
+* Additional Notes
+
