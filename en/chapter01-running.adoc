@@ -1,4 +1,4 @@
-==== Running
+=== Running
 
 From the Start Menu you can startup the Server Control Panel:
 
