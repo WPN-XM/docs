@@ -2,17 +2,17 @@
 
 From the Start Menu you can startup the Server Control Panel:
 
-image::Server-Control-Panel-1.png[WPN-XM Server Control Panel]
+image::../images/Server-Control-Panel-1.png[WPN-XM Server Control Panel]
 
 After starting up the Server Control Panel, there is also a Server Control Panel
 icon in the right lower corner of the screen
 
-image::Server-Control-Panel-2.png[WPN-XM Server Control Panel]
+image::../images/Server-Control-Panel-2.png[WPN-XM Server Control Panel]
 
 With the icon (using the right mouse button), you can also start and stop the
 servers.
 
-image::Server-Control-Panel-Background-1.png[WPN-XM Server Control Panel]
+image::../images/Server-Control-Panel-Background-1.png[WPN-XM Server Control Panel]
 
 You need at least to start the Nginx and PHP daemon to get started. If you want
 to use a database connection you will also need to start the MariaDB daemon.
@@ -21,9 +21,10 @@ MongoDB or Memcached. Or you can access the configuration, logs and error log
 files. When a daemon has been started, the status becomes green. If the status
 stays gray there is something wrong with the configuration of that daemon of the
 operating systems prevents that the IP ports gets opened or is already opened by
-another service (IIS for example) or daemon. See https://github.com/WPN-XM/WPN-
-XM/wiki/FAQ[FAQ page] for some details about troubleshooting and how to solve
-problems.
+another service (IIS for example) or daemon. 
 
-For more details about the Server Control Panel, check https://github.com/WPN-
-XM/WPN- XM/wiki/Using- the-Server- Control-Panel[this page].
+See https://github.com/WPN-XM/WPN-XM/wiki/FAQ[FAQ page] for some details 
+about troubleshooting and how to solve problems.
+
+For more details about the Server Control Panel, check 
+https://github.com/WPN-XM/WPN-XM/wiki/Using-the-Server-Control-Panel[this page].
