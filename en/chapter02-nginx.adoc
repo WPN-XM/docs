@@ -1,7 +1,9 @@
 === Nginx
 
-Nginx ("engine x") is a web server written by Igor Sysoev in 2002. It can act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache. Nginx runs on Unix, Linux, BSD variants, OS X, Solaris, AIX, HP-UX, and Windows.
-Nginx is free and open source software and released under the terms of a BSD-like license.
+Nginx ("engine x") is a web server written by Igor Sysoev in 2002. It can act as a reverse proxy
+server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP
+cache. Nginx runs on Unix, Linux, BSD variants, OS X, Solaris, AIX, HP-UX, and Windows. Nginx is
+free and open source software and released under the terms of a BSD-like license.
 
 ==== Installation Location
 
@@ -9,37 +11,50 @@ The default installaton folder is `server\bin\nginx`.
 
 ==== Configuration
 
-The file `nginx.conf` in `server\bin\nginx\conf\` is the main configuration file.
+The main configuration file is `nginx.conf` in the folder `server\bin\nginx\conf\`.
 
-The stack ships also a very minimal configuration for debugging purposes: https://github.com/WPN-XM/software/blob/master/nginx/config/nginx.conf.debug[`nginx.conf.debug`].
+The stack ships also a very minimal configuration for debugging purposes: 
+https://github.com/WPN-XM/software/blob/master/nginx/config/nginx.conf.debug[`nginx.conf.debug`].
 
-Note: If you want to pass environment variables to PHP, you might set them as FGCI parameters (`fastcgi_param`) in the config.
+Note: If you want to pass environment variables to PHP, you might set them as FGCI parameters
+(`fastcgi_param`) in the config.
 
 ==== SSL Configuration
 
-You might use [Mozilla's SSL Configuration Generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) to create a decent SSL configuration for Nginx.
-There are also [Mozilla's Server Side TLS Guidelines](https://wiki.mozilla.org/Security/Server_Side_TLS) with more details on these configurations.
-If you need to test the configuration of a live servers you could use [SSLLabs](https://www.ssllabs.com/ssltest/).
+You might use [Mozilla's SSL Configuration Generator](https://mozilla.github.io/server-side-tls/ssl-
+config-generator/) to create a decent SSL configuration for Nginx. There are also [Mozilla's Server
+Side TLS Guidelines](https://wiki.mozilla.org/Security/Server_Side_TLS) with more details on these
+configurations. If you need to test the configuration of a live servers you could use
+[SSLLabs](https://www.ssllabs.com/ssltest/).
 
-==== Server Blocks (domains-enabled and domains-disabled)
+==== Server Blocks (sites-enabled and sites-disabled)
 
-This config file includes other configuration files from the folder `server\bin\nginx\conf\domains-enabled`. These configuration files are mostly server blocks. They contain Nginx configuration directives to serve specific PHP applications and define their URL rewrite rules, which are needed to enable nice looking URLs without parameters.
+This main configuration file `nginx.conf` includes other configuration files from the folder
+`server\bin\nginx\conf\sites-enabled`.  These configuration files are mostly server blocks. They
+contain directives to serve specific PHP applications,   configure proxy forwarding or define
+application specific URL rewrite rules, which are needed to enable nice looking URLs without
+parameters.
 
-The server stack ships several server blocks by default in the folder `server\bin\nginx\conf\domains-disabled`. To use one of these files, simply move or copy them to the `server\bin\nginx\conf\domains-enabled` folder and restart Nginx. The new server block configuration is then automatically included.
+The server stack ships several server blocks by default in the folder `server\bin\nginx\conf\sites-
+disabled`.  To use one of these files, simply move or copy them to the `server\bin\nginx\conf\sites-
+enabled` folder and restart Nginx.  The new server block configuration is then automatically
+included.
 
-The configs are also on Github: https://github.com/WPN-XM/software/tree/master/nginx/config/conf/domains-disabled
+You find configuration files for various applications also on Github: https://github.com/WPN-
+XM/software/tree/master/nginx/config/conf/sites-disabled
 
 ==== root and server_name
 
-The most important directives in a server block are `root` and `server_name`, next to the configuration of the rewrite rules for the specific application.
+The most important directives in a server block are `root` and `server_name`, next to the
+configuration of the rewrite rules for the specific application.
 
-The `root` directive defines a relative path to the project, e.g. `www/<my_project_folder>`.
-But a hardcoded path will work too, e.g. `c:\server\www\my_project_folder`.
-The `server_name` directive defines which server block is used for a given request.
+The `root` directive defines a relative path to the project, e.g. `www/<my_project_folder>`. But a
+hardcoded path will work too, e.g. `c:\server\www\my_project_folder`. The `server_name` directive
+defines which server block is used for a given request.
 
-A very basic example for Wordpress: `root www/wordpress` and `server_name wordpress.dev`.
-This makes Wordpress available at the URLs http://localhost/wordpress and http://wordpress.dev.
-The URL http://wordpress.dev needs an additional entry in your `hosts` file. 
+A very basic example for Wordpress: `root www/wordpress` and `server_name wordpress.dev`. This makes
+Wordpress available at the URLs http://localhost/wordpress and http://wordpress.dev. The URL
+http://wordpress.dev needs an additional entry in your `hosts` file.
 
 IMPORTANT: Don't forget to adjust your `hosts` file accordingly!
 
@@ -47,23 +62,24 @@ IMPORTANT: Don't forget to adjust your `hosts` file accordingly!
 
 This section explains what an upstream pool is and how to configure it.
 
-We start with a brief explanation on how web servers interface with servers that generate web pages dynamically.
-The web server itself doesn't know about the language your are programming in.
-But how can the web server process and respond to requests for dynamically generated pages?
+We start with a brief explanation on how web servers interface with servers that generate web pages
+dynamically. The web server itself doesn't know about the language your are programming in. But how
+can the web server process and respond to requests for dynamically generated pages?
 
-The web server communicates with a third-party server in a standardized way.
-This is often the Common Gateway Interface (CGI), a standard way for web servers to 
-interface with executable programs installed on a server that generate web pages dynamically.
+The web server communicates with a third-party server in a standardized way. This is often the
+Common Gateway Interface (CGI), a standard way for web servers to  interface with executable
+programs installed on a server that generate web pages dynamically.
 
 For processing PHP requests this CGI server is `php-cgi`.
 
-For request processing Apache supports either `CGI` or `mod_php` or `mod_fcgi`, while Nginx supports `fcgi`.
-Whats the difference?
+For request processing Apache supports either `CGI` or `mod_php` or `mod_fcgi`, while Nginx supports
+`fcgi`. Whats the difference?
 
 ====== CGI
 
-The CGI approach means, that for every incoming request a new CGI process is spawned in the background to process the request, 
-just to shut down at the end of processing. This wastes a lot of resources and is slow.
+The CGI approach means, that for every incoming request a new CGI process is spawned in the
+background to process the request,  just to shut down at the end of processing. This wastes a lot of
+resources and is slow.
 
 ====== MOD_PHP
 
@@ -91,16 +107,16 @@ Then requests are accepted by Nginx and forwarded to the external FCGI server fo
 
 ====== Whats the difference between FCGI and CGI?
 
-FCGI is basically CGI, but without the shutdown. The FCGI process is spawned once and stays in listening mode.
-The upside is that the response/request latency is lower than with CGI, leading to faster response times, 
-because the "boottime" of CGI is gone and consuming less resources.
+FCGI is basically CGI, but without the shutdown. The FCGI process is spawned once and stays in
+listening mode. The upside is that the response/request latency is lower than with CGI, leading to
+faster response times,  because the "boottime" of CGI is gone and consuming less resources.
 
-But, the downside is, that it is only one process. When multiple requests need to be processed, 
-but the FCGI server is already processing a long running request, then the stack will "block". 
+But, the downside is, that it is only one process. When multiple requests need to be processed, but
+the FCGI server is already processing a long running request, then the stack will "block".
 
-Now, in order to handle even more requests: you could setup one or more Nginx processes accepting requests, 
-which pass requests forward to one or more external FCGI servers, and these can also have childs. 
-Example: 8 Nginx processes passing requests to a pool of 8 FCGI servers with 10 childs each.
+Now, in order to handle even more requests: you could setup one or more Nginx processes accepting
+requests, which pass requests forward to one or more external FCGI servers, and these can also have
+childs.  Example: 8 Nginx processes passing requests to a pool of 8 FCGI servers with 10 childs each.
 
 ===== Nginx "Load Balancing" algorithms
 
