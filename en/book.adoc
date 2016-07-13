@@ -25,6 +25,7 @@ endif::[]
 :numbered:
 :max-width:           48em
 
+:asset-uri-scheme:
 :icons:               font
 // Set new URI for reference to FontAwesome CSS
 :iconfont-cdn:        //maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css
