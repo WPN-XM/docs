@@ -75,13 +75,13 @@ For processing PHP requests this CGI server is `php-cgi`.
 For request processing Apache supports either `CGI` or `mod_php` or `mod_fcgi`, while Nginx supports
 `fcgi`. Whats the difference?
 
-====== CGI
+===== CGI
 
 The CGI approach means, that for every incoming request a new CGI process is spawned in the
 background to process the request,  just to shut down at the end of processing. This wastes a lot of
 resources and is slow.
 
-====== MOD_PHP
+===== MOD_PHP
 
 The `mod_php` approach is probably the default way to combine PHP and Apache. 
 Here the PHP interpreter is "embedded" inside the Apache process as "Module PHP". 
@@ -89,7 +89,7 @@ Based on the Apache config and especially your worker configuration,
 it will automatically spawn new workers (childs) to process the incoming requests. 
 Apache handles worker respawns and multiple requests.
 
-====== MOD_FCGI and FCGI
+===== MOD_FCGI and FCGI
 
 The `mod_fcgi` approach is also an Apache Module living inside the Apache process.
 It starts a sufficient number instances of the CGI program to handle concurrent requests, 
@@ -105,7 +105,7 @@ Then requests are accepted by Nginx and forwarded to the external FCGI server fo
 
 `Requests -> Nginx -> Rule for ".php" files -> fastcgi_pass -> external FCGI (php-cgi) -> Response (dynamically generated) -> Nginx -> Response`
 
-====== Whats the difference between FCGI and CGI?
+===== Whats the difference between FCGI and CGI?
 
 FCGI is basically CGI, but without the shutdown. The FCGI process is spawned once and stays in
 listening mode. The upside is that the response/request latency is lower than with CGI, leading to
@@ -118,9 +118,9 @@ Now, in order to handle even more requests: you could setup one or more Nginx pr
 requests, which pass requests forward to one or more external FCGI servers, and these can also have
 childs.  Example: 8 Nginx processes passing requests to a pool of 8 FCGI servers with 10 childs each.
 
-===== Nginx "Load Balancing" algorithms
+==== Nginx "Load Balancing" algorithms
 
-====== What's the best "load balancing" configuration?
+**What's the best "load balancing" configuration?**
 
 It's hard to answer this question in general. 
 There is no single best "load balancing" configuration, because it depends on your use-case.
