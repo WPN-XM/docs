@@ -31,7 +31,6 @@ endif::[]
 // Set new URI for reference to FontAwesome CSS
 //:iconfont-cdn:        //maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css
 
-//:imagesdir:           ../images
 :linkcss:
 :stylesheet:          ../stylesheets/colony.css
 
@@ -43,7 +42,13 @@ endif::[]
 ifdef::asciidoctor[]
 :source-highlighter:  highlightjs
 :highlightjs-theme:   monokai_sublime
-endif::asciidoctor[]
+endif::[]
+
+// We need to fix the image paths, 
+// because we use "../" on images, so that they render on Github!
+ifndef:env-github[]
+:imagesdir:           ../images
+endif:[]
 
 // Refs
 :license: https://github.com/WPN-XM/WPN-XM/blob/master/LICENSE
