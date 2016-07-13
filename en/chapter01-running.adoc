@@ -22,6 +22,7 @@ files. When a daemon has been started, the status becomes green. If the status
 stays gray there is something wrong with the configuration of that daemon of the
 operating systems prevents that the IP ports gets opened or is already opened by
 another service (IIS for example) or daemon. 
+
 See https://github.com/WPN-XM/WPN-XM/wiki/FAQ[FAQ page] for some details 
 about troubleshooting and how to solve problems.
 
