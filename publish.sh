@@ -10,6 +10,10 @@ commit_website_files() {
   git checkout -b gh-pages
   # delete the individual language folder(s)
   git rm -rf en
+  # remove unneeded files
+  git rm .gitattributes
+  git rm .travis.yml
+  git rm --cached publish.sh
   # add & commit everything new
   git add --all
   git commit --message "Updated Documentation. [Travis build: $TRAVIS_BUILD_NUMBER] [skip ci]"
