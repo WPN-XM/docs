@@ -22,11 +22,14 @@ endif::[]
 
 :experimental:
 :ascii-ids:
-:icons:               font
 :numbered:
 :max-width:           48em
 
-:imagesdir:           ../images
+:icons:               font
+// Set new URI for reference to FontAwesome CSS
+:iconfont-cdn:        //maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css
+
+//:imagesdir:           ../images
 :linkcss:
 :stylesheet:          ../stylesheets/colony.css
 
