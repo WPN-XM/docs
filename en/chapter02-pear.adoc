@@ -10,7 +10,7 @@ This approach will cause problems, when different applications depend on differe
 global dependency.
 
 With the creation and adoption of Composer, the PHP community ditched the global installation method
-and switched to a per project folder installation for vendor dependencies.
+and switched to a per project folder installation of vendor dependencies.
 
 Various tools and applications have retired and deprecated the PEAR installation method.
 
