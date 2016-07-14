@@ -4,7 +4,9 @@
 
 (C) 2015 - 2016 Jens A. Koch
 
-=== License: Creative Commons 3.0
+License
+
+**Creative Commons 3.0**
 
 .You are free to
 
@@ -37,7 +39,6 @@ For example, other rights such as publicity, privacy, or moral rights may limit 
 
 See http://creativecommons.org/licenses/by-sa/3.0/ for further details.
 
-The full license text is available at http://creativecommons.org/licenses/by-sa/3.0/legalcode.
 
 === Authors
 
