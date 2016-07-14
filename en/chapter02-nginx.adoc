@@ -112,7 +112,7 @@ Then requests are accepted by Nginx and forwarded to the external FCGI server fo
 
 FCGI is basically CGI, but without the shutdown. The FCGI process is spawned once and stays in
 listening mode. The upside is that the response/request latency is lower than with CGI, leading to
-faster response times,  because the "boottime" of CGI is gone and consuming less resources.
+faster response times, because the "boot time" of CGI is gone and consuming less resources.
 
 But, the downside is, that it is only one process. When multiple requests need to be processed, but
 the FCGI server is already processing a long running request, then the stack will "block".

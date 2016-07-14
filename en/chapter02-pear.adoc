@@ -1,0 +1,36 @@
+=== PEAR
+
+The PHP Extension and Application Repository (PEAR) is a package archive with over 600 packages:
+https://pear.php.net/packages.php
+
+It provides a global installation method for vendor dependencies. Installed dependencies are then
+available for multiple applications.
+
+This approach will cause problems, when different applications depend on different versions of a
+global dependency.
+
+With the creation and adoption of Composer, the PHP community ditched the global installation method
+and switched to a per project folder installation for vendor dependencies.
+
+Various tools and applications have retired and deprecated the PEAR installation method.
+
+https://github.com/sebastianbergmann/phpunit/wiki/End-of-Life-for-PEAR-Installation-Method
+
+==== Installation Script
+
+WPN-XM provides the installation helper `server/bin/php/go-pear.bat`. 
+
+Please execute the batch file and follow the instructions displayed on screen. 
+The instructions will guide you through the PEAR installation process.
+
+==== Instructions
+
+Please use this answer set, to go quickly through the installation of PEAR.
+
+- Are you installing a system-wide PEAR or a local copy? Type `local` and press Enter.
+- Please confirm local copy by typing 'yes': Type `yes` and press Enter.
+- Press 1.
+- Use the folder selection dialog and select your "WPN-XM installation folder/bin/php/PEAR".
+- You will see the same dialog, but with adjusted paths. Press Enter.
+- Would you like to alter php.ini? Type `yes` and press Enter.
+- Configuration file paths are shown. Press Enter. Congrats!
