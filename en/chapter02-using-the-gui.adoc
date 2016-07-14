@@ -2,17 +2,17 @@
 
 This section describes the usage of the Server Control Panel.
 
-images::../images/Server-Control-Panel-MainWindow.png
+images::../images/Server-Control-Panel-MainWindow.png[Server Control Panel - MainWindow]
 
 If the Server Control Panel is new for you please check the <<#_running,Running>> first before you continue reading.
 
 When we look at the Server Control Panel more closely, you will see that it consists out of 6 parts:
 
-images::../images/Server-Control-Panel-MainWindow-HighlightedParts.png
+images::../images/Server-Control-Panel-MainWindow-HighlightedParts.png[Server Control Panel - MainWindow with Highlighted Parts]
 
 ===== Part 1 - Project Buttons
 
-image::../images/Server-Control-Panel-p1.png
+image::../images/Server-Control-Panel-p1.png[Server Control Panel - Part 1]
 
 1. Use this to visit the Home page of WPN-XM.org.
 2. Go to the WPN-XM mailing list.
@@ -21,13 +21,13 @@ image::../images/Server-Control-Panel-p1.png
 
 ===== Part 2 - Server Controls and Monitoring
 
-image::../images/Server-Control-Panel-p2.png
+image::../images/Server-Control-Panel-p2.png[Server Control Panel - Part 2]
 
 Start and stop the different daemons. Access the logs and error log files. Review and change configuration settings.
 
 ===== Part 3 - Tools
 
-image::../images/Server-Control-Panel-p3.png
+image::../images/Server-Control-Panel-p3.png[Server Control Panel - Part 3]
 
 1. Show PHP information.
 2. Manage your databases using phpMyAdmin.
@@ -36,13 +36,13 @@ image::../images/Server-Control-Panel-p3.png
 
 ===== Part 4 - Open Projects Folder
 
-image::../images/Server-Control-Panel-p4.png
+image::../images/Server-Control-Panel-p4.png[Server Control Panel - Part 4]
 
 Browse through your projects or open the explorer to work on your files.
 
 ===== Part 5 - Right Side Menu
 
-image::../images/Server-Control-Panel-p5.png
+image::../images/Server-Control-Panel-p5.png[Server Control Panel - Part 5]
 
 1. Open Webinterface in Browser
 2. Open the Configuration Panel
@@ -52,6 +52,6 @@ image::../images/Server-Control-Panel-p5.png
 
 ===== Part 6 - Start and Stop Buttons
 
-image::../images/Server-Control-Panel-p6.png
+image::../images/Server-Control-Panel-p6.png[Server Control Panel - Part 6]
 
 Start or Stop All Daemons
