@@ -10,7 +10,7 @@ When we look at the Server Control Panel more closely, you will see that it cons
 
 images::../images/Server-Control-Panel-MainWindow-HighlightedParts.png
 
-==== Part 1 - Project Buttons
+===== Part 1 - Project Buttons
 
 image::../images/Server-Control-Panel-p1.png
 
@@ -19,13 +19,13 @@ image::../images/Server-Control-Panel-p1.png
 3. Report issue or request feature.
 4. Support the development of WPN-XM by donating.
 
-==== Part 2 - Server Controls and Monitoring
+===== Part 2 - Server Controls and Monitoring
 
 image::../images/Server-Control-Panel-p2.png
 
 Start and stop the different daemons. Access the logs and error log files. Review and change configuration settings.
 
-==== Part 3 - Tools
+===== Part 3 - Tools
 
 image::../images/Server-Control-Panel-p3.png
 
@@ -34,13 +34,13 @@ image::../images/Server-Control-Panel-p3.png
 3. Profiling in the browser using webgrind.
 4. Use adminder for administration different database systems like MySQL, MongoDB, SQLite, PostgreSQL, ...
 
-==== Part 4 - Open Projects Folder
+===== Part 4 - Open Projects Folder
 
 image::../images/Server-Control-Panel-p4.png
 
 Browse through your projects or open the explorer to work on your files.
 
-==== Part 5 - Right Side Menu
+===== Part 5 - Right Side Menu
 
 image::../images/Server-Control-Panel-p5.png
 
@@ -50,7 +50,7 @@ image::../images/Server-Control-Panel-p5.png
 4. About window
 5. Close the Panel (stays running in the background)
 
-==== Part 6 - Start and Stop Buttons
+===== Part 6 - Start and Stop Buttons
 
 image::../images/Server-Control-Panel-p6.png
 
