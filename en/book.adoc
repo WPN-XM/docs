@@ -11,7 +11,7 @@ Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :encoding:            utf-8
 :gitrepo:             https://github.com/WPN-XM/docs/en
 
-:toc:                 left
+:toc: left
 ifdef::backend-pdf[]
 :toc:
 endif::backend-pdf[]
@@ -31,7 +31,7 @@ endif::backend-pdf[]
 
 :imagesdir:           ../images
 
-:icons:               awesome
+:icons:               font
 //:asset-uri-scheme:
 // Set new URI for reference to FontAwesome CSS
 //:iconfont-cdn:        //maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css
