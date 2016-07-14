@@ -6,15 +6,18 @@ https://pear.php.net/packages.php
 It provides a global installation method for vendor dependencies. Installed dependencies are then
 available for multiple applications.
 
+[WARNING]
+====
 This approach will cause problems, when different applications depend on different versions of a
 global dependency.
 
 With the creation and adoption of Composer, the PHP community ditched the global installation method
 and switched to a per project folder installation of vendor dependencies.
 
-Various tools and applications have retired and deprecated the PEAR installation method.
+Various tools and applications have deprecated the PEAR installation method.
 
 https://github.com/sebastianbergmann/phpunit/wiki/End-of-Life-for-PEAR-Installation-Method
+====
 
 ==== Installation Script
 
