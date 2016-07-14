@@ -1,0 +1,8 @@
+== PHP Applications
+
+include::chapter04-durpal7.adoc[]
+
+== PHP Applications
+
+include::chapter04-drupal7.adoc[]
+

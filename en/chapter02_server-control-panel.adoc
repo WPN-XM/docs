@@ -1,0 +1,5 @@
+=== Working with the Server Control Panel
+
+include::chapter02-using-the-gui.adoc[]
+
+include::chapter02-using-the-cli.adoc[]

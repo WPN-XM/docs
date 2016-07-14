@@ -1,0 +1,52 @@
+This section describes the usage of the Server Control Panel.
+
+![Server Control Panel v0.8.0 1](images/Server-Control-Panel-1.png)
+
+If the Server Control Panel is new for you please check the [Running Page](https://github.com/WPN-XM/WPN-XM/wiki/Running) first before you continue reading.
+
+When we look at the Server Control Panel more closely, you will see that it consists out of 6 parts:
+![Server Control Panel v0.6.1 parts](images/Server-Control-Panel-3.png)
+
+# Part 1
+
+![Server Control Panel v0.6.1 part1](images/Server-Control-Panel-p1.png)
+
+1. Use this to visit the Home page of WPN-XM.org.
+2. Go to the WPN-XM mailing list.
+3. Report issue or request feature.
+4. Support the development of XPN-XM by donating
+
+# Part 2
+![Server Control Panel v0.6.1 part2](images/Server-Control-Panel-p2.png)
+
+Start and stop the different daemons. Access the logs and error log files. Review and change configuration settings.
+
+# Part 3
+![Server Control Panel v0.6.1 part3](images/Server-Control-Panel-p3.png)
+
+1. Show PHP information.
+2. Manage your databases using phpMyAdmin.
+3. Profiling in the browser using webgrind.
+4. Use adminder for administration different database systems like MySQL, MongoDB, SQLite, PostgreSQL, ...
+
+# Part 4
+![Server Control Panel v0.6.1 part4](images/Server-Control-Panel-p4.png)
+
+Browse through your projects or open the explorer to work on your files.
+
+# Part 5
+![Server Control Panel v0.6.1 part5](images/Server-Control-Panel-p5.png)
+
+1. Open Webinterface in Browser
+2. Open the Configuration Panel
+
+![Server Control Panel v0.6.1 Configuration Panel](images/Server-Control-Panel-Confpanel.png)
+
+3. View Wiki help page.
+4. About window
+5. Close the Panel (stays running in the background)
+
+# Part 6
+![Server Control Panel v0.6.1 part6](images/Server-Control-Panel-p6.png)
+
+Start or Stop All Daemons

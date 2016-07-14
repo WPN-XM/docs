@@ -61,9 +61,10 @@ include::preface.adoc[]
 
 :sectnums:
 
-include::chapter01.adoc[]
-include::chapter02components.adoc[]
-include::chapter03.adoc[]
+include::chapter01_getting-started.adoc[]
+include::chapter02_server-control-panel.adoc[]
+include::chapter03_software-components.adoc[]
+include::chapter04_php-applications.adoc[]
 
 :!sectnums:
 
