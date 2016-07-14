@@ -13,7 +13,7 @@ commit_website_files() {
   # remove unneeded files
   git rm .gitattributes
   git rm .travis.yml
-  git rm --cached publish.sh
+  git rm publish.sh
   # add & commit everything new
   git add --all
   git commit --message "Updated Documentation. [Travis build: $TRAVIS_BUILD_NUMBER] [skip ci]"
