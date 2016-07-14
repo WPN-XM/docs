@@ -42,8 +42,9 @@ See http://creativecommons.org/licenses/by-sa/3.0/ for further details.
 === Authors
 
 [options="header"]
-|====================================================
-|   Chapter |      Page       |         Author          
-|Chapter 1  | Running         |   Peter Vandenberghe  
-|Chapter 1  | Installation    |   Peter Vandenberghe  
-|====================================================
+|======================================================================
+|   Chapter |               Page               |         Author          
+|Chapter 1  | Running                          |   Peter Vandenberghe  
+|Chapter 1  | Installation                     |   Peter Vandenberghe  
+|Chapter 2  | Using the Server Control Panel   |   Peter Vandenberghe  
+|======================================================================
