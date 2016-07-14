@@ -50,8 +50,9 @@ image::../images/Server-Control-Panel-p5.png[Server Control Panel - Part 5]
 4. About window
 5. Close the Panel (stays running in the background)
 
-===== Part 6 - Start and Stop Buttons
+===== Part 6 - All Servers Start and Stop Buttons
 
 image::../images/Server-Control-Panel-p6.png[Server Control Panel - Part 6]
 
-Start or Stop All Daemons
+The buttons enable you to start or stop multiple servers at once.
+You can configure, which servers these buttons control in the configuration dialog.
