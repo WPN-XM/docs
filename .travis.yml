@@ -33,7 +33,7 @@ install:
   #- ./build-stylesheet.sh colony.css
   - compass compile
   - cp -pr stylesheets ../manual/
-  - cp -r  images/*    ../manual/images
+  - cp -r  images/*    ../manual/images/
   - cd ..
   - rm master.zip
 before_script:

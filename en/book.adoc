@@ -6,8 +6,6 @@ Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :description:         This document is the WPN-XM Manual.
 :keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB
 
-ifndef::host-github[:ext-relative: {outfilesuffix}]
-
 :doctype:             book
 :lang:                en
 :encoding:            utf-8
@@ -37,8 +35,6 @@ endif::backend-pdf[]
 //:asset-uri-scheme:
 // Set new URI for reference to FontAwesome CSS
 //:iconfont-cdn:        //maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css
-
-
 
 ifdef::backend-pdf[]
 :source-highlighter:  pygments
