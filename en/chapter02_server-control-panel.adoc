@@ -1,4 +1,4 @@
-=== Using the Server Control Panel
+=== The Server Control Panel
 
 include::chapter02-using-the-gui.adoc[]
 

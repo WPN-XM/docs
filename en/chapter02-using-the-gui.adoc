@@ -1,10 +1,13 @@
+=== Using the Server Control Panel
+
 This section describes the usage of the Server Control Panel.
 
 images::../images/Server-Control-Panel-1.png[Server Control Panel - MainWindow]
 
-If the Server Control Panel is new for you please check the <<chapter01-running.adoc,Running>> first before you continue reading.
+If the Server Control Panel is new for you please check the <<#_running,Running>> first before you continue reading.
 
 When we look at the Server Control Panel more closely, you will see that it consists out of 6 parts:
+
 images::../images/Server-Control-Panel-3.png[Server Control Panel - MainWindow Parts]
 
 ==== Part 1 - Project Buttons
