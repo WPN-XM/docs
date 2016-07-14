@@ -14,9 +14,9 @@ The PHP version switcher does two things.
 Firstly, the version number in the `bin\php` folder is determined, then the folder is renamed accordingly, e.g. `bin\php-1.2.3`.
 Secondly, it renames the folder of the selected version (the one it should switch to) from `bin\php-1.2.3` to `bin\php`.
 
-In other words: the PHP interpreter in the `bin\php` folder is the active and used one, when multiple version of PHP are installed.
+NOTE: The PHP interpreter in the `bin\php` folder is the active and used one, when multiple version of PHP are installed.
 
-Please keep in mind that configuration and installed extensions might differ!
+IMPORTANT: Please keep in mind that configuration and installed extensions might differ!
 
 ==== What does NTS and TS mean?
 
@@ -27,7 +27,9 @@ The difference is that threads (of the same process) run in a shared memory spac
 
 ==== PHP Bitsizes
 
-Important Note on the PHP 64bit releases
+[IMPORTANT]
+====
+Note on the PHP 64bit releases:
 
 PHP 5.x provides experimental 64-bit support.
 
@@ -38,6 +40,7 @@ This behaviour of PHP is expected and known for a long time.
 PHP 7 provides full 64-bit support.
 
 The x64 builds of PHP 7 support native 64-bit integers, LFS, memory_limit and much more.
+====
 
 ==== Configuration
 
