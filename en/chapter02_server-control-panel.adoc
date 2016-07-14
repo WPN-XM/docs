@@ -3,3 +3,5 @@
 include::chapter02-using-the-gui.adoc[]
 
 include::chapter02-using-the-cli.adoc[]
+
+include::chapter02-configuration-dialog.adoc[]

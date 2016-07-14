@@ -2,17 +2,17 @@
 
 From the Start Menu you can startup the Server Control Panel:
 
-image::../images/Server-Control-Panel-1.png[WPN-XM Server Control Panel - MainWindow]
+image::../images/Server-Control-Panel-MainWindow.png[WPN-XM Server Control Panel - MainWindow]
 
 After starting up the Server Control Panel, there is also a Server Control Panel
 icon in the right lower corner of the screen
 
-image::../images/Server-Control-Panel-2.png[WPN-XM Server Control Panel - TrayIcon]
+image::../images/Server-Control-Panel-TrayIcon.png[WPN-XM Server Control Panel - TrayIcon]
 
 With the icon (using the right mouse button), you can also start and stop the
 servers.
 
-image::../images/Server-Control-Panel-Background-1.png[WPN-XM Server Control Panel - TrayMenu]
+image::../images/Server-Control-Panel-TrayMenu.png[WPN-XM Server Control Panel - TrayMenu]
 
 You need at least to start the Nginx and PHP daemon to get started. If you want
 to use a database connection you will also need to start the MariaDB daemon.

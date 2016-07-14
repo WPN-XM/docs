@@ -1,0 +1,3 @@
+=== Configuration Dialog
+
+images::../images/Server-Control-Panel-ConfigDialog.png[Server Control Panel - Configuration Dialog]
