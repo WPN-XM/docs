@@ -37,7 +37,7 @@ install:
   - rm master.zip
   # Copy Images
   - mkdir -p manual/images
-  - cp -p images/* /manual/images
+  - cp -p images/* manual/images
 before_script:
   - asciidoctor --version
   - asciidoctor-pdf --version
