@@ -34,8 +34,10 @@ install:
   - compass compile
   - cp -pr stylesheets ../manual/
   - cd ..
-  - cp images/*        /manual/images/
   - rm master.zip
+  # Copy Images
+  - mkdir -p manual/images
+  - cp -p images/* /manual/images
 before_script:
   - asciidoctor --version
   - asciidoctor-pdf --version
