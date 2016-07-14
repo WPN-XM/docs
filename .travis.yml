@@ -44,7 +44,7 @@ before_script:
   #- asciidoctor-diagram --version
   - ls -alF
 script:
-  - asciidoctor -a stylesheet=../stylesheets/foundation.css -a source-highlighter=highlightjs -a toc=left -a linkcss -a revnumber=$TRAVIS_TAG en/book.adoc -o manual/en/index.html -v
+  - asciidoctor -a stylesheet=../stylesheets/foundation.css -a source-highlighter=highlightjs -a toc=left -a linkcss -a toclevels=4 -a revnumber=$TRAVIS_TAG en/book.adoc -o manual/en/index.html -v
   - asciidoctor -r asciidoctor-pdf -b pdf -a pdf-stylesdir=pdf -a pdf-style=wpnxm -a pdf-fontsdir=pdf/fonts -a revnumber=$TRAVIS_TAG en/book.adoc -o manual/en/book.pdf -v
   # create an index page
   - asciidoctor README.adoc -o index.html -v
