@@ -6,12 +6,14 @@ Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :description:         This document is the WPN-XM Manual.
 :keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB
 
+ifndef::host-github[:ext-relative: {outfilesuffix}]
+
 :doctype:             book
 :lang:                en
 :encoding:            utf-8
 :gitrepo:             https://github.com/WPN-XM/docs/en
 
-:toc: left
+:toc:                 left
 ifdef::backend-pdf[]
 :toc:
 endif::backend-pdf[]
@@ -25,9 +27,9 @@ endif::backend-pdf[]
 :numbered:
 :max-width:           48em
 
-:stylesdir:           ../stylesheets
-:stylesheet:          foundation-potion.css
 :linkcss:
+:stylesdir:           ../stylesheets
+:stylesheet:          asciidoctor.css
 
 :imagesdir:           ../images
 
@@ -54,24 +56,23 @@ endif::asciidoctor[]
 :issue-ref:               https://github.com/WPN-XM/WPN-XM/issues
 :uri-wpnxm-github-issues: https://github.com/WPN-XM/WPN-XM/issues
 
+// Include chapters
+
 :!sectnums:
 
+[preface]
 include::preface.adoc[]
 
 :sectnums:
 
 include::chapter01.adoc[]
-
 include::chapter02components.adoc[]
-
 include::chapter03.adoc[]
 
 :!sectnums:
 
 //include::appendix.adoc[]
-
 //include::bibliography.adoc[]
-
 //include::glossary.adoc[]
 
 include::colophon.adoc[]
