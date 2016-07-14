@@ -1,4 +1,4 @@
-=== Using the CLI
+==== Using the CLI
 
 This section describes the usage of the Server Control Panel - Command Line Interface. 
 

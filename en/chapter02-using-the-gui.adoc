@@ -1,4 +1,4 @@
-=== Using the Server Control Panel
+==== Using the Server Control Panel
 
 This section describes the usage of the Server Control Panel.
 
