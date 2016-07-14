@@ -16,8 +16,11 @@ The main configuration file is `nginx.conf` in the folder `server\bin\nginx\conf
 The stack ships also a very minimal configuration for debugging purposes: 
 https://github.com/WPN-XM/software/blob/master/nginx/config/nginx.conf.debug[`nginx.conf.debug`].
 
-Note: If you want to pass environment variables to PHP, you might set them as FGCI parameters
-(`fastcgi_param`) in the config.
+[NOTE]
+====
+If you want to pass environment variables to PHP, 
+you might set them as FGCI parameters (`fastcgi_param`) in the config.
+====
 
 ==== SSL Configuration
 
