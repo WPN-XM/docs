@@ -2,18 +2,18 @@
 
 include::chapter03-nginx.adoc[]
 
+include::chapter03-mongodb.adoc[]
+
 include::chapter03-php.adoc[]
 
 include::chapter03-php-extensions.adoc[]
+
+include::chapter03-pickle.adoc[]
 
 include::chapter03-pear.adoc[]
 
 include::chapter03-redis.adoc[]
 
 include::chapter03-memcached.adoc[]
-
-include::chapter03-mongodb.adoc[]
-
-include::chapter03-pickle.adoc[]
 
 include::chapter03-gogitservice.adoc[]
