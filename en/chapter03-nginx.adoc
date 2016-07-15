@@ -102,7 +102,7 @@ Apache handles worker respawns and multiple requests.
 ===== MOD_FCGI and FCGI ("prefork")
 
 The `mod_fcgi` approach is also an Apache Module living inside the Apache process.
-It starts a sufficient number instances of the CGI program to handle concurrent requests, 
+It starts (preforks) a sufficient number instances of the CGI program to handle concurrent requests, 
 and these programs remain running to handle further incoming requests.
 
 The difference between Apache and Nginx in regard to FCGI handling is, 
