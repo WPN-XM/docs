@@ -18,7 +18,7 @@ There is also a main configuration file located at `\server\bin\gogs\conf\app.in
 Do not modify the main config. Make your modifications to the custom config.
 The user config values replace any prior values from the main config.
 That allows a seemsless updates to new Gogs versions, 
-which might ship new configuration directives in their new main config file .
+which might ship new configuration directives in their new main config file.
 
 ==== Running Go Git Service
 
@@ -30,6 +30,4 @@ By default the server runs at http://localhost:3000/
 
 The is a default Nginx server block configuration file `go-git-service.conf`.
 Nginx will accept requests at `http://gogs.dev` forwarding them to `http://localhost:3000/` internally.
-
-===== As a Windows Service
 
