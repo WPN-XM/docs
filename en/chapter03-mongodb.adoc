@@ -4,6 +4,8 @@ MongoDB (from humongous) is a free and open-source cross-platform document-orien
 
 [IMPORTANT]
 ====
+**32-bit Limitations**
+
 The 32-bit versions of MongoDB have the following limitations:
 
 * no support for the WiredTiger storage engine,
@@ -13,7 +15,8 @@ The 32-bit versions of MongoDB have the following limitations:
 
 If you’re running a 64-bit build of MongoDB, there’s virtually no limit to storage size. 
 For production deployments, 64-bit builds and operating systems are strongly recommended. 
-See [here](http://blog.mongodb.org/post/137788967/32-bit-limitations) for more information.
+
+See http://blog.mongodb.org/post/137788967/32-bit-limitations[here] for more information.
 ====
 
 Website:        https://www.mongodb.org/
@@ -27,16 +30,15 @@ the MongoDB server `mongod` running and the PHP driver installed.
 
 [NOTE]
 ====
-.Links
-- https://docs.mongodb.org/ecosystem/drivers/php/[Docs]
-- http://pecl.php.net/package/mongodb[Website]
-- https://github.com/mongodb/mongo-php-driver[Source]
-- https://jira.mongodb.org/browse/PHPC[Issues]
-- http://php.net/mongodb[PHP API]
+http://pecl.php.net/package/mongodb[Website] 
+https://docs.mongodb.org/ecosystem/drivers/php/[Docs]
+https://github.com/mongodb/mongo-php-driver[PHP Driver Source]
+https://jira.mongodb.org/browse/PHPC[Issues]
+http://php.net/mongodb[PHP API]
 ====
 
 ===== Driver Compatibility
 
 The old and legacy MongoDB PHP driver is `mongo`, while the new driver is `mongodb`.
-For a detailed overview please see the [PHP Driver Compatibility Table](https://docs.mongodb.org/ecosystem/drivers/driver-compatibility-reference/#php-driver-compatibility).
-
+For a detailed overview please see the 
+https://docs.mongodb.org/ecosystem/drivers/driver-compatibility-reference/#php-driver-compatibility[PHP Driver Compatibility Table].
