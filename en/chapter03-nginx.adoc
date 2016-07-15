@@ -70,8 +70,9 @@ dynamically. The web server itself doesn't know about the language your are prog
 can the web server process and respond to requests for dynamically generated pages?
 
 The web server communicates with a third-party server in a standardized way. This is often the
-Common Gateway Interface (CGI), a standard way for web servers to  interface with executable
-programs installed on a server that generate web pages dynamically.
+Common Gateway Interface (CGI), a standard way for web servers to interface with executable
+programs installed on a server that generate web pages dynamically. CGI Version 1.1 is 
+specified in https://tools.ietf.org/html/rfc3875[RFC 3875] (actually it's just a memo).
 
 For processing PHP requests this CGI server is `php-cgi`.
 
@@ -81,8 +82,14 @@ For request processing Apache supports either `CGI` or `mod_php` or `mod_fcgi`, 
 ===== CGI
 
 The CGI approach means, that for every incoming request a new CGI process is spawned in the
-background to process the request,  just to shut down at the end of processing. This wastes a lot of
-resources and is slow.
+background to process the request, just to shut down at the end of processing. Process spawning
+consumes time and memory, while at the same time the PHP interpreter consumes time and memory for
+generating the output. This causes high workloads for servers, when multiple requests hit a website.
+
+The overhead of process creation can be reduced by either using FastCGI or by running webserver
+extension modules, such as mod_php.  With FastCGI interpreter processes are "preforked" and already
+exist for processing.  With mod_php the interpreter is part of the web server and running as a
+webserver extension module.
 
 ===== MOD_PHP
 
@@ -92,7 +99,7 @@ Based on the Apache config and especially your worker configuration,
 it will automatically spawn new workers (childs) to process the incoming requests. 
 Apache handles worker respawns and multiple requests.
 
-===== MOD_FCGI and FCGI
+===== MOD_FCGI and FCGI ("prefork")
 
 The `mod_fcgi` approach is also an Apache Module living inside the Apache process.
 It starts a sufficient number instances of the CGI program to handle concurrent requests, 
