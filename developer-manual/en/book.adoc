@@ -56,8 +56,10 @@ endif::asciidoctor[]
 
 :!sectnums:
 
+////
 [preface]
 include::preface.adoc[]
+////
 
 :sectnums:
 
