@@ -1,0 +1,143 @@
+=== Software Registries
+
+This chapter covers the software registries of the WPN-XM server stack.
+
+The WPN-XM project maintains a registry for all software components of the stack and a registry for PHP applications.
+Additionally all released installer have installer registries. 
+
+The registries are located in the Registry have their own Git repository at https://github.com/WPN-XM/registry.
+
+When we take a look at the repository, you can find 5 registries in the root folder:
+
+1. `php-extensions-on-pecl.json` 
+2. `wpnxm-download-filenames.php`
+3. `wpnxm-php-software-registry.php`
+4. `wpnxm-registry-metadata.php`
+5. `wpnxm-software-registry.php`
+
+==== Installation Wizards Registries
+
+You will also find multiple registries in the installer folder.
+The installer registries reside in versionized subfolders.
+The installer registries for the next, upcoming, but yet unreleased version reside 
+in the `installer\next` folder.
+
+==== Software Registry - 
+
+The registry for the stack components is always kept in sync with latest versions.
+Therefore we are monitoring the websites of each software component for newly released versions.
+If a new version is detected, it is automatically inserted into our registry.
+In the following sections explain how the update process of the registry works.
+
+At first, we will take a look at the registry as the underlying data-structure.
+After that, we take a look at the update mechanism.
+
+===== `wpnxm-software-registry.php` 
+
+The WPN-XM software registry is a plain and simple PHP array.
+The PHP file uses an `return array` style to make the inclusion of this file
+and more important the assignment of the data to a variable easy. 
+    
+    $registry = include __DIR__ . '/registry/wpnxm-software-registry.php';
+
+===== Array Structure
+
+Let's take a look at the structure of that array.
+
+Example-wise, we take a look at the data structure for the component Adminer:
+
+```
+  'adminer' => array(
+    'name' => 'Adminer',
+    'website' => 'http://adminer.org/',
+    '3.5.0' => 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%203.5.0/adminer-3.5.0.php',
+    ...
+    '4.1.0' => 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%204.1.0/adminer-4.1.0.php',
+    'latest' => array(
+      'version' => '4.1.0',
+      'url' => 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%204.1.0/adminer-4.1.0.php',
+    ),
+  ),
+
+```
+===== Accessing Values
+
+To get the details of a component, we can work with the `$registry` array in the following way:
+
+```
+  // Get "Name" and "Website" for the component
+  $name    = $registry['adminer']['name'];             
+  $website = $registry['adminer']['website'];
+
+  // Get URL for a specific Version
+  $url = $registry['adminer']['3.5.0'];            
+
+  // Get "Latest Version URL" and "Latest Version"
+  $url     = $registry['adminer']['latest']['url'];    
+  $version = $registry['adminer']['latest']['version'];
+```
+
+==== Software Registry Metadata
+
+==== PHP Software Registry
+
+===== Array Structure
+
+```
+ 'backdrop' => array(
+    'name' => 'Backdrop',
+    'website' => 'https://backdropcms.org/',
+    'description' => 'The comprehensive CMS for small to medium sized businesses and non-profits.',
+    'category' => 'cms',
+    'tags' => array(
+    ),
+    'requirements' => array(
+      'php-version' => '5.3.2',
+      'php-extensions' => ''
+    ),
+    'source-url' => 'https://github.com/backdrop/backdrop',
+    'license' => 'GNU GPL v2',
+    'license-url' => 'https://github.com/backdrop/backdrop/blob/1.x/core/LICENSE.txt',
+    'docs-url' => 'https://backdropcms.org/handbook',
+    'twitter' => array(
+      'url' => 'https://twitter.com/backdropcms',
+      'hashtag' => '#backdropcms',
+    ),  
+    'logo' => '',
+    'screenshots' => array(
+    ),
+    'versions' => array(
+    ),
+    'latest' => array(
+      'version' => '',
+      'url' => '',
+    ),
+  ),
+```
+
+==== PHP Extensions on PECL
+
+This is a JSON dataset with all extensions on PECL.
+
+It is used for auto-completion of PHP extensions names in the "Install PHP
+Extension" dialog of the webinterface.
+
+==== Download Filenames
+
+This file wpnxm-download-filenames.php` is a PHP array.
+
+It defines the relationship between 
+
+ * a "component" in the software registry (array key)  
+ * and it's "filename" in the downloads directory.
+
+**Why are we using normalizes filenames?*
+
+The unmodified download filenames carry a lot of constantly changing pieces of
+information on their filenames, e.g. version or bitsize information. While
+hardcoding the original download filenames in the installers is possible,  it
+implies a lot of maintainance effort for keeping them up to date. That's why we
+are normalizing the download filenames by removing all changing parts.
+
+We end up with static, normalizes filenames. The filenames are used during
+downloading of components as the "download target" file name.

@@ -1,0 +1,9 @@
+=== Building Installers
+
+==== Versioning and File Names
+
+The WPN-XM installers use the following naming convention for executables:
+
+WPNXM-<major>.<minor>.<patch>-<installerType>-Setup-php<phpVersion>-w<phpBitsize>.exe, e.g. "WPNXM-0.8.6-Full-Setup-php56-w64.exe".
+
+InstallerType is one of Full, Standard, Lite, Web.

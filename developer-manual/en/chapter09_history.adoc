@@ -1,0 +1,112 @@
+=== History
+
+This chapter contains a bit of history and some brief notes about the start and
+the evolution of this project. Because i tend to forget, how the WPN-XM project
+started and before all my memories are lost to John Alzheimer, i prefer keeping
+some. These notes are mainly for myself. If you find them interesting, you are a
+lucky person.
+
+==== Before 2010
+
+Eloy Lafuente (stronk7) from the Moodle Project created `m4w_builder` (GPL).
+That was "Moodle for Windows Builder". This was a build tool for a webserver
+stack based on XAMPPlight,  including the PHP application Moodle for the
+developers of the Moodle project.
+
+I forked it, updated XAMPPlight and integrated our CMS. The goal was to have an
+out-of-the-box working developer environment.  The project was named `Clansuite-
+Serverpack-Builder`. It was a subproject of the Clansuite CMS.  I made only two
+releases, which had the same version numbers as the included XAMPP version:
+1.7.2 and 1.7.3. The builder was batch file based and lot's of manual release
+preparation tasks were required to ship a new version.
+
+==== 2010
+
+XAMPP releases got somehow stuck: only full releases were made and the
+XAMPPLight releases, which i relied upon became seldom.  I was in a vendor lock-
+in, where i couldn't release a new Serverpack, because the main dependency it
+was based on wasn't updated itself.
+
+Then suddenly out of nothing the XAMPP project was acquired for an undisclosed
+amount of money by Bitnami.
+
+Kai Vogelsang stated that things got more and more complicated in managing and
+releasing the XAMPP stack and it was the right time to give his project in the
+hands of a company and step back.
+
+I was wondering about this statement and tried to figure out, if it's really
+that complicated to create a build system for a server stack.  I knew, that 3
+guys behind XAMPP have tried to create a Python based  build system for it
+(https://github.com/ApacheFriends/XAMPP-Builder). They got stuck during
+development and failed to replace their bash-based build system.
+
+I came up with an idea of creating a stack, which partly would solve one of the
+most important issue on Windows: the not existing package management. The idea
+was simple.  All components which were packaged by installers would have to live
+in a software components registry, short: `the registry`.
+
+Because manual maintenance of such a registry is only possible for a few
+components, i would need to automate the fetching and insertion of latest
+versions numbers and their URLS. So i started to develop the "Registry Updater",
+short: `the updater`. The updater scans the vendor, which provides new releases,
+fetches any new version number and constructs the new URL for a download and
+inserts it into the registry.
+
+The next problem i faced was: component incompatibility.  I learned the hard
+way, that some components don't play well with other components. I came up with
+the idea of building a version matrix with dropdown form elements  for the
+selection of components and versions, which are known as being compatible. The
+`installer registry` was born.
+
+The installer registry is the description file of all components for a certain
+installer, their download source, their version and their name.  By looking at
+the installer registry file, it's possible to figure out,  which software is
+included in a certain installer.
+
+I had to make sure that all components got downloaded and were available for
+inclusion, before the packaging of installers. I tried make the downloads work
+with curl and wget, but finally ended up working with one of the most amazing
+download tools i encountered so far: aria2c. It was the first multi-threaded
+parallel download tool allowing to specify an external file with a set of
+download URLs and their target folders.
+
+==== 2011 - 2014
+
+I can't remember anything. See Changelogs and `git log`.
+
+==== 2015
+
+After 3 months (Dec 2014 - Feb 2015) of intensive hacking, i finally got Travis
+builds and deployment working. This was not easy at all and the first time i
+build something (the installers) for Windows on Linux under Wine.
+
+But it was more complicated to get the right dependencies for a cross-platform
+build of the Server Control Panel, which at that time was a Qt5.3+ application.
+All related toolchain and build issues had quite huge money bounties on them,
+but i got no feedback and no contributions.
+
+WPN-XM is now the only project with a complete open-source build toolchain for
+server stacks on Windows. The first releases shipped by the new continous
+integration and deployment toolchain was v0.8.1.  All 22 installers were build
+an Travis in under 50 minutes and automatically deployed to Github Releases. We
+are talking about a release of roughly 3GB of installer executables. Keeping
+below the build time limit on Travis-CI was a crazy task. I had to tweak memory,
+iterations and processing and go through everything over and over, just to get
+below 50 minutes.
+
+==== 2016
+
+The project is stuck since the release of v0.8.7, because the new features are
+hard to implement. On the one hand, we have the new process monitoring, PHP
+spawn handling, the new configuration interface for several components in the
+SCP, and on the other, the rewrite to short-URLs and security fixes for the
+webinterface.
+
+I got some contributions, e.g. slashfixes and one-liners. But not a single major
+feature or bug issue of th the Github tracker was solved and implemented by an
+outside contributor.
+
+"Open-source is a morbid software development curiosity, 
+where people are rubbernecking continously working developers 
+and enjoying the fruits of free and unpaid labor."
+-- Jens A. Koch

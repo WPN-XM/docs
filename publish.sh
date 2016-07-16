@@ -8,8 +8,8 @@ setup_git() {
 commit_website_files() {
   git fetch origin
   git checkout -b gh-pages
-  # delete the individual language folder(s)
-  git rm -rf en
+  # remove all asciidoc (.adoc) source files
+  git ls-files | grep '\.adoc$' | xargs git rm --cached
   # remove unneeded files
   git rm .gitattributes
   git rm .travis.yml

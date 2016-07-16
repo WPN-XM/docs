@@ -1,0 +1,27 @@
+=== The Updater
+
+This chapter describes the Updater, an update and maintainance tool for the software registries.
+It's a webinterface used to update the software registry and to update the installation wizard registries.
+The Update Tool has it's own Git repository at https://github.com/WPN-XM/updater. 
+
+image::https://cloud.githubusercontent.com/assets/85608/4353482/9e38b69e-4233-11e4-9d29-79845ce324a6.jpg[]
+
+==== Action: "Status"
+
+The registry status script (registry-status.php) tests the http access state (200, 404) of the links in the wpnxm-software-registry.php. The test is performed on each components latest version url ($registry[*]['latest']['version']).
+
+The following image shows the output of the dead-links-test. The table column "Download URL" shows the status of latest versions urls on your localhost wpnxm-software-registry.php. The table column "Forwarding URL" shows the status of the links on the server. These links are accessed by the installation wizard.
+
+The results screen after a Registry Status Scan. Here most of the components are green. In most of these cases a 404 indicates that a new version was released by a software vendor. The next step is to scan for a new version and to update the registry accordingly.
+
+image::../images/registry-status.png[]
+
+==== Action: "Scan" 
+
+The registry update script (registry-update.php?action=scan) scans vendor websites for newly released versions
+and updates the wpnxm-software-registry.php accordingly.
+
+==== Action: "Update"
+
+During a registry scan the newly released versions are stored in to the folder `/scans`
+as fragments of the registry. It's possible to make manual modifications to the data before they are inserted into the registry. After that you might call "Update" to insert the Scans into the registry ((registry-update.php?action=update)).

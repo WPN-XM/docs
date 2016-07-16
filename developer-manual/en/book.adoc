@@ -1,0 +1,74 @@
+= WPN-XM Server Stack - Developer Manual
+Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
+:email:               jakoch@web.de
+//:revdate:             December, 2015
+:revnumber:           dev-master
+:description:         This document is the WPN-XM Developer Manual.
+:keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB
+
+:doctype:             book
+:lang:                en
+:encoding:            utf-8
+:gitrepo:             https://github.com/WPN-XM/docs/developer-manual/en
+
+:toc:                 left
+ifdef::backend-pdf[]
+:toc:
+endif::backend-pdf[]
+:toc-title:           Contents
+:toclevels:           4
+:sectnums:
+:sectnumlevels:       4
+
+:experimental:
+:ascii-ids:
+:numbered:
+:max-width:           48em
+
+:linkcss:
+:stylesdir:           ../stylesheets
+:stylesheet:          asciidoctor.css
+
+:imagesdir:           ../images
+
+:icons:               font
+//:asset-uri-scheme:
+// Set new URI for reference to FontAwesome CSS
+//:iconfont-cdn:        //maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css
+
+ifdef::backend-pdf[]
+:source-highlighter:  pygments
+:pygments-style:      bw
+endif::backend-pdf[]
+
+ifdef::asciidoctor[]
+:source-highlighter:  highlightjs
+:highlightjs-theme:   monokai_sublime
+endif::asciidoctor[]
+
+// Refs
+:license:                 https://github.com/WPN-XM/WPN-XM/blob/master/LICENSE
+:jakoch:                  http://github.com/jakoch
+:issue-ref:               https://github.com/WPN-XM/WPN-XM/issues
+:uri-wpnxm-github-issues: https://github.com/WPN-XM/WPN-XM/issues
+
+// Include chapters
+
+:!sectnums:
+
+[preface]
+include::preface.adoc[]
+
+:sectnums:
+
+include::chapter01_overview.adoc[]
+include::chapter02_installers.adoc[]
+include::chapter03_release-process.adoc[]
+include::chapter04_software-registries.adoc[]
+include::chapter05_software-asset-repositories.adoc[]
+include::chapter06_updater.adoc[]
+include::chapter07_website.adoc[]
+include::chapter08_api.adoc[]
+include::chapter09_history.adoc[]
+
+:!sectnums:
