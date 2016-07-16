@@ -1,5 +1,150 @@
 === Building Installers
 
+This document describes the steps to take, for building a new version of WPN-XM.
+
+Building means to create the installation wizards of WPN-XM.
+For building new releases, you'll need a checkout of the WPN-XM main folder.
+Please fetch the repository located at https://github.com/WPN-XM/WPN-XM/ .
+Inside the main folder, you'll find the "/bin" folder.
+It contains all the build tools needed, for building the installation wizards.
+
+(As always, there is one exception! Building also means to build the "Server Control Panel".
+The "Server Control Panel" is a C++ application based on the Qt Framework.
+For building it, you'll need a proper installation of the Qt Framework & mingw32-make.)
+
+==== How to build the installers automatically
+
+Just execute "build.bat". That's it. It's a one-click build.
+You might then find the setup executable(s) in the folder "_build".
+
+Find a detailed description on how this works in the one-click build process documentation.
+https://github.com/WPN-XM/WPN-XM/wiki/How-to-build#wiki-_the_one_click_build_process
+
+==== How to build the installers manually
+
+Building the installer manually means loading and compiling the InnoSetup Script with Innosetup.
+
+*Requirements*
+
+* Windows OS
+* Innosetup (http://www.jrsoftware.org/isinfo.php) or
+* ISTools (optional) (http://sourceforge.net/projects/istool/)
+* Phing
+* 7zip
+* Aria2
+
+*Build*
+
+The InnoSetup script files (`.iss`) reside in the folder `WPN-XM/installers`.
+
+* open one of the InnoSetup Script files using InnoSetup or ISTools
+* remove the semicolon from this line: `;#define COMPILE_FROM_IDE` to enable local IDE compiling
+* to enable the DEBUG mode, set the DEBUG define to true
+* Note: the @APPVERSION@ token is automatically replaced with the version number during CI builds, but when compiling from an IDE the APPVERSION string is hardcoded to "LocalSnapshot"
+* finally, use the GUI to compile it
+  - the webinstallers will compile immediately
+  - the packaged installers need their downloads
+
+==== The One-Click-Build Process
+
+This section describes the one-click-build process for the WPN-XM Installer.
+
+*build.bat*
+
+A build is triggered by executing "build.bat" in the root folder.
+The file calls Phing with the `build.xml`.
+
+Executing "build.bat" will show all kinds of build information on the screen.
+For easier debugging the output is also written to a file named "build.log".
+
+This requires that you have "git" on path.
+Please add the path to "git" to your environment paths.
+
+*Phing*
+
+Phing is used build automation tool. It's a lot like "Ant", but written in PHP.
+The official website with documentation is https://www.phing.info/
+You'll find a comprehensive guide on over at https://www.phing.info/docs/guide/trunk/
+
+*build.xml*
+
+Phing is feeded with a build description file.
+This file is located in the root folder and is named `build.xml`.
+The build description file contains properties and the tasks to perform during a build.
+
+*Modular Build File and Tasks for WPN-XM*
+
+WPN-XM uses a modular build file approach.
+That means the main build file `build.xml` includes several smaller build files, which group specific build tasks.
+
+These files reside in the `WPN-XM\build-scripts` folder:
+
+* download.build.xml
+* stripdown.build.xml
+* compile-installers.build.xml
+
+Each build file might call PHP tasks to execute specific functionality.
+These files reside in the `WPN-XM\build-scripts\tasks` folder:
+
+* CheckFiles
+* GenerateAriaDownloadLists
+* Download
+* CopyDownloads
+* UpdateComponentSizes
+* CheckInstallers
+
+- clean-build-dir
+
+"clean-build-dir" recreates the directory "_build" in the WPN-XM folder.
+This directory will contain the executables and the modified innosetup script files, which are used for the build.
+
+- bump-version-number
+
+Uses the APPVERSION property of the build.xml and inserts the current version number into the InnoScripts, Webinterface and Server-Control-Panel files.
+
+- print-version-number
+
+- several "compile-wpnxm-setup" and "compile-wpnxm-setup-*" tasks
+
+These tasks perform the compilation of the innosetup scripts into executables,
+by using the innosetup compiler.
+
+* compile-wpnxm-webinstaller-setup
+
+Compiles the Web-Installation-Wizard.
+
+* compile-wpnxm-webinstaller-debug-setup
+
+Compliles the Web-Installation-Wizard with enabled Debug Mode.
+
+* compile-wpnxm-allinone-installer-no-download
+
+Builds the WPN-XM setup executable using already downloaded components.
+Assumes that stripdowns are done and components are in the downloads folder.
+This is for fast rebuilding of the All-In-One Installation Wizard.
+
+* compile-wpnxm-allinone-installer
+
+This is the main build tasks for building the All-In-One Installation Wizard.
+This tasks depends on downloading all components and doing stripdowns on MariaDB and MongoDB.
+Then the WPN-XM setup executable is build.
+
+* compile-wpnxm-bigpack-installer
+
+* compile-wpnxm-lite-installer
+
+Several compile tasks. One for each of the innosetup files.
+
+- "stripdown-mariadb" and "stripdown-mongodb"
+
+Performs a re-packaging after performing a removal of unnecessary files from the zip archives
+and a compression of executables. 
+
+- "download-components" & "make.downloads.dir"
+
+Uses the "download-filelist.csv" to fetch all software components to the downloads folder.
+
+
 ==== Versioning and File Names
 
 The WPN-XM installers use the following naming convention for executables:
