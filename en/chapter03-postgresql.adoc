@@ -1,0 +1,28 @@
+=== PostgreSQL
+
+PostgreSQL is an object-relational database management system (ORDBMS) based on POSTGRES, Version 4.2, developed at the University of California at Berkeley Computer Science Department. POSTGRES pioneered many concepts that only became available in some commercial database systems much later.
+
+https://www.postgresql.org/[Website]
+https://www.postgresql.org/docs/current/static/index.html[Documentation for Current Stable Version]
+
+==== Support for JSON and JSONB
+
+The storage format for `json` is plain text format, while it is a binary representation for `jsonb`.
+
+It takes more time to create the binary representation from the input representation (jsonb is slower, than json).
+and it takes more disk space to store than `json` (jsonb uses more space, than json).
+
+The parsing of `json` has to be repeated, for each operation at a json value.
+
+`json` operations take significantly more time than `jsonb`. 
+In other words: `jsonb` is faster for operations on JSON value(s).
+
+To sum up:
+
+[IMPORTANT]
+====
+*When to use JSON or JSONB?**
+
+Use JSON, if you only work with the JSON representation in your application, which is stored and retrieved.
+Use JSONB, if you do a lot of operations on the JSON value(s), or use indexing on some JSON field.
+====
