@@ -103,7 +103,7 @@ SCP, and on the other, the rewrite to short-URLs and security fixes for the
 webinterface.
 
 I got some contributions, e.g. slashfixes and one-liners. But not a single major
-feature or bug issue of th the Github tracker was solved and implemented by an
+feature or bug issue of the Github tracker was solved and implemented by an
 outside contributor.
 
 "Open-source is a morbid software development curiosity, 

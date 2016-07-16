@@ -1,5 +1,9 @@
 === API
 
+You find the API documentation here: http://wpn-xm.org/api-docu/api-doc.htm
+
+Let's go through the most important API queries: `get` and `updatecheck`:
+
 ==== Get 
 
 https://wpn-xm.org/get.php
