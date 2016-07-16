@@ -62,13 +62,21 @@ include::preface.adoc[]
 :sectnums:
 
 include::chapter01_overview.adoc[]
+
 include::chapter02_installers.adoc[]
+
 include::chapter03_release-process.adoc[]
+
 include::chapter04_software-registries.adoc[]
+
 include::chapter05_software-asset-repositories.adoc[]
+
 include::chapter06_updater.adoc[]
+
 include::chapter07_website.adoc[]
+
 include::chapter08_api.adoc[]
+
 include::chapter09_history.adoc[]
 
 :!sectnums:
