@@ -136,23 +136,23 @@ Please attach the logs when creating bug reports.
 
 ==== Silent Installation & Unattended Installation
 
-In our experience, the "/silent" switch is usually sufficient for a basic unattended installation.
-But to be completely sure, we recommend "/sp- /silent /norestart" as startup parameters.
+In our experience, the `/silent` switch is usually sufficient for a basic unattended installation.
+But to be completely sure, we recommend `/sp- /silent /norestart` as startup parameters.
 
-There is also the parameter "/verysilent". If you use "/verysilent", my advise is to use the
-parameter "/norestart" as well, just to be sure that the machine will not reboot without prompting
+There is also the parameter `/verysilent`. If you use `/verysilent`, my advise is to use the
+parameter `/norestart` as well, just to be sure that the machine will not reboot without prompting
 after or during the installation procedure.
 
-You might also specify the target directory for the installation by using the parameter "/dir" (/dir="x:\dirname").
+You might also specify the target directory for the installation by using the parameter `/dir`, e.g. `/dir="x:\dirname"`.
 
 Using the pieces of information provided above, then a complete silent installation cli call would look like this:
-"*setup.exe /VERYSILENT /SP- /DIR="C:\INSTALL_DIR" /NORESTART".
+`*setup.exe /VERYSILENT /SP- /DIR="C:\INSTALL_DIR" /NORESTART`.
 
 The switches for Inno Setup Silent Installation are fully documented in the ISetup.hlp file in the Inno distribution.
 
-http://unattended.sourceforge.net/InnoSetup_Switches_ExitCodes.html
+See http://unattended.sourceforge.net/InnoSetup_Switches_ExitCodes.html[InnoSetup Switches and ExitCodes].
 
 ==== Silent Uninstallation
 
-The uninstaller program (unins???.exe) accepts optional command line parameters.
+The uninstaller program (`unins???.exe`) accepts optional command line parameters.
 You might use the parameters `/verysilent` and `/norestart`.
