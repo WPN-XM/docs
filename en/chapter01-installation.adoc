@@ -1,3 +1,158 @@
 === Installation
 
-Todo 
+This chapter explains how to install WPN-XM Server Stack for Windows.
+
+The installation wizard packages for WPN-XM are available starting with version v0.1.0.
+The packages are available for the x86 (32 bit) and since v0.8.1 also for the x86_64 (64 bit) processor architecture.
+
+There are four different download packages available:
+
+* Webinstaller
+* Standard Installer
+* Lite & LiteRC Installer
+* Full Installer
+
+The Standard and Full Installer contain a large set of components in one big setup executable.
+The Webinstaller is a small file, downloading the components of your choice from the web.
+
+Important: If you face problems downloading certain components, please disable your Anti-Virus and re-try.
+
+You might install WPN-XM either by using the common user interface or
+by installing it in silent mode. The silent mode is for integration
+with automatic and unmaintained installation procedures.
+
+The following sections explain the installation wizard user interface.
+We'll use screenshots from an w64 installation on Windows 10 below.
+
+==== Installation UI
+
+Using the installation wizards user interface is the typical mode of installation.
+
+To start the installer, just click on the setup executable, e.g. "WPNXM-0.8.6-Full-Setup-php56-w64.exe".
+
+=====  Welcome
+
+image::images/wpnxm-install-screen1.png[WPN-XM Screenshot 1]
+
+////
+=====  License Agreement
+
+/*image::images/wpnxm-install-screen2.png[WPN-XM Screenshot 2]*/
+
+Click on "I accept the terms".
+////
+
+=====  Choose target folder
+
+image::images/wpnxm-install-screen2.png[WPN-XM Screenshot 2]
+
+=====  Custom Setup / Components Selection
+
+image::images/wpnxm-install-screen3.png[WPN-XM Screenshot 3]
+
+On the Custom Setup Screen you might choose what software components and features to install.
+
+The drop-down box will show you four default software component pre-selections you might choose from.
+
+image::images/wpnxm-install-screen3-preselection.png[WPN-XM Screenshot 3 Preselection]
+
+The Lite installation wizard has only two preselection setups: Full and Custom.
+While all other installation wizards have four default preselection setups:
+
+. *Full Installation*
+    * This preselects everything for installation.
+. *Server Stack with Administration Tools*
+    * Base (NGINX, MariaDB, PHP)
+    * Admin Tools (Tray App, Webinterface)
+    * Dependency Tool (composer)
+. *Server Stack with Debug Tools*
+    * Base (NGINX, MariaDB, PHP)
+    * Admin Tools (Tray App, Webinterface)
+    * Debug Tools (xhProf, XDebug, webgrind)
+    * Dependency Tool (composer)
+. *Custom Installation*
+    * This deselects everything and you might choose freely.
+
+=====  Select the Startmenu Folder
+
+image::images/wpnxm-install-screen4.jpg[WPN-XM Screenshot 4]
+
+You might select a folder or sub-folder of the start menu,
+where the WPN-XM start menu entries will then be created.
+
+=====  Select Additional Tasks
+
+image::images/wpnxm-install-screen5.png[WPN-XM Screenshot 5]
+
+You might select various tasks to perform during installation,
+like creation of shortcuts in the start menu and on your desktop.
+If you install the files on a portable device, don't forget to enable "Portable Mode".
+
+=====  Installation Running Screen
+
+image::images/wpnxm-install-screen7.png[WPN-XM Screenshot 7]
+
+The screen shows the progress while downloading and installing the components for your WPN-XM stack.
+
+=====  End
+
+image::images/wpnxm-install-screen8.png[WPN-XM Screenshot 8]
+
+Installation is finished now.
+
+==== Start Menu Entries
+
+After the installation finished, you will find the following new start menu entries:
+
+image::images/wpnxm-startmenu.png[WPN-XM Startmenu]
+
+**Description of menu entries and what they do**
+
+* Administration - Opens the Administration Webinterface of WPN-XM in your default Browser.
+* Report Issue - Opens the Issues Reporting Page of WPN-XM
+* Server-Control-Panel - Starts the Tray Application
+* Start - Starts all daemons and opens the webinterface your browser.
+* Status - Shows the status of all daemons in an endless loop.
+* Stop - Stops all daemons.
+* WPN-XM Server Stack in the Internet - Opens the official WPN-XM website.
+
+==== Uninstallation
+
+Simply execute the uninstaller program (unins???.exe) in the installation folder.
+
+image::images/wpnxm-uninstall-screen1.jpg[WPN-XM Uninstall Screenshot 1]
+
+image::images/wpnxm-uninstall-screen2.jpg[WPN-XM Uninstall Screenshot 2]
+
+You'll also find a shortcut in the start menu entries of WPN-XM.
+
+==== Installation logs
+
+If you encounter a bug in the installer, you might read the installer logs for diagnosis.
+You'll find the logs in the installation folder, e.g. c:\wpnxm-server.
+The name of the log file is "Setup Log yyyy-mm-dd #num.txt", e.g. "Setup Log 2012-05-12 #005.txt".
+It's a text file and you might open it with notepad or with the editor of your choice.
+Please attach the logs when creating bug reports.
+
+==== Silent Installation & Unattended Installation
+
+In our experience, the "/silent" switch is usually sufficient for a basic unattended installation.
+But to be completely sure, we recommend "/sp- /silent /norestart" as startup parameters.
+
+There is also the parameter "/verysilent". If you use "/verysilent", my advise is to use the
+parameter "/norestart" as well, just to be sure that the machine will not reboot without prompting
+after or during the installation procedure.
+
+You might also specify the target directory for the installation by using the parameter "/dir" (/dir="x:\dirname").
+
+Using the pieces of information provided above, then a complete silent installation cli call would look like this:
+"*setup.exe /VERYSILENT /SP- /DIR="C:\INSTALL_DIR" /NORESTART".
+
+The switches for Inno Setup Silent Installation are fully documented in the ISetup.hlp file in the Inno distribution.
+
+http://unattended.sourceforge.net/InnoSetup_Switches_ExitCodes.html
+
+==== Silent Uninstallation
+
+The uninstaller program (unins???.exe) accepts optional command line parameters.
+You might use the parameters `/verysilent` and `/norestart`.
