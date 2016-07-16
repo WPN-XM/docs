@@ -8,3 +8,69 @@ This section documents the release process for the following software products:
 ==== Webinterface
 
 ==== Server Control Panel
+
+==== General
+
+This section describes the steps to take for releasing a new version of WPN-XM.
+
+===== 1 Update `changelog.txt`
+
+Update the changelog with pieces of information about the latest changes.
+
+Note: we do not indicate version number changes of the software components.
+This is automatically published on the website.
+
+===== 2 Bump Version number of WPN-XM
+
+* build.xml
+- adjust version.* properties
+
+* website-wpn-xm.org/index.html
+- update the download div with new links to Download, Changelog and ReleaseNotes-v1.2.3
+- Do not worry about the version numbers. They are automatically loaded and always in sync with latest versions from registry.
+
+===== 3 Tag the Version
+
+- Be sure that all changes for this version are done, before you tag.
+- Repositories: "WPN-XM", "webinterface"
+- Switch to "master" branch: ++git checkout master++.
+- Use ++git tag -l++ to determine the upcoming version.
+- Finally use ++git tag 1.2.3++, done.
+- Use ++git push --tags++ to push the tags to GitHub.
+
+**Travis will build the installers and upload them to Github releases.**
+
+(To build the installer locally click "build.bat" in the main folder and find the fresh build in the folder "_build".
+You might then upload the new installers installation wizards via FTP to the target folder "wpn-xm/downloads".)
+
+===== 4 Announcements 
+
+Spread the word!
+ 
+====== Twitter 
+
+Tweet about the Release using one of these message templates:
+ 
+```   
+ WPN-XM v1.2.3 has been released! For details, see: http://wpn-xm.org/
+```
+
+```
+ I'm happy to announce the immediate release of WPN-XM v1.2.3.
+ For downloads, see: http://wpn-xm.org/downloads
+```
+
+====== Mailing list
+
+Write a mail to ++wpn-xm@googlegroups.com++ or 
+start a new topic via the webinterface at https://groups.google.com/forum/?fromgroups#!forum/wpn-xm.
+
+====== Community Forum
+
+Post a message on the Community Forum
+
+====== Create Release Notes on Github
+
+Use "Release-Notes-v1.2.3.md", when manually creating the file. Keep the filename consistent.
+Use "Release Notes v1.2.3" as page title, when creating via the Github Webinterface.
+The easiest way is to clone an existing file and adjust the file content.
