@@ -32,29 +32,29 @@ To start the installer, just click on the setup executable, e.g. "WPNXM-0.8.6-Fu
 
 =====  Welcome
 
-image::images/wpnxm-install-screen1.png[WPN-XM Screenshot 1]
+image::../images/wpnxm-install-screen1.png[WPN-XM Screenshot 1]
 
 ////
 =====  License Agreement
 
-/*image::images/wpnxm-install-screen2.png[WPN-XM Screenshot 2]*/
+/*image::../images/wpnxm-install-screen2.png[WPN-XM Screenshot 2]*/
 
 Click on "I accept the terms".
 ////
 
 =====  Choose target folder
 
-image::images/wpnxm-install-screen2.png[WPN-XM Screenshot 2]
+image::../images/wpnxm-install-screen2.png[WPN-XM Screenshot 2]
 
 =====  Custom Setup / Components Selection
 
-image::images/wpnxm-install-screen3.png[WPN-XM Screenshot 3]
+image::../images/wpnxm-install-screen3.png[WPN-XM Screenshot 3]
 
 On the Custom Setup Screen you might choose what software components and features to install.
 
 The drop-down box will show you four default software component pre-selections you might choose from.
 
-image::images/wpnxm-install-screen3-preselection.png[WPN-XM Screenshot 3 Preselection]
+image::../images/wpnxm-install-screen3-preselection.png[WPN-XM Screenshot 3 Preselection]
 
 The Lite installation wizard has only two preselection setups: Full and Custom.
 While all other installation wizards have four default preselection setups:
@@ -75,14 +75,14 @@ While all other installation wizards have four default preselection setups:
 
 =====  Select the Startmenu Folder
 
-image::images/wpnxm-install-screen4.jpg[WPN-XM Screenshot 4]
+image::../images/wpnxm-install-screen4.jpg[WPN-XM Screenshot 4]
 
 You might select a folder or sub-folder of the start menu,
 where the WPN-XM start menu entries will then be created.
 
 =====  Select Additional Tasks
 
-image::images/wpnxm-install-screen5.png[WPN-XM Screenshot 5]
+image::../images/wpnxm-install-screen5.png[WPN-XM Screenshot 5]
 
 You might select various tasks to perform during installation,
 like creation of shortcuts in the start menu and on your desktop.
@@ -90,13 +90,13 @@ If you install the files on a portable device, don't forget to enable "Portable 
 
 =====  Installation Running Screen
 
-image::images/wpnxm-install-screen7.png[WPN-XM Screenshot 7]
+image::../images/wpnxm-install-screen7.png[WPN-XM Screenshot 7]
 
 The screen shows the progress while downloading and installing the components for your WPN-XM stack.
 
 =====  End
 
-image::images/wpnxm-install-screen8.png[WPN-XM Screenshot 8]
+image::../images/wpnxm-install-screen8.png[WPN-XM Screenshot 8]
 
 Installation is finished now.
 
@@ -104,7 +104,7 @@ Installation is finished now.
 
 After the installation finished, you will find the following new start menu entries:
 
-image::images/wpnxm-startmenu.png[WPN-XM Startmenu]
+image::../images/wpnxm-startmenu.png[WPN-XM Startmenu]
 
 **Description of menu entries and what they do**
 
@@ -120,9 +120,9 @@ image::images/wpnxm-startmenu.png[WPN-XM Startmenu]
 
 Simply execute the uninstaller program (unins???.exe) in the installation folder.
 
-image::images/wpnxm-uninstall-screen1.jpg[WPN-XM Uninstall Screenshot 1]
+image::../images/wpnxm-uninstall-screen1.jpg[WPN-XM Uninstall Screenshot 1]
 
-image::images/wpnxm-uninstall-screen2.jpg[WPN-XM Uninstall Screenshot 2]
+image::../images/wpnxm-uninstall-screen2.jpg[WPN-XM Uninstall Screenshot 2]
 
 You'll also find a shortcut in the start menu entries of WPN-XM.
 
