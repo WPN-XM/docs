@@ -83,4 +83,6 @@ include::chapter09_api.adoc[]
 
 include::chapter10_history.adoc[]
 
+include::chapter11_alternatives.adoc[]
+
 :!sectnums:

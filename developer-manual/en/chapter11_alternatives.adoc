@@ -1,0 +1,34 @@
+=== Alternative Stacks
+
+In case, you are still not convinced about using the WPN-XM Server Stack,
+then go try a different server stack for Windows.
+
+**Here’s a comprehensive list for your convenience:**
+
+* XAMPP for Windows       https://www.apachefriends.org/download.html
+* Zend Server             http://www.zend.com/en/products/server/downloads
+* OpenServer              http://open-server.ru/
+* Winginx                 http://winginx.com/
+* VertrigoServ            http://vertrigo.sourceforge.net/
+* Bitnami WAMPStack       http://bitnami.org/stack/wampstack
+* EasyPHP                 http://easyphp.org
+* uWamp                   http://www.uwamp.com/
+* WNMP                    https://github.com/wnmp/wnmp
+* WampServer              http://www.wampserver.com/en/
+* WTServer (WTNMP)        http://sourceforge.net/projects/wtnmp
+* Ampps                   http://www.ampps.com/
+* Wamp Developer Pro      https://www.devside.net/
+* MAMP for Windows        http://www.mamp.info/
+* AppServNetwork          http://www.appservnetwork.com/
+
+**These projects are no longer maintained or updated**
+
+* NimpBox                 http://nimpbox.ru/
+* NginxMP                 http://www.sourceforge.net/projects/nginxmp/
+* XenStack                http://sourceforge.net/projects/xenstack/
+* PHPNginx                http://phpnginx.sourceforge.net/
+
+**General**
+
+* Overview1               http://alternativeto.net/software/xampp/
+* Overview2               https://en.wikipedia.org/wiki/List_of_Apache%E2%80%93MySQL%E2%80%93PHP_packages
