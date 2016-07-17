@@ -65,7 +65,7 @@ include::preface.adoc[]
 
 include::chapter01_overview.adoc[]
 
-include::chapter02_installers.adoc[]
+include::chapter02_building-installers.adoc[]
 
 include::chapter03_release-process.adoc[]
 
