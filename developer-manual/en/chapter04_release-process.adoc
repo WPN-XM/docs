@@ -43,11 +43,11 @@ This is automatically published on the website.
 (To build the installer locally click "build.bat" in the main folder and find the fresh build in the folder "_build".
 You might then upload the new installers installation wizards via FTP to the target folder "wpn-xm/downloads".)
 
-==== 4 Announcements 
+==== Announcements 
 
-Spread the word!
+Now, it's time to spread the word about the new release on multiple channels!
  
-===== Twitter 
+**Twitter** 
 
 Tweet about the Release using one of these message templates:
  
@@ -60,17 +60,17 @@ Tweet about the Release using one of these message templates:
  For downloads, see: http://wpn-xm.org/downloads
 ```
 
-===== Mailing list
+**Mailing list**
 
-Write a mail to ++wpn-xm@googlegroups.com++ or 
-start a new topic via the webinterface at https://groups.google.com/forum/?fromgroups#!forum/wpn-xm.
+Write a mail to `wpn-xm@googlegroups.com` or 
+start a new topic via the https://groups.google.com/forum/?fromgroups#!forum/wpn-xm[Google Groups Webinterface].
 
-===== Community Forum
+**Community Forum**
 
 Post a message on the Community Forum
 
-===== Create Release Notes on Github
+**Create Release Notes on Github**
 
-Use "Release-Notes-v1.2.3.md", when manually creating the file. Keep the filename consistent.
-Use "Release Notes v1.2.3" as page title, when creating via the Github Webinterface.
+Use `Release-Notes-v1.2.3.md`, when manually creating the file. Keep the filename consistent.
+Use `Release Notes v1.2.3` as page title, when creating via the Github Webinterface.
 The easiest way is to clone an existing file and adjust the file content.
