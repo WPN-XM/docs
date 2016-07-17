@@ -22,7 +22,7 @@ The installer registries reside in versionized subfolders.
 The installer registries for the next, upcoming, but yet unreleased version reside 
 in the `installer\next` folder.
 
-=== Software Registry - 
+=== Software Registry
 
 The registry for the stack components is always kept in sync with latest versions.
 Therefore we are monitoring the websites of each software component for newly released versions.

@@ -15,9 +15,7 @@ For building it, you'll need a proper installation of the Qt Framework & mingw32
 
 === How to build the installers automatically
 
-Just execute `build.bat`. 
-
-That's it. It's a one-click build.
+Just execute `build.bat`. That's it. It's a one-click build.
 
 You might then find the setup executable(s) in the folder "_build".
 
@@ -43,7 +41,7 @@ The InnoSetup script files (`.iss`) reside in the folder `WPN-XM/installers`.
 
 * open one of the InnoSetup Script files using InnoSetup or ISTools
 * remove the semicolon from this line: `;#define COMPILE_FROM_IDE` to enable local IDE compiling
-* to enable the **DEBUG** mode, set the **DEBUG** define to true.
+* if you need the debug mode, enable it by setting the `#define DEBUG "false"` to `true`.
 * Note: the `@APPVERSION@` token is automatically replaced with the version number during CI builds.
   But, when working locally and compiling from an IDE the APPVERSION string is hardcoded to `LocalSnapshot`.
 * finally, use the GUI to compile it
