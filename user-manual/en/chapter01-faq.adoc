@@ -1,20 +1,21 @@
 === Frequently Asked Questions
 
-==== I have trouble starting and stopping daemons using the Server-Control-Panel. What can i do?
+[qanda]
+I have trouble starting and stopping daemons using the Server-Control-Panel. What can i do?::
 
 If the SCP doesn't work, then please try to use the batch files "start-wpnxm.bat" and "stop-wpnxm.bat" instead. You might check, whether daemons are running with "status-wpnxm.bat".
 
-==== The MySQL/MariaDB daemon won't start. What can i do?
+The MySQL/MariaDB daemon won't start. What can i do?::
 
 Please start mysqld manually by running `mysqld --console` on the CLI in the folder `\server\mariadb\bin`.
 You will get a startup log with more pieces of information about the reason.
 Often the cause is a misconfiguration in `my.ini` or accidentally modified or deleted files in the data folder.
 
-==== Innosetup Script does not compile because of unknown tokens, like @APPVERSION@
+Innosetup Script does not compile because of unknown tokens, like @APPVERSION@::
 
 If you want to build the installation wizard manually, then you need to replace the token with something appropriate, like replacing @APPVERSION@ with a version number, e.g. 1.2.3 (major.minor.build).
 
-==== The MySQL daemon isn't starting up.
+The MySQL daemon isn't starting up.::
 
 Check the console output when trying to start the daemon manually.
 
@@ -22,7 +23,7 @@ Check the console output when trying to start the daemon manually.
 
 `mysqld --console`
 
-==== While step debugging with XDebug i get Socket errors
+While step debugging with XDebug i get Socket errors::
 
 Check the Nginx "error.log". If you see errormessages like "upstream timed out",
 then try to increase the "fastcgi_read_timeout" in your "nginx.conf". Do not forget to restart the daemon.
@@ -30,7 +31,7 @@ The value defaults to 60s. Which might be enough for production, but clearly not
 because of the long running fastcgi process that does not produce any output until it is finished.
 See the related Nginx Wiki page: [Nginx - Module - HttpFastcgi](http://wiki.nginx.org/HttpFastcgiModule)
 
-==== Nginx wont' start or shuts down immediately. Port 80 used.
+Nginx wont' start or shuts down immediately. Port 80 used.::
 
 Immediate shutdowns are an indicator that the port 80, which Nginx uses by default is already taken.
 You will also find the following message in the Nginx `error.log`: `bind() to 127.0.0.1:80 failed`.
@@ -38,14 +39,14 @@ Please check, if the port is in use with `netstat -ab` or by using a helper tool
 
 If the port is used by "System PID 4", then the service "WWW-Publishingservice" (w3svc) is using the port and you might disable it by using the `services.msc` control panel.
 
-==== Starting the installation wizard in the shared folder of a VM
+Starting the installation wizard in the shared folder of a VM::
 
 `ShellExecuteEx Error - System cannot find the path specified.`
 
 The installer can not be executed in the shared folder of a virtual machine.
 It needs to be copied into a non-shared folder and started there.
 
-==== How to test, if mails are send on Windows?
+How to test, if mails are send on Windows?::
 
 You would install a fake sendmail server, which listens at a specific port (usally 25) for new mail and saves it to a specific folder. You can then read the file and test it for correct mail rendering.
 
@@ -62,7 +63,7 @@ WPN-XM ships "Fake Sendmail".
 
 If you need a real SMTP tool, try http://www.blat.net/ or http://msmtp.sourceforge.net/.
 
-==== Why is there a "reversed" N in WPИ-XM?
+Why is there a "reversed" N in WPИ-XM?::
 
 The "reversed" N is cyrillic and used intentionally to indicate that the stack includes Nginx ("engine x").
 We use the "reversed" N as the initial letter for Nginx in our project name and logo.
