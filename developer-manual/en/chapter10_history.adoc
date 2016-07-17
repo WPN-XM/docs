@@ -8,17 +8,17 @@ lucky person.
 
 === Before 2010
 
-Eloy Lafuente (stronk7) from the Moodle Project created `m4w_builder` (GPL).
-That was "Moodle for Windows Builder". This was a build tool for a webserver
-stack based on XAMPPlight,  including the PHP application Moodle for the
-developers of the Moodle project.
+Eloy Lafuente (stronk7) from the Moodle Project created **Moodle for Windows
+Builder** (`m4w_builder`, GPL). It was a build tool for a webserver
+stack based on XAMPPlight, including the PHP application Moodle for the
+developers of the Moodle project. The goal was to provide a quick starter.
 
 I forked it, updated XAMPPlight and integrated our CMS. The goal was to have an
 out-of-the-box working developer environment.  The project was named `Clansuite-
 Serverpack-Builder`. It was a subproject of the Clansuite CMS.  I made only two
-releases, which had the same version numbers as the included XAMPP version:
-1.7.2 and 1.7.3. The builder was batch file based and lot's of manual release
-preparation tasks were required to ship a new version.
+releases, which had the same version numbers as the included XAMPPlight version:
+1.7.2 and 1.7.3. The builder was batch file based and required many manual release
+preparation tasks to ship a new version.
 
 === 2010
 
