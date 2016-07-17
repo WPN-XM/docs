@@ -1,5 +1,37 @@
 === System Requirements
 
+==== Which Windows versions are supported by your installation wizards?
+
+The installation wizards are Inno-Setup based.
+Inno-Setup supports every Windows release since 2000, including:
+ - Windows Server 2003, 2008, 2008 R2, 2012 and,
+ - Windows 2000, XP, Vista, 7, 8, 8.1, 10 . 
+The installers do not require service packs.
+
+To sum up: you can execute our installation wizard executables on nearly all Windows versions.
+
+==== Which Windows versions are supported by the packaged components?
+
+We differentiate installers by bitsize.
+We build installers for x86 and x64 Windows versions and bundle components accordingly.
+When bundling components our lowest supported Windows version is Window 7.
+
+Please take a look at the Windows compatibility of the components included in the installer.
+
+[NOTE]
+====
+We test installers for compatibility only on Windows 7 and Windows 10.
+==== 
+
+[WARNING]
+====
+If you are running into a compatibility issue with one of the bundled components, please
+do not hesitate to inform us and report the problem at https://github.com/WPN-XM/WPN-XM/issues[Github Issues]. 
+Thank you!
+====
+
+===== List of supported Windows Versions
+
 * Windows 7 (32-Bit) Professional
 * Windows 7 (64-Bit) Home Premium and Professional
 * Windows 7 SP 1 (32-Bit) Home Premium, Professional, and Enterprise

@@ -62,13 +62,6 @@ WPN-XM ships "Fake Sendmail".
 
 If you need a real SMTP tool, try http://www.blat.net/ or http://msmtp.sourceforge.net/.
 
-==== Which Windows versions are supported by your installation wizards?
-
-The installation wizards are Inno-Setup based and support every Windows release since 2000, including: Windows 8, Windows Server 2012, Windows 7, Windows Server 2008 R2, Windows Vista, Windows Server 2008, Windows XP, Windows Server 2003, and Windows 2000. (No service packs are required.)
-This means that you can execute an the installation wizard executable on nearly all Windows versions.
-
-Note: This does not mean, that the included and installed software by the installer will run on this Windows versions. Please take a look at the Windows compatibility of the components included in the installer. 
-
 ==== Why is there a "reversed" N in WPИ-XM?
 
 The "reversed" N is cyrillic and used intentionally to indicate that the stack includes Nginx ("engine x").

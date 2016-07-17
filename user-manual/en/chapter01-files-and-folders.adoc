@@ -37,3 +37,5 @@ It refers to "c:\server\" as default location for the installation.
 | \bin\nginx\conf\sites-enabled  | The folder for all enabled Nginx domains. Place your server blocks here.
 | \bin\nginx\conf\sites-disabled | The folder for disabled Nginx domains.
 |===========
+
+<<<
