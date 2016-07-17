@@ -1,6 +1,6 @@
 language: ruby
-rvm:
-  - 2.2.2
+rvm: [2.2.2]
+#python: [2.7]
 addons:
   apt:
     packages:
@@ -9,6 +9,10 @@ addons:
     # optional dependencies for asccidoctor-diagram
     - graphviz
     - ditaa
+cache:
+  apt: true
+  #directories:    
+    #- $HOME/.cache/pip
 install:
   - gem install asciidoctor
   # PDF generator
@@ -18,11 +22,8 @@ install:
   # diagram support
   - gem install --no-ri --no-rdoc asciidoctor-diagram
   # optionally install more diagram tools: blockdiag, seqdiag, actdiag and nwdiag
-  #- wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python
-  #- easy_install "blockdiag[pdf]"
-  #- easy_install seqdiag
-  #- easy_install actdiag
-  #- easy_install nwdiag
+  #- pip install --user blockdiag actdiag seqdiag nwdiag
+  #- pip install --user shaape
   - gem install slim tilt haml
   # AsciiDoctor Stylesheet Factory - Dependencies
   - gem install --version '0.12.7' compass --no-ri --no-rdoc
@@ -43,7 +44,7 @@ install:
 before_script:
   - asciidoctor --version
   - asciidoctor-pdf --version
-  - asciidoctor-diagram --version
+  #- asciidoctor-diagram --version
   - ls -alF
 script:
   # create user-manual
