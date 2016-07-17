@@ -6,7 +6,9 @@ addons:
     packages:
     # fetch Ghostscript to optimize/minimize the PDF, if > 5MB
     - ghostscript
+    # optional dependencies for asccidoctor-diagram
     - graphviz
+    - ditaa
 install:
   - gem install asciidoctor
   # PDF generator
@@ -14,8 +16,8 @@ install:
   # syntax highlighter
   - gem install --no-ri --no-rdoc coderay pygments.rb
   # diagram support
-  #- gem install --no-ri --no-rdoc asciidoctor-diagram
-  # install diagram tools: blockdiag, seqdiag, actdiag and nwdiag
+  - gem install --no-ri --no-rdoc asciidoctor-diagram
+  # optionally install more diagram tools: blockdiag, seqdiag, actdiag and nwdiag
   #- wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | python
   #- easy_install "blockdiag[pdf]"
   #- easy_install seqdiag
@@ -26,16 +28,15 @@ install:
   - gem install --version '0.12.7' compass --no-ri --no-rdoc
   - gem install --version '4.3.2' zurb-foundation --no-ri --no-rdoc
   # AsciiDoctor Stylesheet Factory
-  - mkdir -p manual
   - wget https://github.com/asciidoctor/asciidoctor-stylesheet-factory/archive/master.zip
   - unzip master.zip
+  - rm master.zip
   - cd asciidoctor-stylesheet-factory-master
   #- ./build-stylesheet.sh colony.css
   - compass compile
   - cp -pr stylesheets ../user-manual/
   - cp -pr stylesheets ../developer-manual/
-  - cd ..
-  - rm master.zip
+  - cd ..  
   # Copy Images
   - mkdir -p user-manual/images
   - cp -p images/* user-manual/images
@@ -49,8 +50,8 @@ script:
   - asciidoctor -a stylesheet=../stylesheets/foundation.css -a source-highlighter=highlightjs -a toc=left -a linkcss -a toclevels=2 -a revnumber=$TRAVIS_TAG user-manual/en/book.adoc -o user-manual/en/index.html -v
   - asciidoctor -r asciidoctor-pdf -b pdf -a pdf-stylesdir=pdf -a pdf-style=wpnxm -a pdf-fontsdir=pdf/fonts -a revnumber=$TRAVIS_TAG user-manual/en/book.adoc -o user-manual/en/book.pdf -v
   # create developer-manual
-  - asciidoctor -a stylesheet=../stylesheets/foundation.css -a source-highlighter=highlightjs -a toc=left -a linkcss -a toclevels=2 -a revnumber=$TRAVIS_TAG developer-manual/en/book.adoc -o developer-manual/en/index.html -v
-  - asciidoctor -r asciidoctor-pdf -b pdf -a pdf-stylesdir=pdf -a pdf-style=wpnxm -a pdf-fontsdir=pdf/fonts -a revnumber=$TRAVIS_TAG developer-manual/en/book.adoc -o developer-manual/en/book.pdf -v
+  - asciidoctor -r asciidoctor-diagram -a stylesheet=../stylesheets/foundation.css -a source-highlighter=highlightjs -a toc=left -a linkcss -a toclevels=2 -a revnumber=$TRAVIS_TAG developer-manual/en/book.adoc -o developer-manual/en/index.html -v
+  - asciidoctor -r asciidoctor-diagram -r asciidoctor-pdf -b pdf -a pdf-stylesdir=pdf -a pdf-style=wpnxm -a pdf-fontsdir=pdf/fonts -a revnumber=$TRAVIS_TAG developer-manual/en/book.adoc -o developer-manual/en/book.pdf -v
   # create an index entry page for the website @ http://wpn-xm.github.io/docs/
   - asciidoctor README.adoc -o index.html -v
   # apply PDF document optimizations
