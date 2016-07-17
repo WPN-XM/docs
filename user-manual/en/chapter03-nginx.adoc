@@ -152,4 +152,61 @@ When you just want to spread load across servers and the application has no dema
 then the default "round robin" balancing is better and faster, because it doesn't spend time and resources 
 on hashing a given key or client IP address.
 
+==== Alternative Nginx Builds for Windows
+
+The WPN-XM Server Stack uses Nginx builds from the offical website. But there
+are also some interesting private builds around. Sadly, their builds and build
+toolchains are not open-source, so the builds are completely private and re-
+building is not possible. Due to this fact, i can not include these builds into
+WPN-XM.
+
+You have the choice to download them on your own risk and simply replace WPN-XM's Nginx folder.
+
+1. Official Nginx - http://nginx.org/
+
+This is the offical Nginx Windows build from the main nginx website.
+We ship this one by default.
+
+Download: http://nginx.org/en/download.html
+
+2. Nginx-Win - http://nginx-win.ecsds.eu/
+
+This is an unofficial private build.
+The source for the build, patches and adjusted modules and toolchain are not open-source.
+The build includes lots of performance tweaks, additional modules compiled in and multi-worker support.
+For instance, support for SPDY, rtmp, LUA, Naxsi WAF was added.
+
+My request to open-source the toolchain for builds on Travis-Ci and for cooperation was denied.
+
+The real name of the author is unknown.
+His nickname "itpp2012" on the Nginx mailinglist and Nginx related discussion Forums.
+His Github Account is: https://github.com/itpp16
+
+- Website: http://nginx-win.ecsds.eu/
+- Downloads: http://nginx-win.ecsds.eu/download/
+- Twitter: https://twitter.com/nginx4Windows
+
+3. Nginx for Windows - http://kevinworthington.com/nginx-for-windows/
+
+This is an unoffical private build.
+The x32 and x64 builds are using Cygwin.
+The build toolchain is not open-source.
+
+Website: http://kevinworthington.com/nginx-for-windows/
+
+4. OpenResty - https://openresty.org/
+
+OpenResty is a scalable Web Platform by extending NGINX with Lua.
+The auther is Yichun Zhang (agentzh).
+
+Downloads: https://openresty.org/en/download.html
+Installation: https://openresty.org/en/installation.html
+List of Components (Nginx Modules): https://openresty.org/en/components.html
+
+5. https://github.com/Qihoo360/nginx-openresty-windows
+
+This is an unoffical private build.
+It's a combination of OpenResty and Nginx.
+Lots of additional modules
+
 include::edit-page.adoc[]
