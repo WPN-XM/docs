@@ -14,6 +14,8 @@ include::chapter03-pickle.adoc[]
 
 include::chapter03-pear.adoc[]
 
+include::chapter03-composer.adoc[]
+
 include::chapter03-redis.adoc[]
 
 include::chapter03-memcached.adoc[]

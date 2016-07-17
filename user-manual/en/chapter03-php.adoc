@@ -46,19 +46,8 @@ The x64 builds of PHP 7 support native 64-bit integers, LFS, memory_limit and mu
 
 The default configuration file for PHP is `server\bin\php\php.ini`.
 
-===== PHP Configuration for Composer
-
-[IMPORTANT]
+[NOTE]
 ====
-There is a seperate, minimal PHP configuration file for `Composer` runs.
-Whenever you invoke `composer.bat` this minimal config for PHP will used to start Composer.
-The purpose of this config is to run Composer, without xDebug in order to speed it up.
+There is a minimal configuration file for Composer runs `server\bin\composer\php.composer.ini`. 
+Please check the Composer chapter.
 ====
-
-There is a huge impact of just loading Xdebug. 
-It slows the Composer run down by 3x or 4x, even when the profiling feature is not enabled.
-In other words: xdebug is invaluable for debugging, but increases the memory used and processing time of Composer.
-See https://getcomposer.org/doc/articles/troubleshooting.md#xdebug-impact-on-composer
-
-The question is "How to disable Xdebug for Composer runs on the CLI?".
-I addressed this issue by providing a seperate, minimal PHP config file.
