@@ -53,32 +53,32 @@ use WPNXM\Updater\VersionCrawler;
  */
 class Adminer extends VersionCrawler // <1>
 {
-    public $url = 'http://www.adminer.org/#download'; // <2>
+  public $url = 'http://www.adminer.org/#download'; // <2>
 
-    public function crawlVersion() // <3>
-    {
-        return $this->filter('a')->each(function ($node) { // <4>
+  public function crawlVersion() // <3>
+  {
+    return $this->filter('a')->each(function ($node) { // <4>
 
-            if (preg_match("#(\d+\.\d+(\.\d+)*)#", $node->text(), $matches)) { // <5>
-                $version = $matches[0];                     
+      if (preg_match("#(\d+\.\d+(\.\d+)*)#", $node->text(), $matches)) { // <5>
+        $version = $matches[0];                     
 
-                if (version_compare($version, $this->registry['adminer']['latest']['version'], '>=') === true) { // <6>
-                    return array(
-                        'version' => $version,
-                        'url'     => 'https://www.adminer.org/static/download/' . $version . '/adminer-' . $version . '.php',
-                    ); // <7>
-                }
-           }
-        });
-    }
+        if (version_compare($version, $this->registry['adminer']['latest']['version'], '>=') === true) { // <6>
+          return array(
+            'version' => $version,
+            'url'     => 'https://www.adminer.org/static/download/' . $version . '/adminer-' . $version . '.php',
+          ); // <7>
+        }
+      }
+    });
+  }
 }
 ```
 <1> Each Crawler class extends the VersionCrawler base class.
 <2> The class property `$url` defines the URL to scrape.
 <3> Each Crawler class implements the main method: `crawlVersion()`.
 <4> We are using the `dom-selector` to filter the content and get closer to the version string.
-<5> We are working on the filtered `$node->text` and grab the version by using a regexp for a version scheme.
-    The matched value is then reassigned to $version.
+<5> We are working on the filtered `$node->text()` and grab the version by using a regexp for a version scheme.
+    The matched value is then reassigned to `$version`.
 <6> We compare the scraped version number with the latest version we have in our registry.
     When the scraped version is newer, than the latest version in the registry, we return an array as response.
 <7> The response is an array with the two keys `version` and `url` and their values.
