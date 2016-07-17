@@ -65,20 +65,22 @@ include::preface.adoc[]
 
 include::chapter01_overview.adoc[]
 
-include::chapter02_building-installers.adoc[]
+include::chapter02_adding-new-component.adoc[]
 
-include::chapter03_release-process.adoc[]
+include::chapter03_building-installers.adoc[]
 
-include::chapter04_software-registries.adoc[]
+include::chapter04_release-process.adoc[]
 
-include::chapter05_software-asset-repositories.adoc[]
+include::chapter05_software-registries.adoc[]
 
-include::chapter06_updater.adoc[]
+include::chapter06_software-asset-repositories.adoc[]
 
-include::chapter07_website.adoc[]
+include::chapter07_updater.adoc[]
 
-include::chapter08_api.adoc[]
+include::chapter08_website.adoc[]
 
-include::chapter09_history.adoc[]
+include::chapter09_api.adoc[]
+
+include::chapter10_history.adoc[]
 
 :!sectnums:

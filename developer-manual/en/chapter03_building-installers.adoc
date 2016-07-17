@@ -144,7 +144,6 @@ and a compression of executables.
 
 Uses the "download-filelist.csv" to fetch all software components to the downloads folder.
 
-
 ==== Versioning and File Names
 
 The WPN-XM installers use the following naming convention for executables:

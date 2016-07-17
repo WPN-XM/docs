@@ -1,0 +1,131 @@
+==== How to add a new component
+
+This chapter describes, how to add a new component to the server stack.
+Adding a new component is quite complex, because of the dependencies to other components
+and the adjustments to be made to several files of the WPN-XM environment.
+
+=== 1 Add the new component to the software components registry
+* The software components registry is located in the "updater" repository:
+  - https://github.com/WPN-XM/registry
+  - https://github.com/WPN-XM/registry/blob/master/wpnxm-software-registry.php
+* It's a plain simple PHP array.
+* This is the template used for inserting a new component:
+```
+'component' => 
+  array (
+    'name' => 'Component',
+    'website' => 'http://component.com/',
+    '0.0.1' => 'http://component.com/downloads/Component-0.0.1.zip',
+    'latest' => 
+    array (
+      'version' => '0.0.1',
+      'url' => 'http://component.com/downloads/Component-0.0.1.zip',
+    ),
+  ),
+```
+* It doesn't matter where you insert the new component. The registry array is automatically sorted, when it is updated via the "registry-update.php" script.
+* You could add all possible "Version" to "URL" relationships, when adding the array. But, it is easier to set only one relationship and have the missing relations inserted automatically. Be advised to use a lower version, then the current latest version of the component. This comes handy for testing the version scraping and updating process - see the next step.
+
+=== 2 Add the new component to the registry-updater
+* Updating the "Version" to "URL" relationships is tedious work. It's possible to update the registry manually (see above), but letting an automated tool do the job, is more fun and takes some work out of our hands.
+* The registry updater is located in the "updater" repository:
+  - https://github.com/WPN-XM/updater
+  - https://github.com/WPN-XM/updater/blob/master/registry-update.php
+* You need to add an version scraping method to the registry-updater. The method name would be ++get_latest_version_of_*()++, where * is the name of the component. Be inspired by the existing methods, like ++get_latest_version_of_nginx()++.
+  - There is no standard of asking a project for the latest version number of a software component. So we simply scrape the webpages and evaluate the content via a regular expression, scanning it for the desired version(s).
+  - The tool in use is Goutte (https://github.com/fabpot/Goutte). If you need more pieces of information about using Goutte for scraping, please refer to it's (very spare) documentation or use the Guzzle documentation as an alternative (http://www.guzzlephp.org/).
+* The output of your version scraping method contains one or more new version numbers and their urls. These must be added to the registry. This is done by adding a call to the method add(), like so ++ add("component", get_latest_version_of_component());++. The add() method takes care of dropping any "null values" and "duplicates".
+* Run the ++http://localhost/.../updater/registry-update.php++ in your browser. It will display a version table.
+ - The method consists of two run modes. The default mode is a "dry-run".
+ - The "dry-run" does not modify the "wpnxm-software-registry.php" file.
+ - The "write-file" mode modifies the "wpnxm-software-registry.php" file. You call it by appending "action=write-file" when calling the script, like so ++http://localhost/.../updater/registry-update.php?action=write-file++. 
+ - Alternatively, you might just call ++http://localhost/.../updater/index.php++ and follow the links provided there.
+
+=== Summary of the steps above
+You added a new component to the registry and to the updater.
+
+ * The registry is synced to the server. This is done by a cronjob.
+   It may take a while, but expect it to be done within 3 to 6 hours.
+ * When the new registry comes alive, calls to 
+`http://wpn-xm.org/get.php` and http://wpn-xm.org/updatecheck.php are possible.
+ * You might check the download link status by calling ++http://localhost/…/updater/registry-status.php++.
+
+Please see https://github.com/WPN-XM/WPN-XM/wiki/How-to-update for more details.
+
+=== 3 Add the component to the installation wizards
+
+Now that we have the download links available, we add them to the installation wizards.
+
+* The installation wizards are build from innosetup scripts.
+* They are located in the main project folder of WPN-XM: 
+- https://github.com/WPN-XM/WPN-XM/tree/master/innosetup
+
+* The are several InnoSetup Script files.
+- ++wpn-xm-allinone-installer.iss++
+This is the AllInOne Installation Wizards.
+- ++wpn-xm-webinstaller.iss++
+This is the base for the Webinstallation Wizards.
+- ++wpn-xm-webinstaller-debug.iss++
+A Webinstallation wizard with enabled Debug mode.
+You will get some Message Boxes, when switching through the install pages of the wizard.
+
+* When inserting a new component, we need to modify all of them. You might edit one installer script and transfer the content via a diff tool, like TortoiseGitMerge, to the other files. Take good care, when transfering from a Webinstallation script to the AllInOne installation script. The script files have a big difference, due to the missing download procedures in the AllInOne script.
+
+=== 3.1 Adding a new component to the All-In-One Installation Script
+
+* [Components] section
+  - Add the new component to the [Components] section. The components section is the list with checkboxes at the start of the installation wizard, where you can select the components to install.
+  - You might use the following line as a template: 
+    ++Name: component; Description: Component - Component does X; ExtraDiskSpaceRequired: 10000; Types: full++
+  - Please adjust name, description, size.
+* [Files] section 
+  - You don't need to add the download file in the [Files] section. All files of the download folder are added automatically. 
+  - But you might add an additional configuration file needed by the new component. 
+  - This is done in two steps:
+Firstly, by adding the configuration file to the configs folder of the WPN-XM main repository: ++https://github.com/WPN-XM/WPN-XM/tree/master/configs++. The file is then copied to the target folder during installation. Secondly, you add the line to copy the file to the [Files] section. 
+* [code] section - "const"
+- Add the download filename as a constant to the ++const++ section inside the [code] section.
+- ++Filename_component = 'component.zip';++
+* [code] section - "procedure UnzipFiles()".
+- Add a new section for handling the unzipping of your component
+```
+if Pos('component', selectedComponents) > 0 then
+  begin   
+    UpdateCurrentComponentName('Component');     
+      ExtractTemporaryFile(Filename_component);     
+      DoUnzip(targetPath + Filename_component, ExpandConstant('{app}\bin\component'));      
+        UpdateTotalProgressBar();
+  end;
+```
+- The correct folder is "/www/componentname". Do not use an abbreviation here. Keep it 1:1.
+- If your component doesn't need to be unzipped, just some file copying, see the handling of APC or XDEBUG, on how to do it.
+- If your zip file contains a component folder inside, you simply unzip to the parent dir:
+++ DoUnzip(targetPath + Filename_component, ExpandConstant('{app}\bin')); ++
+- Sometimes the component folder names are a bit crappy, e.g. component-x86. You might add
+an additional rename step to the ++procedure moveFiles()++ to make it nicer.
+```
+if Pos('memcached', selectedComponents) > 0 then
+begin
+  // rename the existing directory
+  Exec('cmd.exe', '/c "move ' + appPath + '\bin\component-x86 ' + appPath + '\bin\component"',
+end;
+```
+- Now, during installation, the component will be extracted or copied to the target folder.
+
+- Additionally, it's possible to do a configuration step, like modifying the config files of other components. A good example is the modification of ++php.ini++, when you add a new extension. You might add this to the ++procedure Configure();++
+
+* Add the component to the array in the file "generate-downloads-csv.php"
+  - ++https://github.com/WPN-XM/updater/generate-downloads-csv.php++
+  - exec script and copy downloads.csv to WPN-XM main folder
+
+=== 3.2 Adding a new component to the Web Installation Scripts
+
+=== 4 Add component to WPN-XM environment
+
+* If you added a tool, you need to register it at the "webinterface".
+  - It's located in the "webinterface" repository: ++https://github.com/WPN-XM/webinterface++
+  - Update the array $toolDirectories in the file "/webinterface/php/helper/projects.php".
+    ++https://github.com/WPN-XM/webinterface/blob/master/php/helper/projects.php#L49++
+    This array is used for dividing "Your Project" folders from "WPN-XM Tool" folders.
+* If you added a daemon, you need to modify the start/stop executables and SCP files.
+* If you added a PHP extension, add it as an commented out entry to ++WPN-XM/configs/php.ini++
