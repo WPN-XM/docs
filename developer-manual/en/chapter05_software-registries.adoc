@@ -47,19 +47,26 @@ Let's take a look at the structure of that array.
 Example-wise, we take a look at the data structure for the component Adminer:
 
 ```
-  'adminer' => array(
-    'name' => 'Adminer',
-    'website' => 'http://adminer.org/',
+  'adminer' => array( // <1>
+    'name' => 'Adminer', // <2>
+    'website' => 'http://adminer.org/', // <3>
+    // <4>
     '3.5.0' => 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%203.5.0/adminer-3.5.0.php',
     ...
     '4.1.0' => 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%204.1.0/adminer-4.1.0.php',
-    'latest' => array(
+    'latest' => array( // <5>
       'version' => '4.1.0',
       'url' => 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%204.1.0/adminer-4.1.0.php',
     ),
   ),
 
 ```
+<1> The array key is the shorthand name for the software component. Its allows to use the char `-` (minus) as seperator. A bitsize indication is appended like this:  `arangodb-x64`.
+<2> The pretty printed `name` of the software.
+<3> The URL to the `website`.
+<4> One or more version to download URL relationships (`1..n`).
+<5> Finally, there is the array key `latest`, which contains another array as value. This array has the keys `version` and `url` and corresponding values.
+
 ===== Accessing Values
 
 To get the details of a component, we can work with the `$registry` array in the following way:
