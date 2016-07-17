@@ -81,8 +81,10 @@ include::chapter08_website.adoc[]
 
 include::chapter09_api.adoc[]
 
-include::chapter10_history.adoc[]
+include::chapter10_documentation.adoc[]
 
-include::chapter11_alternatives.adoc[]
+include::chapter11_history.adoc[]
+
+include::chapter12_alternatives.adoc[]
 
 :!sectnums:
