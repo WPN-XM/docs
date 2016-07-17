@@ -107,6 +107,6 @@ feature or bug issue of the Github tracker was solved and implemented by an
 outside contributor.
 
 "Open-source is a morbid software development curiosity, 
-where people are rubbernecking continously working developers 
+where people are rubbernecking continuously working developers 
 and enjoying the fruits of free and unpaid labor."
 -- Jens A. Koch
