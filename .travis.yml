@@ -43,7 +43,7 @@ install:
 before_script:
   - asciidoctor --version
   - asciidoctor-pdf --version
-  #- asciidoctor-diagram --version
+  - asciidoctor-diagram --version
   - ls -alF
 script:
   # create user-manual
