@@ -78,9 +78,9 @@ class Adminer extends VersionCrawler // <1>
 <3> Each Crawler class implements the main method: `crawlVersion()`.
 <4> We are using the `dom-selector` to filter the content and get closer to the version string.
 <5> We are working on the filtered `$node->text()` and grab the version by using a regexp for a version scheme.
-    The matched value is then reassigned to `$version`.
-<6> We compare the scraped version number with the latest version we have in our registry.
-    When the scraped version is newer, than the latest version in the registry, we return an array as response.
+    The matched value is then assigned to `$version`.
+<6> We compare the scraped version number with the latest version of our registry.
+    When the scraped version is newer, than the latest version of our registry, we return an array as response.
 <7> The response is an array with the two keys `version` and `url` and their values.
 
 
