@@ -1,4 +1,4 @@
-=== Building Installers
+== Building Installers
 
 This document describes the steps to take, for building a new version of WPN-XM.
 
@@ -12,7 +12,7 @@ It contains all the build tools needed, for building the installation wizards.
 The "Server Control Panel" is a C++ application based on the Qt Framework.
 For building it, you'll need a proper installation of the Qt Framework & mingw32-make.)
 
-==== How to build the installers automatically
+=== How to build the installers automatically
 
 Just execute "build.bat". That's it. It's a one-click build.
 You might then find the setup executable(s) in the folder "_build".
@@ -20,7 +20,7 @@ You might then find the setup executable(s) in the folder "_build".
 Find a detailed description on how this works in the one-click build process documentation.
 https://github.com/WPN-XM/WPN-XM/wiki/How-to-build#wiki-_the_one_click_build_process
 
-==== How to build the installers manually
+=== How to build the installers manually
 
 Building the installer manually means loading and compiling the InnoSetup Script with Innosetup.
 
@@ -45,7 +45,7 @@ The InnoSetup script files (`.iss`) reside in the folder `WPN-XM/installers`.
   - the webinstallers will compile immediately
   - the packaged installers need their downloads
 
-==== The One-Click-Build Process
+=== The One-Click-Build Process
 
 This section describes the one-click-build process for the WPN-XM Installer.
 
@@ -144,7 +144,7 @@ and a compression of executables.
 
 Uses the "download-filelist.csv" to fetch all software components to the downloads folder.
 
-==== Versioning and File Names
+=== Versioning and File Names
 
 The WPN-XM installers use the following naming convention for executables:
 

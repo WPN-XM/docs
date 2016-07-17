@@ -1,4 +1,4 @@
-=== Alternative Stacks
+== Alternative Stacks
 
 In case, you are still not convinced about using the WPN-XM Server Stack,
 then go try a different server stack for Windows.

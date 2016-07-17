@@ -1,10 +1,10 @@
-=== Adding a new component
+== Adding a new component
 
 This chapter describes, how to add a new component to the server stack.
 Adding a new component is quite complex, because of the dependencies to other components
 and the adjustments to be made to several files of the WPN-XM environment.
 
-==== Add the new component to the software registry
+=== Add the new component to the software registry
 
 * The `wpnxm-software-registry` is located in the `registry` repository:
   - https://github.com/WPN-XM/registry/blob/master/wpnxm-software-registry.php
@@ -30,7 +30,7 @@ and the adjustments to be made to several files of the WPN-XM environment.
 
 IMPORTANT: Be advised to use a lower version, then the current latest version of the component. This comes handy for testing the version scraping and updating process.
 
-==== Add the new component to the Updater
+=== Add the new component to the Updater
 
 * Updating the "Version" to "URL" relationships is tedious work. It's possible to update the registry manually (see above), but letting an automated tool do the job, is more fun and takes some work out of our hands.
 * The registry updater is located in the "updater" repository:
@@ -94,7 +94,7 @@ class Adminer extends VersionCrawler // <1>
  - The "write-file" mode modifies the "wpnxm-software-registry.php" file. You call it by appending "action=write-file" when calling the script, like so ++http://localhost/.../updater/registry-update.php?action=write-file++. 
  - Alternatively, you might just call ++http://localhost/.../updater/index.php++ and follow the links provided there.
 
-==== Summary of the steps above
+==== Summary
 
 You added a new component to the registry and to the updater.
 
@@ -106,7 +106,7 @@ You added a new component to the registry and to the updater.
 
 Please see https://github.com/WPN-XM/WPN-XM/wiki/How-to-update for more details.
 
-==== Add the component to the installation wizards
+=== Add the component to the installation wizards
 
 Now that we have the download links available, we add them to the installation wizards.
 
@@ -127,7 +127,7 @@ You will get some Message Boxes, when switching through the install pages of the
 
 IMPORTANT: You can enable the debug mode by setting the `#define DEBUG "false"` to `true`.
 
-===== Adding a new component to the All-In-One Installation Script
+==== Adding a new component to the All-In-One Installation Script
 
 * [Components] section
   - Add the new component to the [Components] section. The components section is the list with checkboxes at the start of the installation wizard, where you can select the components to install.
@@ -174,9 +174,9 @@ end;
   - ++https://github.com/WPN-XM/updater/generate-downloads-csv.php++
   - exec script and copy downloads.csv to WPN-XM main folder
 
-===== Adding a new component to the Web Installation Scripts
+==== Adding a new component to the Web Installation Scripts
 
-==== Add component to WPN-XM environment
+=== Add component to WPN-XM environment
 
 * If you added a tool, you need to register it at the "webinterface".
   - It's located in the "webinterface" repository: ++https://github.com/WPN-XM/webinterface++

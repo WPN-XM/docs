@@ -1,6 +1,6 @@
-=== Website
+== Website
 
-==== Version Matrix
+=== Version Matrix
 
 The version matrix for all installation wizards.
 
@@ -21,7 +21,7 @@ They are used in two ways: to create the download description file,
 in order to download components for the packaged installers, 
 and to provide details about the components included in a release.
 
-==== Installer Comparison View
+=== Installer Comparison View
 
-==== Configuration Comparison View
+=== Configuration Comparison View
 

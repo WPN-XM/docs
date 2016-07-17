@@ -1,4 +1,4 @@
-=== Software Registries
+== Software Registries
 
 This chapter covers the software registries of the WPN-XM server stack.
 
@@ -15,14 +15,14 @@ When we take a look at the repository, you can find 5 registries in the root fol
 4. `wpnxm-registry-metadata.php`
 5. `wpnxm-software-registry.php`
 
-==== Installation Wizards Registries
+=== Installation Wizards Registries
 
 You will also find multiple registries in the installer folder.
 The installer registries reside in versionized subfolders.
 The installer registries for the next, upcoming, but yet unreleased version reside 
 in the `installer\next` folder.
 
-==== Software Registry - 
+=== Software Registry - 
 
 The registry for the stack components is always kept in sync with latest versions.
 Therefore we are monitoring the websites of each software component for newly released versions.
@@ -32,7 +32,7 @@ In the following sections explain how the update process of the registry works.
 At first, we will take a look at the registry as the underlying data-structure.
 After that, we take a look at the update mechanism.
 
-===== `wpnxm-software-registry.php` 
+==== `wpnxm-software-registry.php` 
 
 The WPN-XM software registry is a plain and simple PHP array.
 The PHP file uses an `return array` style to make the inclusion of this file
@@ -40,7 +40,7 @@ and more important the assignment of the data to a variable easy.
     
     $registry = include __DIR__ . '/registry/wpnxm-software-registry.php';
 
-===== Array Structure
+==== Array Structure
 
 Let's take a look at the structure of that array.
 
@@ -67,7 +67,7 @@ Example-wise, we take a look at the data structure for the component Adminer:
 <4> One or more version to download URL relationships (`1..n`).
 <5> Finally, there is the array key `latest`, which contains another array as value. This array has the keys `version` and `url` and corresponding values.
 
-===== Accessing Values
+==== Accessing Values
 
 To get the details of a component, we can work with the `$registry` array in the following way:
 
@@ -84,7 +84,7 @@ To get the details of a component, we can work with the `$registry` array in the
   $version = $registry['adminer']['latest']['version'];
 ```
 
-==== Software Registry Metadata
+=== Software Registry Metadata
 
 ==== PHP Software Registry
 

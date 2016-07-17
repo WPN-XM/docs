@@ -1,10 +1,10 @@
-=== API
+== API
 
 You find the API documentation here: http://wpn-xm.org/api-docu/api-doc.htm
 
 Let's go through the most important API queries: `get` and `updatecheck`:
 
-==== Get 
+=== Get 
 
 https://wpn-xm.org/get.php
 
@@ -26,7 +26,7 @@ Request (GET) for specific version
 
 Response is a header redirection to the download url.
 
-==== Update Check
+=== Update Check
 
 https://wpn-xm.org/updatecheck.php
 
