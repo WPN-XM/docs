@@ -23,7 +23,16 @@ IMPORTANT: Please keep in mind that configuration and installed extensions might
 NTS and TS are abbreviations for `non-thread safe` and `thread-safe`.
 
 Both processes and threads are independent sequences of execution.
-The difference is that threads (of the same process) run in a shared memory space, while processes run in separate memory spaces.
+
+The difference is that threads (of the same process) run in a shared memory
+space, while processes run in separate memory spaces.
+
+Code is thread-safe, when modifications of data structures in the shared memory
+are guaranteed to be safely executed from multiple threads. A safe execution is
+achieved by avoiding race-conditions and deadlocks,  for instance, by means of
+synchronization between the threads. A deadlock occurs when many processes
+execute no further because they are waiting for a shared resource, which is
+being used and held by another process.
 
 ==== PHP Bitsizes
 
