@@ -8,43 +8,46 @@ Let's go through the most important API queries: `get` and `updatecheck`:
 
 https://wpn-xm.org/get.php
 
-This is the header redirection script.
-The script provides a header response to a software and version request in form of a header redirection to the download url.
-The webinstallation wizards use these hardcoded links in order to download each component.
+This is the header redirection script. The script provides a header response to
+a software and version request in form of a header redirection to the download URL. 
+
+The webinstallation wizards use these hardcoded links for downloading components.
 
 *Example*
 
-Request (GET) for latest version
+*Request (GET)* for latest version
 ```
  https://wpn-xm.org/get.php?s=nginx
 ```
 
-Request (GET) for specific version
+*Request (GET)* for specific version
 ```
  https://wpn-xm.org/get.php?s=nginx&v=1.2.1
 ```
 
-Response is a header redirection to the download url.
+Response is a header redirection to the download URL.
 
 === Update Check
 
 https://wpn-xm.org/updatecheck.php
 
 You want to know, if you are running an old version of a software component and should update?
-The `updatecheck.php` script provides a JSON response to a update-check request for individual components of the WPN-XM Server Stack. 
 
-The script accepts two parameters "s" and "v".
-Parameter "s" is the name of a software component.
-Parameter "v" is the version of this software component.
+The `updatecheck.php` script provides a JSON response to a update-check request
+for individual components of the WPN-XM Server Stack.
+
+The script accepts two parameters `s` and `v`:
+- Parameter `s` is the name of a software component.
+- Parameter `v` is the version of this software component.
 
 *Example*
 
-Request (GET)
+*Request (GET)*
 ```
  https://wpn-xm.org/updatecheck.php?s=nginx&v=1.2.1
 ```
 
-Respone (JSON)
+*Respone (JSON)*
 ```
  {
    "software" : "nginx",
