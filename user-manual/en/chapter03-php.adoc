@@ -44,7 +44,7 @@ PHP 5.x provides experimental 64-bit support.
 
 The x64 builds of PHP 5 for Windows are experimental, and do not provide 64-bit integer or large file support. 
 It has has memory limitations (max. memory = 2047M). No matter the architecture, a long value is always 32bit. 
-This behaviour of PHP is expected and known for a long time.
+This behavior of PHP is expected and known for a long time.
 
 PHP 7 provides full 64-bit support.
 

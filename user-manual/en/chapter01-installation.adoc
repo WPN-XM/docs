@@ -7,13 +7,13 @@ The packages are available for the x86 (32 bit) and since v0.8.1 also for the x8
 
 There are four different download packages available:
 
-* Webinstaller
+* Web-installer
 * Standard Installer
-* Lite & LiteRC Installer
+* Lite & Lite-RC Installer
 * Full Installer
 
 The Standard and Full Installer contain a large set of components in one big setup executable.
-The Webinstaller is a small file, downloading the components of your choice from the web.
+The Web-installer is a small file, downloading the components of your choice from the web.
 
 Important: If you face problems downloading certain components, please disable your Anti-Virus and re-try.
 
@@ -22,7 +22,7 @@ by installing it in silent mode. The silent mode is for integration
 with automatic and unmaintained installation procedures.
 
 The following sections explain the installation wizard user interface.
-We'll use screenshots from an w64 installation on Windows 10 below.
+We'll use screen-shots from an w64 installation on Windows 10 below.
 
 ==== Installation UI
 
@@ -56,8 +56,8 @@ The drop-down box will show you four default software component pre-selections y
 
 image::../images/wpnxm-install-screen3-preselection.png[WPN-XM Screenshot 3 Preselection]
 
-The Lite installation wizard has only two preselection setups: Full and Custom.
-While all other installation wizards have four default preselection setups:
+The Lite installation wizard has only two pre-selection setups: Full and Custom.
+While all other installation wizards have four default preallocation setups:
 
 . *Full Installation*
     * This preselects everything for installation.
@@ -145,7 +145,7 @@ after or during the installation procedure.
 
 You might also specify the target directory for the installation by using the parameter `/dir`, e.g. `/dir="x:\dirname"`.
 
-Using the pieces of information provided above, then a complete silent installation cli call would look like this:
+Using the pieces of information provided above, then a complete silent installation CLI call would look like this:
 `*setup.exe /VERYSILENT /SP- /DIR="C:\INSTALL_DIR" /NORESTART`.
 
 The switches for Inno Setup Silent Installation are fully documented in the ISetup.hlp file in the Inno distribution.

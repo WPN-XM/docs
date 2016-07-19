@@ -108,7 +108,7 @@ and these programs remain running to handle further incoming requests.
 The difference between Apache and Nginx in regard to FCGI handling is, 
 that Apache manages the number of instances, while Nginx doesn't.
 When using Nginx you have to make sure that the third-party FCGI servers are started and listening,
-that the number is sufficent to process your requests and 
+that the number is sufficient to process your requests and 
 that the servers are properly defined in Nginx's upstream configuration.
 
 Then requests are accepted by Nginx and forwarded to the external FCGI server for processing.
@@ -179,7 +179,7 @@ For instance, support for SPDY, rtmp, LUA, Naxsi WAF was added.
 My request to open-source the toolchain for builds on Travis-Ci and for cooperation was denied.
 
 The real name of the author is unknown.
-His nickname "itpp2012" on the Nginx mailinglist and Nginx related discussion Forums.
+His nickname "itpp2012" on the Nginx mailing-list and Nginx related discussion Forums.
 His Github Account is: https://github.com/itpp16
 
 - Website: http://nginx-win.ecsds.eu/

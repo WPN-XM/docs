@@ -1,6 +1,6 @@
 === Files and Folders
 
-This section describes the Files and Folders of the WPN-XM server stack after a successfull installation.
+This section describes the Files and Folders of the WPN-XM server stack after a successful installation.
 It refers to "c:\server\" as default location for the installation.
 
 ==== Files

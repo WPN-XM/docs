@@ -72,6 +72,6 @@ There are several administration tools for Redis available:
 
 Both Redis and Memcached are data cache systems and open source. 
 Redis allows to store abstract data types, while Memcached stores only strings. 
-Redis has snapshoting and journaling capabilites, which means that saved data stays even after a system restart, 
+Redis has snapshotting and journaling capabilites, which means that saved data stays even after a system restart, 
 while Memcache's memory stored-data is lost. Memcached is basically a memory store for short-lived data. 
-Redis provides several finetuning options and features like advanced memory management and a better data eviction control.
+Redis provides several fine-tuning options and features like advanced memory management and a better data eviction control.

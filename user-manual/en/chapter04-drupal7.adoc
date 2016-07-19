@@ -54,7 +54,7 @@ You find them in the `server\bin\nginx\config\conf\domains-disabled\` folder.
    - then click "Manage Hosts"
    - click "Add"
    - enter "127.0.0.1" and "drupal7.dev"
-   - click "Ok" and again "Ok" (this changes your local `hosts` file)
+   - click "OK" and again "OK" (this changes your local `hosts` file)
 4. restart Nginx
 5. finally, open the URL http://drupal7.dev/
 
