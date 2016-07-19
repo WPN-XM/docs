@@ -43,7 +43,7 @@ The InnoSetup script files (`.iss`) reside in the folder `WPN-XM/installers`.
 * remove the semicolon from this line: `;#define COMPILE_FROM_IDE` to enable local IDE compiling
 * if you need the debug mode, enable it by setting the `#define DEBUG "false"` to `true`.
 * Note: the `@APPVERSION@` token is automatically replaced with the version number during CI builds.
-  But, when working locally and compiling from an IDE the APPVERSION string is hardcoded to `LocalSnapshot`.
+  But, when working locally and compiling from an IDE the APPVERSION string is hard-coded to `LocalSnapshot`.
 * finally, use the GUI to compile it
   - the webinstallers will compile immediately
   - the packaged installers require their downloads

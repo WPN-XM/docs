@@ -11,7 +11,7 @@ https://wpn-xm.org/get.php
 This is the header redirection script. The script provides a header response to
 a software and version request in form of a header redirection to the download URL. 
 
-The webinstallation wizards use these hardcoded links for downloading components.
+The webinstallation wizards use these hard-coded links for downloading components.
 
 *Example*
 
