@@ -12,10 +12,118 @@ unanswered here, feel free to help us fix it.
 
 toc::[]
 
+== How do I install WPN-XM?
+
+You find the http://wpn-xm.github.io/docs/user-manual/en/#_installation[installation guide in the user-manual].
+
+== Does WPN-XM include MySQL or MariaDB?
+
+WPN-XM ships MariaDB since the beginning of the project.
+MariaDB is a drop-in replacement for MySQL. The commands and tools are the same for both.
+Although there are subtle differences regarding https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-features/[features]
+and https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-compatibility/[compatibility].
+
+== How do I start and stop WPN-XM?
+
+* You can use the "Server Control Panel". It is started with:
+
+ `wpn-xm.exe`
+
+You find more information in the http://wpn-xm.github.io/docs/user-manual/en/#_using_the_server_control_panel[user-manual].
+
+* You can also use http://wpn-xm.github.io/docs/user-manual/en/#_files[batchfiles] to start or stop servers. 
+
+== How can I install a server as a service?
+
+Services are not supported, yet. See https://github.com/WPN-XM/WPN-XM/issues/165[Issue #165].
+
+== Is WPN-XM production ready?
+
+[WARNING]
+====
+WPN-XM is a development environment, which is not meant for production use.
+
+It is not configured in a secure way. This allows the developer to start new projects fastly.
+
+Please secure WPN-XM, if you want to make it accessible via the network to people outside your LAN.
+This is a huge security risk! A firewall or an external router will only provide a low level of security.
+====
+
+We are looking for contributions to our security checklist. The list should act as a starting point, 
+when a developer tries to secure the server environment. It's not complete. 
+You have to fix all security issues manually.
+
+- delete the webinterface
+- close the firewall 
+- open only the firewall ports of the servers you really need
+- add password protections to the servers
+- move the public folder to a new and empty partition, adjust paths in nginx.conf
+- use a dedicated user with restricted permissions to run the server environment
+
+== How do I uninstall WPN-XM?
+
+Please use the Uninstaller in the root folder.
+
+== What are the "Lite" and "LiteRC" versions of WPN-XM?
+
+WPN-XM Lite and LiteRC are our smallest packaged installers. Lite means "light-weight".
+The Lite installer provide only a few essential software components to get quickly started, 
+including Nginx, PHP, MariaDB, Xdebug, Composer. 
+
+Of course, some servers and tools provided in the Standard or Full packages will be missing.
+
 == I have trouble starting and stopping daemons using the Server-Control-Panel. What can i do?
 
-If the SCP doesn't work, then please try to use the batch files `start-wpnxm.bat`and `stop-wpnxm.bat` instead.
+If the SCP doesn't work, then please try to use the batch files `start-wpnxm.bat` and `stop-wpnxm.bat` instead.
 You might check, whether daemons are running with `status-wpnxm.bat`.
+
+== Where should I place my web content?
+
+The main folder for your projects is the `\www`.
+
+Please create a new folder for your project.  Example-wise: let's create a folder "myproject" 
+and put a simple HTML filewith the following content in this directory: 
+
+```
+<?php
+   echo 'Hello World! This is my project.'; 
+?>
+```
+
+You can access it by using the URI "http://localhost/myproject/test.html".
+
+=== Can I move the WPN-XM installation?
+
+No, that's not supporte, yet. 
+
+== What are "automatic start pages" for the `www` directory and it's subfolders?
+
+Nginx is configured to serve the following files as index pages: `index.html`, `index.php`.
+
+The server will automatically try to serve one of these files,
+when you access a folder without specifying a file in the URI.
+
+When those files are not found, the server will display the directory listing.
+
+== Where can I change the configuration?
+
+== My anti-virus software reports that WPN-XM contains a virus!?
+
+It's possible that an antivirus software erroneously  identifies a file as
+containing a virus or being malware, when the file is clean. That happens,
+because Antivirus programs often use heuristics to identify malware and viruses.
+Sometimes these heuristics fail and the program reports a `false positive`.
+
+We transmit `false positives` as samples to several online anti-virus labs for
+further analysis. You can also use the online tool Virus Total for  scanning
+files of WPN-XM.
+
+//// todo: setup email
+[IMPORTANT]
+====
+Send us an email to security (at) wpn-xm (dot) org, if you find any issue.
+====
+////
 
 == What can i do, when the MySQL/MariaDB daemon won't start?
 
