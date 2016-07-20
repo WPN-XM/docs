@@ -1,9 +1,20 @@
 === Frequently Asked Questions
 
+This page exists to answer common questions about the WPN-XM server stack.  It
+is a reference to answer oft-repeated questions people in the WPN-XM community
+encounter. It is not a complete guide to the server stack, nor a tool for
+teaching how to use it.
+
+If there is some common or important question you feel is wrongly left
+unanswered here, feel free to help us fix it.
+
+[toc]
+
 [qanda]
 I have trouble starting and stopping daemons using the Server-Control-Panel. What can i do?::
 
-If the SCP doesn't work, then please try to use the batch files "start-wpnxm.bat" and "stop-wpnxm.bat" instead. You might check, whether daemons are running with "status-wpnxm.bat".
+If the SCP doesn't work, then please try to use the batch files `start-wpnxm.bat`and `stop-wpnxm.bat` instead.
+You might check, whether daemons are running with `status-wpnxm.bat`.
 
 The MySQL/MariaDB daemon won't start. What can i do?::
 

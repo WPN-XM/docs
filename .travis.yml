@@ -55,7 +55,7 @@ script:
   - asciidoctor -r asciidoctor-diagram -a stylesheet=../stylesheets/foundation.css -a icons=font -a source-highlighter=highlightjs -a toc=left -a linkcss -a toclevels=2 -a revnumber=$TRAVIS_TAG developer-manual/en/book.adoc -o developer-manual/en/index.html -v
   - asciidoctor -r asciidoctor-diagram -r asciidoctor-pdf -b pdf -a pdf-stylesdir=pdf -a pdf-style=wpnxm -a pdf-fontsdir=pdf/fonts -a revnumber=$TRAVIS_TAG developer-manual/en/book.adoc -o developer-manual/en/book.pdf -v
   # create faq
-  - asciidoctor -a stylesheet=../stylesheets/foundation.css -a icons=font -a source-highlighter=highlightjs -a toc=left -a linkcss -a toclevels=2 -a revnumber=$TRAVIS_TAG faq/faq.adoc -o faq/index.html -v
+  - asciidoctor -a stylesheet=../stylesheets/foundation.css -a icons=font -a source-highlighter=highlightjs -a linkcss -a revnumber=$TRAVIS_TAG faq/faq.adoc -o faq/index.html -v
   # create an index entry page for the website @ http://wpn-xm.github.io/docs/
   - asciidoctor README.adoc -o index.html -v
   # apply PDF document optimizations
