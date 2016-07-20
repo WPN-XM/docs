@@ -61,7 +61,7 @@ Example-wise, we take a look at the data structure for the component Adminer:
   ),
 
 ```
-<1> The array key is the shorthand name for the software component. Its allows to use the char `-` (minus) as seperator. A bitsize indication is appended like this:  `arangodb-x64`.
+<1> The array key is the shorthand name for the software component. Its allows to use the char `-` (minus) as separator. A bitsize indication is appended like this:  `arangodb-x64`.
 <2> The pretty printed `name` of the software.
 <3> The URL to the `website`.
 <4> One or more version to download URL relationships (`1..n`).

@@ -61,7 +61,7 @@ memcached 1.4.5_4_gaa7839e
               the daemon with (not for -u <username> user;
               under sh this is done with 'ulimit -S -l NUM_KB').
 -v            verbose (print errors/warnings while in event loop)
--vv           very verbose (also print client commands/reponses)
+-vv           very verbose (also print client commands/responses)
 -vvv          extremely verbose (also print internal state transitions)
 -h            print this help and exit
 -i            print memcached and libevent license

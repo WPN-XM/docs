@@ -86,7 +86,7 @@ All related toolchain and build issues had quite huge money bounties on them,
 but i got no feedback and no contributions.
 
 WPN-XM is now the only project with a complete open-source build toolchain for
-server stacks on Windows. The first releases shipped by the new continous
+server stacks on Windows. The first releases shipped by the new continuous
 integration and deployment toolchain was v0.8.1.  All 22 installers were build
 an Travis in under 50 minutes and automatically deployed to Github Releases. We
 are talking about a release of roughly 3GB of installer executables. Keeping

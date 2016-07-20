@@ -24,7 +24,7 @@ Users often ask "How to disable Xdebug for Composer runs on the CLI?".
 
 [NOTE]
 ====
-We provide a seperate, minimal PHP configuration file for `Composer` runs.
+We provide a separate, minimal PHP configuration file for `Composer` runs.
 The file is named `php.composer.ini`.
 Whenever you invoke `composer.bat` or run `composer` on the CLI, 
 the minimal config will be used to start PHP, before Composer is started.

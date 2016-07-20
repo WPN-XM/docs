@@ -32,7 +32,7 @@ WPN-XM provides a number of advantages:
 * Webinterface
 * fully Open-Source
   - build using an open-source build toolchain
-  - providing reliable and continous open-source builds
+  - providing reliable and continuous open-source builds
 
 WPN-XM has several goals:
 
