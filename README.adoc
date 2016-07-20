@@ -10,15 +10,16 @@ image:https://travis-ci.org/WPN-XM/docs.svg["Build Status", link="https://travis
 
 [width="100%",options="header"]
 |====================
-| Resource          | Format | Language / Link
-| User Manual       | HTML   | {USR-MAN-HTML-EN}
-|                   | PDF    | {USR-MAN-PDF-EN}
-| Developer Manual  | HTML   | {DEV-MAN-HTML-EN}
-|                   | PDF    | {DEV-MAN-PDF-EN}
-| FAQ               | HTML   | {FAQ-MAN-HTML-EN}
-| API Documentation | HTML   | http://wpn-xm.org/api-docu/api-doc.htm
-| Wiki              | HTML   | https://github.com/WPN-XM/WPN-XM/wiki
-| Github Pages      | HTML   | http://wpn-xm.github.io/docs/
+| Resource          | Format   | Language / Link
+| User Manual       | HTML     | {USR-MAN-HTML-EN}
+|                   | PDF      | {USR-MAN-PDF-EN}
+| Developer Manual  | HTML     | {DEV-MAN-HTML-EN}
+|                   | PDF      | {DEV-MAN-PDF-EN}
+| FAQ               | HTML     | {FAQ-MAN-HTML-EN}
+| API Documentation | HTML     | http://wpn-xm.org/api-docu/api-doc.htm
+| Wiki              | HTML     | https://github.com/WPN-XM/WPN-XM/wiki
+| Github Pages      | HTML     | http://wpn-xm.github.io/docs/
+| Docs Repository   | ASCIIDOC | https://github.com/WPN-XM/docs
 |====================
 
 #### Using AsciiDoc
