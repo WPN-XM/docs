@@ -6,6 +6,7 @@ image:https://travis-ci.org/WPN-XM/docs.svg["Build Status", link="https://travis
 :USR-MAN-PDF-EN:    http://wpn-xm.github.io/docs/user-manual/en/book.pdf[EN]
 :DEV-MAN-HTML-EN:   http://wpn-xm.github.io/docs/developer-manual/en/[EN]
 :DEV-MAN-PDF-EN:    http://wpn-xm.github.io/docs/developer-manual/en/book.pdf[EN]
+:DEV-MAN-HTML-EN:   http://wpn-xm.github.io/docs/faq/[EN]
 
 [width="100%",options="header"]
 |====================
@@ -14,6 +15,7 @@ image:https://travis-ci.org/WPN-XM/docs.svg["Build Status", link="https://travis
 |                   | PDF    | {USR-MAN-PDF-EN}
 | Developer Manual  | HTML   | {DEV-MAN-HTML-EN}
 |                   | PDF    | {DEV-MAN-PDF-EN}
+| FAQ               | HTML   | {FAQ-MAN-HTML-EN}
 | API Documentation | HTML   | http://wpn-xm.org/api-docu/api-doc.htm
 | Wiki              | HTML   | https://github.com/WPN-XM/WPN-XM/wiki
 | Github Pages      | HTML   | http://wpn-xm.github.io/docs/
