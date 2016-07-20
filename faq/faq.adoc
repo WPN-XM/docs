@@ -1,7 +1,5 @@
 === Frequently Asked Questions
 
-:toc: macro
-
 This page exists to answer common questions about the WPN-XM server stack.  It
 is a reference to answer oft-repeated questions people in the WPN-XM community
 encounter. It is not a complete guide to the server stack, nor a tool for
