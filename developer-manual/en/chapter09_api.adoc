@@ -54,6 +54,6 @@ The script accepts two parameters `s` and `v`:
    "your_version" : "1.2.1",
    "latest_version" : "1.3.7",
    "href" : "http:\/\/www.nginx.org\/download\/nginx-1.3.7.zip",
-   "message" : "You are running an old version of nginx and should update immediately."
+   "message" : "You are running an old version of Nginx and should update immediately."
  }
 ```

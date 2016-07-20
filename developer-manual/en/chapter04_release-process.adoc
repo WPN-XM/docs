@@ -3,6 +3,8 @@
 This section documents the release process for the following software products:
 (a) the WPN-XM server stack installers, (b) the webinterface and (c) the Server Control Panel.
 
+This is intended for core committers.
+
 === Installers
 
 === Webinterface
