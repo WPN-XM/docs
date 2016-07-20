@@ -1,4 +1,6 @@
 === Frequently Asked Questions
+:toc:
+:toc-placement: macro
 
 This page exists to answer common questions about the WPN-XM server stack.  It
 is a reference to answer oft-repeated questions people in the WPN-XM community
