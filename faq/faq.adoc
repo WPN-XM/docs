@@ -14,11 +14,12 @@ toc::[]
 
 == How do I install WPN-XM?
 
-You find the http://wpn-xm.github.io/docs/user-manual/en/#_installation[installation guide in the user-manual].
+You find the http://wpn-xm.github.io/docs/user-manual/en/#_installation[installation guide] in the user-manual.
 
 == Does WPN-XM include MySQL or MariaDB?
 
 WPN-XM ships MariaDB since the beginning of the project.
+
 MariaDB is a drop-in replacement for MySQL. The commands and tools are the same for both.
 Although there are subtle differences regarding https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-features/[features]
 and https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-compatibility/[compatibility].
@@ -27,9 +28,9 @@ and https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-compatibility/[compatibil
 
 * You can use the "Server Control Panel". It is started with:
 
- `wpn-xm.exe`
+ wpn-xm.exe
 
-You find more information in the http://wpn-xm.github.io/docs/user-manual/en/#_using_the_server_control_panel[user-manual].
+You find more information about using the SCP in the http://wpn-xm.github.io/docs/user-manual/en/#_using_the_server_control_panel[user-manual].
 
 * You can also use http://wpn-xm.github.io/docs/user-manual/en/#_files[batchfiles] to start or stop servers. 
 
@@ -43,22 +44,26 @@ Services are not supported, yet. See https://github.com/WPN-XM/WPN-XM/issues/165
 ====
 WPN-XM is a development environment, which is not meant for production use.
 
-It is not configured in a secure way. This allows the developer to start new projects fastly.
+It is not configured in a secure way. This allows developers to start new projects fastly.
 
 Please secure WPN-XM, if you want to make it accessible via the network to people outside your LAN.
 This is a huge security risk! A firewall or an external router will only provide a low level of security.
 ====
 
-We are looking for contributions to our security checklist. The list should act as a starting point, 
-when a developer tries to secure the server environment. It's not complete. 
-You have to fix all security issues manually.
+[NOTE]
+====
+We are looking for contributions to our security checklist.
+This list should act as a starting point, for a developer trying to secure the server environment.
+It's by no means complete. You have to fix all security issues manually.
 
-- delete the webinterface
-- close the firewall 
-- open only the firewall ports of the servers you really need
+**Security Checklist**
+- delete the webinterface (`www\tools\webinterface`)
+- remove or access protect all other tools, e.g. `www\tools\adminer`, `www\tools\phpmyadmin`
 - add password protections to the servers
+- configure your firewall to open only for protocols and ports of servers you really need
 - move the public folder to a new and empty partition, adjust paths in nginx.conf
 - use a dedicated user with restricted permissions to run the server environment
+====
 
 == How do I uninstall WPN-XM?
 
@@ -67,7 +72,8 @@ Please use the Uninstaller in the root folder.
 == What are the "Lite" and "LiteRC" versions of WPN-XM?
 
 WPN-XM Lite and LiteRC are our smallest packaged installers. Lite means "light-weight".
-The Lite installer provide only a few essential software components to get quickly started, 
+
+The Lite installers provide only a few essential software components to get quickly started, 
 including Nginx, PHP, MariaDB, Xdebug, Composer. 
 
 Of course, some servers and tools provided in the Standard or Full packages will be missing.
@@ -79,10 +85,12 @@ You might check, whether daemons are running with `status-wpnxm.bat`.
 
 == Where should I place my web content?
 
-The main folder for your projects is the `\www`.
+The main folder for your projects is `\www`.
 
-Please create a new folder for your project.  Example-wise: let's create a folder "myproject" 
-and put a simple HTML filewith the following content in this directory: 
+Please create a new folder for your project. For example:
+
+- let's create a folder "myproject", so you get `\www\myproject`
+- and put a simple HTML file `test.html` with the following content in this directory: 
 
 ```
 <?php
@@ -90,20 +98,29 @@ and put a simple HTML filewith the following content in this directory:
 ?>
 ```
 
-You can access it by using the URI "http://localhost/myproject/test.html".
+You can access it by using the URI `http://localhost/myproject/test.html`.
 
 === Can I move the WPN-XM installation?
 
-No, that's not supporte, yet. 
+No, that's not supported, yet. 
 
 == What are "automatic start pages" for the `www` directory and it's subfolders?
 
-Nginx is configured to serve the following files as index pages: `index.html`, `index.php`.
+Nginx is configured to serve the following files as index pages: `index.php`, `index.html`, `index.htm`.
+
+This is done by using Nginx's 
+http://nginx.org/en/docs/http/ngx_http_index_module.html[index directive] inside a location block:
+
+  location / {
+      index  index.php index.html index.htm;
+  }
 
 The server will automatically try to serve one of these files,
 when you access a folder without specifying a file in the URI.
+Files are checked in the specified order. 
 
-When those files are not found, the server will display the directory listing.
+When those files are not found, the server will display the 
+http://nginx.org/en/docs/http/ngx_http_autoindex_module.html[directory listing (autoindex)].
 
 == Where can I change the configuration?
 
@@ -117,13 +134,6 @@ Sometimes these heuristics fail and the program reports a `false positive`.
 We transmit `false positives` as samples to several online anti-virus labs for
 further analysis. You can also use the online tool Virus Total for  scanning
 files of WPN-XM.
-
-//// todo: setup email
-[IMPORTANT]
-====
-Send us an email to security (at) wpn-xm (dot) org, if you find any issue.
-====
-////
 
 == What can i do, when the MySQL/MariaDB daemon won't start?
 
@@ -139,14 +149,13 @@ If you want to build the installation wizard manually, then you need to replace 
 
 Check the console output when trying to start the daemon manually.
 
-`cd server\bin\mariadb\bin`
-
-`mysqld --console`
+ cd server\bin\mariadb\bin
+ mysqld --console
 
 == Why do i get socket errors, while step debugging with XDebug?
 
-Check the Nginx "error.log". If you see errormessages like "upstream timed out",
-then try to increase the "fastcgi_read_timeout" in your "nginx.conf". Do not forget to restart the daemon.
+Check the Nginx `error.log`. If you see errormessages like `upstream timed out`,
+then try to increase the `fastcgi_read_timeout` in your `nginx.conf`. Do not forget to restart the daemon.
 The value defaults to 60s. Which might be enough for production, but clearly not for development/debugging,
 because of the long running fastcgi process that does not produce any output until it is finished.
 See the related Nginx Wiki page: [Nginx - Module - HttpFastcgi](http://wiki.nginx.org/HttpFastcgiModule)
@@ -161,7 +170,7 @@ If the port is used by "System PID 4", then the service "WWW-Publishingservice" 
 
 == How to start the installation wizard in the shared folder of a VM?
 
-`ShellExecuteEx Error - System cannot find the path specified.`
+ ShellExecuteEx Error - System cannot find the path specified.
 
 The installer can not be executed in the shared folder of a virtual machine.
 It needs to be copied into a non-shared folder and started there.
