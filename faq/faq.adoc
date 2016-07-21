@@ -141,9 +141,13 @@ Please start mysqld manually by running `mysqld --console` on the CLI in the fol
 You will get a startup log with more pieces of information about the reason.
 Often the cause is a misconfiguration in `my.ini` or accidentally modified or deleted files in the data folder.
 
-== What can i do, when Innosetup Script does not compile because of unknown tokens, like @APPVERSION@?
+== What can i do, when Innosetup Script does not compile because of unknown tokens, like `@STACK_VERSION@`?
 
-If you want to build the installation wizard manually, then you need to replace the token with something appropriate, like replacing @APPVERSION@ with a version number, e.g. 1.2.3 (major.minor.build).
+You can uncomment the line below to be able to compile the script locally from the IDE.
+ 
+ ;#define COMPILE_FROM_IDE
+
+The constant `COMPILE_FROM_IDE` will use a fixed string `LocalSnapshot` instead of the dynamic token `@STACK_VERSION@`.
 
 == What can i do, if the MySQL daemon isn't starting up?
 
@@ -158,13 +162,13 @@ Check the Nginx `error.log`. If you see errormessages like `upstream timed out`,
 then try to increase the `fastcgi_read_timeout` in your `nginx.conf`. Do not forget to restart the daemon.
 The value defaults to 60s. Which might be enough for production, but clearly not for development/debugging,
 because of the long running fastcgi process that does not produce any output until it is finished.
-See the related Nginx Wiki page: [Nginx - Module - HttpFastcgi](http://wiki.nginx.org/HttpFastcgiModule)
+See the related Nginx Wiki page: http://wiki.nginx.org/HttpFastcgiModule[Nginx - Module - HttpFastcgi].
 
 == What can i do, when Nginx wont' start or shuts down immediately and Port 80 is used.
 
 Immediate shutdowns are an indicator that the port 80, which Nginx uses by default is already taken.
 You will also find the following message in the Nginx `error.log`: `bind() to 127.0.0.1:80 failed`.
-Please check, if the port is in use with `netstat -ab` or by using a helper tool, like [CurrPorts](http://www.nirsoft.net/utils/cports.html).
+Please check, if the port is in use with `netstat -ab` or by using a helper tool, like http://www.nirsoft.net/utils/cports.html[CurrPorts].
 
 If the port is used by "System PID 4", then the service "WWW-Publishingservice" (w3svc) is using the port and you might disable it by using the `services.msc` control panel.
 
