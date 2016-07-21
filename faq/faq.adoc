@@ -104,7 +104,7 @@ You can access it by using the URI `http://localhost/myproject/test.html`.
 
 No, that's not supported, yet. 
 
-== What are "automatic start pages" for the `www` directory and it's subfolders?
+== What are "automatic start pages" for the "\www" directory and it's subfolders?
 
 Nginx is configured to serve the following files as index pages: `index.php`, `index.html`, `index.htm`.
 
@@ -147,7 +147,7 @@ You can uncomment the line below to be able to compile the script locally from t
  
  ;#define COMPILE_FROM_IDE
 
-The constant `COMPILE_FROM_IDE` will use a fixed string `LocalSnapshot` instead of the dynamic token `@STACK_VERSION@`.
+The constant `COMPILE_FROM_IDE` will use a fixed string `LocalSnapshot` instead of the dynamic token "@STACK_VERSION@".
 
 == What can i do, if the MySQL daemon isn't starting up?
 
