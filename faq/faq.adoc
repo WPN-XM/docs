@@ -100,7 +100,7 @@ Please create a new folder for your project. For example:
 
 You can access it by using the URI `http://localhost/myproject/test.html`.
 
-=== Can I move the WPN-XM installation?
+== Can I move the WPN-XM installation?
 
 No, that's not supported, yet. 
 
@@ -120,7 +120,7 @@ when you access a folder without specifying a file in the URI.
 Files are checked in the specified order. 
 
 When those files are not found, the server will display the 
-http://nginx.org/en/docs/http/ngx_http_autoindex_module.html[directory listing (autoindex)].
+http://nginx.org/en/docs/http/ngx_http_autoindex_module.html[directory listing] (autoindex).
 
 == Where can I change the configuration?
 
