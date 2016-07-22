@@ -3,6 +3,7 @@ Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :email:               jakoch@web.de
 //:revdate:             December, 2015
 :revnumber:           dev-master
+:version-label!:
 :description:         This document is the WPN-XM Developer Manual.
 :keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, XDebug, MariaDB
 

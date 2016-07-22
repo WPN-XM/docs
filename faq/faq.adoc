@@ -1,10 +1,12 @@
 = Frequently Asked Questions
-Jens A. Koch <https://github.com/jakoch[github.com/jakoch]>
-
-:revnumber: v1.0 
+Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
+:email:               jakoch@web.de
+:revnumber:           vMaster
+:description:         This document is the WPN-XM FAQ.
+:keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB
 :version-label!:
 :toc:
-:toc-placement: macro
+:toc-placement:       macro
 
 This page exists to answer common questions about the WPN-XM server stack.  It
 is a reference to answer oft-repeated questions people in the WPN-XM community
