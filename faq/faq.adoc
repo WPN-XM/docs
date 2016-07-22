@@ -1,7 +1,7 @@
 = Frequently Asked Questions
 Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :email:               jakoch@web.de
-:revnumber:           vMaster
+:revnumber:           v1.0
 :description:         This document is the WPN-XM FAQ.
 :keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB
 :version-label!:
