@@ -57,6 +57,7 @@ This list should act as a starting point, for a developer trying to secure the s
 It's by no means complete. You have to fix all security issues manually.
 
 **Security Checklist**
+
 - delete the webinterface (`www\tools\webinterface`)
 - remove or access protect all other tools, e.g. `www\tools\adminer`, `www\tools\phpmyadmin`
 - add password protections to the servers
