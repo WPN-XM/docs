@@ -1,4 +1,4 @@
-=== System Requirements
+=== Requirements
 
 ==== Which Windows versions are supported by your installation wizards?
 

@@ -8,4 +8,8 @@ include::chapter01-files-and-folders.adoc[]
 
 include::chapter01-running.adoc[]
 
+include::chapter01-updating.adoc[]
+
+include::chapter01-getting-help.adoc[]
+
 include::edit-page.adoc[]
