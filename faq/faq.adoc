@@ -1,7 +1,7 @@
 = Frequently Asked Questions
-Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
+Jens A. Koch <https://github.com/jakoch[github.com/jakoch]>
 
-:revnumber: 1.0 
+:revnumber: v1.0 
 :version-label!:
 :toc:
 :toc-placement: macro
