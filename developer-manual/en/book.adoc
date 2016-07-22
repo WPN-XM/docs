@@ -1,8 +1,7 @@
 = WPN-XM Server Stack - Developer Manual
 Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :email:               jakoch@web.de
-//:revdate:             December, 2015
-:revnumber:           dev-master
+:revnumber:           vdev-master
 :version-label!:
 :description:         This document is the WPN-XM Developer Manual.
 :keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, XDebug, MariaDB
@@ -29,13 +28,8 @@ endif::backend-pdf[]
 :linkcss:
 :stylesdir:           ../stylesheets
 :stylesheet:          asciidoctor.css
-
 :imagesdir:           ../images
-
 :icons:               font
-//:asset-uri-scheme:
-// Set new URI for reference to FontAwesome CSS
-//:iconfont-cdn:        //maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css
 
 ifdef::backend-pdf[]
 :source-highlighter:  pygments
