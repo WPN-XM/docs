@@ -2,12 +2,38 @@
 
 This document describes the steps to take, for building a new version of WPN-XM.
 
-Building means to create the installation wizards of WPN-XM.
-For building new releases, you'll need a checkout of the WPN-XM main folder.
-Please fetch the repository located at https://github.com/WPN-XM/WPN-XM/ .
+Building a new version means to create the installation wizards of WPN-XM.
 
-Inside the main folder, you'll find the `/bin` folder. 
-It contains all the build tools needed, for building the installation wizards.
+=== Clone the repository
+
+If you prefer to compile your own WPN-XM installer, 
+or if you want to modify it, you will need to obtain a copy of the sources. 
+
+Please fetch the repository located at https://github.com/WPN-XM/WPN-XM/,
+it will give you access to the current development.
+
+You must issue the following command on your command line, DOS box, or terminal:
+
+ git clone https://github.com/WPN-XM/WPN-XM/ WPN-XM
+
+This will clone the repository and place it into a directory named `WPN-XM`.
+
+We try to ensure that the master branch is always stable, but it might occasionally be broken.
+In that case, take a look at Travis-CI an pick the latest "green" commit.
+
+=== Install build-time dependencies
+
+We try to provide a self-contained build environment.
+You will find all build tools needed for building the installation wizards
+in the `bin` folder.
+
+To build WPN-XM on Windows you need the following dependencies:
+
+* Innosetup (http://www.jrsoftware.org/isinfo.php) or
+* ISTools (optional) (http://sourceforge.net/projects/istool/)
+* Phing
+* 7zip
+* Aria2
 
 (As always, there is one exception! Building also means to build the "Server Control Panel".
 The "Server Control Panel" is a C++ application based on the Qt Framework.
@@ -26,17 +52,6 @@ http://wpn-xm.github.io/docs/developer-manual/en/#_the_one_click_build_process[d
 
 Building the installer manually means loading and compiling the InnoSetup Script with Innosetup.
 
-*Requirements*
-
-* Windows OS
-* Innosetup (http://www.jrsoftware.org/isinfo.php) or
-* ISTools (optional) (http://sourceforge.net/projects/istool/)
-* Phing
-* 7zip
-* Aria2
-
-*Build*
-
 The InnoSetup script files (`.iss`) reside in the folder `WPN-XM/installers`.
 
 * open one of the InnoSetup Script files using InnoSetup or ISTools
@@ -47,6 +62,8 @@ The InnoSetup script files (`.iss`) reside in the folder `WPN-XM/installers`.
 * finally, use the GUI to compile it
   - the webinstallers will compile immediately
   - the packaged installers require their downloads
+
+If everything works correctly this will create the setup executable in the "_build" directory.
 
 === The One-Click-Build Process
 
