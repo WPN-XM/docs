@@ -1,12 +1,35 @@
 == History
 
+=== Release Notes
+
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.1.0[Release-Notes-v0.1.0]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.2.0[Release-Notes-v0.2.0]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.3.0[Release-Notes-v0.3.0]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.4.0[Release-Notes-v0.4.0]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.0[Release-Notes-v0.5.0]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.1[Release-Notes-v0.5.1]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.2[Release-Notes-v0.5.2]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.3[Release-Notes-v0.5.3]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.4[Release-Notes-v0.5.4]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.6.0[Release-Notes-v0.6.0]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.7.0[Release-Notes-v0.7.0]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.0[Release-Notes-v0.8.0]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.1[Release-Notes-v0.8.1]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.2[Release-Notes-v0.8.2]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.3[Release-Notes-v0.8.3]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.4[Release-Notes-v0.8.4]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.5[Release-Notes-v0.8.5]
+- https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.6[Release-Notes-v0.8.6]
+
+=== jakoch's DevLog
+
 This chapter contains a bit of history and some brief notes about the start and
 the evolution of this project. Because i tend to forget, how the WPN-XM project
 started and before all my memories are lost to John Alzheimer, i prefer keeping
 some. These notes are mainly for myself. If you find them interesting, you are a
 lucky person.
 
-=== Before 2010
+==== Before 2010
 
 Eloy Lafuente (stronk7) from the Moodle Project created **Moodle for Windows
 Builder** (`m4w_builder`, GPL). It was a build tool for a webserver
@@ -20,7 +43,7 @@ releases, which had the same version numbers as the included XAMPPlight version:
 1.7.2 and 1.7.3. The builder was batch file based and required many manual release
 preparation tasks to ship a new version.
 
-=== 2010
+==== 2010
 
 XAMPP releases got somehow stuck: only full releases were made and the
 XAMPPLight releases, which i relied upon became seldom.  I was in a vendor lock-
@@ -70,11 +93,11 @@ download tools i encountered so far: aria2c. It was the first multi-threaded
 parallel download tool allowing to specify an external file with a set of
 download URLs and their target folders.
 
-=== 2011 - 2014
+==== 2011 - 2014
 
 I can't remember anything. See Changelogs and `git log`.
 
-=== 2015
+==== 2015
 
 After 3 months (Dec 2014 - Feb 2015) of intensive hacking, i finally got Travis
 builds and deployment working. This was not easy at all and the first time i
@@ -94,7 +117,7 @@ below the build time limit on Travis-CI was a crazy task. I had to tweak memory,
 iterations and processing and go through everything over and over, just to get
 below 50 minutes.
 
-=== 2016
+==== 2016
 
 The project is stuck since the release of v0.8.7, because the new features are
 hard to implement. On the one hand, we have the new process monitoring, PHP

@@ -5,24 +5,30 @@ This section documents the release process for the following software products:
 
 This is intended for core committers.
 
-=== Installers
+=== Release Policy
 
-=== Webinterface
+We try to create a stable release a few times a year.
 
-=== Server Control Panel
+=== Release Steps
 
-=== General
+==== Installers
+
+==== Webinterface
+
+==== Server Control Panel
+
+==== General
 
 This section describes the steps to take for releasing a new version of WPN-XM.
 
-==== 1 Update `changelog.txt`
+===== 1 Update `changelog.txt`
 
 Update the changelog with pieces of information about the latest changes.
 
 Note: we do not indicate version number changes of the software components.
 This is automatically published on the website.
 
-==== 2 Bump Version number of WPN-XM
+===== 2 Bump Version number of WPN-XM
 
 * build.xml
 - adjust version.* properties
@@ -31,7 +37,7 @@ This is automatically published on the website.
 - update the download div with new links to Download, Changelog and ReleaseNotes-v1.2.3
 - Do not worry about the version numbers. They are automatically loaded and always in sync with latest versions from registry.
 
-==== 3 Tag the Version
+===== 3 Tag the Version
 
 - Be sure that all changes for this version are done, before you tag.
 - Repositories: "WPN-XM", "webinterface"
@@ -45,7 +51,7 @@ This is automatically published on the website.
 (To build the installer locally click "build.bat" in the main folder and find the fresh build in the folder "_build".
 You might then upload the new installers installation wizards via FTP to the target folder "wpn-xm/downloads".)
 
-==== Announcements 
+===== Announcements 
 
 Now, it's time to spread the word about the new release on multiple channels!
  
