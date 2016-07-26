@@ -69,15 +69,19 @@ We start with a brief explanation on how web servers interface with servers that
 dynamically. The web server itself doesn't know about the language your are programming in. But how
 can the web server process and respond to requests for dynamically generated pages?
 
-The web server communicates with a third-party server in a standardized way. This is often the
-Common Gateway Interface (CGI), a standard way for web servers to interface with executable
+The web server communicates with a third-party server in a standardized way, 
+which is either a gateway protocol or an embeded handler.
+
+The Common Gateway Interface (CGI), a standard way for web servers to interface with executable
 programs installed on a server that generate web pages dynamically. CGI Version 1.1 is 
 specified in https://tools.ietf.org/html/rfc3875[RFC 3875] (actually it's just a memo).
 
 For processing PHP requests this CGI server is `php-cgi`.
 
-For request processing Apache supports either `CGI` or `mod_php` or `mod_fcgi`, while Nginx supports
-`fcgi`. Whats the difference?
+For request processing Apache supports either `CGI` or `mod_php` or `mod_fcgi`, 
+while Nginx supports `fcgi`. 
+
+**Whats the difference?**
 
 ===== CGI
 
