@@ -1,4 +1,4 @@
-=== Overview of issue labels
+== Overview of issue labels
 
 Here is a full list of labels that we use in the 
 https://github.com/wpn-xm/wpn-xm[GitHub issue tracker] and what they stand for.
