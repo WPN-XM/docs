@@ -8,7 +8,7 @@ image:https://travis-ci.org/WPN-XM/docs.svg["Build Status", link="https://travis
 :DEV-MAN-PDF-EN:    http://wpn-xm.github.io/docs/developer-manual/en/book.pdf[EN]
 :FAQ-MAN-HTML-EN:   http://wpn-xm.github.io/docs/faq/[EN]
 
-[width="100%",options="header"]
+[width="100%",options="header", cols="2,^1,4"]
 |====================
 | Resource          | Format   | Language / Link
 | User Manual       | HTML     | {USR-MAN-HTML-EN}
