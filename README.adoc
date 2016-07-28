@@ -22,9 +22,7 @@ image:https://travis-ci.org/WPN-XM/docs.svg["Build Status", link="https://travis
 | Docs Repository   | ASCIIDOC | https://github.com/WPN-XM/docs
 |====================
 
-#### Using AsciiDoc
+:DOC-CHAPTER: http://wpn-xm.github.io/docs/developer-manual/en/#_documentation[documentation chapter of the developer manual]
 
-- http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[AsciiDoc Syntax Reference]
-- http://asciidoctor.org/man/asciidoctor/[Asciidoctor CLI Commands]
-- http://asciidoctor.org/docs/user-manual/[Asciidoctor Manual]
-- https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide]
+The documentation is written in Asciidoc and built by using the Asciidoctor toolchain.
+You will find more information in the {DOC-CHAPTER}.
