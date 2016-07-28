@@ -80,4 +80,6 @@ include::chapter11_history.adoc[]
 
 include::chapter12_alternatives.adoc[]
 
+include::chapter14_issue-labels.adoc[]
+
 :!sectnums:
