@@ -4,7 +4,9 @@ This chapter describes our documentation toolchain.
 
 === AsciiDoc
 
-We are using Asciidoc for documentation writing. AsciiDoc is a human-readable document format, 
+The documentation is written in Asciidoc and built by using the Asciidoctor toolchain.
+
+We are using Asciidoc for documentation writing. It is a human-readable document format, 
 semantically equivalent to DocBook XML, but using plain-text mark-up conventions.
 
 We create the User-Manual and this Developer-Manual in HTML and PDF format.
