@@ -213,4 +213,31 @@ This is an unoffical private build.
 It's a combination of OpenResty and Nginx.
 Lots of additional modules
 
+==== Nginx Catch-All *.dev domains
+
+This is a catch all configuration, which maps all project folder names to `.dev` domains.
+
+```
+server {
+    listen 80;
+
+    server_name ~^(.*)\.dev$;
+    set $file_path $1;
+
+    root /www/$file_path/public
+
+    index index.php index.html
+
+    # etc.
+}
+
+Then create a `index.php` file in a new project folder `www\myproject` with the content
+`<?php echo 'Hello from folder: ' . __DIR__;`.
+
+Now, update your `hosts` file accordingly and include `myproject.dev`.
+
+Done. You can now access `myproject.dev` in your browser.
+
+```
+
 include::edit-page.adoc[]
