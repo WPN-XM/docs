@@ -53,4 +53,5 @@ https://github.com/wpn-xm/wpn-xm[GitHub issue tracker] and what they stand for.
 | +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/ready" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e6e6e6;">ready</a> +++
 |This label marks feature tickets, which contain enough information to start the implementation.
 | +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/version%20crawler" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">version crawler</a> +++
-|This label indicates a problem with on
+|This label indicates a problem with one of our version crawlers.
+
