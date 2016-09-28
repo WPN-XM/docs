@@ -8,7 +8,7 @@ addons:
     packages:
     # fetch Ghostscript to optimize/minimize the PDF, if > 5MB
     - ghostscript
-    # optional dependencies for asccidoctor-diagram
+    # optional dependencies for asciidoctor-diagram
     - graphviz
     - ditaa
 
