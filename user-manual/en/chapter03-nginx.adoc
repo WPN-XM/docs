@@ -22,6 +22,8 @@ If you want to pass environment variables to PHP,
 you might set them as FGCI parameters (`fastcgi_param`) in the config.
 ====
 
+For more advanced configuration examples take a look at the https://github.com/lebinh/nginx-conf repository. 
+
 ==== SSL Configuration
 
 You might use https://mozilla.github.io/server-side-tls/ssl-config-generator/[Mozilla's SSL Configuration Generator]
