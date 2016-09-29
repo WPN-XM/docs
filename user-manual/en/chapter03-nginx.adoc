@@ -232,6 +232,7 @@ server {
 
     # etc.
 }
+```
 
 Then create a `index.php` file in a new project folder `www\myproject` with the content
 `<?php echo 'Hello from folder: ' . __DIR__;`.
@@ -239,7 +240,5 @@ Then create a `index.php` file in a new project folder `www\myproject` with the 
 Now, update your `hosts` file accordingly and include `myproject.dev`.
 
 Done. You can now access `myproject.dev` in your browser.
-
-```
 
 include::edit-page.adoc[]
