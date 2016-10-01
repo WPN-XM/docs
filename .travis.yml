@@ -8,9 +8,6 @@ addons:
     packages:
     # fetch Ghostscript to optimize/minimize the PDF, if > 5MB
     - ghostscript
-    # optional dependencies for asciidoctor-diagram
-    - graphviz
-    - ditaa
 
 cache:
   apt: true
@@ -18,6 +15,10 @@ cache:
     #- $HOME/.cache/pip
 
 install:
+  # install optional dependencies for asccidoctor-diagram
+  - sudo apt-get -qq update && sudo apt-get install -y ditaa graphviz
+  - travis_retry _travis/install_plantuml.sh
+  # install AsciiDoctor
   - gem install asciidoctor
   # PDF generator
   - gem install --no-ri --no-rdoc --pre asciidoctor-pdf
