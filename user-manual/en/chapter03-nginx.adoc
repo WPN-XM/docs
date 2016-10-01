@@ -168,14 +168,14 @@ WPN-XM.
 
 You have the choice to download them on your own risk and simply replace WPN-XM's Nginx folder.
 
-1. Official Nginx - http://nginx.org/
+===== Official Nginx - http://nginx.org/
 
 This is the offical Nginx Windows build from the main nginx website.
 We ship this one by default.
 
 Download: http://nginx.org/en/download.html
 
-2. Nginx-Win - http://nginx-win.ecsds.eu/
+===== Nginx-Win - http://nginx-win.ecsds.eu/
 
 This is an unofficial private build.
 The source for the build, patches and adjusted modules and toolchain are not open-source.
@@ -192,7 +192,7 @@ His Github Account is: https://github.com/itpp16
 - Downloads: http://nginx-win.ecsds.eu/download/
 - Twitter: https://twitter.com/nginx4Windows
 
-3. Nginx for Windows - http://kevinworthington.com/nginx-for-windows/
+===== Nginx for Windows - http://kevinworthington.com/nginx-for-windows/
 
 This is an unoffical private build.
 The x32 and x64 builds are using Cygwin.
@@ -200,7 +200,7 @@ The build toolchain is not open-source.
 
 Website: http://kevinworthington.com/nginx-for-windows/
 
-4. OpenResty - https://openresty.org/
+===== OpenResty - https://openresty.org/
 
 OpenResty is a scalable Web Platform by extending NGINX with Lua.
 The auther is Yichun Zhang (agentzh).
@@ -209,7 +209,7 @@ Downloads: https://openresty.org/en/download.html
 Installation: https://openresty.org/en/installation.html
 List of Components (Nginx Modules): https://openresty.org/en/components.html
 
-5. https://github.com/Qihoo360/nginx-openresty-windows
+===== https://github.com/Qihoo360/nginx-openresty-windows
 
 This is an unoffical private build.
 It's a combination of OpenResty and Nginx.
