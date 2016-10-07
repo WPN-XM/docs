@@ -46,11 +46,23 @@ Services are not supported, yet. See https://github.com/WPN-XM/WPN-XM/issues/165
 
 == Is WPN-XM production ready?
 
+WPN-XM is production ready for a local development purposes. 
+It allows developers to start new projects fastly.
+
+It is in active development and beta quality software (as indicated by the major version number "0").
+
 [WARNING]
 ====
-WPN-XM is a development environment, which is not meant for production use.
+**Do not use WPN-XM as a public server!**
+WPN-XM is not prepared to be a publicly available server. 
 
-It is not configured in a secure way. This allows developers to start new projects fastly.
+Being a publicly available server is not the intended production use-case.
+
+**WPN-XM has no secure configuration!**
+WPN-XM is not configured in a secure way.
+
+We are keeping security barriers low to allow a fast development, 
+e.g. by using either no passwords or the same password for multiple administration tools.
 
 Please secure WPN-XM, if you want to make it accessible via the network to people outside your LAN.
 This is a huge security risk! A firewall or an external router will only provide a low level of security.
