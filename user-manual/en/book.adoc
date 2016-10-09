@@ -1,7 +1,8 @@
 = WPN-XM Server Stack - Manual
 Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :email:               jakoch@web.de
-:revnumber:           dev-master
+:revdate:             {docdate}
+:version-label!:
 :description:         This document is the WPN-XM Manual.
 :keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB
 
@@ -18,6 +19,8 @@ endif::backend-pdf[]
 :toclevels:           4
 :sectnums:
 :sectnumlevels:       4
+:sectanchors:
+:sectlinks:
 
 :experimental:
 :ascii-ids:
