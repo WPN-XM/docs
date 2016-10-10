@@ -13,13 +13,17 @@ There are four different download packages available:
 * Full Installer
 
 The Standard and Full Installer contain a large set of components in one big setup executable.
-The Web-installer is a small file, downloading the components of your choice from the web.
 
-Important: If you face problems downloading certain components, please disable your Anti-Virus and re-try.
+The Web-installer is a small file you can use to select and download the components of your choice
+from the web. Instead of downloading one large installer containg all components, you are downloading 
+the small web-installer and then only the components you select. This has the advantage of saving 
+you time and bandwidth. You can also download and save the web-installer for later installation.
 
-You might install WPN-XM either by using the common user interface or
-by installing it in silent mode. The silent mode is for integration
-with automatic and unmaintained installation procedures.
+Important: If you face problems downloading certain components using the web-installer, please
+disable your Anti-Virus and re-try.
+
+You might install WPN-XM either by using the common user interface or by installing it in silent mode.
+The silent mode is for integration with automatic and unmaintained installation procedures.
 
 The following sections explain the installation wizard user interface.
 We'll use screen-shots from an w64 installation on Windows 10 below.
