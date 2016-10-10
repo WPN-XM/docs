@@ -119,25 +119,22 @@ that the servers are properly defined in Nginx's upstream configuration.
 
 Then requests are accepted by Nginx and forwarded to the external FCGI server for processing.
 
-[ditaa, target="chapter01-nginx-fcgi-request-handling"]
+[ditaa, target="nginx-fcgi-request-handling"]
 ----
-
-  +----------+                       +--------------------+      +---------------------------+
-  |          |     +-----------+     |       Nginx        |      |            PHP            |
-  |          |     |           |     +--------------------+      +---------------------------+
-  |          +-->  | Request   +-->  |  Rule for handling |      |  as external FCGI server  |
-  |          |     |           |     |    ".php" files    |      |         (php-cgi)         |
-  |          |     +-----------+     |                    +-->   |                           |
-  | Client   |                       |    fastcgi_pass    |      |    handle the request     |
-  |          |                       |                    |      |                           |
-  |          |     +----------+      +--------------------+      +---------------------------+
-  |          |     |          |      |                    |      |                           |                            
-  |          |  <--+ Response |  <---+    passthrough     |  <---+         Response          |    
-  |          |     |          |      |    add header      |      |   (generated dynamically) |
-  |          |     +----------+      |    maybe cache     |      |                           |
-  +----------+                       +--------------------+      +---------------------------+
-
-    
+ +---------+                       +--------------------+     +---------------------------+
+ |         |     +-----------+     |       Nginx        |     |            PHP            |
+ |         |     |           |     +--------------------+     +---------------------------+
+ |         +-->  | Request   +-->  |  Rule for handling |     |  as external FCGI server  |
+ |         |     |           |     |    ".php" files    |     |         (php-cgi)         |
+ |         |     +-----------+     |                    +-->  |                           |
+ | Client  |                       |    fastcgi_pass    |     |    handle the request     |
+ |         |                       |                    |     |                           |
+ |         |     +----------+      +--------------------+     +---------------------------+
+ |         |     |          |      |                    |     |                           |                            
+ |         |  <--+ Response |  <---+    passthrough     | <---+         Response          |    
+ |         |     |          |      |    add header      |     |   (generated dynamically) |
+ |         |     +----------+      |    maybe cache     |     |                           |
+ +---------+                       +--------------------+     +---------------------------+
 ----
 
 ===== Whats the difference between FCGI and CGI?
