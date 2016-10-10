@@ -119,7 +119,26 @@ that the servers are properly defined in Nginx's upstream configuration.
 
 Then requests are accepted by Nginx and forwarded to the external FCGI server for processing.
 
-`Requests -> Nginx -> Rule for ".php" files -> fastcgi_pass -> external FCGI (php-cgi) -> Response (dynamically generated) -> Nginx -> Response`
+[ditaa, target="chapter01-nginx-fcgi-request-handling"]
+----
+
+  +----------+                       +--------------------+      +---------------------------+
+  |          |     +-----------+     |       Nginx        |      |            PHP            |
+  |          |     |           |     +--------------------+      +---------------------------+
+  |          +-->  | Request   +-->  |  Rule for handling |      |  as external FCGI server  |
+  |          |     |           |     |    ".php" files    |      |         (php-cgi)         |
+  |          |     +-----------+     |                    +-->   |                           |
+  | Client   |                       |    fastcgi_pass    |      |    handle the request     |
+  |          |                       |                    |      |                           |
+  |          |     +----------+      +--------------------+      +---------------------------+
+  |          |     |          |      |                    |      |                           |                            
+  |          |  <--+ Response |  <---+    passthrough     |  <---+         Response          |    
+  |          |     |          |      |    add header      |      |   (generated dynamically) |
+  |          |     +----------+      |    maybe cache     |      |                           |
+  +----------+                       +--------------------+      +---------------------------+
+
+    
+----
 
 ===== Whats the difference between FCGI and CGI?
 
@@ -173,7 +192,8 @@ You have the choice to download them on your own risk and simply replace WPN-XM'
 This is the offical Nginx Windows build from the main nginx website.
 We ship this one by default.
 
-Download: http://nginx.org/en/download.html
+[horizontal]
+Download::      http://nginx.org/en/download.html
 
 ===== Nginx-Win - http://nginx-win.ecsds.eu/
 
@@ -188,9 +208,10 @@ The real name of the author is unknown.
 His nickname "itpp2012" on the Nginx mailing-list and Nginx related discussion Forums.
 His Github Account is: https://github.com/itpp16
 
-- Website: http://nginx-win.ecsds.eu/
-- Downloads: http://nginx-win.ecsds.eu/download/
-- Twitter: https://twitter.com/nginx4Windows
+[horizontal]
+Website::       http://nginx-win.ecsds.eu/
+Downloads::     http://nginx-win.ecsds.eu/download/
+Twitter::       https://twitter.com/nginx4Windows
 
 ===== Nginx for Windows - http://kevinworthington.com/nginx-for-windows/
 
@@ -198,16 +219,18 @@ This is an unoffical private build.
 The x32 and x64 builds are using Cygwin.
 The build toolchain is not open-source.
 
-Website: http://kevinworthington.com/nginx-for-windows/
+[horizontal]
+Website:: http://kevinworthington.com/nginx-for-windows/
 
 ===== OpenResty - https://openresty.org/
 
 OpenResty is a scalable Web Platform by extending NGINX with Lua.
 The auther is Yichun Zhang (agentzh).
 
-Downloads: https://openresty.org/en/download.html
-Installation: https://openresty.org/en/installation.html
-List of Components (Nginx Modules): https://openresty.org/en/components.html
+[horizontal]
+Downloads::                 https://openresty.org/en/download.html
+Installation::              https://openresty.org/en/installation.html
+List of Nginx Modules::     https://openresty.org/en/components.html
 
 ===== https://github.com/Qihoo360/nginx-openresty-windows
 

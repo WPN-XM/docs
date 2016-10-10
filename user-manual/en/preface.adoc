@@ -61,7 +61,7 @@ Just to name a few reasons:
   The stack addresses the fundamental problem of Windows: the missing package management.
   But, only for a small subset of the software ecosystem: for software, relevant for web developers. 
 * I started the project as a true open-source project, because other server stacks were (and are still) not really open-source.
-* The project solves the i'm not in charge and cannot modify the project like i want problem. 
+* The project solves the "i'm not in charge and cannot modify the project like i want" problem. 
 * I'm trying to close the gap between third-party vendors, which provide tools and servers, and PHP.
   Mainly, because PHP's support for these niche DB system is pretty bad.
   Example-wise, let's take a look at database vendors:
