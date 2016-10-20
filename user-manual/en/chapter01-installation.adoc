@@ -4,20 +4,27 @@ This chapter explains how to install WPN-XM Server Stack for Windows.
 
 The installation wizard packages for WPN-XM are available starting with version v0.1.0.
 The packages are available for the x86 (32 bit) and since v0.8.1 also for the x86_64 (64 bit) processor architecture.
+You can choose between two installer types: we provide packaged installers and web-installers. 
+We package installers for http://php.net/supported-versions.php[every supported PHP version].
 
-There are four different download packages available:
+The following installer packages are available:
 
-* Web-installer
-* Standard Installer
 * Lite & Lite-RC Installer
+* Standard Installer
 * Full Installer
+* Web-installer
 
-The Standard and Full Installer contain a large set of components in one big setup executable.
+The Standard and Full Installers contain a large set of components in one big setup executable.
+The Lite installer ships a minimal set of components to get you started. This version ships a stable PHP version.
+The Lite-RC installer is the Lite packages, but ships the latest PHP RC (Release Candiate) version for testing purposes.
 
 The Web-installer is a small file you can use to select and download the components of your choice
-from the web. Instead of downloading one large installer containg all components, you are downloading 
+from the web. Pros: Instead of downloading one large installer containg all components, you are downloading 
 the small web-installer and then only the components you select. This has the advantage of saving 
 you time and bandwidth. You can also download and save the web-installer for later installation.
+Cons: The web-installer is a problem, when packages must go through a review process before installation. 
+External links are often discouraged in this review process, because they require external calls during install 
+and can make restoration of service difficult, when the links or the link targets change.
 
 Important: If you face problems downloading certain components using the web-installer, please
 disable your Anti-Virus and re-try.
