@@ -6,7 +6,7 @@ If you find errors or omissions in this document, please don't hesitate to {uri-
 
 == Introduction
 
-WPИ-XM is a free and open-source web server solution stack for professional PHP development on the Windows® platform.
+WPИ-XM is an open-source web server solution stack for professional PHP development on the Windows® platform.
 
 This manual documents WPN-XM Server Stack internals:
 
