@@ -14,14 +14,16 @@ This manual documents WPN-XM Server Stack internals:
 
 * building, packaging and releasing of Installation Wizards
 
-* Software Registries 
-
-* Webinterface and API
+* Software Registries and API
 
 * Updater
+
+* Webinterface 
+
+* Server Control Panel
+
+* How to contribute to WPN-XM
 
 * Coding Rules
 
 * Documentation Toolchain
-
-* How to contribute to WPN-XM

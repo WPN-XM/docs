@@ -1,8 +1,6 @@
 == Overview
 
-
-
-https://camo.githubusercontent.com/baedaa7a09f600813e063b2db134f70bb1930a38/687474703a2f2f696d67732e786b63642e636f6d2f636f6d6963732f6175746f6d6174696f6e2e706e67
+image::https://camo.githubusercontent.com/baedaa7a09f600813e063b2db134f70bb1930a38/687474703a2f2f696d67732e786b63642e636f6d2f636f6d6963732f6175746f6d6174696f6e2e706e67[]
 
 
 [ditaa, target="diagram-overview"]
