@@ -52,7 +52,9 @@ Why another one?
 Just to name a few reasons:
 
 * Well, a PHP server stack like i imagined didn't exist (until now :). 
-* I love tooling and making things. Things which actually make it easier, to make new shiny web tech things.
+* I love tooling and making things. 
+  Things which actually make it easier, to make new web technology things.
+* It's about empowering more people to build more things.
 * Mainly because installing things on Windows isn’t straightforward.
   I wanted to save my life-time and the life-time of other developers by getting rid of the daunting, 
   repeated tasks of searching for software and installing stuff manually.
