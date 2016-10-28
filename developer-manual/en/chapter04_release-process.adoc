@@ -1,9 +1,85 @@
 == Release Process
 
-This section documents the release process for the following software products:
-(a) the WPN-XM server stack installers, (b) the webinterface and (c) the Server Control Panel.
+This chapter documents the release process for WPN-XM.
 
-This is intended for core committers.
+It is intended for members of the team, who might be cutting a release of WPN-XM.
+
+Releasing WPN-XM is a complicated task.
+
+This document serves as a checklist that can take you through doing a release step-by-step.
+
+We'll cover the following products:
+
+. the **WPN-XM server stack installers**
+. the **Webinterface**
+. the **Server Control Panel**
+
+=== Prerequisites for doing any release
+
+In order to do a release, you absolutely must have:
+
+- Commit access to the registry and main WPN-XM repo
+
+While not strictly required, you life will be made much easier if you:
+
+- Have github account and have been granted access to the WPN-XM organization by a "release admin"
+- Have read and write access to the WPN-XM Travis-CI account
+- Have read and write access to the WPN-XM Appveyor account
+
+=== Prerequisites for specific releases
+
+Before getting started, you will need:
+
+- the new version number, that you will be releasing 
+- as well as an agreed upon "release commit" that will form the basis of the release
+
+A commit is eligible to be a "release commit" when:
+
+- the commit passed all CI checks 
+- and building the "installer binaries" succeeded
+
+=== Validating "binaries"
+
+==== Server Control Panel
+
+The binary of the Server Control Panel is validated by executing `wpn-xm.exe --version` 
+during the Appveyor build and checking the displayed version number.
+
+You find the version output in the 
+https://ci.appveyor.com/project/jakoch/server-control-panel/history[Appveyor log] of the build.
+
+The version number should look something like:
+
+    WPN-XM Server Stack 0.8.3+2cdb580
+
+where the
+
+    2cdb580
+
+is the sha for the commit we built from.
+
+==== Installers
+
+TODO 
+
+=== Validate external services are functional
+
+The release process relies on Travis CI and Appveyor as external build and deployment services.
+Both need to be up and functional in order to do a release. 
+
+- [ ] Check the status of each before starting a release. 
+      If either is reporting issues, push the release back a day or until whenever they both are reporting no problems.
+
+ - https://www.traviscistatus.com/[Travis CI Status]
+ - https://appveyor.statuspage.io/[Appveyor Status]
+
+=== A GitHub issue exists for the release
+
+All releases should have a corresponding issue in the WPN-XM repo. 
+
+This issue should be used to communicate the progress of the release (updated as checklist steps are completed). 
+
+You can also use the issue to notify other team members of problems.
 
 === Release Policy
 
@@ -11,24 +87,19 @@ We try to create a stable release a few times a year.
 
 === Release Steps
 
-==== Installers
+This section describes the steps to take for releasing a new version of WPN-XM.
 
 ==== Webinterface
 
 ==== Server Control Panel
 
-==== General
+==== WPN-XM Server Stack Installers
 
-This section describes the steps to take for releasing a new version of WPN-XM.
+===== Update the GitHub issue
 
-===== 1 Update `changelog.txt`
+Leave a comment on the GitHub issue for this release to let everyone know that you are starting.
 
-Update the changelog with pieces of information about the latest changes.
-
-Note: we do not indicate version number changes of the software components.
-This is automatically published on the website.
-
-===== 2 Bump Version number of WPN-XM
+===== 1 Update VERSION
 
 * build.xml
 - adjust version.* properties
@@ -36,6 +107,32 @@ This is automatically published on the website.
 * website-wpn-xm.org/index.html
 - update the download div with new links to Download, Changelog and ReleaseNotes-v1.2.3
 - Do not worry about the version numbers. They are automatically loaded and always in sync with latest versions from registry.
+
+===== 2 Update CHANGELOG
+
+We maintain all changes in our CHANGELOG. 
+
+The changes are kept in the unreleased section.
+
+At the time we do a release, we need to "roll" the CHANGELOG from one version to another. 
+
+Open up CHANGELOG.md and you will see a series of changes that are in this commit under a section that says:
+
+    ## [unreleased] - unreleased
+
+This should be changed to:
+
+    ## [1.2.3] - 2050-01-01
+
+Note: we do not indicate version number changes of the bundled software components.
+This is automatically published on the website.
+
+If any of the sections, "Added", "Fixed" or "Changed" is empty, delete it.
+
+===== 3 Commit your CHANGELOG and VERSION updates
+
+git add CHANGELOG.md VERSION
+git commit -m "Preparing for 1.2.3 release"
 
 ===== 3 Tag the Version
 
@@ -51,22 +148,47 @@ This is automatically published on the website.
 (To build the installer locally click "build.bat" in the main folder and find the fresh build in the folder "_build".
 You might then upload the new installers installation wizards via FTP to the target folder "wpn-xm/downloads".)
 
+===== Wait on Travis and Appveyor
+
+During the time since you push to the release branch, Travis CI and Appveyor have been busy building release artifacts. 
+It can take up to a couple hours depending on how busy they are, before building starts.
+After building started, it will take up to 40 minutes to build the installers.
+
 ===== Announcements 
 
 Now, it's time to spread the word about the new release on multiple channels!
- 
-**Twitter** 
 
-Tweet about the Release using one of these message templates:
- 
-```   
- WPN-XM v1.2.3 has been released! For details, see: http://wpn-xm.org/
+You might use one of the following templates. Please don't forget to adjust the version number.
+
+
 ```
-
+ I'm happy to announce the immediate release of WPN-XM v1.2.3.
+ For downloads and changelog, see https://github.com/WPN-XM/WPN-XM/releases/latest
+```
+ 
 ```
  I'm happy to announce the immediate release of WPN-XM v1.2.3.
  For downloads, see: http://wpn-xm.org/downloads
 ```
+
+```   
+ WPN-XM v1.2.3 has been released! For details, see: http://wpn-xm.org/
+```
+ 
+**Create Release Notes on Github**
+
+Use `Release-Notes-v1.2.3.md`, when manually creating the file. Keep the filename consistent.
+Use `Release Notes v1.2.3` as page title, when creating via the Github Webinterface.
+The easiest way is to clone an existing file and adjust the file content.
+
+**Inform IRC #wpnxm**
+
+Drop a note in the #wpnxm IRC channel on Freenode letting everyone know that the release is out 
+and include a link the release notes so everyone can see the CHANGELOG.
+
+**Twitter** 
+
+Tweet about the Release using one of these message templates:
 
 **Mailing list**
 
@@ -75,10 +197,4 @@ start a new topic via the https://groups.google.com/forum/?fromgroups#!forum/wpn
 
 **Community Forum**
 
-Post a message on the Community Forum
-
-**Create Release Notes on Github**
-
-Use `Release-Notes-v1.2.3.md`, when manually creating the file. Keep the filename consistent.
-Use `Release Notes v1.2.3` as page title, when creating via the Github Webinterface.
-The easiest way is to clone an existing file and adjust the file content.
+Post a message on the Community Forum.
