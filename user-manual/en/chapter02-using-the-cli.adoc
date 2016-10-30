@@ -7,23 +7,31 @@ the graphical user interface (GUI) and the command line interface (CLI).
 
 When you run `wpn-xm.exe` without CLI arguments the application will start in GUI mode.
 
-The following options for executing `wpn-xm.exe` on the command line.
+You can list the command line options by executing `wpn-xm.exe --help`.
+The following command line options are available:
 
-....
-wpn-xm.exe --help WPN-XM Server Stack 0.8.5+0a7e025 Copyright (c) 2015 Jens-Andre Koch. All rights reserved.
+[source, bash]
+----
+WPN-XM Server Stack 0.8.5+0a7e025 
+Copyright (c) 2015 Jens-Andre Koch. All rights reserved.
+
 Usage: wpn-xm.exe [option] [args]
 
 Options: 
--v, --version Prints the version. 
--h, --help Prints this help message. 
--d, --daemon Executes on . 
---start Starts one or more . 
---stop Stops one or more . 
---restart Restarts one or more .
+-v, --version   Prints the version. 
+-h, --help      Prints this help message. 
+-d, --daemon    Executes on . 
+--start         Starts one or more . 
+--stop          Stops one or more . 
+--restart       Restarts one or more .
 
-Arguments: : The name of a daemon, e.g. nginx, mariadb, memcached, mongodb. : The command to execute, e.g. start, stop, restart.
+Arguments:      
+    The name of a daemon, e.g. nginx, mariadb, memcached, mongodb.
+    The command to execute, e.g. start, stop, restart.
 
-Examples: wpn-xm.exe --daemon nginx start wpn-xm.exe --start nginx php mariadb
+Examples: 
+    wpn-xm.exe --daemon nginx start 
+    wpn-xm.exe --start nginx php mariadb
 
 Info: Ports specified in "wpn-xm.ini" will be used.
-....
+----
