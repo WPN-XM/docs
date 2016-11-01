@@ -6,7 +6,13 @@
 
 === License
 
-**Creative Commons 3.0**
+WPN-XM User-Manual by Jens A. Koch is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+
+You find the full license text here: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+=== License Summary
+
+**Creative Commons - Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**
 
 .You are free to
 
@@ -37,7 +43,7 @@ No warranties are given.
 The license may not give you all of the permissions necessary for your intended use.
 For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
 
-See http://creativecommons.org/licenses/by-sa/3.0/ for further details.
+See https://creativecommons.org/licenses/by-sa/4.0/ for further details.
 
 === Authors
 
