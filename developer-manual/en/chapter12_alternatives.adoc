@@ -20,6 +20,7 @@ then go try a different server stack for Windows.
 * Wamp Developer Pro      https://www.devside.net/
 * MAMP for Windows        http://www.mamp.info/
 * AppServNetwork          http://www.appservnetwork.com/
+* AutoSet                 http://autoset.net/xe/ - https://sourceforge.net/projects/project-autoset (South Korea)
 
 **These projects are no longer maintained or updated**
 
