@@ -26,3 +26,31 @@ To sum up:
 Use JSON, if you only work with the JSON representation in your application, which is stored and retrieved.
 Use JSONB, if you do a lot of operations on the JSON value(s), or use indexing on some JSON field.
 ====
+
+==== GUI Clients
+
+The official GUI client is pgAdmin and ships with PostgreSQL. 
+But there are many GUI clients for PostgreSQL. 
+You can find many of them in the https://wiki.postgresql.org/wiki/Community_Guide_to_PostgreSQL_GUI_Tools
+[Community Guide to PostgreSQL GUI Tools] in the PostgreSQL wiki.
+
+Datagrip[https://www.jetbrains.com/datagrip/]
+Datazenit[https://datazenit.com/]
+DBeaver[http://dbeaver.jkiss.org/]
+DbVisualizer[https://www.dbvis.com/]
+Navicat for PostgreSQL[http://www.navicat.com/products/navicat-for-postgresql]
+pgAdmin[http://pgadmin.org/]
+Valentina Studio[http://www.valentina-db.com/en/]
+DBGlass[http://dbglass.web-pal.com/]
+
+==== Connection data
+
+The most GUI applications will expect you to provide the following connection parameters to connect:
+
+Host: localhost
+Port: 5432 (default)
+User: user name
+Password: blank
+Database: same as user name
+
+If you need to provide an URL, use `postgresql://YOURUSERNAME@localhost/YOURUSERNAME`.
