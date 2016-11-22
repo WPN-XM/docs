@@ -1,8 +1,18 @@
 == Website
 
+=== Installer Comparison View
+
+The installer comparison view is a table showing the comparison between two
+installers, which are selected by the user. 
+For each installer, you see the software components shipped and the versions. 
+The "change" column indicates, when a software was added, updated or removed. 
+This allows you to quickly notice changes between installers.
+
+http://wpn-xm.org/compare-installers.php
+
 === Version Matrix
 
-The version matrix for all installation wizards.
+The version matrix shows all installation wizards and all software components.
 
 This tool helps to avoid version incompatibilities by defining stable version
 sets of components, which simply work together.  It shows already released
@@ -11,17 +21,26 @@ own column, while each row contains a software component from our registry.
 
 A green box indicates, that a component is included, also showing it's version number. 
 
-The editor allows to derive installers form already existing ones and to
-update the version number of software components by using a simple dropdown. 
+**Editor**
+
+The editor enables you to create new installer registries.
+
+It allows you to derive installers form already existing ones and to
+update version numbers of software components by using dropdown menus. 
 
 The blue column indicates the "latest version" from the registry.
 
 The installer registries are saved as easy consumable JSON files.
-They are used in two ways: to create the download description file, 
-in order to download components for the packaged installers, 
-and to provide details about the components included in a release.
+They are used in two ways: 
+ - to create the download description file 
+ - and to provide details about the components included in a release.
 
-=== Installer Comparison View
+The download description file is later used by the download tool 
+to download the components for the packaged installers.
+
+The installer registry json files are used 
+to "show the components included" for a download,
+for the "installer comparison view" and the "version matrix."
 
 === Configuration Comparison View
 
