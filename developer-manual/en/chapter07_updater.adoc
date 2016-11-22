@@ -6,7 +6,21 @@ The Update Tool has it's own Git repository at https://github.com/WPN-XM/updater
 
 image::https://cloud.githubusercontent.com/assets/85608/4353482/9e38b69e-4233-11e4-9d29-79845ce324a6.jpg[]
 
-=== Action: "Status"
+=== Features
+
+- CLI and GUI mode
+- fast URL crawling using Guzzle
+- fast version scraping using `symfony/dom-crawler`, `symfony/css-selector`, string matching and regular expressions
+- supports version crawling for a single, multiple or all registry component(s)
+- registry health check
+
+=== Crawlers
+
+The following version crawlers exist: https://github.com/WPN-XM/updater/tree/master/src/crawler
+
+=== Actions
+
+==== Action: "Status"
 
 The registry status script (registry-status.php) tests the http access state (200, 404) of the links in the wpnxm-software-registry.php. The test is performed on each components latest version url ($registry[*]['latest']['version']).
 
@@ -16,12 +30,12 @@ The results screen after a Registry Status Scan. Here most of the components are
 
 image::../images/registry-status.png[]
 
-=== Action: "Scan" 
+==== Action: "Scan" 
 
 The registry update script (registry-update.php?action=scan) scans vendor websites for newly released versions
 and updates the wpnxm-software-registry.php accordingly.
 
-=== Action: "Update"
+==== Action: "Update"
 
 During a registry scan the newly released versions are stored in to the folder `/scans`
 as fragments of the registry. It's possible to make manual modifications to the data before they are inserted into the registry. After that you might call "Update" to insert the Scans into the registry ((registry-update.php?action=update)).
