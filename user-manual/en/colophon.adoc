@@ -10,7 +10,7 @@ WPN-XM User-Manual by Jens A. Koch is licensed under a Creative Commons Attribut
 
 You find the full license text here: https://creativecommons.org/licenses/by-sa/4.0/legalcode
 
-=== License Summary
+==== License Summary
 
 **Creative Commons - Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**
 
