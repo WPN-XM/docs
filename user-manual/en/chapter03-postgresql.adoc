@@ -2,8 +2,9 @@
 
 PostgreSQL is an object-relational database management system (ORDBMS) based on POSTGRES, Version 4.2, developed at the University of California at Berkeley Computer Science Department. POSTGRES pioneered many concepts that only became available in some commercial database systems much later.
 
-https://www.postgresql.org/[Website]
-https://www.postgresql.org/docs/current/static/index.html[Documentation for Current Stable Version]
+[horizontal]
+Website:: https://www.postgresql.org/
+Documentation for Current Stable Version:: https://www.postgresql.org/docs/current/static/index.html
 
 ==== Support for JSON and JSONB
 
@@ -34,14 +35,15 @@ But there are many GUI clients for PostgreSQL.
 You can find many of them in the https://wiki.postgresql.org/wiki/Community_Guide_to_PostgreSQL_GUI_Tools
 [Community Guide to PostgreSQL GUI Tools] in the PostgreSQL wiki.
 
-Datagrip[https://www.jetbrains.com/datagrip/]
-Datazenit[https://datazenit.com/]
-DBeaver[http://dbeaver.jkiss.org/]
-DbVisualizer[https://www.dbvis.com/]
-Navicat for PostgreSQL[http://www.navicat.com/products/navicat-for-postgresql]
-pgAdmin[http://pgadmin.org/]
-Valentina Studio[http://www.valentina-db.com/en/]
-DBGlass[http://dbglass.web-pal.com/]
+[horizontal]
+Datagrip::                  https://www.jetbrains.com/datagrip/
+Datazenit::                 https://datazenit.com/
+DBeaver::                   http://dbeaver.jkiss.org/
+DbVisualizer::              https://www.dbvis.com/
+Navicat for PostgreSQL::    http://www.navicat.com/products/navicat-for-postgresql
+pgAdmin::                   http://pgadmin.org/
+Valentina Studio::          http://www.valentina-db.com/en/
+DBGlass::                   http://dbglass.web-pal.com/
 
 ==== Connection data
 
