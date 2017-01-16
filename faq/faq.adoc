@@ -194,12 +194,14 @@ and you might disable it by using the `services.msc` control panel or
 by running the following command on the command line:
 
   sc stop W3SVC
+  sc config "W3SVC" start=disabled
 
 Another service using port 80, is the "web deployment service" (MsDepSvc). 
 You might disable it by using the `services.msc` control panel or 
 by running the following command on the command line:
 
   sc stop MsDepSvc
+  sc config "MsDepSvc" start=disabled 
 
 == How to start the installation wizard in the shared folder of a VM?
 
