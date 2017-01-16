@@ -189,9 +189,17 @@ Immediate shutdowns are an indicator that the port 80, which Nginx uses by defau
 You will also find the following message in the Nginx `error.log`: `bind() to 127.0.0.1:80 failed`.
 Please check, if the port is in use with `netstat -ab` or by using a helper tool, like http://www.nirsoft.net/utils/cports.html[CurrPorts].
 
-If the port is used by "System PID 4", then the service "WWW-Publishingservice" (w3svc) is using the port and you might disable it by using the `services.msc` control panel or by running the following command on the command line:
+If the port is used by "System PID 4", then the service "WWW-Publishingservice" (w3svc) is using the port 
+and you might disable it by using the `services.msc` control panel or 
+by running the following command on the command line:
 
   sc stop W3SVC
+
+Another service using port 80, is the "web deployment service" (MsDepSvc). 
+You might disable it by using the `services.msc` control panel or 
+by running the following command on the command line:
+
+  sc stop MsDepSvc
 
 == How to start the installation wizard in the shared folder of a VM?
 
