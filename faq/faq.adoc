@@ -187,21 +187,111 @@ See the related Nginx Wiki page: http://wiki.nginx.org/HttpFastcgiModule[Nginx -
 
 Immediate shutdowns are an indicator that the port 80, which Nginx uses by default is already taken.
 You will also find the following message in the Nginx `error.log`: `bind() to 127.0.0.1:80 failed`.
-Please check, if the port is in use with `netstat -ab` or by using a helper tool, like http://www.nirsoft.net/utils/cports.html[CurrPorts].
 
-If the port is used by "System PID 4", then the service "WWW-Publishingservice" (w3svc) is using the port 
-and you might disable it by using the `services.msc` control panel or 
-by running the following command on the command line:
+For a successful bind to port 80, we need to figure out which other application or service is using it,
+then stop and disable it.
+
+=== How to check if port 80 is used? How to find out who is using it?
+
+Please check, if the port is used and get the application name listening by using `netstat -abno`.
+
+You might combine it with `findstr` to reduce the output of `netstat`:
+
+  netstat -abno | findstr 0.0.0.0:80
+  netstat -abno | findstr 127.0.0.1:80
+
+You could also use a helper tool, like http://www.nirsoft.net/utils/cports.html[CurrPorts] to list the ports
+and find out the application name.
+
+=== Which applications and services are known to be listening on port 80?
+
+==== Another web-server is already listening 
+
+An installation of WPN-XM might clash with any other WAMP stack, e.g. XAMPP. 
+Additional steps are needed to make them run in parallel.
+
+Make sure, that no other webserver, e.g. Apache, Tomcat, IIS or WebMatrix is currently listening or configure the stacks to use different ports.
+
+IIS can be removed by turning it off using http://windows.microsoft.com/en-us/windows/turn-windows-features-on-off#1TC=windows-7[Windows Features]. 
+On a Windows Server via http://technet.microsoft.com/en-us/library/cc779925(v=ws.10).aspx[Role and Components Removal].
+
+==== Skype
+
+Skype bind to ports 80 and 443.
+
+To change that, you have to stop Skype and then use it's configuration dialog:
+
+Please go to `Tools > Options > Advanced > Connection` and
+
+Uncheck `Use Port 80 and 443 for incoming connections`.
+
+==== Windows System Services
+
+Some Windows Systems Services are known to be listening on port 80.
+
+You might, or might not, have some of these Services installed and running.
+
+You have the following ways to stop and disable them:
+
+1. To open Windows Services, run `services.msc` to open the Services Manager. 
+You will be able to start, stop, disable and delay Windows Services.
+
+2. Alternativly, you can use the CLI util `sc.exe` (`sc stop <name>`) to start, stop and configure services.
+
+3. There is also the CLI util `net` (`net stopservice <name>`).
+
+**World Wide Web Publishing Service (W3SVC)**
+
+If the port is used by "System PID 4", then the service "WWW-Publishingservice" (w3svc) is using the port.
 
   sc stop W3SVC
   sc config "W3SVC" start=disabled
 
-Another service using port 80, is the "web deployment service" (MsDepSvc). 
-You might disable it by using the `services.msc` control panel or 
-by running the following command on the command line:
+**Web Deployment Agent Service (MsDepSvc)**
 
   sc stop MsDepSvc
   sc config "MsDepSvc" start=disabled 
+
+**SQL Server Reporting Services (ReportServer)**
+
+  sc stop ReportServer
+  sc config "ReportServer" start=disabled 
+  
+**BranchCache (PeerDistSvc)**
+
+  sc stop PeerDistSvc
+  sc config "PeerDistSvc" start=disabled 
+  
+**Sync Share Service (SyncShareSvc)**
+
+Microsoft added a feature called `Work Folders` to  Windows Server 2012 R2 and Windows 8+.
+This feature uses the ports 80 and 443 by default and relies on the service `SyncShareSvc` to synchronizes files and folders between different machines.
+
+  sc stop SyncShareSvc
+  sc config "SyncShareSvc" start=disabled 
+
+
+[NOTE]
+====
+If you need the Work Folders feature, you might also change it's ports, e.g. to `10080` and `10443` by editing the SyncShareSvc.config (`C:\Windows\System32\SyncShareSvc.config`) file. After doing that, you need to register the new ports using the admin prompt: 
+
+  Netsh http add urlacl url=http://*:<10080>/ user="NT Authority\LOCAL SERVICE"
+  Netsh http add urlacl url=https://*:<10443>/ user="NT Authority\LOCAL SERVICE"
+====
+
+**Internet Information Server (WAS, IISADMIN)**
+
+  sc stop WAS
+  sc config "WAS" start=disabled 
+  
+  sc stop IISADMIN
+  sc config "IISADMIN" start=disabled 
+  
+==== TeamViewer
+
+If installed, TeamViewer binds to port 80. 
+
+Please use it's configuration dialog and go to `Extras > Options > Advanced` and `enable` the option `Don't use incoming port 80`.
 
 == How to start the installation wizard in the shared folder of a VM?
 
