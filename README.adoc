@@ -6,7 +6,7 @@ image:https://travis-ci.org/WPN-XM/docs.svg["Build Status", link="https://travis
 :USR-MAN-PDF-EN:    http://wpn-xm.github.io/docs/user-manual/en/book.pdf[EN]
 :DEV-MAN-HTML-EN:   http://wpn-xm.github.io/docs/developer-manual/en/[EN]
 :DEV-MAN-PDF-EN:    http://wpn-xm.github.io/docs/developer-manual/en/book.pdf[EN]
-:FAQ-MAN-HTML-EN:   http://wpn-xm.github.io/docs/faq/[EN]
+:FAQ-MAN-HTML-EN:   http://wpn-xm.github.io/docs/faq/en/[EN]
 
 [width="100%",options="header", cols="2,^1,4"]
 |====================
