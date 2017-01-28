@@ -314,4 +314,4 @@ We use the "reversed" N as the initial letter for Nginx in our project name and 
 
 Other logos apply the same "graphical hint" and reverse the second N: 
 
-image:../images/nginx-logo-small.png[Nginx Logo]
+image:../../images/nginx-logo-small.png[Nginx Logo]

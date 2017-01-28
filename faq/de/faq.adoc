@@ -330,4 +330,4 @@ Wir verwenden das "umgekehrte" N als Anfangsbuchstaben für Nginx in unserem Pro
 
 Andere Logos verwenden den gleichen "grafischen Hinweis" und kehren das zweite N in Nginx um:
 
-image:../images/nginx-logo-small.png[Nginx Logo]
+image:../../images/nginx-logo-small.png[Nginx Logo]
