@@ -17,7 +17,7 @@ toc::[]
 
 == Wie installiere ich WPN-XM?
 
-Die http://wpn-xm.github.io/docs/user-manual/de/#_installation[Installationsanleitung] finden Sie im Benutzerhandbuch.
+Die http://wpn-xm.github.io/docs/user-manual/en/#_installation[Installationsanleitung] finden Sie im Benutzerhandbuch.
 
 == Enthält WPN-XM MySQL oder MariaDB?
 
