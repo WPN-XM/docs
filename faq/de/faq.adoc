@@ -9,11 +9,9 @@ Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
 :toc-placement:       macro
 
 Auf dieser Seite finden Sie Antworten auf häufig gestellte Fragen zum WPN-XM Server Stack.
-Es ist ein Nachschlagewerk mit Antworten auf häufig wiederholte Fragen von Nutzern aus der WPN-XM Community.
-Es ist weder eine vollständige Anleitung für den Server Stack, noch ein Hilfsmittel zum Unterrichten, wie man es benutzt.
 
 Wenn es irgendeine allgemeine oder wichtige Frage gibt, die hier unbeantwortet geblieben ist, 
-dann zögern Sie nicht, uns zu helfen, diese Seite um Frage und Antwort zu ergänzen.
+dann zögern Sie bitte nicht, uns zu kontaktieren, um diese Seite um Frage und Antwort zu ergänzen. Vielen Dank!
 
 toc::[]
 
