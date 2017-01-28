@@ -150,8 +150,8 @@ Wir werden es im Laufe der Zeit erweitern, um die Änderung der Konfiguration ei
 
 Es ist möglich, dass eine Antivirensoftware eine Datei fälschlicherweise als Viren oder Malware identifiziert, obwohl die Datei sauber ist. Das geschieht, weil Antivirenprogramme oft Heuristiken verwenden, um Malware und Viren zu identifizieren. Manchmal scheitern diese Heuristiken und das Programm berichtet ein falschpositives Ergebnis (`false positive`).
 
-Wir stehen in engem Kontakt zu Herstellern von Anti-Virus Software und 
-übermitteln Proben der Falschpositiven (`false positive`) zu mehreren Online Anti-Virus Labs zur weiteren Analyse. 
+Wir stehen in engem Kontakt zu mehreren Herstellern von AV-Software.
+Wir übermitteln Proben der Falschpositiven zu den jeweiligen Anti-Virus Labs zur weiteren Analyse. 
 Sie können auch das Online-Tool Virus Total für das Scannen von Dateien von WPN-XM verwenden.
 
 == Was kann ich tun, wenn der MySQL / MariaDB-Daemon nicht startet?
