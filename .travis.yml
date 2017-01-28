@@ -71,6 +71,7 @@ script:
   # create faq
   # ---------------------------------------
   - asciidoctor -a stylesheet=../stylesheets/foundation.css -a icons=font -a source-highlighter=highlightjs -a linkcss faq/en/faq.adoc -o faq/en/index.html -v
+  - asciidoctor -a stylesheet=../stylesheets/foundation.css -a icons=font -a source-highlighter=highlightjs -a linkcss faq/de/faq.adoc -o faq/de/index.html -v
   # ---------------------------------------
   # create an index entry page for the website @ http://wpn-xm.github.io/docs/
   # ---------------------------------------

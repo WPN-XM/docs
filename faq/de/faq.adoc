@@ -1,0 +1,335 @@
+= Frequently Asked Questions
+Jens A. Koch <https://github.com/jakoch[@jensandrekoch]>
+:email:               jakoch@web.de
+:revnumber:           v1.0
+:description:         This document is the WPN-XM FAQ.
+:keywords:            wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB
+:version-label!:
+:toc:
+:toc-placement:       macro
+
+Auf dieser Seite finden Sie Antworten auf häufig gestellte Fragen zum WPN-XM Server Stack.
+Es ist ein Nachschlagewerk mit Antworten auf häufig wiederholte Fragen von Nutzern aus der WPN-XM Community.
+Es ist weder eine vollständige Anleitung für den Server Stack, noch ein Hilfsmittel zum Unterrichten, wie man es benutzt.
+
+Wenn es irgendeine allgemeine oder wichtige Frage gibt, die hier unbeantwortet geblieben ist, 
+dann zögern Sie nicht, uns zu helfen, diese Seite um Frage und Antwort zu ergänzen.
+
+toc::[]
+
+== Wie installiere ich WPN-XM?
+
+Die http://wpn-xm.github.io/docs/user-manual/de/#_installation[Installationsanleitung] finden Sie im Benutzerhandbuch.
+
+== Enthält WPN-XM MySQL oder MariaDB?
+
+WPN-XM liefert MariaDB seit Beginn des Projektes.
+
+MariaDB ist ein Drop-in-Ersatz für MySQL. Die Befehle und Werkzeuge sind für beide gleich. 
+Dennoch gibt es subtile Unterschiede in Bezug auf https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-features/[Features] 
+und https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-compatibility/[Kompatibilität].
+
+== Wie starte und stoppe ich WPN-XM?
+
+* Sie können das "Server Control Panel" verwenden. Es wird gestartet mit:
+
+  wpn-xm.exe 
+
+Weitere Informationen zur Verwendung des SCP finden Sie im 
+http://wpn-xm.github.io/docs/user-manual/en/#_using_the_server_control_panel[Benutzerhandbuch].
+
+* Sie können auch http://wpn-xm.github.io/docs/user-manual/en/#_files[Batchdateien] zum Starten oder Stoppen von Servern verwenden.
+
+== Wie kann ich einen Server als Dienst installieren?
+
+Dienste werden noch nicht unterstützt. Wir arbeiten daran. Siehe https://github.com/WPN-XM/WPN-XM/issues/165[Issue #165].
+
+== Ist WPN-XM produktionsreif und als Server einsetzbar?
+
+WPN-XM ist für die lokale Entwicklung vorbereitet. Es ermöglicht Entwicklern, neue Projekte schnell zu starten.
+
+Es ist in aktiver Entwicklung und Software mit Beta-Qualität (dies wird auch durch die Major-Versionsnummer "0" angezeigt).
+
+[WARNING]
+====
+**Verwenden Sie WPN-XM nicht als öffentlichen Server!**
+
+WPN-XM ist nicht bereit, ein öffentlich zugänglicher Server zu sein.
+
+Der Betrieb eines öffentlich zugänglichen Servers ist nicht der beabsichtigte Nutzungszweck des Produkts.
+
+**WPN-XM hat keine sichere Konfiguration!**
+
+WPN-XM ist nicht sicher konfiguriert.
+
+Wir halten Sicherheitsbarrieren niedrig, um eine schnelle Entwicklung zu ermöglichen, 
+z.B. durch das Weglassen von Passwörtern oder Verwendung des gleichen Passworts für mehrere Administrationswerkzeuge.
+
+Bitte sichern Sie WPN-XM, wenn Sie es über das Netzwerk an Personen außerhalb Ihres LAN zugänglich machen möchten. 
+Dies ist ein großes Sicherheitsrisiko! Eine Firewall oder ein externer Router wird nur ein geringes Sicherheitsniveau bieten.
+====
+
+[NOTE]
+====
+Wir suchen nach Beiträgen zu unserer Sicherheits-Checkliste. 
+Diese Liste sollte als Ausgangspunkt dienen, für einen Entwickler, der versucht, die Serverumgebung zu sichern. 
+Sie ist keineswegs vollständig oder abgeschlossen. Sie müssen alle Sicherheitsprobleme manuell beheben.
+
+**Sicherheits-Checkliste**
+
+- Löschen Sie das Webinterface (`www\tools\webinterface`)
+- www\tools\adminer oder auf andere `www\tools\adminer`, z.B. `www\tools\adminer`, `www\tools\phpmyadmin`
+- Passwortschutz für die Server hinzufügen
+- Konfigurieren Sie Ihre Firewall, um nur für Protokolle und Ports von Servern zu öffnen, die Sie wirklich benötigen
+- Verschieben Sie den öffentlichen Ordner in eine neue und leere Partition, passen Sie Pfade in `nginx.conf` an
+- Verwenden Sie einen dedizierten Benutzer mit eingeschränkten Berechtigungen, um die Serverumgebung auszuführen
+====
+
+== Wie deinstalliere ich WPN-XM?
+
+Bitte verwenden Sie das Uninstaller im Stammordner.
+
+== Was sind die Versionen "Lite" und "LiteRC" von WPN-XM?
+
+WPN-XM Lite und LiteRC sind unsere kleinsten Installationsprogramme. Lite bedeutet "leicht".
+
+Die Lite-Installationsprogramme stellen nur einige, wenige wesentliche Softwarekomponenten bereit, 
+um schnell zu starten, einschließlich Nginx, PHP, MariaDB, Xdebug, Composer.
+
+Natürlich fehlen weitere Server und Tools, die in den Standard- oder Full-Installern bereitgestellt werden.
+
+== Ich habe Probleme beim Starten und Stoppen von Dämonen mit dem Server-Control-Panel. Was kann ich tun?
+
+Wenn das SCP nicht funktioniert, dann verwenden Sie bitte die Batchfiles `start-wpnxm.bat` und `stop-wpnxm.bat` als Ersatz.
+
+Durch Aufruf von `status-wpnxm.bat` können Sie prüfen, ob die Server laufen.
+
+== Wo sollte ich meine Webinhalte platzieren?
+
+Der Hauptordner für Ihre Projekte ist `<server>\www`.
+
+Bitte erstellen Sie einen neuen Ordner für Ihr Projekt. Beispielsweise:
+
+- erstellen Sie den Ordner "myproject", so dass Sie `<server>\www\myproject` erhalten
+- Und legen Sie eine einfache HTML-Datei `test.html` mit dem folgenden Inhalt in diesem Verzeichnis ab:
+
+```
+<?php
+   echo 'Hello World! This is my project.'; 
+?>
+```
+
+Sie können darauf mit dem URI `http://localhost/myproject/test.html`.
+
+== Kann ich die WPN-XM Installation verschieben?
+
+Nein, das Verschieben des Installationsverzeichnisses wird noch nicht unterstützt.
+
+== Was sind "automatische Startseiten" für das Verzeichnis "\www" und dessen Unterordner?
+
+Nginx ist konfiguriert die folgenden Dateien als Startseiten (Indexpages) auszuliefern: `index.php`, `index.html`, `index.htm`.
+
+Dies geschieht durch die http://nginx.org/en/docs/http/ngx_http_index_module.html[Index-Direktive] von Nginx innerhalb eines "location" Blocks:
+
+  location / {
+      index  index.php index.html index.htm;
+  }
+
+Der Server versucht automatisch, eine dieser Dateien auszuliefern, wenn Sie auf einen Ordner zugreifen, 
+ohne eine Datei im URI anzugeben. Dateien werden in der angegebenen Reihenfolge geprüft.
+
+Wenn diese Dateien nicht gefunden werden, 
+zeigt der Server den http://nginx.org/en/docs/http/ngx_http_autoindex_module.html[Verzeichnisinhalt] (autoindex) an.
+
+== Wo kann ich die Konfiguration ändern?
+
+Sie die Konfiguration für alle Server und Werkzeug in den jeweiligen Konfigurationsdateien ändern.
+
+Das Server Control Panel stellt auch ein einfaches Konfigurationsmenu zur Verfügung.
+Wir werden es im Laufe der Zeit erweitern, um die Änderung der Konfiguration einfacher zu machen.
+
+== Meine Anti-Virus-Software berichtet, dass WPN-XM einen Virus enthält!?
+
+Es ist möglich, dass eine Antivirensoftware eine Datei fälschlicherweise als Viren oder Malware identifiziert, obwohl die Datei sauber ist. Das geschieht, weil Antivirenprogramme oft Heuristiken verwenden, um Malware und Viren zu identifizieren. Manchmal scheitern diese Heuristiken und das Programm berichtet ein falschpositives Ergebnis (`false positive`).
+
+Wir stehen in engem Kontakt zu Herstellern von Anti-Virus Software und 
+übermitteln Proben der Falschpositiven (`false positive`) zu mehreren Online Anti-Virus Labs zur weiteren Analyse. 
+Sie können auch das Online-Tool Virus Total für das Scannen von Dateien von WPN-XM verwenden.
+
+== Was kann ich tun, wenn der MySQL / MariaDB-Daemon nicht startet?
+
+Bitte starten Sie `mysqld` manuell, indem Sie `mysqld --console` auf der CLI im Ordner `\server\mariadb\bin` aufrufen: 
+Sie erhalten ein Startprotokoll mit mehr Informationen über den Grund. 
+
+  cd server\bin\mariadb\bin
+  mysqld --console
+
+Oft ist die Ursache eine Fehlkonfiguration in `my.ini` oder versehentlich geänderte oder gelöschte Dateien im Datenordner.
+
+== Warum bekomme ich einen Socket-Fehler beim Step-Debuggen mit XDebug?
+
+Der Grund ist der lange laufende Fastcgi-Prozess, der keine Ausgabe produziert, 
+bis er fertig ist oder eben die Debugging-Session mit dem Timeout unterbricht. 
+
+Prüfen Sie das Nginx `error.log`. Wenn Sie eine Fehlermeldung wie `upstream timed out` finden, 
+dann erhöhen Sie den Wert für `fastcgi_read_timeout` in Ihrer `nginx.conf`. 
+Der Wert ist standardmäßig `60s`. 
+Das wird für eine Produktionsumgebung stimmen, aber eindeutig nicht für eine Entwicklungs- und Debuggingumgebung. 
+Sie müssen also die Zeit bis zum Timeout erhöhen, um Debuggen zu können.
+
+Bitte vergessen Sie nicht, nach den Änderungen, den Server neu zu starten. 
+
+Bitte lesen Sie auch die dazugehörige Nginx Wiki-Seite: http://wiki.nginx.org/HttpFastcgiModule[Nginx - Modul - HttpFastcgi].
+
+== Was kann ich tun, wenn Nginx wird nicht starten oder heruntergefahren sofort und Port 80 verwendet wird.
+
+Sofortige Shutdowns sind ein Indikator dafür, dass der Port 80, den Nginx standardmäßig verwendet, bereits vergeben ist. 
+Sie finden auch die folgende Meldung in der Nginx `error.log` : `bind() to 127.0.0.1:80 failed`.
+
+Für eine erfolgreiche Bindung an Port 80, müssen wir herausfinden, welche andere Anwendung oder Dienstleistung es verwendet, 
+diese dann stoppen und deaktivieren.
+
+=== Wie überprüft man, ob Port 80 verwendet wird? Wie finde ich heraus, wer es benutzt?
+
+Mittels `netstat -abno` können Sie überprüfen, ob ein Port verwendet wird und erhalten auch den Anwendungsnamen.
+
+Sie können dazu `findstr` auf die Ausgabe von `netstat` anwenden:
+
+  netstat -abno | findstr 0.0.0.0:80
+  netstat -abno | findstr 127.0.0.1:80 
+
+Sie könnten auch Hilfsmittel wie http://www.nirsoft.net/utils/cports.html[CurrPorts] 
+oder https://technet.microsoft.com/en-us/sysinternals/processexplorer.aspx[Process Explorer] verwenden, 
+um die Ports aufzulisten und Anwendungsnamen herauszufinden.
+
+=== Welche Anwendungen und Dienste sind bekanntermaßen auf Port 80 zu finden?
+
+==== Ein anderer Web-Server verwendet den Port bereits
+
+Eine Installation von WPN-XM kann mit jedem anderen WAMP-Stack, z.B. XAMPP, zusammenstoßen.
+Es sind zusätzliche Schritte erforderlich, um sie parallel laufen zu lassen.
+
+Vergewissern Sie sich, dass kein anderer Webserver, z.B. Apache, Tomcat, IIS oder WebMatrix läuft und den Port bereits verwendet, 
+oder konfigurieren Sie die Stacks so, dass Sie unterschiedliche Ports verwenden.
+
+IIS kann entfernt werden, indem er in den http://windows.microsoft.com/en-us/windows/turn-windows-features-on-off#1TC=windows-7[Windows Features] deaktiviert wird. Auf einem Windows Server kann er durch das http://technet.microsoft.com/en-us/library/cc779925(v=ws.10).aspx[Entfernen von Rollen und Komponenten] entfernt werden.
+
+==== Skype
+
+Skype verwendet die Ports 80 und 443.
+
+Um das zu ändern, müssen Sie Skype stoppen und dann den Konfigurationsdialog benutzen:
+
+Gehen Sie zu `Tools > Options > Advanced > Connection` und
+
+entfernen Sie den Haken bei `Use Port 80 and 443 for incoming connections`.
+
+==== Windows-Systemdienste
+
+Einige Windows-Systemdienste nutzen bekanntermaßen Port 80.
+
+Möglicherweise sind auf Ihrem System einige dieser Dienste installiert und werden ausgeführt.
+
+Sie haben folgende Möglichkeiten, sie zu stoppen und zu deaktivieren:
+
+1. Zum Öffnen von Windows Services führen Sie `services.msc` aus, um den Dienste-Manager zu öffnen. 
+Sie können dann Windows Services starten, stoppen, deaktivieren oder den Start verzögern.
+
+2. Alternativ können Sie `sc.exe` (`sc stop <name>`) zum Starten, Stoppen und Konfigurieren von Diensten verwenden.
+
+3. Sie können auch `net` (`net stopservice <name>`) verwenden.
+
+**World Wide Web Publishing Service (W3SVC)**
+
+Wird der Port von "System PID 4" verwendet, dann verwendet der Dienst "WWW-Publishingservice" (w3svc) den Port.
+
+  sc stop W3SVC
+  sc config "W3SVC" start=disabled
+
+**Web Deployment Agent Service (MsDepSvc)**
+
+  sc stop MsDepSvc
+  sc config "MsDepSvc" start=disabled 
+
+**SQL Server Reporting Services (ReportServer)**
+
+  sc stop ReportServer
+  sc config "ReportServer" start=disabled 
+  
+**BranchCache (PeerDistSvc)**
+
+  sc stop PeerDistSvc
+  sc config "PeerDistSvc" start=disabled 
+  
+**Sync Share Service (SyncShareSvc)**
+
+Microsoft hat ein Feature mit dem Namen Arbeitsordner-Synchronisation (`Work Folders`) zu Windows Server 2012 R2 und Windows 8+ hinzugefügt. 
+Diese Funktion nutzt den Dienst `SyncShareSvc`, um Dateien und Ordner zwischen verschiedenen Rechnern zu synchronisieren.
+Standardmäßig belegt `SyncShareSvc` die Ports 80 und 443.
+
+  sc stop SyncShareSvc
+  sc config "SyncShareSvc" start=disabled 
+
+
+[NOTE]
+====
+Wenn Sie die Funktion Arbeitsordner-Synchronisation (`Work Folders`) benötigen, dann müssen Sie die Ports so abändern, dass keine Kollision entsteht. 
+Beispielsweise können Sie die Ports 10080 und 10443 verwenden, indem Sie die Datei `C:\Windows\System32\SyncShareSvc.config` bearbeiten. 
+Danach müssen Sie die neuen Ports mittels Admin-Eingabeaufforderung registrieren:
+
+  Netsh http add urlacl url=http://*:<10080>/ user="NT Authority\LOCAL SERVICE"
+  Netsh http add urlacl url=https://*:<10443>/ user="NT Authority\LOCAL SERVICE"
+====
+
+**Internet Information Server (WAS, IISADMIN)**
+
+  sc stop WAS
+  sc config "WAS" start=disabled 
+  
+  sc stop IISADMIN
+  sc config "IISADMIN" start=disabled 
+  
+==== TeamViewer
+
+Wenn TeamViewer installiert ist, dann verwendet er standardmäßig Port 80.
+
+Verwenden Sie den Konfigurationsdialog und gehen Sie zu 
+`Extras > Options > Advanced` und `aktivieren` Sie die Option `Don't use incoming port 80`.
+
+== Wie wird der Installationsassistent im freigegebenen Ordner einer VM gestartet?
+
+  ShellExecuteEx Error - System kann den angegebenen Pfad nicht finden. 
+
+Das Installationsprogramm kann nicht im freigegebenen Ordner einer virtuellen Maschine ausgeführt werden. 
+Es muss in einen nicht freigegebenen Ordner kopiert und dort gestartet werden.
+
+== Wie kann ich den Mailversand auf Windows testen?
+
+Sie könnten einen "falschen" Sendmail-Server installieren. Dieser verwendet einen bestimmten Port (gewöhnlich 25),
+um auf neue Mails zu warten und diese lokal in einem bestimmten Ordner abzuspeichern, ohne die Mails tatsächlich zu versenden.
+Sie können die Dateien dann einfach einlesen und somit den Inhalt und die E-Mail-Darstellung testen.
+
+Alternativ könnten Sie auch einen echten Sendmail Server einsetzen und die Mails an ein "Entwicklerpostfach" schicken,
+welches Sie dann abrufen, um Inhalt und Darstellung zu testen.
+
+Es gibt mehrere "falsche" Sendmail Server (1-5) und echte Server (5-6) herum:
+
+1. Test Mail Server Tool - http://www.toolheap.com/test-mail-server-tool/
+2. Fake Sendmail - http://glob.com.au/sendmail/
+3. smtp4dev - http://smtp4dev.codeplex.com/
+4. Papercut - http://papercut.codeplex.com/
+5. xmailserver - 1,4MB - http://www.xmailserver.org/
+6. hmailserver - 3,4MB - http://www.hmailserver.com/
+
+WPN-XM liefert "Fake Sendmail".
+
+Wenn Sie ein echtes SMTP-Tool benötigen , versuchen Sie http://www.blat.net/[Blat] oder http://msmtp.sourceforge.net/[MSMPT].
+
+== Warum gibt es ein "umgekehrtes" N in WPИ-XM?
+
+Das "umgekehrte" N ist kyrillisch und wird absichtlich verwendet, um anzuzeigen, dass der Server Stack Nginx ("engine x") enthält. 
+Wir verwenden das "umgekehrte" N als Anfangsbuchstaben für Nginx in unserem Projektnamen und Logo.
+
+Andere Logos verwenden den gleichen "grafischen Hinweis" und kehren das zweite N in Nginx um:
+
+image:../images/nginx-logo-small.png[Nginx Logo]

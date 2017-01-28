@@ -158,14 +158,11 @@ files of WPN-XM.
 
 Please start mysqld manually by running `mysqld --console` on the CLI in the folder `\server\mariadb\bin`.
 You will get a startup log with more pieces of information about the reason.
-Often the cause is a misconfiguration in `my.ini` or accidentally modified or deleted files in the data folder.
-
-== What can i do, if the MySQL daemon isn't starting up?
-
-Check the console output when trying to start the daemon manually.
 
  cd server\bin\mariadb\bin
  mysqld --console
+
+Often the cause is a misconfiguration in `my.ini` or accidentally modified or deleted files in the data folder.
 
 == Why do i get socket errors, while step debugging with XDebug?
 
@@ -192,8 +189,9 @@ You might combine it with `findstr` to reduce the output of `netstat`:
   netstat -abno | findstr 0.0.0.0:80
   netstat -abno | findstr 127.0.0.1:80
 
-You could also use a helper tool, like http://www.nirsoft.net/utils/cports.html[CurrPorts] to list the ports
-and find out the application name.
+You could also use a helper tool, like http://www.nirsoft.net/utils/cports.html[CurrPorts] or 
+https://technet.microsoft.com/en-us/sysinternals/processexplorer.aspx[Process Explorer]
+to list the ports and find out the application name.
 
 === Which applications and services are known to be listening on port 80?
 
