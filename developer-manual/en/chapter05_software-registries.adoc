@@ -2,18 +2,31 @@
 
 This chapter covers the software registries of the WPN-XM server stack.
 
-The WPN-XM project maintains a registry for all software components of the stack and a registry for PHP applications.
-Additionally all released installer have installer registries. 
+The WPN-XM project maintains multiple registries. 
+A registry is a meta-data collection for multiple software package.
+It contains pieces of information about the software vendor, the download source and, of course, version information.
 
 The registries are located in the Registry have their own Git repository at https://github.com/WPN-XM/registry.
 
 When we take a look at the repository, you can find 5 registries in the root folder:
 
-1. `php-extensions-on-pecl.json` 
-2. `wpnxm-download-filenames.php`
-3. `wpnxm-php-software-registry.php`
-4. `wpnxm-registry-metadata.php`
-5. `wpnxm-software-registry.php`
+.Overview Registries
+---------------------------------------------
+1. `php-extensions-on-pecl.json`        <1>
+2. `wpnxm-download-filenames.php`       <2>
+3. `wpnxm-php-software-registry.php`    <3>
+4. `wpnxm-registry-metadata.php`        <4>
+5. `wpnxm-software-registry.php`        <5>
+---------------------------------------------
+
+<1> A list of all PHP extensions on PECL.
+<2> Provides download filenames for each software package.
+<3> A registry for PHP applications.
+<4> A collection of meta-data for 5.
+<5> A registry for all software packages of the stack.
+
+Additionally, all released installer have (versionized) installer registries
+and all unreleased installers have a `next` version registry.
 
 === Installation Wizards Registries
 
