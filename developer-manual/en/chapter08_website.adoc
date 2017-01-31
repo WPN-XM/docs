@@ -44,3 +44,11 @@ for the "installer comparison view" and the "version matrix."
 
 === Configuration Comparison View
 
+[NOTE]
+.This feature isn't implemented, yet!
+====
+The configuration comparison view will display the difference between two versions of a configuration file.
+Please don't hesitate to contribute. See GitHub {issue-ref}/577[Issue 577].
+====
+
+
