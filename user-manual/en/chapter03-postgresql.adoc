@@ -3,8 +3,8 @@
 PostgreSQL is an object-relational database management system (ORDBMS) based on POSTGRES, Version 4.2, developed at the University of California at Berkeley Computer Science Department. POSTGRES pioneered many concepts that only became available in some commercial database systems much later.
 
 [horizontal]
-Website:: https://www.postgresql.org/
-Documentation for Current Stable Version:: https://www.postgresql.org/docs/current/static/index.html
+Website::                                           https://www.postgresql.org/
+Docs for Current Stable Version::                   https://www.postgresql.org/docs/current/static/index.html
 
 ==== Connection data
 
@@ -15,9 +15,9 @@ Host::      localhost
 Port::      5432 (default)
 Username::  root
 Password::  blank
-Database::  postgres
+Database::  yourdb
 
-If you need to provide an URL, use `postgresql://YOURUSERNAME@localhost/YOURUSERNAME`.
+If you need to provide an URL, use `postgresql://username@localhost/yourdb`.
 
 [IMPORTANT]
 ====
@@ -32,6 +32,49 @@ When calling commands  on the CLI, please leave the `-U` or `--username` CLI arg
 Starting with WPN-XM 0.8.7 the default username is "root". 
 When calling commands  on the CLI, please use `-U root` or `--username=root` .
 ====
+
+==== First steps after installation
+
+Please use the interactive terminal application `pgsql` to make your first steps.
+
+You find detailed instructions in the PostgreSQL manual (https://www.postgresql.org/docs/current/static/app-psql.html).
+
+1. Switch to the folder `c:\server\bin\pgsql`
+2. run `psql --version` to show the version
+3. run `psql --list -U root` to list the databases
+
+```
+                                        Liste der Datenbanken
+   Name    | Eigentümer | Kodierung |    Sortierfolge     |     Zeichentyp      | Zugriffsprivilegien
+-----------+------------+-----------+---------------------+---------------------+---------------------
+ postgres  | root       | UTF8      | German_Germany.1252 | German_Germany.1252 |
+ template0 | root       | UTF8      | German_Germany.1252 | German_Germany.1252 | =c/root            +
+           |            |           |                     |                     | root=CTc/root
+ template1 | root       | UTF8      | German_Germany.1252 | German_Germany.1252 | =c/root            +
+           |            |           |                     |                     | root=CTc/root
+(3 Zeilen)
+```
+
+4. run `psql --username=root --dbname=postgres` to edit the postgres table using the interactive console
+
+
+```
+c:\server\bin\pgsql\psql --username=root --dbname=postgres
+ psql (9.6.0)
+ Type "help" for help.
+```
+
+Run `help`:
+
+```
+postgres=#  help
+ You are using psql, the command-line interface to PostgreSQL.
+ Type:  \copyright for distribution terms
+        \h for help with SQL commands
+        \? for help with psql commands
+        \g or terminate with semicolon to execute query
+        \q to quit
+```
 
 ==== Support for JSON and JSONB
 
