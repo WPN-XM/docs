@@ -21,15 +21,17 @@ If you need to provide an URL, use `postgresql://username@localhost/yourdb`.
 
 [IMPORTANT]
 ====
-**Username**
+**Username for WPN-XM v0.8.6 <=**
 
 WPN-XM versions below v0.8.7 did not set a username during the installation and initial setup of PostgreSQL with `initdb`.
 For these installs `initdb` created a table named "postgres" owned by user "current logged in user name", 
 which is/was the user running the installer. 
+
 When calling commands  on the CLI, please leave the `-U` or `--username` CLI arguments away, so that the default username is used.
 
 
 Starting with WPN-XM 0.8.7 the default username is "root". 
+
 When calling commands  on the CLI, please use `-U root` or `--username=root` .
 ====
 
@@ -43,16 +45,17 @@ You find detailed instructions in the PostgreSQL manual (https://www.postgresql.
 2. run `psql --version` to show the version
 3. run `psql --list -U root` to list the databases
 
+
 ```
-                                        Liste der Datenbanken
-   Name    | Eigentümer | Kodierung |    Sortierfolge     |     Zeichentyp      | Zugriffsprivilegien
------------+------------+-----------+---------------------+---------------------+---------------------
- postgres  | root       | UTF8      | German_Germany.1252 | German_Germany.1252 |
- template0 | root       | UTF8      | German_Germany.1252 | German_Germany.1252 | =c/root            +
-           |            |           |                     |                     | root=CTc/root
- template1 | root       | UTF8      | German_Germany.1252 | German_Germany.1252 | =c/root            +
-           |            |           |                     |                     | root=CTc/root
-(3 Zeilen)
+                            List of databases
+   Name    |  Owner | Encoding |   Collate   |    Ctype    |   Access privileges
+-----------+--------+----------+-------------+-------------+-----------------------
+ postgres  | root   | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ template0 | root   | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+           |        |          |             |             | postgres=CTc/postgres
+ template1 | root   | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+           |        |          |             |             | postgres=CTc/postgres
+(3 rows)
 ```
 
 4. run `psql --username=root --dbname=postgres` to edit the postgres table using the interactive console
