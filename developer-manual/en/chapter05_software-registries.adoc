@@ -40,14 +40,16 @@ in the `installer\next` folder.
 The registry for the stack components is always kept in sync with latest versions.
 Therefore we are monitoring the websites of each software component for newly released versions.
 If a new version is detected, it is automatically inserted into our registry.
-In the following sections explain how the update process of the registry works.
+In the following sections we explain how the update process of the registry works.
 
-At first, we will take a look at the registry as the underlying data-structure.
+At first, we will take a look at the registries and their underlying data-structure.
 After that, we take a look at the update mechanism.
 
-==== `wpnxm-software-registry.php` 
+==== WPN-XM Software Registry (wpnxm-php-software-registry.php)
 
-The WPN-XM software registry is a plain and simple PHP array.
+The WPN-XM software registry 
+(https://github.com/WPN-XM/registry/blob/master/wpnxm-php-software-registry.php[`wpnxm-php-software-registry.php`])
+is a plain and simple PHP array.
 The PHP file uses an `return array` style to make the inclusion of this file
 and more important the assignment of the data to a variable easy. 
     
@@ -97,9 +99,13 @@ To get the details of a component, we can work with the `$registry` array in the
   $version = $registry['adminer']['latest']['version'];
 ```
 
-=== Software Registry Metadata
+=== Software Registry Metadata (wpnxm-registry-metadata.php)
 
-==== PHP Software Registry
+This file https://github.com/WPN-XM/registry/blob/master/wpnxm-registry-metadata.php[`wpnxm-registry-metadata.php`] is a PHP array.
+
+=== PHP Software Registry (wpnxm-php-software-registry.php)
+
+This file https://github.com/WPN-XM/registry/blob/master/wpnxm-php-software-registry.php[`wpnxm-php-software-registry.php`] is a PHP array.
 
 ===== Array Structure
 
@@ -135,23 +141,22 @@ To get the details of a component, we can work with the `$registry` array in the
   ),
 ```
 
-==== PHP Extensions on PECL
+==== PHP Extensions on PECL (php-extensions-on-pecl.json)
 
-This is a JSON dataset with all extensions on PECL.
+This file https://github.com/WPN-XM/registry/blob/master/php-extensions-on-pecl.json[`php-extensions-on-pecl.json`] is a JSON dataset with all extensions on PECL.
 
-It is used for auto-completion of PHP extensions names in the "Install PHP
-Extension" dialog of the webinterface.
+It is used for auto-completion of PHP extensions names in the "Install PHP Extension" dialog of the webinterface.
 
-==== Download Filenames
+==== Download Filenames (wpnxm-download-filenames.php)
 
-This file wpnxm-download-filenames.php` is a PHP array.
+This file https://github.com/WPN-XM/registry/blob/master/wpnxm-download-filenames.php[`wpnxm-download-filenames.php`] is a PHP array.
 
 It defines the relationship between 
 
  * a "component" in the software registry (array key)  
  * and it's "filename" in the downloads directory.
 
-**Why are we using normalizes filenames?*
+**Why are we normalizing filenames?**
 
 The unmodified download filenames carry a lot of constantly changing pieces of
 information on their filenames, e.g. version or bitsize information. While
@@ -159,5 +164,5 @@ hardcoding the original download filenames in the installers is possible,  it
 implies a lot of maintainance effort for keeping them up to date. That's why we
 are normalizing the download filenames by removing all changing parts.
 
-We end up with static, normalizes filenames. The filenames are used during
+We end up with static, normalized filenames. The filenames are used during
 downloading of components as the "download target" file name.
