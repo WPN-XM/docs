@@ -6,11 +6,11 @@ https://pear.php.net/packages.php
 It provides a global installation method for vendor dependencies. Installed dependencies are then
 available for multiple applications.
 
-IMPORTANT: PEAR support is deprecated. The last version shipping PEAR install scripts is v0.8.6. 
+IMPORTANT: PEAR support is deprecated. The last WPN-XM version shipping PEAR install scripts is v0.8.6. 
 
 [WARNING]
 ====
-This approach will cause problems, when different applications depend on different versions of a
+The PEAR approach will cause problems, when different applications depend on different versions of a
 global dependency.
 
 With the creation and adoption of Composer, the PHP community ditched the global installation method
