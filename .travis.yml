@@ -1,6 +1,6 @@
 language: ruby
 
-rvm: [2.3.1]
+rvm: [2.4.1]
 
 addons:
   apt:
@@ -19,6 +19,9 @@ install:
   - travis_retry _travis/install_plantuml.sh
   # install AsciiDoctor
   - gem install asciidoctor
+  # what the fuck... downgrading because https://github.com/asciidoctor/asciidoctor-pdf/issues/782
+  - gem uninstall prawn
+  - gem install prawn --version 2.1.0  
   # PDF generator
   - gem install --no-ri --no-rdoc --pre asciidoctor-pdf
   # syntax highlighter
