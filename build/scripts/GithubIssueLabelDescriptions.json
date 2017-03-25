@@ -94,5 +94,9 @@
     {
         "name": "version crawler",
         "desc": "This label indicates a problem with one of our version crawlers."
+    },
+    {
+        "name": "duplicate",
+        "desc": "The issue was reported before."
     }
 ]
