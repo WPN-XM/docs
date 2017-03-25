@@ -2,56 +2,57 @@
 
 Here is a full list of labels that we use in the 
 https://github.com/wpn-xm/wpn-xm[GitHub issue tracker] and what they stand for.
-
 [options="header", cols="1,2", width="90"]
 |===
 | Label | Description
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/website" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">website</a> +++
-|The ticket marks issues with the offical website wpn-xm.org.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/server%20control%20panel" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">server control panel</a> +++
-|The ticket marks issues with the bundled Server Control Panel.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/webinterface" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">webinterface</a> +++
-|The ticket marks issues with the bundled Webinterfaces.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/installation%20wizard" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">installation wizard</a> +++
-|This label indicates an issue with an installation wizard script.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/api" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">api</a> +++
+|Tickets that require changes of API services.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/blocker" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">blocker</a> +++
+|The ticket cannot be resolved until some other ticket has been closed. See the ticket’s log for which ticket is blocking this ticket.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/bounty" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #129e5e;">bounty</a> +++
+|This labels marks tickets with compensation for implementing a feature or reporting and closing a bug.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/bug" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e10c02;">bug</a> +++
+|An issue describing unexpected or malicious behaviour of the software.
 | +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/build%20tools" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">build tools</a> +++
 |This label indicates a problem with one of our build tools or our build toolchain in general.
 | +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/component%20related" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">component related</a> +++
 |There is an issue with a bundled component.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/bug" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e10c02;">bug</a> +++
-|An issue describing unexpected or malicious behaviour of the software.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/documentation" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">documentation</a> +++
-|If an issue involves creating or refining documentation, this label will be assigned.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/registry%20out-of-sync" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e10c02;">registry out-of-sync</a> +++
-|This label indicates that an entry in one of the installer registries is no longer up to date or is no longer updated by a crawler.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/feature" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #DDDDDD;">feature</a> +++
-|Feature requests and ideas, about how to make the software better, will have this label.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/registry" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">registry</a> +++
-|This label indicates a problem with related to data entries in the installer registries.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/updater" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">updater</a> +++
-|This label indicates an issue with the Updater.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/support" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #fbca04;">support</a> +++
-|Questions that needs answering but do not require code changes or issues that only require a one time action on the server will have this label. See the documentation about our triage process for more information.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/security" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">security</a> +++
-|This label indicates a security issue.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/verify%20bug" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e99695;">verify bug</a> +++
-|Before the label bug is attached to an issue, the bug needs to be reproduced.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/easy%20pick" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #bfe5bf;">easy pick</a> +++
-|This label marks tickets that are easy to get started with. The ticket should be ideal for beginners to dive into the code base.
 | +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/configuration" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">configuration</a> +++
 |This label marks a configuration issue.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/bounty" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #129e5e;">bounty</a> +++
-|This labels marks tickets with compensation for implementing a feature or reporting and closing a bug.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/blocker" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">blocker</a> +++
-|The ticket cannot be resolved until some other ticket has been closed. See the ticket’s log for which ticket is blocking this ticket.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/api" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">api</a> +++
-|Tickets that require changes of API services.
-| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/installer%20registries%20(next%20version)" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">installer registries (next version)</a> +++
-|Ticket related to software components in the installer registries of the upcoming, next version.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/documentation" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">documentation</a> +++
+|If an issue involves creating or refining documentation, this label will be assigned.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/duplicate%20bug" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e99695;">duplicate bug</a> +++
+|
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/easy%20pick" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #bfe5bf;">easy pick</a> +++
+|This label marks tickets that are easy to get started with. The ticket should be ideal for beginners to dive into the code base.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/feature" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #DDDDDD;">feature</a> +++
+|Feature requests and ideas, about how to make the software better, will have this label.
 | +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/in%20progress" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #ededed;">in progress</a> +++
 |This label marks tickets, that are not complete yet, but worked upon.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/installation%20wizard" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">installation wizard</a> +++
+|This label indicates an issue with an installation wizard script.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/installer%20registries%20(next%20version)" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">installer registries (next version)</a> +++
+|Ticket related to software components in the installer registries of the upcoming, next version.
 | +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/ready" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e6e6e6;">ready</a> +++
 |This label marks feature tickets, which contain enough information to start the implementation.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/registry" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">registry</a> +++
+|This label indicates a problem with related to data entries in the installer registries.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/registry%20out-of-sync" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e10c02;">registry out-of-sync</a> +++
+|This label indicates that an entry in one of the installer registries is no longer up to date or is no longer updated by a crawler.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/security" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">security</a> +++
+|This label indicates a security issue.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/server%20control%20panel" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">server control panel</a> +++
+|The ticket marks issues with the bundled Server Control Panel.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/support" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #fbca04;">support</a> +++
+|Questions that needs answering but do not require code changes or issues that only require a one time action on the server will have this label. See the documentation about our triage process for more information.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/updater" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">updater</a> +++
+|This label indicates an issue with the Updater.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/verify%20bug" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e99695;">verify bug</a> +++
+|Before the label bug is attached to an issue, the bug needs to be reproduced.
 | +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/version%20crawler" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">version crawler</a> +++
 |This label indicates a problem with one of our version crawlers.
-
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/webinterface" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">webinterface</a> +++
+|The ticket marks issues with the bundled Webinterfaces.
+| +++ <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/website" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">website</a> +++
+|The ticket marks issues with the offical website wpn-xm.org.
+|===
