@@ -1,0 +1,98 @@
+[
+    {
+        "name": "website",
+        "desc": "The ticket marks issues with the offical website wpn-xm.org."
+    },
+    {
+        "name": "server control panel",
+        "desc": "The ticket marks issues with the bundled Server Control Panel."
+    },
+    {
+        "name": "webinterface",
+        "desc": "The ticket marks issues with the bundled Webinterfaces."
+    },
+    {
+        "name": "installation wizard",
+        "desc": "This label indicates an issue with an installation wizard script."
+    },
+    {
+        "name": "build tools",
+        "desc": "This label indicates a problem with one of our build tools or our build toolchain in general."
+    },
+    {
+        "name": "component related",
+        "desc": "There is an issue with a bundled component."
+    },
+    {
+        "name": "bug",
+        "desc": "An issue describing unexpected or malicious behaviour of the software."
+    },
+    {
+        "name": "documentation",
+        "desc": "If an issue involves creating or refining documentation, this label will be assigned."
+    },
+    {
+        "name": "registry out-of-sync",
+        "desc": "This label indicates that an entry in one of the installer registries is no longer up to date or is no longer updated by a crawler."
+    },
+    {
+        "name": "feature",
+        "desc": "Feature requests and ideas, about how to make the software better, will have this label."
+    },
+    {
+        "name": "registry",
+        "desc": "This label indicates a problem with related to data entries in the installer registries."
+    },
+    {
+        "name": "updater",
+        "desc": "This label indicates an issue with the Updater."
+    },
+    {
+        "name": "support",
+        "desc": "Questions that needs answering but do not require code changes or issues that only require a one time action on the server will have this label. See the documentation about our triage process for more information."
+    },
+    {
+        "name": "security",
+        "desc": "This label indicates a security issue."
+    },
+    {
+        "name": "verify bug",
+        "desc": "Before the label bug is attached to an issue, the bug needs to be reproduced."
+    },
+    {
+        "name": "easy pick",
+        "desc": "This label marks tickets that are easy to get started with. The ticket should be ideal for beginners to dive into the code base."
+    },
+    {
+        "name": "configuration",
+        "desc": "This label marks a configuration issue."
+    },
+    {
+        "name": "bounty",
+        "desc": "This labels marks tickets with compensation for implementing a feature or reporting and closing a bug."
+    },
+    {
+        "name": "blocker",
+        "desc": "The ticket cannot be resolved until some other ticket has been closed. See the ticket’s log for which ticket is blocking this ticket."
+    },
+    {
+        "name": "api",
+        "desc": "Tickets that require changes of API services."
+    },
+    {
+        "name": "installer registries (next version)",
+        "desc": "Ticket related to software components in the installer registries of the upcoming, next version."
+    },
+    {
+        "name": "in progress",
+        "desc": "This label marks tickets, that are not complete yet, but worked upon."
+    },
+    {
+        "name": "ready",
+        "desc": "This label marks feature tickets, which contain enough information to start the implementation."
+    },
+    {
+        "name": "version crawler",
+        "desc": "This label indicates a problem with one of our version crawlers."
+    }
+]
