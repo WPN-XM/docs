@@ -13,8 +13,9 @@ then go try a different server stack for Windows.
 * Bitnami WAMPStack       http://bitnami.org/stack/wampstack
 * EasyPHP                 http://easyphp.org
 * uWamp                   http://www.uwamp.com/
-* WNMP                    https://github.com/wnmp/wnmp
+* WNMP                    https://github.com/wnmp/wnmp & https://sourceforge.net/projects/wnmp-env/
 * WampServer              http://www.wampserver.com/en/
+* NwimpServer             https://sourceforge.net/projects/nwimpserver/
 * WTServer (WTNMP)        http://sourceforge.net/projects/wtnmp
 * Ampps                   http://www.ampps.com/
 * Wamp Developer Pro      https://www.devside.net/
@@ -24,10 +25,11 @@ then go try a different server stack for Windows.
 
 **These projects are no longer maintained or updated**
 
-* NimpBox                 http://nimpbox.ru/
+* NimpBox                 http://nimpbox.ru/ & https://sourceforge.net/projects/nimpserver/
 * NginxMP                 http://www.sourceforge.net/projects/nginxmp/
 * XenStack                http://sourceforge.net/projects/xenstack/
 * PHPNginx                http://phpnginx.sourceforge.net/
+* Porter                  https://sourceforge.net/projects/litporter
 
 **General**
 
