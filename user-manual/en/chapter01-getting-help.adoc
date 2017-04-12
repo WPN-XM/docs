@@ -27,13 +27,6 @@ where you can ask the community for help or report bugs and contribute ideas.
 Scala is an http://stackoverflow.com/questions/tagged/wpn-xm[active topic] 
 on Stack Overflow, a very popular programmer Q&A site.
 
-**Gitter**
-
-Gitter is a chat tool that is tightly coupled with GitHub.  If you don't already
-have one, you will need to create a free GitHub account.  Once done, you can
-access the chat at https://gitter.im/WPN-XM/WPN-XM  or you can download one of
-the available Gitter apps.
-
 **Google+**
 
 We have an https://plus.google.com/u/0/communities/109388403943670810388[Google+ community] 
