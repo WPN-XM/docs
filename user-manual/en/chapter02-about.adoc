@@ -1,0 +1,15 @@
+=== About 
+
+The WPN-XM Server Control Panel is a GUI and CLI application, which enables you to control and configure servers on Windows easily.
+
+The main window of the control panel provides start and stop, next to quick access buttons for logs and config files 
+and indicates the process state, the used port and the software version for each server.
+
+The control panel provides a tight integration with additionally installed tools, 
+a self-updater, an updater for already installed software, a configuration dialog and a process viewer.
+
+The following servers are supported: PHP, Nginx, MariaDb, MongoDb, Redis, Memcached, PostgreSQL.
+
+It's written in C++ using Qt 5.2+, free and open-source under GNU/GPL v3 license.
+
+For the full list of features, see https://github.com/WPN-XM/server-control-panel#features

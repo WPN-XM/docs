@@ -1,5 +1,7 @@
 == The Server Control Panel
 
+include::chapter02-about.adoc[]
+
 include::chapter02-using-the-gui.adoc[]
 
 include::chapter02-configuration-dialog.adoc[]
