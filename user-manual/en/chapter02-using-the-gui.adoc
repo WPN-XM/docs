@@ -32,7 +32,7 @@ image::../images/Server-Control-Panel-p3.png[Server Control Panel - Part 3]
 1. Show PHP information.
 2. Manage your databases using phpMyAdmin.
 3. Profiling in the browser using webgrind.
-4. Use adminder for administration different database systems like MySQL, MongoDB, SQLite, PostgreSQL, ...
+4. Use adminer for the administration of different database systems like MySQL, MongoDB, SQLite and PostgreSQL.
 
 ==== Part 4 - Open Projects Folder
 
@@ -44,11 +44,11 @@ Browse through your projects or open the explorer to work on your files.
 
 image::../images/Server-Control-Panel-p5.png[Server Control Panel - Part 5]
 
-1. Open Webinterface in Browser
-2. Open the Configuration Panel
+1. Open Webinterface in Browser.
+2. Open the Configuration Panel.
 3. View Wiki help page.
-4. About window
-5. Close the Panel (stays running in the background)
+4. About window.
+5. Close the Panel (stays running in the background).
 
 ==== Part 6 - All Servers Start and Stop Buttons
 
