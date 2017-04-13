@@ -4,7 +4,7 @@ This section describes the usage of the Server Control Panel.
 
 image::../images/Server-Control-Panel-MainWindow.png[Server Control Panel - MainWindow]
 
-If the Server Control Panel is new for you please check the <<#_running,Running>> first before you continue reading.
+If the Server Control Panel is new for you please check the <<chapter01-running.adoc#_running,Running>> first before you continue reading.
 
 When we look at the Server Control Panel more closely, you will see that it consists out of 6 parts:
 
