@@ -1,2 +1,32 @@
 === MariaDB
 
+MariaDB is a community-developed fork of the MySQL relational database management system and a drop-in replacement for MySQL.
+The project was forked due to concerns over the MySQL acquisition by Oracle Corporation.
+The development is led by some of the original developers of MySQL - including Michael "Monty" Widenius.
+MariaDB is named after Monty's younger daughter Maria, similar to how MySQL is named after his other daughter My.
+
+Website:        https://mariadb.com/
+Documentation:  https://mariadb.com/kb/en/mariadb/documentation/
+
+==== Installation Location
+
+The default installaton folder is `server\bin\mariadb\`.
+
+==== Configuration
+
+The main configuration file is `my.ini` in the folder `server\bin\mariadb\`.
+
+==== Documentation
+
+Clients and Utilities: https://mariadb.com/kb/en/mariadb/clients-and-utilities/
+mysqladmin:            https://mariadb.com/kb/en/mariadb/mysqladmin/
+explain analyzer:      https://mariadb.com/kb/en/mariadb/explain-analyzer/
+
+=== PHP Extensions for MariaDb
+
+The PHP connectors for MySQL generally work with MariaDB as well. 
+It is recommended to use either the `mysqli` or `PDO_MySQL` extensions.
+See http://php.net/manual/en/mysql.php
+
+- http://php.net/manual/en/book.mysqli.php
+- http://php.net/manual/en/ref.pdo-mysql.php
