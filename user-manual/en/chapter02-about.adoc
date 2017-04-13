@@ -13,3 +13,5 @@ The following servers are supported: PHP, Nginx, MariaDb, MongoDb, Redis, Memcac
 It's written in C++ using Qt 5.2+, free and open-source under GNU/GPL v3 license.
 
 For the full list of features, see https://github.com/WPN-XM/server-control-panel#features
+
+Breaking changes, new features, deprecations and bug fixes are tracked in the [CHANGELOG](https://github.com/WPN-XM/server-control-panel/blob/master/CHANGELOG.md).
