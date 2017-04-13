@@ -4,6 +4,8 @@ include::chapter03-nginx.adoc[]
 
 include::chapter03-mongodb.adoc[]
 
+include::chapter03-mariadb.adoc[]
+
 include::chapter03-postgresql.adoc[]
 
 include::chapter03-php.adoc[]
