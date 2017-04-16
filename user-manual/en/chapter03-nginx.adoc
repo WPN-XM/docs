@@ -194,7 +194,8 @@ This is the offical Nginx Windows build from the main nginx website.
 We ship this one by default.
 
 [horizontal]
-Download::      http://nginx.org/en/download.html
+Download::        http://nginx.org/en/download.html
+Nginx Resources:: https://github.com/fcambus/nginx-resources
 
 ===== Nginx-Win - http://nginx-win.ecsds.eu/
 
