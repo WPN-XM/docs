@@ -235,11 +235,9 @@ Installation::              https://openresty.org/en/installation.html
 List of Nginx Modules::     https://openresty.org/en/components.html
 Awesome-Resty::             https://github.com/bungle/awesome-resty
 
-===== https://github.com/Qihoo360/nginx-openresty-windows
+===== LomoX-Offical/nginx-openresty-windows - https://github.com/LomoX-Offical/nginx-openresty-windows
 
-This is an unoffical private build.
-It's a combination of OpenResty and Nginx.
-Lots of additional modules
+This is an unoffical private build with additional modules.
 
 ==== Nginx Catch-All *.dev domains
 
