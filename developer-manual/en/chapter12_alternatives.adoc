@@ -7,7 +7,7 @@ then go try a different server stack for Windows.
 
 * XAMPP for Windows       https://www.apachefriends.org/download.html
 * Zend Server             http://www.zend.com/en/products/server/downloads
-* OpenServer              http://open-server.ru/
+* OpenServer              http://open-server.ru/ & https://ospanel.io/
 * Winginx                 http://winginx.com/
 * VertrigoServ            http://vertrigo.sourceforge.net/
 * Bitnami WAMPStack       http://bitnami.org/stack/wampstack
