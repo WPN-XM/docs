@@ -18,7 +18,7 @@ image:https://travis-ci.org/WPN-XM/docs.svg["Build Status", link="https://travis
 | Developer Manual  | HTML     | {DEV-MAN-HTML-EN}
 |                   | PDF      | {DEV-MAN-PDF-EN}
 | FAQ               | HTML     | {FAQ-MAN-HTML-EN} {FAQ-MAN-HTML-DE}
-| API Documentation | HTML     | https://wpn-xm.org/api-docs/
+| API Documentation | HTML     | http://wpn-xm.org/api-docs/
 | Wiki              | HTML     | https://github.com/WPN-XM/WPN-XM/wiki
 | Github Pages      | HTML     | http://wpn-xm.github.io/docs/
 | Docs Repository   | ASCIIDOC | https://github.com/WPN-XM/docs
