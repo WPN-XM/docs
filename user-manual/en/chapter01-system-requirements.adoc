@@ -1,5 +1,8 @@
 === Requirements
 
+WPN-XM is designed to work on a wide range of computers. 
+This section provides basic guidelines to ensure your WPN-XM experience is as smooth as possible.
+
 ==== Which Windows versions are supported by your installation wizards?
 
 You can execute our installation wizard executables on nearly all Windows versions.
