@@ -22,7 +22,7 @@ Clients and Utilities: https://mariadb.com/kb/en/mariadb/clients-and-utilities/
 mysqladmin:            https://mariadb.com/kb/en/mariadb/mysqladmin/
 explain analyzer:      https://mariadb.com/kb/en/mariadb/explain-analyzer/
 
-=== PHP Extensions for MariaDb
+==== PHP Extensions for MariaDb
 
 The PHP connectors for MySQL generally work with MariaDB as well. 
 It is recommended to use either the `mysqli` or `PDO_MySQL` extensions.
