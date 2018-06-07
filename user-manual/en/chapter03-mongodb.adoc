@@ -45,3 +45,9 @@ http://php.net/mongodb[PHP API]
 The old and legacy MongoDB PHP driver is `mongo`, while the new driver is `mongodb`.
 For a detailed overview please see the 
 https://docs.mongodb.org/ecosystem/drivers/driver-compatibility-reference/#php-driver-compatibility[PHP Driver Compatibility Table].
+
+==== Default Port
+
+The default port for MongoDb is `27017`.
+
+https://docs.mongodb.com/manual/reference/default-mongodb-port/
