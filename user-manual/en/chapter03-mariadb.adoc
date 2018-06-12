@@ -19,9 +19,10 @@ The main configuration file is `my.ini` in the folder `server\bin\mariadb\`.
 
 ==== Documentation
 
-Clients and Utilities: https://mariadb.com/kb/en/mariadb/clients-and-utilities/
-mysqladmin:            https://mariadb.com/kb/en/mariadb/mysqladmin/
-explain analyzer:      https://mariadb.com/kb/en/mariadb/explain-analyzer/
+[horizontal]
+Clients and Utilities::  https://mariadb.com/kb/en/mariadb/clients-and-utilities/
+mysqladmin::             https://mariadb.com/kb/en/mariadb/mysqladmin/
+explain analyzer::       https://mariadb.com/kb/en/mariadb/explain-analyzer/
 
 ==== PHP Extensions for MariaDb
 
