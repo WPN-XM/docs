@@ -5,8 +5,9 @@ The project was forked due to concerns over the MySQL acquisition by Oracle Corp
 The development is led by some of the original developers of MySQL - including Michael "Monty" Widenius.
 MariaDB is named after Monty's younger daughter Maria, similar to how MySQL is named after his other daughter My.
 
-Website:        https://mariadb.com/
-Documentation:  https://mariadb.com/kb/en/mariadb/documentation/
+[horizontal]
+Website::        https://mariadb.com/
+Documentation::  https://mariadb.com/kb/en/mariadb/documentation/
 
 ==== Installation Location
 
