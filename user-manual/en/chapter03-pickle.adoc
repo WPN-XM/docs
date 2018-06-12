@@ -1,10 +1,8 @@
 === Pickle
 
-Pickle is a cross-platform PHP Extension installer. 
+Pickle is a cross-platform PHP Extension installer. It is based on Composer and the plan is to get Composer to fully support it (see https://github.com/composer/composer/pull/2898#issuecomment-48439196[discussion]).
 
-It is based on Composer and the plan is to get Composer to fully support it. See https://github.com/composer/composer/pull/2898#issuecomment-48439196 for the Composer part of the discussions.
-
-- Website: https://github.com/FriendsOfPHP/pickle
+Website: https://github.com/FriendsOfPHP/pickle
 
 ==== Usage
 
