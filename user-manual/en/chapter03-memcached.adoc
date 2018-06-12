@@ -95,12 +95,8 @@ The batch file uses the following command to start Memcached:
 
     `memcached.exe -p 11211 -U 0 -t 2 -c 2048 -m 2048`.
 
-This means Memcached will listen on 
-- TCP port 11211, 
-- but not on UDP and
-- will use 2 threads, 
-- accept a maximum of 2048 simultaneous connections and 
-- use 2048 megabytes max memory.
+This means Memcached will listen on TCP port 11211, but not on UDP and will use 2 threads, 
+accept a maximum of 2048 simultaneous connections and use 2048 megabytes max memory.
 
 ===== PHP extension
 
