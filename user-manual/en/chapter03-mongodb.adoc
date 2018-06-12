@@ -34,11 +34,12 @@ the MongoDB server `mongod` running and the PHP driver installed.
 
 [NOTE]
 ====
-http://pecl.php.net/package/mongodb[Website] 
-https://docs.mongodb.org/ecosystem/drivers/php/[Docs]
-https://github.com/mongodb/mongo-php-driver[PHP Driver Source]
-https://jira.mongodb.org/browse/PHPC[Issues]
-http://php.net/mongodb[PHP API]
+[horizontal]
+Website::             http://pecl.php.net/package/mongodb
+Docs::                https://docs.mongodb.org/ecosystem/drivers/php/
+PHP Driver Source::   https://github.com/mongodb/mongo-php-driver
+Issues::              https://jira.mongodb.org/browse/PHPC
+PHP API::             http://php.net/mongodb
 ====
 
 ===== Driver Compatibility
