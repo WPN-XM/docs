@@ -20,8 +20,9 @@ For production deployments, 64-bit builds and operating systems are strongly rec
 See http://blog.mongodb.org/post/137788967/32-bit-limitations[here] for more information.
 ====
 
-Website:        https://www.mongodb.org/
-Documentation:  https://docs.mongodb.org/manual/
+[horizontal]
+Website::        https://www.mongodb.org/
+Documentation::  https://docs.mongodb.org/manual/
 
 Please check http://docs.mongodb.org/manual/tutorial/getting-started/[MongoDB's Getting Started guide] for more!
 
