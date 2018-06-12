@@ -45,11 +45,8 @@ See https://getcomposer.org/doc/articles/troubleshooting.md#xdebug-impact-on-com
 
 ==== Official Windows Installer
 
-[NOTE]
-====
-The server stack doesn't use the official 
+This server stack doesn't use the official 
 https://github.com/composer/windows-setup/releases/[Windows Installer].
 
 Further instructions for Composer’s Windows installer can be found within the 
 https://github.com/composer/windows-setup/blob/master/README.md[README].
-====
