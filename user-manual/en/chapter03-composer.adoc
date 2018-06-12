@@ -19,9 +19,9 @@ This makes `composer.bat` available system-wide.
 
 ==== Usage
 
-To run Composer on the CLI type
+To run Composer on the CLI type:
 
-`composer`.
+`composer`
 
 ==== PHP Configuration for Composer
 
