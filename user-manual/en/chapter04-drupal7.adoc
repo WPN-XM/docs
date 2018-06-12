@@ -19,15 +19,15 @@ Our goal is to have a working Drupal 7 installation accessible at `http://localh
    - Drupal brings its own folder: `drupal-7.42`. Simply rename it to `drupal7`.
 3. Open in browser: http://localhost/drupal7/install.php
 4. Select "standard"
-5. enable PHP Extension "gd"
-   - `php.ini`: `extension=php_gd2.dll`
-6. create database with Adminer
+5. Enable PHP Extension "gd" in `php.ini`
+   - `extension=php_gd2.dll`
+6. Create database with Adminer
    - Open in browser: http://localhost/tools/adminer/adminer.php
    - Note: in case you need to change root pw, use `reset-db-pw.bat` from the servers root folder
    - create table "test"
    - create new user and pw
-7. use the "database", "user" and "pw" in the Drupal installation dialog
-8. follow dialog and configure site
+7. Use the "database", "user" and "pw" in the Drupal installation dialog
+8. Follow dialog and configure site
 
 Finally Drupal is installed.
 
