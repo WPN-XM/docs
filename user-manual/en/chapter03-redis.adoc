@@ -7,9 +7,10 @@ hyperloglogs and geospatial indexes with radius queries.
 Redis has built-in replication, Lua scripting, LRU eviction, transactions and different levels of on-disk persistence, 
 and provides high availability via Redis Sentinel and automatic partitioning with Redis Cluster.
 
-* Website: http://redis.io/
-* Documentation: http://redis.io/documentation
-* Redis for Windows is build and provided by MSOpenTech: https://github.com/MSOpenTech/redis
+[horizontal]
+Website:: http://redis.io/
+Documentation:: http://redis.io/documentation
+Redis for Windows is build and provided by MSOpenTech:: https://github.com/MicrosoftArchive/redis
 
 ==== Installation Location
 
@@ -49,10 +50,9 @@ There are several to chose from:
 - https://github.com/colinmollenhour/credis
 - https://github.com/ptrofimov/tinyredisclient
 
-==== Working with Redis from Node
+==== Working with Redis from Node.js
 
-A redis client for for Node.js is Mranney's "Node Redis".
- - https://github.com/NodeRedis/node_redis 
+A redis client for for Node.js is Mranney's https://github.com/NodeRedis/node_redis[Node Redis].
 
 ==== Administration Tools for Redis
 
