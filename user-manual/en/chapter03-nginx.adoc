@@ -33,6 +33,7 @@ with more details on these configurations.
 If you need to test the configuration of a live servers you could use https://www.ssllabs.com/ssltest/[SSLLabs].
 
 You might download the latest cacert bundle from here:
+
  - https://github.com/bagder/ca-bundle
  - https://curl.haxx.se/ca/cacert.pem
 
