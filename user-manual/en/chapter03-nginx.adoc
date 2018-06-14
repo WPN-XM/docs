@@ -24,19 +24,6 @@ you might set them as FGCI parameters (`fastcgi_param`) in the config.
 
 For more advanced configuration examples take a look at the https://github.com/lebinh/nginx-conf repository. 
 
-==== SSL Configuration
-
-You might use https://mozilla.github.io/server-side-tls/ssl-config-generator/[Mozilla's SSL Configuration Generator]
-to create a decent SSL configuration for Nginx. 
-There are also https://wiki.mozilla.org/Security/Server_Side_TLS[Mozilla's Server Side TLS Guidelines] 
-with more details on these configurations. 
-If you need to test the configuration of a live servers you could use https://www.ssllabs.com/ssltest/[SSLLabs].
-
-You might download the latest cacert bundle from here:
-
- - https://github.com/bagder/ca-bundle
- - https://curl.haxx.se/ca/cacert.pem
-
 ==== Server Blocks
 
 **sites-enabled**
@@ -204,6 +191,19 @@ upstream php_pool {
     server localhost:9101 weight=1 max_fails=1 fail_timeout=1s;
 }
 ```
+
+==== SSL Configuration
+
+You might use https://mozilla.github.io/server-side-tls/ssl-config-generator/[Mozilla's SSL Configuration Generator]
+to create a decent SSL configuration for Nginx. 
+There are also https://wiki.mozilla.org/Security/Server_Side_TLS[Mozilla's Server Side TLS Guidelines] 
+with more details on these configurations. 
+If you need to test the configuration of a live servers you could use https://www.ssllabs.com/ssltest/[SSLLabs].
+
+You might download the latest cacert bundle from here:
+
+ - https://github.com/bagder/ca-bundle
+ - https://curl.haxx.se/ca/cacert.pem
 
 ==== Alternative Nginx Builds for Windows
 
