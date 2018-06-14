@@ -37,13 +37,18 @@ You might download the latest cacert bundle from here:
  - https://github.com/bagder/ca-bundle
  - https://curl.haxx.se/ca/cacert.pem
 
-==== Server Blocks (sites-enabled and sites-disabled)
+==== Server Blocks
+
+**sites-enabled**
 
 This main configuration file `nginx.conf` includes other configuration files from the folder
-`server\bin\nginx\conf\sites-enabled`.  These configuration files are mostly server blocks. They
-contain directives to serve specific PHP applications,   configure proxy forwarding or define
-application specific URL rewrite rules, which are needed to enable nice looking URLs without
-parameters.
+`server\bin\nginx\conf\sites-enabled`. This is done by `include sites-enabled/*.conf;`.
+
+These configuration files are mostly server blocks. They contain directives to serve specific 
+PHP applications,   configure proxy forwarding or define application specific URL rewrite rules, 
+which are needed to enable nice looking URLs without parameters.
+
+**sites-disabled**
 
 The server stack ships several server blocks by default in the folder `server\bin\nginx\conf\sites-
 disabled`.  To use one of these files, simply move or copy them to the `server\bin\nginx\conf\sites-
@@ -179,6 +184,27 @@ When you just want to spread load across servers and the application has no dema
 then the default "round robin" balancing is better and faster, because it doesn't spend time and resources 
 on hashing a given key or client IP address.
 
+==== Default Upstream Configuration
+
+The folder for upstream configuration files is `server\bin\nginx\conf\upstreams`.
+
+By default `nginx.conf` will include all upstream configs found (`include upstreams/*.conf;`).
+
+The `php_pool.conf` file provides the following default configuration for PHP upstreams:
+
+```
+#
+# Automatically generated Nginx Upstream definition.
+# Do not edit manually!
+
+upstream php_pool {
+    ip_hash;
+
+    server localhost:9100 weight=1 max_fails=1 fail_timeout=1s;
+    server localhost:9101 weight=1 max_fails=1 fail_timeout=1s;
+}
+```
+
 ==== Alternative Nginx Builds for Windows
 
 The WPN-XM Server Stack uses Nginx builds from the offical website. But there
@@ -259,8 +285,12 @@ server {
 }
 ```
 
-Then create a `index.php` file in a new project folder `www\myproject` with the content
-`<?php echo 'Hello from folder: ' . __DIR__;`.
+Then create a `index.php` file in a new project folder `www\myproject` with the content:
+
+```
+<?php 
+echo 'Hello from folder: ' . __DIR__;
+```
 
 Now, update your `hosts` file accordingly and include `myproject.dev`.
 
