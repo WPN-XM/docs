@@ -21,21 +21,30 @@ It refers to "c:\server\" as default location for the installation.
 
 [options="header"]
 |===========
-| Folder               | Description
-| \bin\mariadb\        | MariaDB executables, config and data.
-| \bin\mongodb\        | MongoDB executables, config and data.
-| \bin\memcached\      | Memcached executables.
-| \bin\nginx\          | Nginx executable and config.
-| \bin\openssl\        | OpenSSL executable and config.
-| \bin\php\            | PHP executables and config.
-| \bin\sendmail\       | Sendmail emulator executable and config.
-| \bin\tools\          | Additional tools, e.g. RunHiddenConsole.
-| \temp\               | Temporary folder. You might trash it from time to time.
-| \logs\               | Log file folder.
-| \www\                | The root folder for all web projects.
-| \www\tools\          | The root folder for web-based administration tools.
+| Folder                         | Description
+| \bin                           | All major components are stored inside the bin folder.
+| \bin\mariadb                   | MariaDB executables, config and data.
+| \bin\mongodb                   | MongoDB executables, config and data.
+| \bin\memcached                 | Memcached executables.
+| \bin\nginx                     | Nginx executable and config.
+| \bin\openssl                   | OpenSSL executable and config.
+| \bin\php                       | PHP executables and config.
+| \bin\sendmail                  | Sendmail emulator executable and config.
+| \bin\tools                     | Additional tools, e.g. RunHiddenConsole.
+| \docs                          | Documentation and Licenses.
+| \logs                          | Log file folder.
+| \temp                          | Temporary folder. You might trash it from time to time.
+| \www                           | The root folder for all web projects.
+| \www\tools                     | The root folder for web-based administration tools.
+|===========
+
+==== Nginx Configuration Folders
+
+[options="header"]
+|===========
 | \bin\nginx\conf\sites-enabled  | The folder for all enabled Nginx domains. Place your server blocks here.
 | \bin\nginx\conf\sites-disabled | The folder for disabled Nginx domains.
+| \bin\nginx\conf\upstreams      | The folder for Nginx upstream configuration files.
 |===========
 
 <<<
