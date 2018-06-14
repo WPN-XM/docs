@@ -3,8 +3,6 @@
 Composer is a CLI tool for dependency management in PHP. 
 It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
 
-All our installers ship Composer out-of-the-box. 
-
 ==== Installation Location
 
 The default installaton folder is `server\bin\composer`.
