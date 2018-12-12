@@ -16,6 +16,8 @@ include::chapter03-memcached.adoc[]
 
 include::chapter03-redis.adoc[]
 
+include::chapter03-nodejs.adoc[]
+
 include::chapter03-gogitservice.adoc[]
 
 include::chapter03-composer.adoc[]

@@ -1,0 +1,16 @@
+=== Node.js
+
+==== Installation Location
+
+The default installaton folder is `server\bin\node`.
+
+The folder contains the Node.js executable: `node.exe`
+and `npm.cmd` the Node Package Manager.
+
+==== Updating Node/npm manually
+
+1. download node - http://wpn-xm.org/get.php?s=node-x64
+2. move executable into `\server\bin\node` folder
+3. download npm - https://wpn-xm.org/get.php?s=nodenpm
+4. extract content of `npm*.zip` into `\server\bin\node` folder
+5. add `\server\bin\node` to your ENV path
