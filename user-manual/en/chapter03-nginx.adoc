@@ -11,6 +11,12 @@ The default installaton folder is `server\bin\nginx`.
 
 ==== Configuration
 
+If you are new to Nginx, please make yourself familiar with the concept of configuration blocks and directives.
+To get a basic understanding, we recommend to read the sections 
+http://nginx.org/en/docs/beginners_guide.html#conf_structure[Configuration File’s Structure] and 
+http://nginx.org/en/docs/beginners_guide.html#static[Serving Static Content] from the 
+http://nginx.org/en/docs/beginners_guide.html[Nginx Beginners Guide].
+
 The main configuration file is `server\bin\nginx\conf\nginx.conf`.
 It includes configuration files from the folders `sites-enabled` and `upstreams`.
 
