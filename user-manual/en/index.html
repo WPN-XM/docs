@@ -1,0 +1,3334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.3">
+<meta name="description" content="This document is the WPN-XM Manual.">
+<meta name="keywords" content="wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB">
+<meta name="author" content="Jens A. Koch">
+<title>WPN-XM Server Stack - Manual</title>
+<link rel="stylesheet" href="./../stylesheets/foundation.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>WPN-XM Server Stack - Manual</h1>
+<div class="details">
+<span id="author" class="author">Jens A. Koch</span><br>
+<span id="email" class="email"><a href="mailto:jakoch@web.de">jakoch@web.de</a></span><br>
+<span id="revnumber"> 1.0-dev-d5386bf,</span>
+<span id="revdate">2019-03-29</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_preface">Preface</a></li>
+<li><a href="#_reasons">Reasons</a></li>
+<li><a href="#_getting_started">1. Getting started</a>
+<ul class="sectlevel2">
+<li><a href="#_requirements">1.1. Requirements</a></li>
+<li><a href="#_installation">1.2. Installation</a></li>
+<li><a href="#_files_and_folders">1.3. Files and Folders</a></li>
+<li><a href="#_running">1.4. Running</a></li>
+<li><a href="#_updating">1.5. Updating</a></li>
+<li><a href="#_getting_help">1.6. Getting Help</a></li>
+</ul>
+</li>
+<li><a href="#_the_server_control_panel">2. The Server Control Panel</a>
+<ul class="sectlevel2">
+<li><a href="#_about">2.1. About</a></li>
+<li><a href="#_using_the_server_control_panel">2.2. Using the Server Control Panel</a></li>
+<li><a href="#_configuration_dialog">2.3. Configuration Dialog</a></li>
+<li><a href="#_enabling_high_dpi_support">2.4. Enabling High-DPI Support</a></li>
+<li><a href="#_using_the_cli">2.5. Using the CLI</a></li>
+</ul>
+</li>
+<li><a href="#_software_components">3. Software Components</a>
+<ul class="sectlevel2">
+<li><a href="#_nginx">3.1. Nginx</a></li>
+<li><a href="#_php">3.2. PHP</a></li>
+<li><a href="#_php_extensions">3.3. PHP Extensions</a></li>
+<li><a href="#_mariadb">3.4. MariaDB</a></li>
+<li><a href="#_mongodb">3.5. MongoDB</a></li>
+<li><a href="#_postgresql">3.6. PostgreSQL</a></li>
+<li><a href="#_memcached">3.7. Memcached</a></li>
+<li><a href="#_redis">3.8. Redis</a></li>
+<li><a href="#_node_js">3.9. Node.js</a></li>
+<li><a href="#_go_git_service_gogs">3.10. Go Git Service (gogs)</a></li>
+<li><a href="#_composer">3.11. Composer</a></li>
+<li><a href="#_pickle">3.12. Pickle</a></li>
+<li><a href="#_pear">3.13. PEAR</a></li>
+<li><a href="#_neo4j">3.14. Neo4J</a></li>
+</ul>
+</li>
+<li><a href="#_php_applications_2">4. PHP Applications</a>
+<ul class="sectlevel2">
+<li><a href="#_drupal_7">4.1. Drupal 7</a></li>
+</ul>
+</li>
+<li><a href="#colophon">Colophon</a>
+<ul class="sectlevel2">
+<li><a href="#_license">License</a></li>
+<li><a href="#_authors">Authors</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">This document is under active development and discussion!</div>
+<div class="paragraph">
+<p>If you find errors or omissions in this document, please don&#8217;t hesitate to <a href="https://github.com/WPN-XM/WPN-XM/issues">submit an issue or open a pull request</a> with a fix.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preface"><a class="anchor" href="#_preface"></a><a class="link" href="#_preface">Preface</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The WPN-XM server stack is a software bundle for web developers
+and a profound base for the development of web applications.</p>
+</div>
+<div class="paragraph">
+<p>This book is a comprehensive guide to getting started and working with WPN-XM.
+It includes details of the installation, the architecture, folder layout and
+the different applications shipped and their default configurations.</p>
+</div>
+<div class="paragraph">
+<p>WPN-XM provides a number of advantages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>multiple installers</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the prepackaged installers ship software components as a bundle</p>
+</li>
+<li>
+<p>the webinstaller allows the selection of components to download</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>two software catalogs to chose applications from</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Stack components</p>
+</li>
+<li>
+<p>PHP applications</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>all components are also available for selective manual download on our website</p>
+</li>
+<li>
+<p>the updater</p>
+<div class="ulist">
+<ul>
+<li>
+<p>indicates updates for installed software components</p>
+</li>
+<li>
+<p>allows to keep your stack up-to-date by updating already installed components</p>
+</li>
+<li>
+<p>allows to install additional (not-yet-installed) components</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>it is a preconfigured development environment, ready to work out-of-the-box</p>
+</li>
+<li>
+<p>Sever Control Panel</p>
+</li>
+<li>
+<p>Webinterface</p>
+</li>
+<li>
+<p>fully Open-Source</p>
+<div class="ulist">
+<ul>
+<li>
+<p>build using an open-source build toolchain</p>
+</li>
+<li>
+<p>providing reliable and continuous open-source builds</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>WPN-XM has several goals:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>convenient local web development environment with a focus on PHP</p>
+</li>
+<li>
+<p>simple and fast installation</p>
+</li>
+<li>
+<p>out-of-the-box configuration for servers</p>
+</li>
+<li>
+<p>simple start and stop of servers</p>
+</li>
+<li>
+<p>easy to start new projects</p>
+</li>
+<li>
+<p>support for multiple user projects</p>
+</li>
+<li>
+<p>seamless automatic updates</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reasons"><a class="anchor" href="#_reasons"></a><a class="link" href="#_reasons">Reasons</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are already several server stacks for Windows out there.
+Why another one?</p>
+</div>
+<div class="paragraph">
+<p>Just to name a few reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Well, a PHP server stack like i imagined didn&#8217;t exist (until now :).</p>
+</li>
+<li>
+<p>I love tooling and making things.
+Things which actually make it easier, to make new web technology things.</p>
+</li>
+<li>
+<p>It&#8217;s about empowering more people to build more things.</p>
+</li>
+<li>
+<p>Mainly because installing things on Windows isn’t straightforward.
+I wanted to save my life-time and the life-time of other developers by getting rid of the daunting,
+repeated tasks of searching for software and installing stuff manually.
+I imagined to build an environment, where pulling in new web development related packages and tools is easy.
+A system where all the hassle of settings things up is greatly reduced and everything is ready to work right out-of-the-box.
+The stack addresses the fundamental problem of Windows: the missing package management.
+But, only for a small subset of the software ecosystem: for software, relevant for web developers.</p>
+</li>
+<li>
+<p>I started the project as a true open-source project, because other server stacks were (and are still) not really open-source.</p>
+</li>
+<li>
+<p>The project solves the "i&#8217;m not in charge and cannot modify the project like i want" problem.</p>
+</li>
+<li>
+<p>I&#8217;m trying to close the gap between third-party vendors, which provide tools and servers, and PHP.
+Mainly, because PHP&#8217;s support for these niche DB system is pretty bad.
+Example-wise, let&#8217;s take a look at database vendors:
+The combination of PHP and MySQL as RDBMS helped PHP to get used in lots of places and use-cases.
+But, nowadays, there are other interesting database solutions out there,
+including NOSQL, Graph, RDF and realtime databases.</p>
+</li>
+<li>
+<p>Finally, let&#8217;s partly quote the auto maker Renault: i need to "drive the change".</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_started"><a class="anchor" href="#_getting_started"></a><a class="link" href="#_getting_started">1. Getting started</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_requirements"><a class="anchor" href="#_requirements"></a><a class="link" href="#_requirements">1.1. Requirements</a></h3>
+<div class="paragraph">
+<p>WPN-XM is designed to work on a wide range of computers.
+This section provides basic guidelines to ensure your WPN-XM experience is as smooth as possible.</p>
+</div>
+<div class="sect3">
+<h4 id="_which_windows_versions_are_supported_by_your_installation_wizards"><a class="anchor" href="#_which_windows_versions_are_supported_by_your_installation_wizards"></a><a class="link" href="#_which_windows_versions_are_supported_by_your_installation_wizards">1.1.1. Which Windows versions are supported by your installation wizards?</a></h4>
+<div class="paragraph">
+<p>You can execute our installation wizard executables on nearly all Windows versions.</p>
+</div>
+<div class="paragraph">
+<p>The installation wizards are Inno-Setup based.
+Inno-Setup supports every Windows release since 2000, including:
+Windows Server 2003, 2008, 2008 R2, 2012 and, Windows 2000, XP, Vista, 7, 8, 8.1, 10 .
+The installers do not require service packs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_which_windows_versions_are_supported_by_the_packaged_components"><a class="anchor" href="#_which_windows_versions_are_supported_by_the_packaged_components"></a><a class="link" href="#_which_windows_versions_are_supported_by_the_packaged_components">1.1.2. Which Windows versions are supported by the packaged components?</a></h4>
+<div class="paragraph">
+<p>We differentiate installers by bitsize.
+We build installers for x86 and x64 Windows versions and bundle components accordingly.</p>
+</div>
+<div class="paragraph">
+<p>When bundling components our lowest supported Windows version is Windows 7.</p>
+</div>
+<div class="paragraph">
+<p>Please take a look at the Windows compatibility of the components included in the installer.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We test installers for compatibility only on Windows 7 and Windows 10.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are running into a compatibility issue with one of the bundled components, please
+do not hesitate to inform us and report the problem over at <a href="https://github.com/WPN-XM/WPN-XM/issues">Github Issues</a>.
+Thank you!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_list_of_supported_windows_versions"><a class="anchor" href="#_list_of_supported_windows_versions"></a><a class="link" href="#_list_of_supported_windows_versions">1.1.2.1. List of supported Windows Versions</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Windows 7 (32-Bit) Professional</p>
+</li>
+<li>
+<p>Windows 7 (64-Bit) Home Premium and Professional</p>
+</li>
+<li>
+<p>Windows 7 SP 1 (32-Bit) Home Premium, Professional, and Enterprise</p>
+</li>
+<li>
+<p>Windows 7 SP 1 (64-Bit) Home Premium, Professional, Enterprise, and Ultimate</p>
+</li>
+<li>
+<p>Windows 8 (32-Bit and 64 Bit) Core, Professional, and Enterprise</p>
+</li>
+<li>
+<p>Windows 8.1 (32-Bit and 64 Bit) Core, Professional, and Enterprise</p>
+</li>
+<li>
+<p>Windows 8.1 Update (32-Bit and 64 Bit) Core, Professional, and Enterprise</p>
+</li>
+<li>
+<p>Windows 10</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_minimum_requirements_todo"><a class="anchor" href="#_minimum_requirements_todo"></a><a class="link" href="#_minimum_requirements_todo">1.1.3. Minimum Requirements (todo)</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>OS</p>
+</li>
+<li>
+<p>Processor</p>
+</li>
+<li>
+<p>Memory</p>
+</li>
+<li>
+<p>Storage</p>
+</li>
+<li>
+<p>Additional Notes</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recommended_requirements_todo"><a class="anchor" href="#_recommended_requirements_todo"></a><a class="link" href="#_recommended_requirements_todo">1.1.4. Recommended Requirements (todo)</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>OS</p>
+</li>
+<li>
+<p>Processor</p>
+</li>
+<li>
+<p>Memory</p>
+</li>
+<li>
+<p>Storage</p>
+</li>
+<li>
+<p>Additional Notes</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation"><a class="anchor" href="#_installation"></a><a class="link" href="#_installation">1.2. Installation</a></h3>
+<div class="paragraph">
+<p>This chapter explains how to install WPN-XM Server Stack for Windows.</p>
+</div>
+<div class="paragraph">
+<p>The installation wizard packages for WPN-XM are available starting with version v0.1.0.
+The packages are available for the x86 (32 bit) and since v0.8.1 also for the x86_64 (64 bit) processor architecture.
+You can choose between two installer types: we provide packaged installers and web-installers.
+We package installers for <a href="http://php.net/supported-versions.php">every supported PHP version</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following installer packages are available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lite &amp; Lite-RC Installer</p>
+</li>
+<li>
+<p>Standard Installer</p>
+</li>
+<li>
+<p>Full Installer</p>
+</li>
+<li>
+<p>Web-installer</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Standard and Full Installers contain a large set of components in one big setup executable.
+The Lite installer ships a minimal set of components to get you started. This version ships a stable PHP version.
+The Lite-RC installer is the Lite packages, but ships the latest PHP RC (Release Candiate) version for testing purposes.</p>
+</div>
+<div class="paragraph">
+<p>The Web-installer is a small file you can use to select and download the components of your choice
+from the web. Pros: Instead of downloading one large installer containg all components, you are downloading
+the small web-installer and then only the components you select. This has the advantage of saving
+you time and bandwidth. You can also download and save the web-installer for later installation.
+Cons: The web-installer is a problem, when packages must go through a review process before installation.
+External links are often discouraged in this review process, because they require external calls during install
+and can make restoration of service difficult, when the links or the link targets change.</p>
+</div>
+<div class="paragraph">
+<p>Important: If you face problems downloading certain components using the web-installer, please
+disable your Anti-Virus and re-try.</p>
+</div>
+<div class="paragraph">
+<p>You might install WPN-XM either by using the common user interface or by installing it in silent mode.
+The silent mode is for integration with automatic and unmaintained installation procedures.</p>
+</div>
+<div class="paragraph">
+<p>The following sections explain the installation wizard user interface.
+We&#8217;ll use screen-shots from an w64 installation on Windows 10 below.</p>
+</div>
+<div class="sect3">
+<h4 id="_installation_ui"><a class="anchor" href="#_installation_ui"></a><a class="link" href="#_installation_ui">1.2.1. Installation UI</a></h4>
+<div class="paragraph">
+<p>Using the installation wizards user interface is the typical mode of installation.</p>
+</div>
+<div class="paragraph">
+<p>To start the installer, just click on the setup executable, e.g. "WPNXM-0.8.6-Full-Setup-php56-w64.exe".</p>
+</div>
+<div class="sect4">
+<h5 id="_welcome"><a class="anchor" href="#_welcome"></a><a class="link" href="#_welcome">1.2.1.1. Welcome</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-install-screen1.png" alt="WPN-XM Screenshot 1">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_choose_target_folder"><a class="anchor" href="#_choose_target_folder"></a><a class="link" href="#_choose_target_folder">1.2.1.2. Choose target folder</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-install-screen2.png" alt="WPN-XM Screenshot 2">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_custom_setup_components_selection"><a class="anchor" href="#_custom_setup_components_selection"></a><a class="link" href="#_custom_setup_components_selection">1.2.1.3. Custom Setup / Components Selection</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-install-screen3.png" alt="WPN-XM Screenshot 3">
+</div>
+</div>
+<div class="paragraph">
+<p>On the Custom Setup Screen you might choose what software components and features to install.</p>
+</div>
+<div class="paragraph">
+<p>The drop-down box will show you four default software component pre-selections you might choose from.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-install-screen3-preselection.png" alt="WPN-XM Screenshot 3 Preselection">
+</div>
+</div>
+<div class="paragraph">
+<p>The Lite installation wizard has only two pre-selection setups: Full and Custom.
+While all other installation wizards have four default preallocation setups:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Full Installation</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>This preselects everything for installation.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Server Stack with Administration Tools</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Base (NGINX, MariaDB, PHP)</p>
+</li>
+<li>
+<p>Admin Tools (Tray App, Webinterface)</p>
+</li>
+<li>
+<p>Dependency Tool (composer)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Server Stack with Debug Tools</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Base (NGINX, MariaDB, PHP)</p>
+</li>
+<li>
+<p>Admin Tools (Tray App, Webinterface)</p>
+</li>
+<li>
+<p>Debug Tools (xhProf, XDebug, webgrind)</p>
+</li>
+<li>
+<p>Dependency Tool (composer)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Custom Installation</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>This deselects everything and you might choose freely.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_select_the_startmenu_folder"><a class="anchor" href="#_select_the_startmenu_folder"></a><a class="link" href="#_select_the_startmenu_folder">1.2.1.4. Select the Startmenu Folder</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-install-screen4.jpg" alt="WPN-XM Screenshot 4">
+</div>
+</div>
+<div class="paragraph">
+<p>You might select a folder or sub-folder of the start menu,
+where the WPN-XM start menu entries will then be created.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_select_additional_tasks"><a class="anchor" href="#_select_additional_tasks"></a><a class="link" href="#_select_additional_tasks">1.2.1.5. Select Additional Tasks</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-install-screen5.png" alt="WPN-XM Screenshot 5">
+</div>
+</div>
+<div class="paragraph">
+<p>You might select various tasks to perform during installation,
+like creation of shortcuts in the start menu and on your desktop.
+If you install the files on a portable device, don&#8217;t forget to enable "Portable Mode".</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_installation_running_screen"><a class="anchor" href="#_installation_running_screen"></a><a class="link" href="#_installation_running_screen">1.2.1.6. Installation Running Screen</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-install-screen7.png" alt="WPN-XM Screenshot 7">
+</div>
+</div>
+<div class="paragraph">
+<p>The screen shows the progress while downloading and installing the components for your WPN-XM stack.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_end"><a class="anchor" href="#_end"></a><a class="link" href="#_end">1.2.1.7. End</a></h5>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-install-screen8.png" alt="WPN-XM Screenshot 8">
+</div>
+</div>
+<div class="paragraph">
+<p>Installation is finished now.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_start_menu_entries"><a class="anchor" href="#_start_menu_entries"></a><a class="link" href="#_start_menu_entries">1.2.2. Start Menu Entries</a></h4>
+<div class="paragraph">
+<p>After the installation finished, you will find the following new start menu entries:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-startmenu.png" alt="WPN-XM Startmenu">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Description of menu entries and what they do</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Administration - Opens the Administration Webinterface of WPN-XM in your default Browser.</p>
+</li>
+<li>
+<p>Report Issue - Opens the Issues Reporting Page of WPN-XM</p>
+</li>
+<li>
+<p>Server-Control-Panel - Starts the Tray Application</p>
+</li>
+<li>
+<p>Start - Starts all daemons and opens the webinterface your browser.</p>
+</li>
+<li>
+<p>Status - Shows the status of all daemons in an endless loop.</p>
+</li>
+<li>
+<p>Stop - Stops all daemons.</p>
+</li>
+<li>
+<p>WPN-XM Server Stack in the Internet - Opens the official WPN-XM website.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_uninstallation"><a class="anchor" href="#_uninstallation"></a><a class="link" href="#_uninstallation">1.2.3. Uninstallation</a></h4>
+<div class="paragraph">
+<p>Simply execute the uninstaller program (unins???.exe) in the installation folder.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-uninstall-screen1.jpg" alt="WPN-XM Uninstall Screenshot 1">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/wpnxm-uninstall-screen2.jpg" alt="WPN-XM Uninstall Screenshot 2">
+</div>
+</div>
+<div class="paragraph">
+<p>You&#8217;ll also find a shortcut in the start menu entries of WPN-XM.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_installation_logs"><a class="anchor" href="#_installation_logs"></a><a class="link" href="#_installation_logs">1.2.4. Installation logs</a></h4>
+<div class="paragraph">
+<p>If you encounter a bug in the installer, you might read the installer logs for diagnosis.
+You&#8217;ll find the logs in the installation folder, e.g. c:\wpnxm-server.
+The name of the log file is "Setup Log yyyy-mm-dd #num.txt", e.g. "Setup Log 2012-05-12 #005.txt".
+It&#8217;s a text file and you might open it with notepad or with the editor of your choice.
+Please attach the logs when creating bug reports.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_silent_installation_unattended_installation"><a class="anchor" href="#_silent_installation_unattended_installation"></a><a class="link" href="#_silent_installation_unattended_installation">1.2.5. Silent Installation &amp; Unattended Installation</a></h4>
+<div class="paragraph">
+<p>In our experience, the <code>/silent</code> switch is usually sufficient for a basic unattended installation.
+But to be completely sure, we recommend <code>/sp- /silent /norestart</code> as startup parameters.</p>
+</div>
+<div class="paragraph">
+<p>There is also the parameter <code>/verysilent</code>. If you use <code>/verysilent</code>, my advise is to use the
+parameter <code>/norestart</code> as well, just to be sure that the machine will not reboot without prompting
+after or during the installation procedure.</p>
+</div>
+<div class="paragraph">
+<p>You might also specify the target directory for the installation by using the parameter <code>/dir</code>, e.g. <code>/dir="x:\dirname"</code>.</p>
+</div>
+<div class="paragraph">
+<p>Using the pieces of information provided above, then a complete silent installation CLI call would look like this:
+<code>*setup.exe /VERYSILENT /SP- /DIR="C:\INSTALL_DIR" /NORESTART</code>.</p>
+</div>
+<div class="paragraph">
+<p>The switches for Inno Setup Silent Installation are fully documented in the ISetup.hlp file in the Inno distribution.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="http://unattended.sourceforge.net/InnoSetup_Switches_ExitCodes.html">InnoSetup Switches and ExitCodes</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_silent_uninstallation"><a class="anchor" href="#_silent_uninstallation"></a><a class="link" href="#_silent_uninstallation">1.2.6. Silent Uninstallation</a></h4>
+<div class="paragraph">
+<p>The uninstaller program (<code>unins???.exe</code>) accepts optional command line parameters.
+You might use the parameters <code>/verysilent</code> and <code>/norestart</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_files_and_folders"><a class="anchor" href="#_files_and_folders"></a><a class="link" href="#_files_and_folders">1.3. Files and Folders</a></h3>
+<div class="paragraph">
+<p>This section describes the Files and Folders of the WPN-XM server stack after a successful installation.
+It refers to "c:\server\" as default location for the installation.</p>
+</div>
+<div class="sect3">
+<h4 id="_files"><a class="anchor" href="#_files"></a><a class="link" href="#_files">1.3.1. Files</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">File</th>
+<th class="tableblock halign-left valign-top">Installed with Component</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c:\server\wpn-xm.exe</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WPN-XM Server Control Panel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Executable of the WPN-XM Server Control Panel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c:\server\start-wpnxm.bat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Batch file for starting all daemons.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c:\server\stop-wpnxm.bat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Batch file for stopping all daemons.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c:\server\reset-db-pw.bat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Batch file for resetting the MariaDB database password</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c:\server\status-wpnxm.bat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">always</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Batch file for displaying the daemon state.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c:\server\start-mongodb.bat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Batch file for starting MongoDB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">c:\server\stop-mongodb.bat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Batch file for stopping MongoDB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_folders"><a class="anchor" href="#_folders"></a><a class="link" href="#_folders">1.3.2. Folders</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Folder</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All major components are stored inside the bin folder.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\mariadb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MariaDB executables, config and data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\mongodb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB executables, config and data.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\memcached</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Memcached executables.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\nginx</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nginx executable and config.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\openssl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenSSL executable and config.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\php</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PHP executables and config.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\sendmail</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sendmail emulator executable and config.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\tools</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional tools, e.g. RunHiddenConsole.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\docs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Documentation and Licenses.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\logs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log file folder.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\temp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Temporary folder. You might trash it from time to time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\www</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The root folder for all web projects.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\www\tools</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The root folder for web-based administration tools.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_nginx_configuration_folders"><a class="anchor" href="#_nginx_configuration_folders"></a><a class="link" href="#_nginx_configuration_folders">1.3.3. Nginx Configuration Folders</a></h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\nginx\conf\sites-enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The folder for all enabled Nginx domains. Place your server blocks here.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\nginx\conf\sites-disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The folder for disabled Nginx domains.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\bin\nginx\conf\upstreams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The folder for Nginx upstream configuration files.</p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_running"><a class="anchor" href="#_running"></a><a class="link" href="#_running">1.4. Running</a></h3>
+<div class="paragraph">
+<p>From the Start Menu you can startup the Server Control Panel:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-MainWindow.png" alt="WPN-XM Server Control Panel - MainWindow">
+</div>
+</div>
+<div class="paragraph">
+<p>After starting up the Server Control Panel, there is also a Server Control Panel
+icon in the right lower corner of the screen</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-TrayIcon.png" alt="WPN-XM Server Control Panel - TrayIcon">
+</div>
+</div>
+<div class="paragraph">
+<p>With the icon (using the right mouse button), you can also start and stop the
+servers.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-TrayMenu.png" alt="WPN-XM Server Control Panel - TrayMenu">
+</div>
+</div>
+<div class="paragraph">
+<p>You need at least to start the Nginx and PHP daemon to get started. If you want
+to use a database connection you will also need to start the MariaDB daemon.
+Depending on your needs you can start, stop and restart other servers like
+MongoDB or Memcached. Or you can access the configuration, logs and error log
+files. When a daemon has been started, the status becomes green. If the status
+stays gray there is something wrong with the configuration of that daemon of the
+operating systems prevents that the IP ports gets opened or is already opened by
+another service (IIS for example) or daemon.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://github.com/WPN-XM/WPN-XM/wiki/FAQ">FAQ page</a> for some details
+about troubleshooting and how to solve problems.</p>
+</div>
+<div class="paragraph">
+<p>For more details about the Server Control Panel, check
+<a href="https://github.com/WPN-XM/WPN-XM/wiki/Using-the-Server-Control-Panel">this page</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_updating"><a class="anchor" href="#_updating"></a><a class="link" href="#_updating">1.5. Updating</a></h3>
+<div class="paragraph">
+<p>The updater is work in progress.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_getting_help"><a class="anchor" href="#_getting_help"></a><a class="link" href="#_getting_help">1.6. Getting Help</a></h3>
+<div class="paragraph">
+<p>There are several channels to reach the developers and the WPN-XM  community to
+get direct assistance.</p>
+</div>
+<div class="paragraph">
+<p>To find the right answers to your questions, you can turn to one of the
+following sources to get help and discuss your issues,
+but also to receive news and update notifications.</p>
+</div>
+<div class="paragraph">
+<p><strong>Github Issues</strong></p>
+</div>
+<div class="paragraph">
+<p>If you want to report a bug or contribute your ideas, you can use the
+<a href="https://github.com/WPN-XM/WPN-XM/issues">WPN-XM Issue tracker on Github</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Twitter</strong></p>
+</div>
+<div class="paragraph">
+<p>Follow <a href="https://twitter.com/wpnxm">WPN-XM on Twitter</a> to get real-time news
+regarding the development and to receive news and update notifications.</p>
+</div>
+<div class="paragraph">
+<p><strong>Forum</strong></p>
+</div>
+<div class="paragraph">
+<p>You might also join the <a href="https://forum.wpn-xm.org/">WPN-XM community forums</a>,
+where you can ask the community for help or report bugs and contribute ideas.</p>
+</div>
+<div class="paragraph">
+<p><strong>Stack Overflow</strong></p>
+</div>
+<div class="paragraph">
+<p>Scala is an <a href="http://stackoverflow.com/questions/tagged/wpn-xm">active topic</a>
+on Stack Overflow, a very popular programmer Q&amp;A site.</p>
+</div>
+<div class="paragraph">
+<p><strong>Google+</strong></p>
+</div>
+<div class="paragraph">
+<p>We have an <a href="https://plus.google.com/u/0/communities/109388403943670810388">Google+ community</a>
+that is a good place to discuss and learn about WPN-XM.</p>
+</div>
+<div class="paragraph">
+<p><strong>Mailing List</strong></p>
+</div>
+<div class="paragraph">
+<p>We also have a low-volume <a href="https://groups.google.com/forum/#!forum/wpn-xm">mailing list</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_server_control_panel"><a class="anchor" href="#_the_server_control_panel"></a><a class="link" href="#_the_server_control_panel">2. The Server Control Panel</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_about"><a class="anchor" href="#_about"></a><a class="link" href="#_about">2.1. About</a></h3>
+<div class="paragraph">
+<p>The WPN-XM Server Control Panel is a GUI and CLI application, which enables you to control and configure servers on Windows easily.</p>
+</div>
+<div class="paragraph">
+<p>The main window of the control panel provides start and stop, next to quick access buttons for logs and config files
+and indicates the process state, the used port and the software version for each server.</p>
+</div>
+<div class="paragraph">
+<p>The control panel provides a tight integration with additionally installed tools,
+a self-updater, an updater for already installed software, a configuration dialog and a process viewer.</p>
+</div>
+<div class="paragraph">
+<p>The following servers are supported: PHP, Nginx, MariaDb, MongoDb, Redis, Memcached, PostgreSQL.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s written in C++ using Qt 5.2+. It&#8217;s free and open-source software, released under GNU/GPL v3 license.</p>
+</div>
+<div class="paragraph">
+<p>For the full list of features, see <a href="https://github.com/WPN-XM/server-control-panel#features" class="bare">https://github.com/WPN-XM/server-control-panel#features</a></p>
+</div>
+<div class="paragraph">
+<p>Breaking changes, new features, deprecations and bug fixes are tracked in the <a href="https://github.com/WPN-XM/server-control-panel/blob/master/CHANGELOG.md">CHANGELOG</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_the_server_control_panel"><a class="anchor" href="#_using_the_server_control_panel"></a><a class="link" href="#_using_the_server_control_panel">2.2. Using the Server Control Panel</a></h3>
+<div class="paragraph">
+<p>This section describes the usage of the Server Control Panel.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-MainWindow.png" alt="Server Control Panel - MainWindow">
+</div>
+</div>
+<div class="paragraph">
+<p>If the Server Control Panel is new for you please check the <a href="#_running">Running</a> first before you continue reading.</p>
+</div>
+<div class="paragraph">
+<p>When we look at the Server Control Panel more closely, you will see that it consists out of 6 parts:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-MainWindow-HighlightedParts.png" alt="Server Control Panel - MainWindow with Highlighted Parts">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_part_1_project_buttons"><a class="anchor" href="#_part_1_project_buttons"></a><a class="link" href="#_part_1_project_buttons">2.2.1. Part 1 - Project Buttons</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-p1.png" alt="Server Control Panel - Part 1">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Use this to visit the Home page of WPN-XM.org.</p>
+</li>
+<li>
+<p>Go to the WPN-XM mailing list.</p>
+</li>
+<li>
+<p>Report issue or request feature.</p>
+</li>
+<li>
+<p>Support the development of WPN-XM by donating.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_part_2_server_controls_and_monitoring"><a class="anchor" href="#_part_2_server_controls_and_monitoring"></a><a class="link" href="#_part_2_server_controls_and_monitoring">2.2.2. Part 2 - Server Controls and Monitoring</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-p2.png" alt="Server Control Panel - Part 2">
+</div>
+</div>
+<div class="paragraph">
+<p>Start and stop the different daemons. Access the logs and error log files. Review and change configuration settings.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_part_3_tools"><a class="anchor" href="#_part_3_tools"></a><a class="link" href="#_part_3_tools">2.2.3. Part 3 - Tools</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-p3.png" alt="Server Control Panel - Part 3">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Show PHP information.</p>
+</li>
+<li>
+<p>Manage your databases using phpMyAdmin.</p>
+</li>
+<li>
+<p>Profiling in the browser using webgrind.</p>
+</li>
+<li>
+<p>Use adminer for the administration of different database systems like MySQL, MongoDB, SQLite and PostgreSQL.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_part_4_open_projects_folder"><a class="anchor" href="#_part_4_open_projects_folder"></a><a class="link" href="#_part_4_open_projects_folder">2.2.4. Part 4 - Open Projects Folder</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-p4.png" alt="Server Control Panel - Part 4">
+</div>
+</div>
+<div class="paragraph">
+<p>Browse through your projects or open the explorer to work on your files.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_part_5_right_side_menu"><a class="anchor" href="#_part_5_right_side_menu"></a><a class="link" href="#_part_5_right_side_menu">2.2.5. Part 5 - Right Side Menu</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-p5.png" alt="Server Control Panel - Part 5">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open Webinterface in Browser.</p>
+</li>
+<li>
+<p>Open the Configuration Panel.</p>
+</li>
+<li>
+<p>View Wiki help page.</p>
+</li>
+<li>
+<p>About window.</p>
+</li>
+<li>
+<p>Close the Panel (stays running in the background).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_part_6_all_servers_start_and_stop_buttons"><a class="anchor" href="#_part_6_all_servers_start_and_stop_buttons"></a><a class="link" href="#_part_6_all_servers_start_and_stop_buttons">2.2.6. Part 6 - All Servers Start and Stop Buttons</a></h4>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-p6.png" alt="Server Control Panel - Part 6">
+</div>
+</div>
+<div class="paragraph">
+<p>The buttons enable you to start or stop multiple servers at once.
+You can configure, which servers these buttons control in the configuration dialog.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_dialog"><a class="anchor" href="#_configuration_dialog"></a><a class="link" href="#_configuration_dialog">2.3. Configuration Dialog</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-ConfigDialog.png" alt="Server Control Panel - Configuration Dialog">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_enabling_high_dpi_support"><a class="anchor" href="#_enabling_high_dpi_support"></a><a class="link" href="#_enabling_high_dpi_support">2.4. Enabling High-DPI Support</a></h3>
+<div class="paragraph">
+<p>When you are using a high dpi display, the icons, buttons and text of the SCP might be tiny.
+While we are still trying to solve this issue, here is a workaround.</p>
+</div>
+<div class="paragraph">
+<p>Steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Right-click <code>wpn-xm.exe</code></p>
+</li>
+<li>
+<p>Click on <code>Properties</code></p>
+</li>
+<li>
+<p>Go to tab <code>Compatibility</code></p>
+</li>
+<li>
+<p>Enable the checkbox for "Override High-DPI Scaling behaviour.", so that scaling is performed by the system</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Server-Control-Panel-Enabling-HighDPI-Support.png" alt="Server Control Panel - High-DPI Settings">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_the_cli"><a class="anchor" href="#_using_the_cli"></a><a class="link" href="#_using_the_cli">2.5. Using the CLI</a></h3>
+<div class="paragraph">
+<p>This section describes the usage of the Server Control Panel - Command Line Interface.</p>
+</div>
+<div class="paragraph">
+<p>The Server Control Panel is a hybrid Windows application with two user-interfaces:
+the graphical user interface (GUI) and the command line interface (CLI).</p>
+</div>
+<div class="paragraph">
+<p>When you run <code>wpn-xm.exe</code> without CLI arguments the application will start in GUI mode.</p>
+</div>
+<div class="paragraph">
+<p>You can list the command line options by executing <code>wpn-xm.exe --help</code>.
+The following command line options are available:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">WPN-XM Server Stack 0.8.5+0a7e025
+Copyright (c) 2015 Jens-Andre Koch. All rights reserved.
+
+Usage: wpn-xm.exe [option] [args]
+
+Options:
+-v, --version   Prints the version.
+-h, --help      Prints this help message.
+-d, --daemon    Executes on .
+--start         Starts one or more .
+--stop          Stops one or more .
+--restart       Restarts one or more .
+
+Arguments:
+    The name of a daemon, e.g. nginx, mariadb, memcached, mongodb.
+    The command to execute, e.g. start, stop, restart.
+
+Examples:
+    wpn-xm.exe --daemon nginx start
+    wpn-xm.exe --start nginx php mariadb
+
+Info: Ports specified in "wpn-xm.ini" will be used.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_software_components"><a class="anchor" href="#_software_components"></a><a class="link" href="#_software_components">3. Software Components</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_nginx"><a class="anchor" href="#_nginx"></a><a class="link" href="#_nginx">3.1. Nginx</a></h3>
+<div class="paragraph">
+<p>Nginx ("engine x") is a web server written by Igor Sysoev in 2002. It can act as a reverse proxy
+server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP
+cache. Nginx runs on Unix, Linux, BSD variants, OS X, Solaris, AIX, HP-UX, and Windows. Nginx is
+free and open source software and released under the terms of a BSD-like license.</p>
+</div>
+<div class="sect3">
+<h4 id="_installation_location"><a class="anchor" href="#_installation_location"></a><a class="link" href="#_installation_location">3.1.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder is <code>server\bin\nginx</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration"><a class="anchor" href="#_configuration"></a><a class="link" href="#_configuration">3.1.2. Configuration</a></h4>
+<div class="paragraph">
+<p>If you are new to Nginx, please make yourself familiar with the concept of configuration blocks and directives.
+To get a basic understanding, we recommend to read the sections
+<a href="http://nginx.org/en/docs/beginners_guide.html#conf_structure">Configuration File’s Structure</a> and
+<a href="http://nginx.org/en/docs/beginners_guide.html#static">Serving Static Content</a> from the
+<a href="http://nginx.org/en/docs/beginners_guide.html">Nginx Beginners Guide</a>.</p>
+</div>
+<div class="paragraph">
+<p>The structure of the configuration is a <code>http</code> block and one or more <code>server</code> blocks.
+The <code>http</code> block contains general directives relevant for all pages served by Nginx.
+The <code>server</code> block(s) containing site-specific directives.
+Its possible to keep all server blocks in nginx.conf, but we prefer an configuration approach,
+where each site gets it&#8217;s own configuration file.</p>
+</div>
+<div class="paragraph">
+<p>The main configuration file is <code>server\bin\nginx\conf\nginx.conf</code>.
+It includes configuration files from the folders <code>sites-enabled</code> and <code>upstreams</code>.</p>
+</div>
+<div class="paragraph">
+<p>The stack ships also a very minimal configuration for debugging purposes:
+<a href="https://github.com/WPN-XM/software/blob/master/nginx/config/nginx.conf.debug"><code>nginx.conf.debug</code></a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you want to pass environment variables to PHP,
+you might set them as FGCI parameters (<code>fastcgi_param</code>) in the config.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For more advanced configuration examples take a look at the <a href="https://github.com/lebinh/nginx-conf" class="bare">https://github.com/lebinh/nginx-conf</a> repository.
+Or use the config generator generator provided at <a href="https://nginxconfig.io/" class="bare">https://nginxconfig.io/</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_server_blocks"><a class="anchor" href="#_server_blocks"></a><a class="link" href="#_server_blocks">3.1.3. Server Blocks</a></h4>
+<div class="paragraph">
+<p><strong>nginx\conf\sites-enabled</strong></p>
+</div>
+<div class="paragraph">
+<p>The folder for server block configuration files is <code>server\bin\nginx\conf\sites-enabled</code>.</p>
+</div>
+<div class="paragraph">
+<p>These configs contain directives to serve specific PHP applications, configure proxy forwarding
+or define application specific URL rewrite rules, which are needed to enable nice
+looking URLs without parameters.</p>
+</div>
+<div class="paragraph">
+<p>By default <code>nginx.conf</code> includes all configuration files from the <code>sites-enabled</code> folder.</p>
+</div>
+<div class="paragraph">
+<p><strong>nginx\conf\sites-disabled</strong></p>
+</div>
+<div class="paragraph">
+<p>You find server blocks for various PHP applications in the folder <code>server\bin\nginx\conf\sites-disabled</code>.</p>
+</div>
+<div class="paragraph">
+<p>To use one of these files, simply move or copy them to the <code>server\bin\nginx\conf\sites-enabled</code> folder
+and restart Nginx.  The new server block configuration is then automatically included.</p>
+</div>
+<div class="paragraph">
+<p>You find configuration files for various applications also on Github: <a href="https://github.com/WPN-" class="bare">https://github.com/WPN-</a>
+XM/software/tree/master/nginx/config/conf/sites-disabled</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_root_and_server_name"><a class="anchor" href="#_root_and_server_name"></a><a class="link" href="#_root_and_server_name">3.1.4. root and server_name</a></h4>
+<div class="paragraph">
+<p>The most important directives in a server block are <code>root</code> and <code>server_name</code>, next to the
+configuration of the rewrite rules for the specific application.</p>
+</div>
+<div class="paragraph">
+<p>The <code>root</code> directive defines a relative path to the project, e.g. <code>www/&lt;my_project_folder&gt;</code>. But a
+hardcoded path will work too, e.g. <code>c:\server\www\my_project_folder</code>. The <code>server_name</code> directive
+defines which server block is used for a given request.</p>
+</div>
+<div class="paragraph">
+<p>A very basic example for Wordpress: <code>root www/wordpress</code> and <code>server_name wordpress.dev</code>. This makes
+Wordpress available at the URLs <a href="http://localhost/wordpress" class="bare">http://localhost/wordpress</a> and <a href="http://wordpress.dev" class="bare">http://wordpress.dev</a>. The URL
+<a href="http://wordpress.dev" class="bare">http://wordpress.dev</a> needs an additional entry in your <code>hosts</code> file.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Don&#8217;t forget to adjust your <code>hosts</code> file accordingly!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defining_an_upstream_pool_and_using_load_balancing"><a class="anchor" href="#_defining_an_upstream_pool_and_using_load_balancing"></a><a class="link" href="#_defining_an_upstream_pool_and_using_load_balancing">3.1.5. Defining an upstream pool and using "load balancing"</a></h4>
+<div class="paragraph">
+<p>This section explains what an upstream pool is and how to configure it.</p>
+</div>
+<div class="paragraph">
+<p>We start with a brief explanation on how web servers interface with servers that generate web pages
+dynamically. The web server itself doesn&#8217;t know about the language your are programming in. But how
+can the web server process and respond to requests for dynamically generated pages?</p>
+</div>
+<div class="paragraph">
+<p>The web server communicates with a third-party server in a standardized way,
+which is either a gateway protocol or an embeded handler.</p>
+</div>
+<div class="paragraph">
+<p>The Common Gateway Interface (CGI), a standard way for web servers to interface with executable
+programs installed on a server that generate web pages dynamically. CGI Version 1.1 is
+specified in <a href="https://tools.ietf.org/html/rfc3875">RFC 3875</a> (actually it&#8217;s just a memo).</p>
+</div>
+<div class="paragraph">
+<p>For processing PHP requests this CGI server is <code>php-cgi</code>.</p>
+</div>
+<div class="paragraph">
+<p>For request processing Apache supports either <code>CGI</code> or <code>mod_php</code> or <code>mod_fcgi</code>,
+while Nginx supports <code>fcgi</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Whats the difference?</strong></p>
+</div>
+<div class="sect4">
+<h5 id="_cgi"><a class="anchor" href="#_cgi"></a><a class="link" href="#_cgi">3.1.5.1. CGI</a></h5>
+<div class="paragraph">
+<p>The CGI approach means, that for every incoming request a new CGI process is spawned in the
+background to process the request, just to shut down at the end of processing. Process spawning
+consumes time and memory, while at the same time the PHP interpreter consumes time and memory for
+generating the output. This causes high workloads for servers, when multiple requests hit a website.</p>
+</div>
+<div class="paragraph">
+<p>The overhead of process creation can be reduced by either using FastCGI or by running webserver
+extension modules, such as mod_php.  With FastCGI interpreter processes are "preforked" and already
+exist for processing.  With mod_php the interpreter is part of the web server and running as a
+webserver extension module.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mod_php"><a class="anchor" href="#_mod_php"></a><a class="link" href="#_mod_php">3.1.5.2. MOD_PHP</a></h5>
+<div class="paragraph">
+<p>The <code>mod_php</code> approach is probably the default way to combine PHP and Apache.
+Here the PHP interpreter is "embedded" inside the Apache process as "Module PHP".
+Based on the Apache config and especially your worker configuration,
+it will automatically spawn new workers (childs) to process the incoming requests.
+Apache handles worker respawns and multiple requests.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_mod_fcgi_and_fcgi_prefork"><a class="anchor" href="#_mod_fcgi_and_fcgi_prefork"></a><a class="link" href="#_mod_fcgi_and_fcgi_prefork">3.1.5.3. MOD_FCGI and FCGI ("prefork")</a></h5>
+<div class="paragraph">
+<p>The <code>mod_fcgi</code> approach is also an Apache Module living inside the Apache process.
+It starts (preforks) a sufficient number instances of the CGI program to handle concurrent requests,
+and these programs remain running to handle further incoming requests.</p>
+</div>
+<div class="paragraph">
+<p>The difference between Apache and Nginx in regard to FCGI handling is,
+that Apache manages the number of instances, while Nginx doesn&#8217;t.
+When using Nginx you have to make sure that the third-party FCGI servers are started and listening,
+that the number is sufficient to process your requests and
+that the servers are properly defined in Nginx&#8217;s upstream configuration.</p>
+</div>
+<div class="paragraph">
+<p>Then requests are accepted by Nginx and forwarded to the external FCGI server for processing.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/nginx-fcgi-request-handling.png" alt="nginx fcgi request handling" width="950" height="252">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_whats_the_difference_between_fcgi_and_cgi"><a class="anchor" href="#_whats_the_difference_between_fcgi_and_cgi"></a><a class="link" href="#_whats_the_difference_between_fcgi_and_cgi">3.1.5.4. Whats the difference between FCGI and CGI?</a></h5>
+<div class="paragraph">
+<p>FCGI is basically CGI, but without the shutdown. The FCGI process is spawned once and stays in
+listening mode. The upside is that the response/request latency is lower than with CGI, leading to
+faster response times, because the "boot time" of CGI is gone and consuming less resources.</p>
+</div>
+<div class="paragraph">
+<p>But, the downside is, that it is only one process. When multiple requests need to be processed, but
+the FCGI server is already processing a long running request, then the stack will "block".</p>
+</div>
+<div class="paragraph">
+<p>Now, in order to handle even more requests: you could setup one or more Nginx processes accepting
+requests, which pass requests forward to one or more external FCGI servers, and these can also have
+childs.  Example: 8 Nginx processes passing requests to a pool of 8 FCGI servers with 10 childs each.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nginx_load_balancing_algorithms"><a class="anchor" href="#_nginx_load_balancing_algorithms"></a><a class="link" href="#_nginx_load_balancing_algorithms">3.1.6. Nginx "Load Balancing" algorithms</a></h4>
+<div class="paragraph">
+<p><strong>What&#8217;s the best "load balancing" configuration?</strong></p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s hard to answer this question in general.
+There is no single best "load balancing" configuration, because it depends on your use-case.
+In order to compare configurations, you would need to come up with some alternative configurations,
+measure them under a high request load and finally compare the results to draw a conclusion.</p>
+</div>
+<div class="paragraph">
+<p>Nginx provides numerous ways to configure the balancing:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>round-robin</code> - default</p>
+</li>
+<li>
+<p><code>least_conn</code> - <a href="http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn" class="bare">http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn</a></p>
+</li>
+<li>
+<p><code>ip_hash</code> - <a href="http://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash" class="bare">http://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash</a></p>
+</li>
+<li>
+<p><code>hash key [consistent]</code> - <a href="http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash" class="bare">http://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash</a> (ketama)</p>
+</li>
+<li>
+<p><code>least_time</code> (only Nginx+) - <a href="http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time" class="bare">http://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_time</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For instance, you could use <code>ip_hash</code> to allow session persistence (for login/re-login), but <code>hash key [consistent]</code>
+has probably the same effect, but uses a different algorithm in the background (libketama).</p>
+</div>
+<div class="paragraph">
+<p>When you just want to spread load across servers and the application has no demand for session consistency,
+then the default "round robin" balancing is better and faster, because it doesn&#8217;t spend time and resources
+on hashing a given key or client IP address.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_default_upstream_configuration"><a class="anchor" href="#_default_upstream_configuration"></a><a class="link" href="#_default_upstream_configuration">3.1.7. Default Upstream Configuration</a></h4>
+<div class="paragraph">
+<p><strong>nginx\conf\upstreams</strong></p>
+</div>
+<div class="paragraph">
+<p>The folder for upstream configuration files is <code>server\bin\nginx\conf\upstreams</code>.</p>
+</div>
+<div class="paragraph">
+<p>By default <code>nginx.conf</code> includes all configuration files from the <code>upstream</code> folder.</p>
+</div>
+<div class="paragraph">
+<p><strong>nginx\conf\upstreams\php_pool.conf</strong></p>
+</div>
+<div class="paragraph">
+<p>We provide a default upstream configuration file <code>server\bin\nginx\conf\upstreams\php_pool.conf</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>php_pool.conf</code> file provides the following default configuration for PHP upstreams:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">#
+# Automatically generated Nginx Upstream definition.
+# Do not edit manually!
+
+upstream php_pool {
+    ip_hash;
+
+    server localhost:9100 weight=1 max_fails=1 fail_timeout=1s;
+    server localhost:9101 weight=1 max_fails=1 fail_timeout=1s;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ssl_configuration"><a class="anchor" href="#_ssl_configuration"></a><a class="link" href="#_ssl_configuration">3.1.8. SSL Configuration</a></h4>
+<div class="paragraph">
+<p>You might use <a href="https://mozilla.github.io/server-side-tls/ssl-config-generator/">Mozilla&#8217;s SSL Configuration Generator</a>
+to create a decent SSL configuration for Nginx.
+There are also <a href="https://wiki.mozilla.org/Security/Server_Side_TLS">Mozilla&#8217;s Server Side TLS Guidelines</a>
+with more details on these configurations.
+If you need to test the configuration of a live servers you could use <a href="https://www.ssllabs.com/ssltest/">SSLLabs</a>.</p>
+</div>
+<div class="paragraph">
+<p>You might download the latest cacert bundle from here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/bagder/ca-bundle" class="bare">https://github.com/bagder/ca-bundle</a></p>
+</li>
+<li>
+<p><a href="https://curl.haxx.se/ca/cacert.pem" class="bare">https://curl.haxx.se/ca/cacert.pem</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alternative_nginx_builds_for_windows"><a class="anchor" href="#_alternative_nginx_builds_for_windows"></a><a class="link" href="#_alternative_nginx_builds_for_windows">3.1.9. Alternative Nginx Builds for Windows</a></h4>
+<div class="paragraph">
+<p>The WPN-XM Server Stack uses Nginx builds from the offical website. But there
+are also some interesting private builds around. Sadly, their builds and build
+toolchains are not open-source, so the builds are completely private and re-
+building is not possible. Due to this fact, i can not include these builds into
+WPN-XM.</p>
+</div>
+<div class="paragraph">
+<p>You have the choice to download them on your own risk and simply replace WPN-XM&#8217;s Nginx folder.</p>
+</div>
+<div class="sect4">
+<h5 id="_official_nginx_httpnginx_org"><a class="anchor" href="#_official_nginx_httpnginx_org"></a><a class="link" href="#_official_nginx_httpnginx_org">3.1.9.1. Official Nginx - <a href="http://nginx.org/" class="bare">http://nginx.org/</a></a></h5>
+<div class="paragraph">
+<p>This is the offical Nginx Windows build from the main nginx website.
+We ship this one by default.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Download
+</td>
+<td class="hdlist2">
+<p><a href="http://nginx.org/en/download.html" class="bare">http://nginx.org/en/download.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Nginx Resources
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/fcambus/nginx-resources" class="bare">https://github.com/fcambus/nginx-resources</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_nginx_win_httpnginx_win_ecsds_eu"><a class="anchor" href="#_nginx_win_httpnginx_win_ecsds_eu"></a><a class="link" href="#_nginx_win_httpnginx_win_ecsds_eu">3.1.9.2. Nginx-Win - <a href="http://nginx-win.ecsds.eu/" class="bare">http://nginx-win.ecsds.eu/</a></a></h5>
+<div class="paragraph">
+<p>This is an unofficial private build.
+The source for the build, patches and adjusted modules and toolchain are not open-source.
+The build includes lots of performance tweaks, additional modules compiled in and multi-worker support.
+For instance, support for SPDY, rtmp, LUA, Naxsi WAF was added.</p>
+</div>
+<div class="paragraph">
+<p>My request to open-source the toolchain for builds on Travis-Ci and for cooperation was denied.</p>
+</div>
+<div class="paragraph">
+<p>The real name of the author is unknown.
+His nickname "itpp2012" on the Nginx mailing-list and Nginx related discussion Forums.
+His Github Account is: <a href="https://github.com/itpp16" class="bare">https://github.com/itpp16</a></p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Website
+</td>
+<td class="hdlist2">
+<p><a href="http://nginx-win.ecsds.eu/" class="bare">http://nginx-win.ecsds.eu/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Downloads
+</td>
+<td class="hdlist2">
+<p><a href="http://nginx-win.ecsds.eu/download/" class="bare">http://nginx-win.ecsds.eu/download/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Twitter
+</td>
+<td class="hdlist2">
+<p><a href="https://twitter.com/nginx4Windows" class="bare">https://twitter.com/nginx4Windows</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_nginx_for_windows_httpkevinworthington_comnginx_for_windows"><a class="anchor" href="#_nginx_for_windows_httpkevinworthington_comnginx_for_windows"></a><a class="link" href="#_nginx_for_windows_httpkevinworthington_comnginx_for_windows">3.1.9.3. Nginx for Windows - <a href="http://kevinworthington.com/nginx-for-windows/" class="bare">http://kevinworthington.com/nginx-for-windows/</a></a></h5>
+<div class="paragraph">
+<p>This is an unoffical private build.
+The x32 and x64 builds are using Cygwin.
+The build toolchain is not open-source.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Website
+</td>
+<td class="hdlist2">
+<p><a href="http://kevinworthington.com/nginx-for-windows/" class="bare">http://kevinworthington.com/nginx-for-windows/</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_openresty_httpsopenresty_org"><a class="anchor" href="#_openresty_httpsopenresty_org"></a><a class="link" href="#_openresty_httpsopenresty_org">3.1.9.4. OpenResty - <a href="https://openresty.org/" class="bare">https://openresty.org/</a></a></h5>
+<div class="paragraph">
+<p>OpenResty is a scalable Web Platform by extending NGINX with Lua.
+The auther is Yichun Zhang (agentzh).</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Downloads
+</td>
+<td class="hdlist2">
+<p><a href="https://openresty.org/en/download.html" class="bare">https://openresty.org/en/download.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Installation
+</td>
+<td class="hdlist2">
+<p><a href="https://openresty.org/en/installation.html" class="bare">https://openresty.org/en/installation.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+List of Nginx Modules
+</td>
+<td class="hdlist2">
+<p><a href="https://openresty.org/en/components.html" class="bare">https://openresty.org/en/components.html</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Awesome-Resty
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/bungle/awesome-resty" class="bare">https://github.com/bungle/awesome-resty</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_lomox_officalnginx_openresty_windows_httpsgithub_comlomox_officalnginx_openresty_windows"><a class="anchor" href="#_lomox_officalnginx_openresty_windows_httpsgithub_comlomox_officalnginx_openresty_windows"></a><a class="link" href="#_lomox_officalnginx_openresty_windows_httpsgithub_comlomox_officalnginx_openresty_windows">3.1.9.5. LomoX-Offical/nginx-openresty-windows - <a href="https://github.com/LomoX-Offical/nginx-openresty-windows" class="bare">https://github.com/LomoX-Offical/nginx-openresty-windows</a></a></h5>
+<div class="paragraph">
+<p>This is an unoffical private build with additional modules.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nginx_catch_all_dev_domains"><a class="anchor" href="#_nginx_catch_all_dev_domains"></a><a class="link" href="#_nginx_catch_all_dev_domains">3.1.10. Nginx Catch-All *.dev domains</a></h4>
+<div class="paragraph">
+<p>This is a catch all configuration, which maps all project folder names to <code>.dev</code> domains.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">server {
+    listen 80;
+
+    server_name ~^(.*)\.dev$;
+    set $file_path $1;
+
+    root /www/$file_path/public
+
+    index index.php index.html
+
+    # etc.
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then create a <code>index.php</code> file in a new project folder <code>www\myproject</code> with the content:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">&lt;?php
+echo 'Hello from folder: ' . __DIR__;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, update your <code>hosts</code> file accordingly and include <code>myproject.dev</code>.</p>
+</div>
+<div class="paragraph">
+<p>Done. You can now access <code>myproject.dev</code> in your browser.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_php"><a class="anchor" href="#_php"></a><a class="link" href="#_php">3.2. PHP</a></h3>
+<div class="sect3">
+<h4 id="_installation_location_2"><a class="anchor" href="#_installation_location_2"></a><a class="link" href="#_installation_location_2">3.2.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder is <code>server\bin\php</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_working_with_multiple_php_versions"><a class="anchor" href="#_working_with_multiple_php_versions"></a><a class="link" href="#_working_with_multiple_php_versions">3.2.2. Working with multiple PHP versions</a></h4>
+<div class="paragraph">
+<p>You can install multiple version of PHP into the <code>\bin</code> folder, e.g. <code>\bin\php-5.6.1</code> next to <code>bin\php</code>.</p>
+</div>
+<div class="paragraph">
+<p>You might use the PHP version switcher of the webinterface to switch between versions.</p>
+</div>
+<div class="paragraph">
+<p>The PHP version switcher does two things.
+Firstly, the version number in the <code>bin\php</code> folder is determined, then the folder is renamed accordingly, e.g. <code>bin\php-1.2.3</code>.
+Secondly, it renames the folder of the selected version (the one it should switch to) from <code>bin\php-1.2.3</code> to <code>bin\php</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The PHP interpreter in the <code>bin\php</code> folder is the active and used one, when multiple version of PHP are installed.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please keep in mind that configuration and installed extensions might differ!
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_what_does_nts_and_ts_mean"><a class="anchor" href="#_what_does_nts_and_ts_mean"></a><a class="link" href="#_what_does_nts_and_ts_mean">3.2.3. What does NTS and TS mean?</a></h4>
+<div class="paragraph">
+<p>NTS and TS are abbreviations for <code>non-thread safe</code> and <code>thread-safe</code>.</p>
+</div>
+<div class="paragraph">
+<p>Both processes and threads are independent sequences of execution.</p>
+</div>
+<div class="paragraph">
+<p>The difference is that threads (of the same process) run in a shared memory
+space, while processes run in separate memory spaces.</p>
+</div>
+<div class="paragraph">
+<p>Code is thread-safe, when modifications of data structures in the shared memory
+are guaranteed to be safely executed from multiple threads. A safe execution is
+achieved by avoiding race-conditions and deadlocks,  for instance, by means of
+synchronization between the threads. A deadlock occurs when many processes
+execute no further because they are waiting for a shared resource, which is
+being used and held by another process.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_php_bitsizes"><a class="anchor" href="#_php_bitsizes"></a><a class="link" href="#_php_bitsizes">3.2.4. PHP Bitsizes</a></h4>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Note on the PHP 64bit releases:</p>
+</div>
+<div class="paragraph">
+<p>PHP 5.x provides experimental 64-bit support.</p>
+</div>
+<div class="paragraph">
+<p>The x64 builds of PHP 5 for Windows are experimental, and do not provide 64-bit integer or large file support.
+It has has memory limitations (max. memory = 2047M). No matter the architecture, a long value is always 32bit.
+This behavior of PHP is expected and known for a long time.</p>
+</div>
+<div class="paragraph">
+<p>PHP 7 provides full 64-bit support.</p>
+</div>
+<div class="paragraph">
+<p>The x64 builds of PHP 7 support native 64-bit integers, LFS, memory_limit and much more.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_2"><a class="anchor" href="#_configuration_2"></a><a class="link" href="#_configuration_2">3.2.5. Configuration</a></h4>
+<div class="paragraph">
+<p>The default configuration file for PHP is <code>server\bin\php\php.ini</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>There is a minimal configuration file for Composer runs <code>server\bin\composer\php.composer.ini</code>.
+Please check the Composer chapter.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_php_extensions"><a class="anchor" href="#_php_extensions"></a><a class="link" href="#_php_extensions">3.3. PHP Extensions</a></h3>
+<div class="sect3">
+<h4 id="_installation_location_3"><a class="anchor" href="#_installation_location_3"></a><a class="link" href="#_installation_location_3">3.3.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder for extensions is <code>server\bin\php\ext</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_3"><a class="anchor" href="#_configuration_3"></a><a class="link" href="#_configuration_3">3.3.2. Configuration</a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mariadb"><a class="anchor" href="#_mariadb"></a><a class="link" href="#_mariadb">3.4. MariaDB</a></h3>
+<div class="paragraph">
+<p>MariaDB is a community-developed fork of the MySQL relational database management system and a drop-in replacement for MySQL.
+The project was forked due to concerns over the MySQL acquisition by Oracle Corporation.
+The development is led by some of the original developers of MySQL - including Michael "Monty" Widenius.
+MariaDB is named after Monty&#8217;s younger daughter Maria, similar to how MySQL is named after his other daughter My.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Website
+</td>
+<td class="hdlist2">
+<p><a href="https://mariadb.com/" class="bare">https://mariadb.com/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Documentation
+</td>
+<td class="hdlist2">
+<p><a href="https://mariadb.com/kb/en/mariadb/documentation/" class="bare">https://mariadb.com/kb/en/mariadb/documentation/</a></p>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_installation_location_4"><a class="anchor" href="#_installation_location_4"></a><a class="link" href="#_installation_location_4">3.4.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder is <code>server\bin\mariadb\</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_4"><a class="anchor" href="#_configuration_4"></a><a class="link" href="#_configuration_4">3.4.2. Configuration</a></h4>
+<div class="paragraph">
+<p>The main configuration file is <code>my.ini</code> in the folder <code>server\bin\mariadb\</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_documentation"><a class="anchor" href="#_documentation"></a><a class="link" href="#_documentation">3.4.3. Documentation</a></h4>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Clients and Utilities
+</td>
+<td class="hdlist2">
+<p><a href="https://mariadb.com/kb/en/mariadb/clients-and-utilities/" class="bare">https://mariadb.com/kb/en/mariadb/clients-and-utilities/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+MysqlAdmin
+</td>
+<td class="hdlist2">
+<p><a href="https://mariadb.com/kb/en/mariadb/mysqladmin/" class="bare">https://mariadb.com/kb/en/mariadb/mysqladmin/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Explain Analyzer
+</td>
+<td class="hdlist2">
+<p><a href="https://mariadb.com/kb/en/mariadb/explain-analyzer/" class="bare">https://mariadb.com/kb/en/mariadb/explain-analyzer/</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_php_extensions_for_mariadb"><a class="anchor" href="#_php_extensions_for_mariadb"></a><a class="link" href="#_php_extensions_for_mariadb">3.4.4. PHP Extensions for MariaDb</a></h4>
+<div class="paragraph">
+<p>The PHP connectors for MySQL generally work with MariaDB as well.
+It is recommended to use either the <code>mysqli</code> or <code>PDO_MySQL</code> extensions.
+See <a href="http://php.net/manual/en/mysql.php" class="bare">http://php.net/manual/en/mysql.php</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://php.net/manual/en/book.mysqli.php" class="bare">http://php.net/manual/en/book.mysqli.php</a></p>
+</li>
+<li>
+<p><a href="http://php.net/manual/en/ref.pdo-mysql.php" class="bare">http://php.net/manual/en/ref.pdo-mysql.php</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mongodb"><a class="anchor" href="#_mongodb"></a><a class="link" href="#_mongodb">3.5. MongoDB</a></h3>
+<div class="paragraph">
+<p>MongoDB (from humongous) is a free and open-source cross-platform document-oriented database.
+It&#8217;s a popular <a href="http://en.wikipedia.org/wiki/NoSQL">NoSQL</a> database.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>32-bit Limitations</strong></p>
+</div>
+<div class="paragraph">
+<p>The 32-bit versions of MongoDB have the following limitations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>no support for the WiredTiger storage engine,</p>
+</li>
+<li>
+<p>disabled journaling, because journaling further limits the maximum amount of data that the database can store,</p>
+</li>
+<li>
+<p>the total storage size for the server, including data and indexes, is 2 gigabytes.
+For this reason, do not deploy MongoDB to production on 32-bit machines.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you’re running a 64-bit build of MongoDB, there’s virtually no limit to storage size.
+For production deployments, 64-bit builds and operating systems are strongly recommended.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="http://blog.mongodb.org/post/137788967/32-bit-limitations">here</a> for more information.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Website
+</td>
+<td class="hdlist2">
+<p><a href="https://www.mongodb.org/" class="bare">https://www.mongodb.org/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Documentation
+</td>
+<td class="hdlist2">
+<p><a href="https://docs.mongodb.org/manual/" class="bare">https://docs.mongodb.org/manual/</a></p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Please check <a href="http://docs.mongodb.org/manual/tutorial/getting-started/">MongoDB&#8217;s Getting Started guide</a> for more!</p>
+</div>
+<div class="sect3">
+<h4 id="_php_extension_for_mongo"><a class="anchor" href="#_php_extension_for_mongo"></a><a class="link" href="#_php_extension_for_mongo">3.5.1. PHP Extension for Mongo</a></h4>
+<div class="paragraph">
+<p>To access MongoDB from PHP you need two things:</p>
+</div>
+<div class="paragraph">
+<p>the MongoDB server <code>mongod</code> running and the PHP driver installed.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Website
+</td>
+<td class="hdlist2">
+<p><a href="http://pecl.php.net/package/mongodb" class="bare">http://pecl.php.net/package/mongodb</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Docs
+</td>
+<td class="hdlist2">
+<p><a href="https://docs.mongodb.org/ecosystem/drivers/php/" class="bare">https://docs.mongodb.org/ecosystem/drivers/php/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+PHP Driver Source
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/mongodb/mongo-php-driver" class="bare">https://github.com/mongodb/mongo-php-driver</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Issues
+</td>
+<td class="hdlist2">
+<p><a href="https://jira.mongodb.org/browse/PHPC" class="bare">https://jira.mongodb.org/browse/PHPC</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+PHP API
+</td>
+<td class="hdlist2">
+<p><a href="http://php.net/mongodb" class="bare">http://php.net/mongodb</a></p>
+</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_driver_compatibility"><a class="anchor" href="#_driver_compatibility"></a><a class="link" href="#_driver_compatibility">3.5.1.1. Driver Compatibility</a></h5>
+<div class="paragraph">
+<p>The old and legacy MongoDB PHP driver is <code>mongo</code>, while the new driver is <code>mongodb</code>.
+For a detailed overview please see the
+<a href="https://docs.mongodb.org/ecosystem/drivers/driver-compatibility-reference/#php-driver-compatibility">PHP Driver Compatibility Table</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_default_port"><a class="anchor" href="#_default_port"></a><a class="link" href="#_default_port">3.5.2. Default Port</a></h4>
+<div class="paragraph">
+<p>The default port for MongoDb is <code>27017</code>.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.mongodb.com/manual/reference/default-mongodb-port/" class="bare">https://docs.mongodb.com/manual/reference/default-mongodb-port/</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_postgresql"><a class="anchor" href="#_postgresql"></a><a class="link" href="#_postgresql">3.6. PostgreSQL</a></h3>
+<div class="paragraph">
+<p>PostgreSQL is an object-relational database management system (ORDBMS) based on POSTGRES, Version 4.2, developed at the University of California at Berkeley Computer Science Department. POSTGRES pioneered many concepts that only became available in some commercial database systems much later.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Website
+</td>
+<td class="hdlist2">
+<p><a href="https://www.postgresql.org/" class="bare">https://www.postgresql.org/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Docs for Current Stable Version
+</td>
+<td class="hdlist2">
+<p><a href="https://www.postgresql.org/docs/current/static/index.html" class="bare">https://www.postgresql.org/docs/current/static/index.html</a></p>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_connection_data"><a class="anchor" href="#_connection_data"></a><a class="link" href="#_connection_data">3.6.1. Connection data</a></h4>
+<div class="paragraph">
+<p>The most GUI applications will expect you to provide the following connection parameters to connect:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Host
+</td>
+<td class="hdlist2">
+<p>localhost</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Port
+</td>
+<td class="hdlist2">
+<p>5432 (default)</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Username
+</td>
+<td class="hdlist2">
+<p>root</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Password
+</td>
+<td class="hdlist2">
+<p>blank</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Database
+</td>
+<td class="hdlist2">
+<p>yourdb</p>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you need to provide an URL, use <code>postgresql://username@localhost/yourdb</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Username on WPN-XM versions below v0.8.7</strong></p>
+</div>
+<div class="paragraph">
+<p>WPN-XM versions below v0.8.7 did not set a username during the installation and initial setup of PostgreSQL with <code>initdb</code>.
+For these installs <code>initdb</code> created a table named "postgres" owned by user "current logged in user name",
+which is/was the user running the installer.</p>
+</div>
+<div class="paragraph">
+<p>When calling commands on the CLI, please leave the <code>-U</code> or <code>--username</code> CLI arguments away, so that the default username is used.</p>
+</div>
+<div class="paragraph">
+<p>Starting with WPN-XM v0.8.7 the default username is "root".</p>
+</div>
+<div class="paragraph">
+<p>When calling commands  on the CLI, please use <code>-U root</code> or <code>--username=root</code> .</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_first_steps_after_installation"><a class="anchor" href="#_first_steps_after_installation"></a><a class="link" href="#_first_steps_after_installation">3.6.2. First steps after installation</a></h4>
+<div class="paragraph">
+<p>Please use the interactive terminal application <code>pgsql</code> to make your first steps.</p>
+</div>
+<div class="paragraph">
+<p>You find detailed instructions in the PostgreSQL manual (<a href="https://www.postgresql.org/docs/current/static/app-psql.html" class="bare">https://www.postgresql.org/docs/current/static/app-psql.html</a>).</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Switch to the folder <code>c:\server\bin\pgsql</code></p>
+</li>
+<li>
+<p>run <code>psql --version</code> to show the version</p>
+</li>
+<li>
+<p>run <code>psql --list -U root</code> to list the databases</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">                            List of databases
+   Name    |  Owner | Encoding |   Collate   |    Ctype    |   Access privileges
+-----------+--------+----------+-------------+-------------+-----------------------
+ postgres  | root   | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ template0 | root   | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+           |        |          |             |             | postgres=CTc/postgres
+ template1 | root   | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+           |        |          |             |             | postgres=CTc/postgres
+(3 rows)</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>run <code>psql --username=root --dbname=postgres</code> to edit the postgres table using the interactive console</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">c:\server\bin\pgsql\psql --username=root --dbname=postgres
+ psql (9.6.0)
+ Type "help" for help.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run <code>help</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">postgres=#  help
+ You are using psql, the command-line interface to PostgreSQL.
+ Type:  \copyright for distribution terms
+        \h for help with SQL commands
+        \? for help with psql commands
+        \g or terminate with semicolon to execute query
+        \q to quit</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_support_for_json_and_jsonb"><a class="anchor" href="#_support_for_json_and_jsonb"></a><a class="link" href="#_support_for_json_and_jsonb">3.6.3. Support for JSON and JSONB</a></h4>
+<div class="paragraph">
+<p>The storage format for <code>json</code> is plain text format, while it is a binary representation for <code>jsonb</code>.</p>
+</div>
+<div class="paragraph">
+<p>It takes more time to create the binary representation from the input representation (jsonb is slower, than json).
+and it takes more disk space to store than <code>json</code> (jsonb uses more space, than json).</p>
+</div>
+<div class="paragraph">
+<p>The parsing of <code>json</code> has to be repeated, for each operation at a json value.</p>
+</div>
+<div class="paragraph">
+<p><code>json</code> operations take significantly more time than <code>jsonb</code>.
+In other words: <code>jsonb</code> is faster for operations on JSON value(s).</p>
+</div>
+<div class="paragraph">
+<p>To sum up:</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>When to use JSON or JSONB?</strong>*</p>
+</div>
+<div class="paragraph">
+<p>Use JSON, if you only work with the JSON representation in your application, which is stored and retrieved.
+Use JSONB, if you do a lot of operations on the JSON value(s), or use indexing on some JSON field.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_gui_clients"><a class="anchor" href="#_gui_clients"></a><a class="link" href="#_gui_clients">3.6.4. GUI Clients</a></h4>
+<div class="paragraph">
+<p>The official GUI client is pgAdmin and ships with PostgreSQL.
+But there are many GUI clients for PostgreSQL.
+You can find many of them in the <a href="https://wiki.postgresql.org/wiki/Community_Guide_to_PostgreSQL_GUI_Tools" class="bare">https://wiki.postgresql.org/wiki/Community_Guide_to_PostgreSQL_GUI_Tools</a>
+[Community Guide to PostgreSQL GUI Tools] in the PostgreSQL wiki.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Datagrip
+</td>
+<td class="hdlist2">
+<p><a href="https://www.jetbrains.com/datagrip/" class="bare">https://www.jetbrains.com/datagrip/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Datazenit
+</td>
+<td class="hdlist2">
+<p><a href="https://datazenit.com/" class="bare">https://datazenit.com/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+DBeaver
+</td>
+<td class="hdlist2">
+<p><a href="http://dbeaver.jkiss.org/" class="bare">http://dbeaver.jkiss.org/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+DbVisualizer
+</td>
+<td class="hdlist2">
+<p><a href="https://www.dbvis.com/" class="bare">https://www.dbvis.com/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Navicat for PostgreSQL
+</td>
+<td class="hdlist2">
+<p><a href="http://www.navicat.com/products/navicat-for-postgresql" class="bare">http://www.navicat.com/products/navicat-for-postgresql</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+pgAdmin
+</td>
+<td class="hdlist2">
+<p><a href="http://pgadmin.org/" class="bare">http://pgadmin.org/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Valentina Studio
+</td>
+<td class="hdlist2">
+<p><a href="http://www.valentina-db.com/en/" class="bare">http://www.valentina-db.com/en/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+DBGlass
+</td>
+<td class="hdlist2">
+<p><a href="http://dbglass.web-pal.com/" class="bare">http://dbglass.web-pal.com/</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_memcached"><a class="anchor" href="#_memcached"></a><a class="link" href="#_memcached">3.7. Memcached</a></h3>
+<div class="paragraph">
+<p>Memcached is a free &amp; open source, high-performance, distributed memory object caching system,
+generic in nature, but intended for use in speeding up dynamic web applications by alleviating database load.</p>
+</div>
+<div class="paragraph">
+<p>Its an in-memory key-value store for small chunks of arbitrary data (strings, objects)
+from results of database calls, API calls, or page rendering.
+Memcached is a developer tool, not a "code accelerator" nor a database middleware.</p>
+</div>
+<div class="paragraph">
+<p>Its is a simple key/value store.
+The server does not care what your data looks like.
+Items are made up of a key, an expiration time, optional flags, and raw data.
+It does not understand data structures; you must upload data that is pre-serialized.
+Some commands, like <code>incr</code> or <code>decr</code> may operate on the underlying data, but in a simple manner.</p>
+</div>
+<div class="paragraph">
+<p>Memcached is, by default, a Least Recently Used cache. Items expire after a specified amount of time.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.memcached.org/">Website</a></p>
+</li>
+<li>
+<p><a href="https://github.com/memcached/memcached/">Github "Memcached/Memcached"</a></p>
+</li>
+<li>
+<p><a href="https://github.com/memcached/memcached/blob/master/doc/protocol.txt">Memcached Protocol</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_installation_location_5"><a class="anchor" href="#_installation_location_5"></a><a class="link" href="#_installation_location_5">3.7.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder is <code>server\bin\memcached</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_5"><a class="anchor" href="#_configuration_5"></a><a class="link" href="#_configuration_5">3.7.2. Configuration</a></h4>
+<div class="paragraph">
+<p>Memcached doesn&#8217;t have a config file.</p>
+</div>
+<div class="paragraph">
+<p>The default configuration is the creation of a <code>64MB</code> memory pool and listening on port <code>11211</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="_memcached_cli"><a class="anchor" href="#_memcached_cli"></a><a class="link" href="#_memcached_cli">3.7.2.1. Memcached CLI</a></h5>
+<div class="paragraph">
+<p>You might print the list of available CLI options using</p>
+</div>
+<div class="paragraph">
+<p><code>C:\server\bin\memcached&gt;memcached.exe -h</code></p>
+</div>
+<div class="paragraph">
+<p>Result:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>memcached 1.4.5_4_gaa7839e
+-p &lt;num&gt;      TCP port number to listen on (default: 11211)
+-U &lt;num&gt;      UDP port number to listen on (default: 11211, 0 is off)
+-s &lt;file&gt;     UNIX socket path to listen on (disables network support)
+-a &lt;mask&gt;     access mask for UNIX socket, in octal (default: 0700)
+-l &lt;ip_addr&gt;  interface to listen on (default: INADDR_ANY, all addresses)
+-d            run as a daemon
+-r            maximize core file limit
+-u &lt;username&gt; assume identity of &lt;username&gt; (only when run as root)
+-m &lt;num&gt;      max memory to use for items in megabytes (default: 64 MB)
+-M            return error on memory exhausted (rather than removing items)
+-c &lt;num&gt;      max simultaneous connections (default: 1024)
+-k            lock down all paged memory.  Note that there is a
+              limit on how much memory you may lock.  Trying to
+              allocate more than that would fail, so be sure you
+              set the limit correctly for the user you started
+              the daemon with (not for -u &lt;username&gt; user;
+              under sh this is done with 'ulimit -S -l NUM_KB').
+-v            verbose (print errors/warnings while in event loop)
+-vv           very verbose (also print client commands/responses)
+-vvv          extremely verbose (also print internal state transitions)
+-h            print this help and exit
+-i            print memcached and libevent license
+-P &lt;file&gt;     save PID in &lt;file&gt;, only used with -d option
+-f &lt;factor&gt;   chunk size growth factor (default: 1.25)
+-n &lt;bytes&gt;    minimum space allocated for key+value+flags (default: 48)
+-L            Try to use large memory pages (if available). Increasing
+              the memory page size could reduce the number of TLB misses
+              and improve the performance. In order to get large pages
+              from the OS, memcached will allocate the total item-cache
+              in one large chunk.
+-D &lt;char&gt;     Use &lt;char&gt; as the delimiter between key prefixes and IDs.
+              This is used for per-prefix stats reporting. The default is
+              ":" (colon). If this option is specified, stats collection
+              is turned on automatically; if not, then it may be turned on
+              by sending the "stats detail on" command to the server.
+-t &lt;num&gt;      number of threads to use (default: 4)
+-R            Maximum number of requests per event, limits the number of
+              requests process for a given connection to prevent
+              starvation (default: 20)
+-C            Disable use of CAS
+-b            Set the backlog queue limit (default: 1024)
+-B            Binding protocol - one of ascii, binary, or auto (default)
+-I            Override the size of each slab page. Adjusts max item size
+              (default: 1mb, min: 1k, max: 128m)</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_run_bat"><a class="anchor" href="#_run_bat"></a><a class="link" href="#_run_bat">3.7.2.2. <code>run.bat</code></a></h5>
+<div class="paragraph">
+<p>The batch file uses the following command to start Memcached:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>`memcached.exe -p 11211 -U 0 -t 2 -c 2048 -m 2048`.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This means Memcached will listen on TCP port 11211, but not on UDP and will use 2 threads,
+accept a maximum of 2048 simultaneous connections and use 2048 megabytes max memory.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_php_extension"><a class="anchor" href="#_php_extension"></a><a class="link" href="#_php_extension">3.7.2.3. PHP extension</a></h5>
+<div class="paragraph">
+<p>There is a Memcached client written in C as a PHP extension.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_redis"><a class="anchor" href="#_redis"></a><a class="link" href="#_redis">3.8. Redis</a></h3>
+<div class="paragraph">
+<p>Redis is an open source (BSD licensed), in-memory data structure store, used as database, cache and message broker.
+It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps,
+hyperloglogs and geospatial indexes with radius queries.</p>
+</div>
+<div class="paragraph">
+<p>Redis has built-in replication, Lua scripting, LRU eviction, transactions and different levels of on-disk persistence,
+and provides high availability via Redis Sentinel and automatic partitioning with Redis Cluster.</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Website
+</td>
+<td class="hdlist2">
+<p><a href="http://redis.io/" class="bare">http://redis.io/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Documentation
+</td>
+<td class="hdlist2">
+<p><a href="http://redis.io/documentation" class="bare">http://redis.io/documentation</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Redis for Windows is build and provided by MSOpenTech
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/MicrosoftArchive/redis" class="bare">https://github.com/MicrosoftArchive/redis</a></p>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_installation_location_6"><a class="anchor" href="#_installation_location_6"></a><a class="link" href="#_installation_location_6">3.8.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder is <code>server\bin\redis</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_6"><a class="anchor" href="#_configuration_6"></a><a class="link" href="#_configuration_6">3.8.2. Configuration</a></h4>
+<div class="paragraph">
+<p>Redis config is located at <code>\server\bin\redis\redis.conf</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_working_with_redis_from_php"><a class="anchor" href="#_working_with_redis_from_php"></a><a class="link" href="#_working_with_redis_from_php">3.8.3. Working with Redis from PHP</a></h4>
+<div class="paragraph">
+<p>Redis is an independent server, which can be called by any other process.
+This calls for a bridge between the calling process and the Redis service.</p>
+</div>
+<div class="paragraph">
+<p>In other words: you need a PHP client to interact with Redis.
+This client is either a PHP extensions or a PHP library.</p>
+</div>
+<div class="paragraph">
+<p>There are several to chose from: <a href="http://redis.io/clients#php" class="bare">http://redis.io/clients#php</a></p>
+</div>
+<div class="sect4">
+<h5 id="_php_extension_2"><a class="anchor" href="#_php_extension_2"></a><a class="link" href="#_php_extension_2">3.8.3.1. PHP extension</a></h5>
+<div class="paragraph">
+<p>There is a redis client written in C as a PHP extension.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/phpredis/phpredis" class="bare">https://github.com/phpredis/phpredis</a></p>
+</li>
+<li>
+<p><a href="https://pecl.php.net/package/redis" class="bare">https://pecl.php.net/package/redis</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_php_library"><a class="anchor" href="#_php_library"></a><a class="link" href="#_php_library">3.8.3.2. PHP library</a></h5>
+<div class="paragraph">
+<p>You need a PHP library to interact with Redis.</p>
+</div>
+<div class="paragraph">
+<p>There are several to chose from:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/amphp/redis" class="bare">https://github.com/amphp/redis</a></p>
+</li>
+<li>
+<p><a href="https://github.com/cheprasov/php-redis-client" class="bare">https://github.com/cheprasov/php-redis-client</a></p>
+</li>
+<li>
+<p><a href="https://github.com/nrk/predis" class="bare">https://github.com/nrk/predis</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Shumkov/Rediska" class="bare">https://github.com/Shumkov/Rediska</a></p>
+</li>
+<li>
+<p><a href="https://github.com/colinmollenhour/credis" class="bare">https://github.com/colinmollenhour/credis</a></p>
+</li>
+<li>
+<p><a href="https://github.com/ptrofimov/tinyredisclient" class="bare">https://github.com/ptrofimov/tinyredisclient</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_working_with_redis_from_node_js"><a class="anchor" href="#_working_with_redis_from_node_js"></a><a class="link" href="#_working_with_redis_from_node_js">3.8.4. Working with Redis from Node.js</a></h4>
+<div class="paragraph">
+<p>A redis client for for Node.js is Mranney&#8217;s <a href="https://github.com/NodeRedis/node_redis">Node Redis</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_administration_tools_for_redis"><a class="anchor" href="#_administration_tools_for_redis"></a><a class="link" href="#_administration_tools_for_redis">3.8.5. Administration Tools for Redis</a></h4>
+<div class="paragraph">
+<p>There are several administration tools for Redis available:</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Redisk Desktop Manager
+</td>
+<td class="hdlist2">
+<p><a href="https://redisdesktop.com/download" class="bare">https://redisdesktop.com/download</a>
+<a href="https://github.com/uglide/RedisDesktopManager/releases" class="bare">https://github.com/uglide/RedisDesktopManager/releases</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+Redis-Commander for Node/NPM
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/joeferner/redis-commander" class="bare">https://github.com/joeferner/redis-commander</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+FastoRedis
+</td>
+<td class="hdlist2">
+<p><a href="https://fastoredis.com/" class="bare">https://fastoredis.com/</a></p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
+PHPRedisAdmin
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/erikdubbelboer/phpRedisAdmin" class="bare">https://github.com/erikdubbelboer/phpRedisAdmin</a></p>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_redis_compared_to_memcached"><a class="anchor" href="#_redis_compared_to_memcached"></a><a class="link" href="#_redis_compared_to_memcached">3.8.6. Redis compared to Memcached</a></h4>
+<div class="paragraph">
+<p>Both Redis and Memcached are data cache systems and open source.
+Redis allows to store abstract data types, while Memcached stores only strings.
+Redis has snapshotting and journaling capabilites, which means that saved data stays even after a system restart,
+while Memcache&#8217;s memory stored-data is lost. Memcached is basically a memory store for short-lived data.
+Redis provides several fine-tuning options and features like advanced memory management and a better data eviction control.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_node_js"><a class="anchor" href="#_node_js"></a><a class="link" href="#_node_js">3.9. Node.js</a></h3>
+<div class="sect3">
+<h4 id="_installation_location_7"><a class="anchor" href="#_installation_location_7"></a><a class="link" href="#_installation_location_7">3.9.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder is <code>server\bin\node</code>.</p>
+</div>
+<div class="paragraph">
+<p>The folder contains the Node.js executable: <code>node.exe</code>
+and <code>npm.cmd</code> the Node Package Manager.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_updating_nodenpm_manually"><a class="anchor" href="#_updating_nodenpm_manually"></a><a class="link" href="#_updating_nodenpm_manually">3.9.2. Updating Node/npm manually</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>download node - <a href="http://wpn-xm.org/get.php?s=node-x64" class="bare">http://wpn-xm.org/get.php?s=node-x64</a></p>
+</li>
+<li>
+<p>move executable into <code>\server\bin\node</code> folder</p>
+</li>
+<li>
+<p>download npm - <a href="https://wpn-xm.org/get.php?s=nodenpm" class="bare">https://wpn-xm.org/get.php?s=nodenpm</a></p>
+</li>
+<li>
+<p>extract content of <code>npm*.zip</code> into <code>\server\bin\node</code> folder</p>
+</li>
+<li>
+<p>add <code>\server\bin\node</code> to your ENV path</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_go_git_service_gogs"><a class="anchor" href="#_go_git_service_gogs"></a><a class="link" href="#_go_git_service_gogs">3.10. Go Git Service (gogs)</a></h3>
+<div class="paragraph">
+<p>Go Git Service is a self-hosted Git service written in Go.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Website: <a href="https://gogs.io/" class="bare">https://gogs.io/</a></p>
+</li>
+<li>
+<p>Documentation: <a href="https://gogs.io/docs" class="bare">https://gogs.io/docs</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_installation_location_8"><a class="anchor" href="#_installation_location_8"></a><a class="link" href="#_installation_location_8">3.10.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder is <code>server\bin\gogs</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_7"><a class="anchor" href="#_configuration_7"></a><a class="link" href="#_configuration_7">3.10.2. Configuration</a></h4>
+<div class="paragraph">
+<p>The custom user configuration file is located at <code>\server\bin\gogs\custom\conf\app.ini</code>.</p>
+</div>
+<div class="paragraph">
+<p>There is also a main configuration file located at <code>\server\bin\gogs\conf\app.ini</code>.</p>
+</div>
+<div class="paragraph">
+<p>Do not modify the main config. Make your modifications to the custom config.
+The user config values replace any prior values from the main config.
+That allows a seemsless updates to new Gogs versions,
+which might ship new configuration directives in their new main config file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_running_go_git_service"><a class="anchor" href="#_running_go_git_service"></a><a class="link" href="#_running_go_git_service">3.10.3. Running Go Git Service</a></h4>
+<div class="sect4">
+<h5 id="_server"><a class="anchor" href="#_server"></a><a class="link" href="#_server">3.10.3.1. Server</a></h5>
+<div class="paragraph">
+<p>By default the server runs at <a href="http://localhost:3000/" class="bare">http://localhost:3000/</a></p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_nginx_server_block"><a class="anchor" href="#_nginx_server_block"></a><a class="link" href="#_nginx_server_block">3.10.3.2. Nginx Server Block</a></h5>
+<div class="paragraph">
+<p>The is a default Nginx server block configuration file <code>go-git-service.conf</code>.
+Nginx will accept requests at <code><a href="http://gogs.dev" class="bare">http://gogs.dev</a></code> forwarding them to <code><a href="http://localhost:3000/" class="bare">http://localhost:3000/</a></code> internally.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_composer"><a class="anchor" href="#_composer"></a><a class="link" href="#_composer">3.11. Composer</a></h3>
+<div class="paragraph">
+<p>Composer is a CLI tool for dependency management in PHP.
+It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.</p>
+</div>
+<div class="sect3">
+<h4 id="_installation_location_9"><a class="anchor" href="#_installation_location_9"></a><a class="link" href="#_installation_location_9">3.11.1. Installation Location</a></h4>
+<div class="paragraph">
+<p>The default installaton folder is <code>server\bin\composer</code>.</p>
+</div>
+<div class="paragraph">
+<p>The folder contains two files: <code>composer.phar</code> and <code>composer.bat</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_8"><a class="anchor" href="#_configuration_8"></a><a class="link" href="#_configuration_8">3.11.2. Configuration</a></h4>
+<div class="paragraph">
+<p>The installer will set <code>server\bin\composer</code> to the ENV PATH.</p>
+</div>
+<div class="paragraph">
+<p>This makes <code>composer.bat</code> available system-wide.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_usage"><a class="anchor" href="#_usage"></a><a class="link" href="#_usage">3.11.3. Usage</a></h4>
+<div class="paragraph">
+<p>To run Composer on the CLI type:</p>
+</div>
+<div class="paragraph">
+<p><code>composer</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_official_windows_installer"><a class="anchor" href="#_official_windows_installer"></a><a class="link" href="#_official_windows_installer">3.11.4. Official Windows Installer</a></h4>
+<div class="paragraph">
+<p>This server stack doesn&#8217;t use the official
+<a href="https://github.com/composer/windows-setup/releases/">Windows Installer</a>.</p>
+</div>
+<div class="paragraph">
+<p>Further instructions for Composer’s Windows installer can be found within the
+<a href="https://github.com/composer/windows-setup/blob/master/README.md">README</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pickle"><a class="anchor" href="#_pickle"></a><a class="link" href="#_pickle">3.12. Pickle</a></h3>
+<div class="paragraph">
+<p>Pickle is a cross-platform PHP Extension installer.</p>
+</div>
+<div class="paragraph">
+<p>It is based on Composer and the plan is to get Composer to fully support it (see <a href="https://github.com/composer/composer/pull/2898#issuecomment-48439196">discussion</a>).</p>
+</div>
+<div class="hdlist">
+<table>
+<tr>
+<td class="hdlist1">
+Website
+</td>
+<td class="hdlist2">
+<p><a href="https://github.com/FriendsOfPHP/pickle" class="bare">https://github.com/FriendsOfPHP/pickle</a></p>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_usage_2"><a class="anchor" href="#_usage_2"></a><a class="link" href="#_usage_2">3.12.1. Usage</a></h4>
+<div class="paragraph">
+<p>For example, to install the memcache extension run the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">$ pickle install memcache</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Its also possible to require a specific version:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="shell" class="language-shell hljs">$ pickle install &lt;extension&gt;@&lt;version&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pear"><a class="anchor" href="#_pear"></a><a class="link" href="#_pear">3.13. PEAR</a></h3>
+<div class="paragraph">
+<p>The PHP Extension and Application Repository (PEAR) is a package archive with over 600 packages:
+<a href="https://pear.php.net/packages.php" class="bare">https://pear.php.net/packages.php</a></p>
+</div>
+<div class="paragraph">
+<p>It provides a global installation method for vendor dependencies. Installed dependencies are then
+available for multiple applications.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+PEAR support is deprecated. The last WPN-XM version shipping PEAR install scripts is v0.8.6.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The PEAR approach will cause problems, when different applications depend on different versions of a
+global dependency.</p>
+</div>
+<div class="paragraph">
+<p>With the creation and adoption of Composer, the PHP community ditched the global installation method
+and switched to a per project folder installation of vendor dependencies.</p>
+</div>
+<div class="paragraph">
+<p>Various tools and applications have deprecated the PEAR installation method.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/sebastianbergmann/phpunit/wiki/End-of-Life-for-PEAR-Installation-Method" class="bare">https://github.com/sebastianbergmann/phpunit/wiki/End-of-Life-for-PEAR-Installation-Method</a></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_installation_script"><a class="anchor" href="#_installation_script"></a><a class="link" href="#_installation_script">3.13.1. Installation Script</a></h4>
+<div class="paragraph">
+<p>WPN-XM provides the installation helper <code>server/bin/php/go-pear.bat</code>.</p>
+</div>
+<div class="paragraph">
+<p>Please execute the batch file and follow the instructions displayed on screen.
+The instructions will guide you through the PEAR installation process.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_instructions"><a class="anchor" href="#_instructions"></a><a class="link" href="#_instructions">3.13.2. Instructions</a></h4>
+<div class="paragraph">
+<p>Please use this answer set, to go quickly through the installation of PEAR.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Are you installing a system-wide PEAR or a local copy? Type <code>local</code> and press Enter.</p>
+</li>
+<li>
+<p>Please confirm local copy by typing 'yes': Type <code>yes</code> and press Enter.</p>
+</li>
+<li>
+<p>Press 1.</p>
+</li>
+<li>
+<p>Use the folder selection dialog and select your "WPN-XM installation folder/bin/php/PEAR".</p>
+</li>
+<li>
+<p>You will see the same dialog, but with adjusted paths. Press Enter.</p>
+</li>
+<li>
+<p>Would you like to alter php.ini? Type <code>yes</code> and press Enter.</p>
+</li>
+<li>
+<p>Configuration file paths are shown. Press Enter. Congrats!</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_neo4j"><a class="anchor" href="#_neo4j"></a><a class="link" href="#_neo4j">3.14. Neo4J</a></h3>
+<div class="paragraph">
+<p>Neo4j is a graph database using the Cypher Query language.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Website: <a href="https://neo4j.com/" class="bare">https://neo4j.com/</a></p>
+</li>
+<li>
+<p>PHP Docs: <a href="https://neo4j.com/developer/php/" class="bare">https://neo4j.com/developer/php/</a></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_php_drivers"><a class="anchor" href="#_php_drivers"></a><a class="link" href="#_php_drivers">3.14.1. PHP Drivers</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>GraphAware PHP Client - <a href="https://github.com/graphaware/neo4j-php-client" class="bare">https://github.com/graphaware/neo4j-php-client</a></p>
+</li>
+<li>
+<p>GraphAware Neo4j-PHP-OGM - <a href="https://github.com/neo4j-examples/movies-symfony-php-bolt" class="bare">https://github.com/neo4j-examples/movies-symfony-php-bolt</a></p>
+</li>
+<li>
+<p>NeoEloquent for Laravel - <a href="https://github.com/Vinelab/NeoEloquent" class="bare">https://github.com/Vinelab/NeoEloquent</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_php_applications"><a class="anchor" href="#_php_applications"></a><a class="link" href="#_php_applications">3.14.2. PHP Applications</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/Omnomhub/omnomhub" class="bare">https://github.com/Omnomhub/omnomhub</a></p>
+</li>
+<li>
+<p><a href="https://github.com/okulbilisim/thesaurus-manager" class="bare">https://github.com/okulbilisim/thesaurus-manager</a></p>
+</li>
+<li>
+<p><a href="https://github.com/graphaware/graphgen" class="bare">https://github.com/graphaware/graphgen</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_php_applications_2"><a class="anchor" href="#_php_applications_2"></a><a class="link" href="#_php_applications_2">4. PHP Applications</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_drupal_7"><a class="anchor" href="#_drupal_7"></a><a class="link" href="#_drupal_7">4.1. Drupal 7</a></h3>
+<div class="paragraph">
+<p>Drupal is a PHP content management software. Initially written in the year 2000 by two University of Antwerp students, Dries Buytaert and Hans Snijder. The first release was in Januar 2001.</p>
+</div>
+<div class="paragraph">
+<p>Nowadays the development is driven by Acquia Drupal and a vibrant open-source community.</p>
+</div>
+<div class="paragraph">
+<p>Drupal 7.0 was released on January 5, 2011 (after being in development since July 2008).</p>
+</div>
+<div class="sect3">
+<h4 id="_installation_2"><a class="anchor" href="#_installation_2"></a><a class="link" href="#_installation_2">4.1.1. Installation</a></h4>
+<div class="paragraph">
+<p>The following step-by-step tutorial guides you through the process of installing and
+setting up Drupal 7.</p>
+</div>
+<div class="paragraph">
+<p>The first few steps cover the installation of Drupal into the folder <code>server\www\drupal7</code>.
+Our goal is to have a working Drupal 7 installation accessible at <code><a href="http://localhost/drupal7/" class="bare">http://localhost/drupal7/</a></code>.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download: <a href="https://ftp.drupal.org/files/projects/drupal-7.42.zip" class="bare">https://ftp.drupal.org/files/projects/drupal-7.42.zip</a></p>
+</li>
+<li>
+<p>Extract into <code>server\www</code> folder</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Drupal brings its own folder: <code>drupal-7.42</code>. Simply rename it to <code>drupal7</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Open in browser: <a href="http://localhost/drupal7/install.php" class="bare">http://localhost/drupal7/install.php</a></p>
+</li>
+<li>
+<p>Select "standard"</p>
+</li>
+<li>
+<p>Enable PHP Extension "gd" in <code>php.ini</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>extension=php_gd2.dll</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Create database with Adminer</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Open in browser: <a href="http://localhost/tools/adminer/adminer.php" class="bare">http://localhost/tools/adminer/adminer.php</a></p>
+</li>
+<li>
+<p>Note: in case you need to change root pw, use <code>reset-db-pw.bat</code> from the servers root folder</p>
+</li>
+<li>
+<p>create table "test"</p>
+</li>
+<li>
+<p>create new user and pw</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Use the "database", "user" and "pw" in the Drupal installation dialog</p>
+</li>
+<li>
+<p>Follow dialog and configure site</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Finally Drupal is installed.</p>
+</div>
+<div class="paragraph">
+<p>The URL is <code><a href="http://localhost/drupal7/" class="bare">http://localhost/drupal7/</a></code> and the installation folder is <code>server\www\drupal7</code></p>
+</div>
+<div class="paragraph">
+<p>The next few steps cover how to get of the <code><a href="http://localhost" class="bare">http://localhost</a></code> domain and enable a shorter and more nice appealing local development domain instead.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_setup_local_domain_httpdrupal7_dev"><a class="anchor" href="#_setup_local_domain_httpdrupal7_dev"></a><a class="link" href="#_setup_local_domain_httpdrupal7_dev">4.1.2. Setup local domain <a href="http://drupal7.dev/" class="bare">http://drupal7.dev/</a></a></h4>
+<div class="paragraph">
+<p>Apache users refer to this as setting up a "virtual host".
+Nginx doesn&#8217;t know what "virtual hosts" are
+With Nginx we simply define a new "server block" and use a <code>server_name</code> directive.</p>
+</div>
+<div class="paragraph">
+<p>WPN-XM ships several "server block" configurations by default.
+You find them in the <code>server\bin\nginx\config\conf\domains-disabled\</code> folder.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>copy the <code>drupal7.conf</code> from the <code>domains-disabled</code> to the <code>domains-enabled</code> folder</p>
+<div class="ulist">
+<ul>
+<li>
+<p>configs are also on Github: <a href="https://github.com/WPN-XM/software/blob/master/nginx/config/conf/domains-disabled/drupal7.conf" class="bare">https://github.com/WPN-XM/software/blob/master/nginx/config/conf/domains-disabled/drupal7.conf</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>edit the file and check that the following directives are defined:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>root www/drupal7</code>;</p>
+</li>
+<li>
+<p><code>server_name drupal7.dev</code>;</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>then add a new "vhost" by using the Server Control Panel</p>
+<div class="ulist">
+<ul>
+<li>
+<p>right-click on the Tray</p>
+</li>
+<li>
+<p>then click "Manage Hosts"</p>
+</li>
+<li>
+<p>click "Add"</p>
+</li>
+<li>
+<p>enter "127.0.0.1" and "drupal7.dev"</p>
+</li>
+<li>
+<p>click "OK" and again "OK" (this changes your local <code>hosts</code> file)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>restart Nginx</p>
+</li>
+<li>
+<p>finally, open the URL <a href="http://drupal7.dev/" class="bare">http://drupal7.dev/</a></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_enabling_clean_urls_for_drupal_7"><a class="anchor" href="#_enabling_clean_urls_for_drupal_7"></a><a class="link" href="#_enabling_clean_urls_for_drupal_7">4.1.3. Enabling clean URLs for Drupal 7</a></h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open <a href="http://drupal7.dev/" class="bare">http://drupal7.dev/</a></p>
+</li>
+<li>
+<p>login</p>
+<div class="ulist">
+<ul>
+<li>
+<p>after login the URL is: <a href="http://drupal7.dev/?q=node" class="bare">http://drupal7.dev/?q=node</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>To enable clean urls go to <span class="menuseq"><b class="menu">Configuration</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Clean-Urls</b></span> or directly to</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://drupal7.dev/admin/config/search/clean-urls" class="bare">http://drupal7.dev/admin/config/search/clean-urls</a></p>
+</li>
+<li>
+<p>alternatively: <a href="http://drupal7.dev/?q=admin/config/search/clean-urls" class="bare">http://drupal7.dev/?q=admin/config/search/clean-urls</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>enable checkbox "enable clean urls", then submit the form</p>
+</li>
+<li>
+<p>finally, open any clean URL, e.g. <a href="http://drupal7.dev/admin/content" class="bare">http://drupal7.dev/admin/content</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We successfully installed Drupal 7 into <code>server\www\drupal7</code>, created a local server domain
+<code>drupal7.dev</code> and enabled clean URLs.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="colophon"><a class="anchor" href="#colophon"></a><a class="link" href="#colophon">Colophon</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>&#169; 2015 - 2016 Jens A. Koch</p>
+</div>
+<div class="sect2">
+<h3 id="_license"><a class="anchor" href="#_license"></a><a class="link" href="#_license">License</a></h3>
+<div class="paragraph">
+<p>WPN-XM User-Manual by Jens A. Koch is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</p>
+</div>
+<div class="paragraph">
+<p>You find the full license text here: <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode" class="bare">https://creativecommons.org/licenses/by-sa/4.0/legalcode</a></p>
+</div>
+<div class="sect3">
+<h4 id="_license_summary"><a class="anchor" href="#_license_summary"></a><a class="link" href="#_license_summary">License Summary</a></h4>
+<div class="paragraph">
+<p><strong>Creative Commons - Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)</strong></p>
+</div>
+<div class="dlist">
+<div class="title">You are free to</div>
+<dl>
+<dt class="hdlist1">Share</dt>
+<dd>
+<p>copy and redistribute the material in any medium or format</p>
+</dd>
+<dt class="hdlist1">Adapt</dt>
+<dd>
+<p>remix, transform, and build upon the material</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>for any purpose, even commercially.</p>
+</div>
+<div class="paragraph">
+<p>The licensor cannot revoke these freedoms as long as you follow the license terms.</p>
+</div>
+<div class="dlist">
+<div class="title">Under the following terms</div>
+<dl>
+<dt class="hdlist1">Attribution</dt>
+<dd>
+<p>You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.</p>
+</dd>
+<dt class="hdlist1">ShareAlike</dt>
+<dd>
+<p>If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.</p>
+</dd>
+<dt class="hdlist1">No additional restrictions</dt>
+<dd>
+<p>You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<div class="title">Notices</div>
+<p>You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable exception or limitation.</p>
+</div>
+<div class="paragraph">
+<p>No warranties are given.
+The license may not give you all of the permissions necessary for your intended use.
+For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="bare">https://creativecommons.org/licenses/by-sa/4.0/</a> for further details.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authors"><a class="anchor" href="#_authors"></a><a class="link" href="#_authors">Authors</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Chapter</th>
+<th class="tableblock halign-left valign-top">Page</th>
+<th class="tableblock halign-left valign-top">Author</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chapter 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Running</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Peter Vandenberghe</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chapter 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Installation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Peter Vandenberghe</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chapter 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Using the Server Control Panel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Peter Vandenberghe</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+ 1.0-dev-d5386bf<br>
+Last updated 2019-03-29 13:36:49 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai_sublime.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

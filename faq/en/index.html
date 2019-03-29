@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.3">
+<meta name="description" content="This document is the WPN-XM FAQ.">
+<meta name="keywords" content="wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB">
+<meta name="author" content="Jens A. Koch">
+<title>Frequently Asked Questions</title>
+<link rel="stylesheet" href="./../stylesheets/foundation.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Frequently Asked Questions</h1>
+<div class="details">
+<span id="author" class="author">Jens A. Koch</span><br>
+<span id="email" class="email"><a href="mailto:jakoch@web.de">jakoch@web.de</a></span><br>
+<span id="revnumber"> v1.0</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This page exists to answer common questions about the WPN-XM server stack.  It
+is a reference to answer oft-repeated questions people in the WPN-XM community
+encounter. It is not a complete guide to the server stack, nor a tool for
+teaching how to use it.</p>
+</div>
+<div class="paragraph">
+<p>If there is some common or important question you feel is wrongly left
+unanswered here, feel free to help us fix it.</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_how_do_i_install_wpn_xm">How do I install WPN-XM?</a></li>
+<li><a href="#_does_wpn_xm_include_mysql_or_mariadb">Does WPN-XM include MySQL or MariaDB?</a></li>
+<li><a href="#_how_do_i_start_and_stop_wpn_xm">How do I start and stop WPN-XM?</a></li>
+<li><a href="#_how_can_i_install_a_server_as_a_service">How can I install a server as a service?</a></li>
+<li><a href="#_is_wpn_xm_production_ready">Is WPN-XM production ready?</a></li>
+<li><a href="#_how_do_i_uninstall_wpn_xm">How do I uninstall WPN-XM?</a></li>
+<li><a href="#_what_are_the_lite_and_literc_versions_of_wpn_xm">What are the "Lite" and "LiteRC" versions of WPN-XM?</a></li>
+<li><a href="#_i_have_trouble_starting_and_stopping_daemons_using_the_server_control_panel_what_can_i_do">I have trouble starting and stopping daemons using the Server-Control-Panel. What can i do?</a></li>
+<li><a href="#_where_should_i_place_my_web_content">Where should I place my web content?</a></li>
+<li><a href="#_can_i_move_the_wpn_xm_installation">Can I move the WPN-XM installation?</a></li>
+<li><a href="#_what_are_automatic_start_pages_for_the_www_directory_and_its_subfolders">What are "automatic start pages" for the "\www" directory and it&#8217;s subfolders?</a></li>
+<li><a href="#_where_can_i_change_the_configuration">Where can I change the configuration?</a></li>
+<li><a href="#_my_anti_virus_software_reports_that_wpn_xm_contains_a_virus">My anti-virus software reports that WPN-XM contains a virus!?</a></li>
+<li><a href="#_what_can_i_do_when_the_mysqlmariadb_daemon_wont_start">What can i do, when the MySQL/MariaDB daemon won&#8217;t start?</a></li>
+<li><a href="#_why_do_i_get_socket_errors_while_step_debugging_with_xdebug">Why do i get socket errors, while step debugging with XDebug?</a></li>
+<li><a href="#_what_can_i_do_when_nginx_wont_start_or_shuts_down_immediately_and_port_80_is_used">What can i do, when Nginx wont' start or shuts down immediately and Port 80 is used.</a>
+<ul class="sectlevel2">
+<li><a href="#_how_to_check_if_port_80_is_used_how_to_find_out_who_is_using_it">How to check if port 80 is used? How to find out who is using it?</a></li>
+<li><a href="#_which_applications_and_services_are_known_to_be_listening_on_port_80">Which applications and services are known to be listening on port 80?</a></li>
+</ul>
+</li>
+<li><a href="#_how_to_start_the_installation_wizard_in_the_shared_folder_of_a_vm">How to start the installation wizard in the shared folder of a VM?</a></li>
+<li><a href="#_how_to_test_if_mails_are_send_on_windows">How to test, if mails are send on Windows?</a></li>
+<li><a href="#_why_is_there_a_reversed_n_in_wpи_xm">Why is there a "reversed" N in WPИ-XM?</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_do_i_install_wpn_xm">How do I install WPN-XM?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You find the <a href="http://wpn-xm.github.io/docs/user-manual/en/#_installation">installation guide</a> in the user-manual.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_does_wpn_xm_include_mysql_or_mariadb">Does WPN-XM include MySQL or MariaDB?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WPN-XM ships MariaDB since the beginning of the project.</p>
+</div>
+<div class="paragraph">
+<p>MariaDB is a drop-in replacement for MySQL. The commands and tools are the same for both.
+Although there are subtle differences regarding <a href="https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-features/">features</a>
+and <a href="https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-compatibility/">compatibility</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_do_i_start_and_stop_wpn_xm">How do I start and stop WPN-XM?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>You can use the "Server Control Panel". It is started with:</p>
+<div class="literalblock">
+<div class="content">
+<pre>wpn-xm.exe</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You find more information about using the SCP in the <a href="http://wpn-xm.github.io/docs/user-manual/en/#_using_the_server_control_panel">user-manual</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can also use <a href="http://wpn-xm.github.io/docs/user-manual/en/#_files">batchfiles</a> to start or stop servers.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_can_i_install_a_server_as_a_service">How can I install a server as a service?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Services are not supported, yet. See <a href="https://github.com/WPN-XM/WPN-XM/issues/165">Issue #165</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_is_wpn_xm_production_ready">Is WPN-XM production ready?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WPN-XM is production ready for a local development purposes.
+It allows developers to start new projects fastly.</p>
+</div>
+<div class="paragraph">
+<p>It is in active development and beta quality software (as indicated by the major version number "0").</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Do not use WPN-XM as a public server!</strong>
+WPN-XM is not prepared to be a publicly available server.</p>
+</div>
+<div class="paragraph">
+<p>Being a publicly available server is not the intended production use-case.</p>
+</div>
+<div class="paragraph">
+<p><strong>WPN-XM has no secure configuration!</strong>
+WPN-XM is not configured in a secure way.</p>
+</div>
+<div class="paragraph">
+<p>We are keeping security barriers low to allow a fast development,
+e.g. by using either no passwords or the same password for multiple administration tools.</p>
+</div>
+<div class="paragraph">
+<p>Please secure WPN-XM, if you want to make it accessible via the network to people outside your LAN.
+This is a huge security risk! A firewall or an external router will only provide a low level of security.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>We are looking for contributions to our security checklist.
+This list should act as a starting point, for a developer trying to secure the server environment.
+It&#8217;s by no means complete. You have to fix all security issues manually.</p>
+</div>
+<div class="paragraph">
+<p><strong>Security Checklist</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>delete the webinterface (<code>www\tools\webinterface</code>)</p>
+</li>
+<li>
+<p>remove or access protect all other tools, e.g. <code>www\tools\adminer</code>, <code>www\tools\phpmyadmin</code></p>
+</li>
+<li>
+<p>add password protections to the servers</p>
+</li>
+<li>
+<p>configure your firewall to open only for protocols and ports of servers you really need</p>
+</li>
+<li>
+<p>move the public folder to a new and empty partition, adjust paths in nginx.conf</p>
+</li>
+<li>
+<p>use a dedicated user with restricted permissions to run the server environment</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_do_i_uninstall_wpn_xm">How do I uninstall WPN-XM?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Please use the Uninstaller in the root folder.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_are_the_lite_and_literc_versions_of_wpn_xm">What are the "Lite" and "LiteRC" versions of WPN-XM?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WPN-XM Lite and LiteRC are our smallest packaged installers. Lite means "light-weight".</p>
+</div>
+<div class="paragraph">
+<p>The Lite installers provide only a few essential software components to get quickly started,
+including Nginx, PHP, MariaDB, Xdebug, Composer.</p>
+</div>
+<div class="paragraph">
+<p>Of course, some servers and tools provided in the Standard or Full packages will be missing.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_i_have_trouble_starting_and_stopping_daemons_using_the_server_control_panel_what_can_i_do">I have trouble starting and stopping daemons using the Server-Control-Panel. What can i do?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If the SCP doesn&#8217;t work, then please try to use the batch files <code>start-wpnxm.bat</code> and <code>stop-wpnxm.bat</code> instead.
+You might check, whether daemons are running with <code>status-wpnxm.bat</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_where_should_i_place_my_web_content">Where should I place my web content?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The main folder for your projects is <code>\www</code>.</p>
+</div>
+<div class="paragraph">
+<p>Please create a new folder for your project. For example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>let&#8217;s create a folder "myproject", so you get <code>\www\myproject</code></p>
+</li>
+<li>
+<p>and put a simple HTML file <code>test.html</code> with the following content in this directory:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">&lt;?php
+   echo 'Hello World! This is my project.';
+?&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can access it by using the URI <code><a href="http://localhost/myproject/test.html" class="bare">http://localhost/myproject/test.html</a></code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_can_i_move_the_wpn_xm_installation">Can I move the WPN-XM installation?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>No, that&#8217;s not supported, yet.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_are_automatic_start_pages_for_the_www_directory_and_its_subfolders">What are "automatic start pages" for the "\www" directory and it&#8217;s subfolders?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nginx is configured to serve the following files as index pages: <code>index.php</code>, <code>index.html</code>, <code>index.htm</code>.</p>
+</div>
+<div class="paragraph">
+<p>This is done by using Nginx&#8217;s
+<a href="http://nginx.org/en/docs/http/ngx_http_index_module.html">index directive</a> inside a location block:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>location / {
+    index  index.php index.html index.htm;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The server will automatically try to serve one of these files,
+when you access a folder without specifying a file in the URI.
+Files are checked in the specified order.</p>
+</div>
+<div class="paragraph">
+<p>When those files are not found, the server will display the
+<a href="http://nginx.org/en/docs/http/ngx_http_autoindex_module.html">directory listing</a> (autoindex).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_where_can_i_change_the_configuration">Where can I change the configuration?</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_my_anti_virus_software_reports_that_wpn_xm_contains_a_virus">My anti-virus software reports that WPN-XM contains a virus!?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s possible that an antivirus software erroneously  identifies a file as
+containing a virus or being malware, when the file is clean. That happens,
+because Antivirus programs often use heuristics to identify malware and viruses.
+Sometimes these heuristics fail and the program reports a <code>false positive</code>.</p>
+</div>
+<div class="paragraph">
+<p>We transmit <code>false positives</code> as samples to several online anti-virus labs for
+further analysis. You can also use the online tool Virus Total for  scanning
+files of WPN-XM.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_can_i_do_when_the_mysqlmariadb_daemon_wont_start">What can i do, when the MySQL/MariaDB daemon won&#8217;t start?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Please start mysqld manually by running <code>mysqld --console</code> on the CLI in the folder <code>\server\mariadb\bin</code>.
+You will get a startup log with more pieces of information about the reason.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd server\bin\mariadb\bin
+mysqld --console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Often the cause is a misconfiguration in <code>my.ini</code> or accidentally modified or deleted files in the data folder.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_do_i_get_socket_errors_while_step_debugging_with_xdebug">Why do i get socket errors, while step debugging with XDebug?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Check the Nginx <code>error.log</code>. If you see errormessages like <code>upstream timed out</code>,
+then try to increase the <code>fastcgi_read_timeout</code> in your <code>nginx.conf</code>. Do not forget to restart the daemon.
+The value defaults to 60s. Which might be enough for production, but clearly not for development/debugging,
+because of the long running fastcgi process that does not produce any output until it is finished.
+See the related Nginx Wiki page: <a href="http://wiki.nginx.org/HttpFastcgiModule">Nginx - Module - HttpFastcgi</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_can_i_do_when_nginx_wont_start_or_shuts_down_immediately_and_port_80_is_used">What can i do, when Nginx wont' start or shuts down immediately and Port 80 is used.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Immediate shutdowns are an indicator that the port 80, which Nginx uses by default is already taken.
+You will also find the following message in the Nginx <code>error.log</code>: <code>bind() to 127.0.0.1:80 failed</code>.</p>
+</div>
+<div class="paragraph">
+<p>For a successful bind to port 80, we need to figure out which other application or service is using it,
+then stop and disable it.</p>
+</div>
+<div class="sect2">
+<h3 id="_how_to_check_if_port_80_is_used_how_to_find_out_who_is_using_it">How to check if port 80 is used? How to find out who is using it?</h3>
+<div class="paragraph">
+<p>Please check, if the port is used and get the application name listening by using <code>netstat -abno</code>.</p>
+</div>
+<div class="paragraph">
+<p>You might combine it with <code>findstr</code> to reduce the output of <code>netstat</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>netstat -abno | findstr 0.0.0.0:80
+netstat -abno | findstr 127.0.0.1:80</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You could also use a helper tool, like <a href="http://www.nirsoft.net/utils/cports.html">CurrPorts</a> or
+<a href="https://technet.microsoft.com/en-us/sysinternals/processexplorer.aspx">Process Explorer</a>
+to list the ports and find out the application name.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_which_applications_and_services_are_known_to_be_listening_on_port_80">Which applications and services are known to be listening on port 80?</h3>
+<div class="sect3">
+<h4 id="_another_web_server_is_already_listening">Another web-server is already listening</h4>
+<div class="paragraph">
+<p>An installation of WPN-XM might clash with any other WAMP stack, e.g. XAMPP.
+Additional steps are needed to make them run in parallel.</p>
+</div>
+<div class="paragraph">
+<p>Make sure, that no other webserver, e.g. Apache, Tomcat, IIS or WebMatrix is currently listening or configure the stacks to use different ports.</p>
+</div>
+<div class="paragraph">
+<p>IIS can be removed by turning it off using <a href="http://windows.microsoft.com/en-us/windows/turn-windows-features-on-off#1TC=windows-7">Windows Features</a>.
+On a Windows Server via <a href="http://technet.microsoft.com/en-us/library/cc779925(v=ws.10).aspx">Role and Components Removal</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_skype">Skype</h4>
+<div class="paragraph">
+<p>Skype bind to ports 80 and 443.</p>
+</div>
+<div class="paragraph">
+<p>To change that, you have to stop Skype and then use it&#8217;s configuration dialog:</p>
+</div>
+<div class="paragraph">
+<p>Please go to <code>Tools &gt; Options &gt; Advanced &gt; Connection</code> and</p>
+</div>
+<div class="paragraph">
+<p>Uncheck <code>Use Port 80 and 443 for incoming connections</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_windows_system_services">Windows System Services</h4>
+<div class="paragraph">
+<p>Some Windows Systems Services are known to be listening on port 80.</p>
+</div>
+<div class="paragraph">
+<p>You might, or might not, have some of these Services installed and running.</p>
+</div>
+<div class="paragraph">
+<p>You have the following ways to stop and disable them:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To open Windows Services, run <code>services.msc</code> to open the Services Manager.
+You will be able to start, stop, disable and delay Windows Services.</p>
+</li>
+<li>
+<p>Alternativly, you can use the CLI util <code>sc.exe</code> (<code>sc stop &lt;name&gt;</code>) to start, stop and configure services.</p>
+</li>
+<li>
+<p>There is also the CLI util <code>net</code> (<code>net stopservice &lt;name&gt;</code>).</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>World Wide Web Publishing Service (W3SVC)</strong></p>
+</div>
+<div class="paragraph">
+<p>If the port is used by "System PID 4", then the service "WWW-Publishingservice" (w3svc) is using the port.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop W3SVC
+sc config "W3SVC" start=disabled</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Web Deployment Agent Service (MsDepSvc)</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop MsDepSvc
+sc config "MsDepSvc" start=disabled</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>SQL Server Reporting Services (ReportServer)</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop ReportServer
+sc config "ReportServer" start=disabled</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>BranchCache (PeerDistSvc)</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop PeerDistSvc
+sc config "PeerDistSvc" start=disabled</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Sync Share Service (SyncShareSvc)</strong></p>
+</div>
+<div class="paragraph">
+<p>Microsoft added a feature called <code>Work Folders</code> to  Windows Server 2012 R2 and Windows 8+.
+This feature uses the ports 80 and 443 by default and relies on the service <code>SyncShareSvc</code> to synchronizes files and folders between different machines.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop SyncShareSvc
+sc config "SyncShareSvc" start=disabled</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you need the Work Folders feature, you might also change it&#8217;s ports, e.g. to <code>10080</code> and <code>10443</code> by editing the SyncShareSvc.config (<code>C:\Windows\System32\SyncShareSvc.config</code>) file. After doing that, you need to register the new ports using the admin prompt:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Netsh http add urlacl url=http://*:&lt;10080&gt;/ user="NT Authority\LOCAL SERVICE"
+Netsh http add urlacl url=https://*:&lt;10443&gt;/ user="NT Authority\LOCAL SERVICE"</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Internet Information Server (WAS, IISADMIN)</strong></p>
+</div>
+<div class="paragraph">
+<p>You can stop the IIS Admin Service and all dependent services, with <code>net stop iisasmin /y</code> at the CLI.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can stop and disable services individually:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop WAS
+sc config "WAS" start=disabled</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop IISADMIN
+sc config "IISADMIN" start=disabled</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_teamviewer">TeamViewer</h4>
+<div class="paragraph">
+<p>If installed, TeamViewer binds to port 80.</p>
+</div>
+<div class="paragraph">
+<p>Please use it&#8217;s configuration dialog and go to <code>Extras &gt; Options &gt; Advanced</code> and <code>enable</code> the option <code>Don&#8217;t use incoming port 80</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_start_the_installation_wizard_in_the_shared_folder_of_a_vm">How to start the installation wizard in the shared folder of a VM?</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>ShellExecuteEx Error - System cannot find the path specified.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The installer can not be executed in the shared folder of a virtual machine.
+It needs to be copied into a non-shared folder and started there.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_test_if_mails_are_send_on_windows">How to test, if mails are send on Windows?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You would install a fake sendmail server, which listens at a specific port (usally 25) for new mail and saves it to a specific folder. You can then read the file and test it for correct mail rendering.</p>
+</div>
+<div class="paragraph">
+<p>The are several fake sendmail tools (1-5) and servers (5-6) around :</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test Mail Server Tool - <a href="http://www.toolheap.com/test-mail-server-tool/" class="bare">http://www.toolheap.com/test-mail-server-tool/</a></p>
+</li>
+<li>
+<p>Fake Sendmail - <a href="http://glob.com.au/sendmail/" class="bare">http://glob.com.au/sendmail/</a></p>
+</li>
+<li>
+<p>smtp4dev - <a href="http://smtp4dev.codeplex.com/" class="bare">http://smtp4dev.codeplex.com/</a></p>
+</li>
+<li>
+<p>Papercut - <a href="http://papercut.codeplex.com/" class="bare">http://papercut.codeplex.com/</a></p>
+</li>
+<li>
+<p>xmailserver - 1,4MB - <a href="http://www.xmailserver.org/" class="bare">http://www.xmailserver.org/</a></p>
+</li>
+<li>
+<p>hmailserver - 3,4MB - <a href="http://www.hmailserver.com/" class="bare">http://www.hmailserver.com/</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>WPN-XM ships "Fake Sendmail".</p>
+</div>
+<div class="paragraph">
+<p>If you need a real SMTP tool, try <a href="http://www.blat.net/" class="bare">http://www.blat.net/</a> or <a href="http://msmtp.sourceforge.net/" class="bare">http://msmtp.sourceforge.net/</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_is_there_a_reversed_n_in_wpи_xm">Why is there a "reversed" N in WPИ-XM?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The "reversed" N is cyrillic and used intentionally to indicate that the stack includes Nginx ("engine x").
+We use the "reversed" N as the initial letter for Nginx in our project name and logo.</p>
+</div>
+<div class="paragraph">
+<p>Other logos apply the same "graphical hint" and reverse the second N:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../../images/nginx-logo-small.png" alt="Nginx Logo"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+ v1.0<br>
+Last updated 2019-03-29 13:36:49 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

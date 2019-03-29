@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.3">
+<meta name="description" content="This document is the WPN-XM FAQ.">
+<meta name="keywords" content="wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, Xdebug, MariaDB">
+<meta name="author" content="Jens A. Koch">
+<title>Frequently Asked Questions</title>
+<link rel="stylesheet" href="./../stylesheets/foundation.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Frequently Asked Questions</h1>
+<div class="details">
+<span id="author" class="author">Jens A. Koch</span><br>
+<span id="email" class="email"><a href="mailto:jakoch@web.de">jakoch@web.de</a></span><br>
+<span id="revnumber"> v1.0</span>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Auf dieser Seite finden Sie Antworten auf häufig gestellte Fragen zum WPN-XM Server Stack.</p>
+</div>
+<div class="paragraph">
+<p>Wenn es irgendeine allgemeine oder wichtige Frage gibt, die hier unbeantwortet geblieben ist,
+dann zögern Sie bitte nicht, uns zu kontaktieren, um diese Seite um Frage und Antwort zu ergänzen. Vielen Dank!</p>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_wie_installiere_ich_wpn_xm">Wie installiere ich WPN-XM?</a></li>
+<li><a href="#_enthält_wpn_xm_mysql_oder_mariadb">Enthält WPN-XM MySQL oder MariaDB?</a></li>
+<li><a href="#_wie_starte_und_stoppe_ich_wpn_xm">Wie starte und stoppe ich WPN-XM?</a></li>
+<li><a href="#_wie_kann_ich_einen_server_als_dienst_installieren">Wie kann ich einen Server als Dienst installieren?</a></li>
+<li><a href="#_ist_wpn_xm_produktionsreif_und_als_server_einsetzbar">Ist WPN-XM produktionsreif und als Server einsetzbar?</a></li>
+<li><a href="#_wie_deinstalliere_ich_wpn_xm">Wie deinstalliere ich WPN-XM?</a></li>
+<li><a href="#_was_sind_die_versionen_lite_und_literc_von_wpn_xm">Was sind die Versionen "Lite" und "LiteRC" von WPN-XM?</a></li>
+<li><a href="#_ich_habe_probleme_beim_starten_und_stoppen_von_dämonen_mit_dem_server_control_panel_was_kann_ich_tun">Ich habe Probleme beim Starten und Stoppen von Dämonen mit dem Server-Control-Panel. Was kann ich tun?</a></li>
+<li><a href="#_wo_sollte_ich_meine_webinhalte_platzieren">Wo sollte ich meine Webinhalte platzieren?</a></li>
+<li><a href="#_kann_ich_die_wpn_xm_installation_verschieben">Kann ich die WPN-XM Installation verschieben?</a></li>
+<li><a href="#_was_sind_automatische_startseiten_für_das_verzeichnis_www_und_dessen_unterordner">Was sind "automatische Startseiten" für das Verzeichnis "\www" und dessen Unterordner?</a></li>
+<li><a href="#_wo_kann_ich_die_konfiguration_ändern">Wo kann ich die Konfiguration ändern?</a></li>
+<li><a href="#_meine_anti_virus_software_berichtet_dass_wpn_xm_einen_virus_enthält">Meine Anti-Virus-Software berichtet, dass WPN-XM einen Virus enthält!?</a></li>
+<li><a href="#_was_kann_ich_tun_wenn_der_mysql_mariadb_daemon_nicht_startet">Was kann ich tun, wenn der MySQL / MariaDB-Daemon nicht startet?</a></li>
+<li><a href="#_warum_bekomme_ich_einen_socket_fehler_beim_step_debuggen_mit_xdebug">Warum bekomme ich einen Socket-Fehler beim Step-Debuggen mit XDebug?</a></li>
+<li><a href="#_was_kann_ich_tun_wenn_nginx_wird_nicht_starten_oder_heruntergefahren_sofort_und_port_80_verwendet_wird">Was kann ich tun, wenn Nginx wird nicht starten oder heruntergefahren sofort und Port 80 verwendet wird.</a>
+<ul class="sectlevel2">
+<li><a href="#_wie_überprüft_man_ob_port_80_verwendet_wird_wie_finde_ich_heraus_wer_es_benutzt">Wie überprüft man, ob Port 80 verwendet wird? Wie finde ich heraus, wer es benutzt?</a></li>
+<li><a href="#_welche_anwendungen_und_dienste_sind_bekanntermaßen_auf_port_80_zu_finden">Welche Anwendungen und Dienste sind bekanntermaßen auf Port 80 zu finden?</a></li>
+</ul>
+</li>
+<li><a href="#_wie_wird_der_installationsassistent_im_freigegebenen_ordner_einer_vm_gestartet">Wie wird der Installationsassistent im freigegebenen Ordner einer VM gestartet?</a></li>
+<li><a href="#_wie_kann_ich_den_mailversand_auf_windows_testen">Wie kann ich den Mailversand auf Windows testen?</a></li>
+<li><a href="#_warum_gibt_es_ein_umgekehrtes_n_in_wpи_xm">Warum gibt es ein "umgekehrtes" N in WPИ-XM?</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wie_installiere_ich_wpn_xm">Wie installiere ich WPN-XM?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die <a href="http://wpn-xm.github.io/docs/user-manual/en/#_installation">Installationsanleitung</a> finden Sie im Benutzerhandbuch.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_enthält_wpn_xm_mysql_oder_mariadb">Enthält WPN-XM MySQL oder MariaDB?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WPN-XM liefert MariaDB seit Beginn des Projektes.</p>
+</div>
+<div class="paragraph">
+<p>MariaDB ist ein Drop-in-Ersatz für MySQL. Die Befehle und Werkzeuge sind für beide gleich.
+Dennoch gibt es subtile Unterschiede in Bezug auf <a href="https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-features/">Features</a>
+und <a href="https://mariadb.com/kb/en/mariadb/mariadb-vs-mysql-compatibility/">Kompatibilität</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wie_starte_und_stoppe_ich_wpn_xm">Wie starte und stoppe ich WPN-XM?</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Sie können das "Server Control Panel" verwenden. Es wird gestartet mit:</p>
+<div class="literalblock">
+<div class="content">
+<pre>wpn-xm.exe</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Weitere Informationen zur Verwendung des SCP finden Sie im
+<a href="http://wpn-xm.github.io/docs/user-manual/en/#_using_the_server_control_panel">Benutzerhandbuch</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sie können auch <a href="http://wpn-xm.github.io/docs/user-manual/en/#_files">Batchdateien</a> zum Starten oder Stoppen von Servern verwenden.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wie_kann_ich_einen_server_als_dienst_installieren">Wie kann ich einen Server als Dienst installieren?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dienste werden noch nicht unterstützt. Wir arbeiten daran. Siehe <a href="https://github.com/WPN-XM/WPN-XM/issues/165">Issue #165</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ist_wpn_xm_produktionsreif_und_als_server_einsetzbar">Ist WPN-XM produktionsreif und als Server einsetzbar?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WPN-XM ist für die lokale Entwicklung vorbereitet. Es ermöglicht Entwicklern, neue Projekte schnell zu starten.</p>
+</div>
+<div class="paragraph">
+<p>Es ist in aktiver Entwicklung und Software mit Beta-Qualität (dies wird auch durch die Major-Versionsnummer "0" angezeigt).</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Verwenden Sie WPN-XM nicht als öffentlichen Server!</strong></p>
+</div>
+<div class="paragraph">
+<p>WPN-XM ist nicht bereit, ein öffentlich zugänglicher Server zu sein.</p>
+</div>
+<div class="paragraph">
+<p>Der Betrieb eines öffentlich zugänglichen Servers ist nicht der beabsichtigte Nutzungszweck des Produkts.</p>
+</div>
+<div class="paragraph">
+<p><strong>WPN-XM hat keine sichere Konfiguration!</strong></p>
+</div>
+<div class="paragraph">
+<p>WPN-XM ist nicht sicher konfiguriert.</p>
+</div>
+<div class="paragraph">
+<p>Wir halten Sicherheitsbarrieren niedrig, um eine schnelle Entwicklung zu ermöglichen,
+z.B. durch das Weglassen von Passwörtern oder Verwendung des gleichen Passworts für mehrere Administrationswerkzeuge.</p>
+</div>
+<div class="paragraph">
+<p>Bitte sichern Sie WPN-XM, wenn Sie es über das Netzwerk an Personen außerhalb Ihres LAN zugänglich machen möchten.
+Dies ist ein großes Sicherheitsrisiko! Eine Firewall oder ein externer Router wird nur ein geringes Sicherheitsniveau bieten.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Wir suchen nach Beiträgen zu unserer Sicherheits-Checkliste.
+Diese Liste sollte als Ausgangspunkt dienen, für einen Entwickler, der versucht, die Serverumgebung zu sichern.
+Sie ist keineswegs vollständig oder abgeschlossen. Sie müssen alle Sicherheitsprobleme manuell beheben.</p>
+</div>
+<div class="paragraph">
+<p><strong>Sicherheits-Checkliste</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Löschen Sie das Webinterface (<code>www\tools\webinterface</code>)</p>
+</li>
+<li>
+<p>www\tools\adminer oder auf andere <code>www\tools\adminer</code>, z.B. <code>www\tools\adminer</code>, <code>www\tools\phpmyadmin</code></p>
+</li>
+<li>
+<p>Passwortschutz für die Server hinzufügen</p>
+</li>
+<li>
+<p>Konfigurieren Sie Ihre Firewall, um nur für Protokolle und Ports von Servern zu öffnen, die Sie wirklich benötigen</p>
+</li>
+<li>
+<p>Verschieben Sie den öffentlichen Ordner in eine neue und leere Partition, passen Sie Pfade in <code>nginx.conf</code> an</p>
+</li>
+<li>
+<p>Verwenden Sie einen dedizierten Benutzer mit eingeschränkten Berechtigungen, um die Serverumgebung auszuführen</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wie_deinstalliere_ich_wpn_xm">Wie deinstalliere ich WPN-XM?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bitte verwenden Sie das Uninstaller im Stammordner.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_was_sind_die_versionen_lite_und_literc_von_wpn_xm">Was sind die Versionen "Lite" und "LiteRC" von WPN-XM?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WPN-XM Lite und LiteRC sind unsere kleinsten Installationsprogramme. Lite bedeutet "leicht".</p>
+</div>
+<div class="paragraph">
+<p>Die Lite-Installationsprogramme stellen nur einige, wenige wesentliche Softwarekomponenten bereit,
+um schnell zu starten, einschließlich Nginx, PHP, MariaDB, Xdebug, Composer.</p>
+</div>
+<div class="paragraph">
+<p>Natürlich fehlen weitere Server und Tools, die in den Standard- oder Full-Installern bereitgestellt werden.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ich_habe_probleme_beim_starten_und_stoppen_von_dämonen_mit_dem_server_control_panel_was_kann_ich_tun">Ich habe Probleme beim Starten und Stoppen von Dämonen mit dem Server-Control-Panel. Was kann ich tun?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Wenn das SCP nicht funktioniert, dann verwenden Sie bitte die Batchfiles <code>start-wpnxm.bat</code> und <code>stop-wpnxm.bat</code> als Ersatz.</p>
+</div>
+<div class="paragraph">
+<p>Durch Aufruf von <code>status-wpnxm.bat</code> können Sie prüfen, ob die Server laufen.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wo_sollte_ich_meine_webinhalte_platzieren">Wo sollte ich meine Webinhalte platzieren?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Der Hauptordner für Ihre Projekte ist <code>&lt;server&gt;\www</code>.</p>
+</div>
+<div class="paragraph">
+<p>Bitte erstellen Sie einen neuen Ordner für Ihr Projekt. Beispielsweise:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>erstellen Sie den Ordner "myproject", so dass Sie <code>&lt;server&gt;\www\myproject</code> erhalten</p>
+</li>
+<li>
+<p>Und legen Sie eine einfache HTML-Datei <code>test.html</code> mit dem folgenden Inhalt in diesem Verzeichnis ab:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">&lt;?php
+   echo 'Hello World! This is my project.';
+?&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sie können darauf mit dem URI <code><a href="http://localhost/myproject/test.html" class="bare">http://localhost/myproject/test.html</a></code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kann_ich_die_wpn_xm_installation_verschieben">Kann ich die WPN-XM Installation verschieben?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nein, das Verschieben des Installationsverzeichnisses wird noch nicht unterstützt.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_was_sind_automatische_startseiten_für_das_verzeichnis_www_und_dessen_unterordner">Was sind "automatische Startseiten" für das Verzeichnis "\www" und dessen Unterordner?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nginx ist konfiguriert die folgenden Dateien als Startseiten (Indexpages) auszuliefern: <code>index.php</code>, <code>index.html</code>, <code>index.htm</code>.</p>
+</div>
+<div class="paragraph">
+<p>Dies geschieht durch die <a href="http://nginx.org/en/docs/http/ngx_http_index_module.html">Index-Direktive</a> von Nginx innerhalb eines "location" Blocks:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>location / {
+    index  index.php index.html index.htm;
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Der Server versucht automatisch, eine dieser Dateien auszuliefern, wenn Sie auf einen Ordner zugreifen,
+ohne eine Datei im URI anzugeben. Dateien werden in der angegebenen Reihenfolge geprüft.</p>
+</div>
+<div class="paragraph">
+<p>Wenn diese Dateien nicht gefunden werden,
+zeigt der Server den <a href="http://nginx.org/en/docs/http/ngx_http_autoindex_module.html">Verzeichnisinhalt</a> (autoindex) an.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wo_kann_ich_die_konfiguration_ändern">Wo kann ich die Konfiguration ändern?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sie die Konfiguration für alle Server und Werkzeug in den jeweiligen Konfigurationsdateien ändern.</p>
+</div>
+<div class="paragraph">
+<p>Das Server Control Panel stellt auch ein einfaches Konfigurationsmenu zur Verfügung.
+Wir werden es im Laufe der Zeit erweitern, um die Änderung der Konfiguration einfacher zu machen.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_meine_anti_virus_software_berichtet_dass_wpn_xm_einen_virus_enthält">Meine Anti-Virus-Software berichtet, dass WPN-XM einen Virus enthält!?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Es ist möglich, dass eine Antivirensoftware eine Datei fälschlicherweise als Viren oder Malware identifiziert, obwohl die Datei sauber ist. Das geschieht, weil Antivirenprogramme oft Heuristiken verwenden, um Malware und Viren zu identifizieren. Manchmal scheitern diese Heuristiken und das Programm berichtet ein falschpositives Ergebnis (<code>false positive</code>).</p>
+</div>
+<div class="paragraph">
+<p>Wir stehen in engem Kontakt zu mehreren Herstellern von AV-Software.
+Wir übermitteln Proben der Falschpositiven zu den jeweiligen Anti-Virus Labs zur weiteren Analyse.
+Sie können auch das Online-Tool Virus Total für das Scannen von Dateien von WPN-XM verwenden.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_was_kann_ich_tun_wenn_der_mysql_mariadb_daemon_nicht_startet">Was kann ich tun, wenn der MySQL / MariaDB-Daemon nicht startet?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Bitte starten Sie <code>mysqld</code> manuell, indem Sie <code>mysqld --console</code> auf der CLI im Ordner <code>\server\mariadb\bin</code> aufrufen:
+Sie erhalten ein Startprotokoll mit mehr Informationen über den Grund.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd server\bin\mariadb\bin
+mysqld --console</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Oft ist die Ursache eine Fehlkonfiguration in <code>my.ini</code> oder versehentlich geänderte oder gelöschte Dateien im Datenordner.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_warum_bekomme_ich_einen_socket_fehler_beim_step_debuggen_mit_xdebug">Warum bekomme ich einen Socket-Fehler beim Step-Debuggen mit XDebug?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Der Grund ist der lange laufende Fastcgi-Prozess, der keine Ausgabe produziert,
+bis er fertig ist oder eben die Debugging-Session mit dem Timeout unterbricht.</p>
+</div>
+<div class="paragraph">
+<p>Prüfen Sie das Nginx <code>error.log</code>. Wenn Sie eine Fehlermeldung wie <code>upstream timed out</code> finden,
+dann erhöhen Sie den Wert für <code>fastcgi_read_timeout</code> in Ihrer <code>nginx.conf</code>.
+Der Wert ist standardmäßig <code>60s</code>.
+Das wird für eine Produktionsumgebung stimmen, aber eindeutig nicht für eine Entwicklungs- und Debuggingumgebung.
+Sie müssen also die Zeit bis zum Timeout erhöhen, um Debuggen zu können.</p>
+</div>
+<div class="paragraph">
+<p>Bitte vergessen Sie nicht, nach den Änderungen, den Server neu zu starten.</p>
+</div>
+<div class="paragraph">
+<p>Bitte lesen Sie auch die dazugehörige Nginx Wiki-Seite: <a href="http://wiki.nginx.org/HttpFastcgiModule">Nginx - Modul - HttpFastcgi</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_was_kann_ich_tun_wenn_nginx_wird_nicht_starten_oder_heruntergefahren_sofort_und_port_80_verwendet_wird">Was kann ich tun, wenn Nginx wird nicht starten oder heruntergefahren sofort und Port 80 verwendet wird.</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sofortige Shutdowns sind ein Indikator dafür, dass der Port 80, den Nginx standardmäßig verwendet, bereits vergeben ist.
+Sie finden auch die folgende Meldung in der Nginx <code>error.log</code> : <code>bind() to 127.0.0.1:80 failed</code>.</p>
+</div>
+<div class="paragraph">
+<p>Für eine erfolgreiche Bindung an Port 80, müssen wir herausfinden, welche andere Anwendung oder Dienstleistung es verwendet,
+diese dann stoppen und deaktivieren.</p>
+</div>
+<div class="sect2">
+<h3 id="_wie_überprüft_man_ob_port_80_verwendet_wird_wie_finde_ich_heraus_wer_es_benutzt">Wie überprüft man, ob Port 80 verwendet wird? Wie finde ich heraus, wer es benutzt?</h3>
+<div class="paragraph">
+<p>Mittels <code>netstat -abno</code> können Sie überprüfen, ob ein Port verwendet wird und erhalten auch den Anwendungsnamen.</p>
+</div>
+<div class="paragraph">
+<p>Sie können dazu <code>findstr</code> auf die Ausgabe von <code>netstat</code> anwenden:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>netstat -abno | findstr 0.0.0.0:80
+netstat -abno | findstr 127.0.0.1:80</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Sie könnten auch Hilfsmittel wie <a href="http://www.nirsoft.net/utils/cports.html">CurrPorts</a>
+oder <a href="https://technet.microsoft.com/en-us/sysinternals/processexplorer.aspx">Process Explorer</a> verwenden,
+um die Ports aufzulisten und Anwendungsnamen herauszufinden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_welche_anwendungen_und_dienste_sind_bekanntermaßen_auf_port_80_zu_finden">Welche Anwendungen und Dienste sind bekanntermaßen auf Port 80 zu finden?</h3>
+<div class="sect3">
+<h4 id="_ein_anderer_web_server_verwendet_den_port_bereits">Ein anderer Web-Server verwendet den Port bereits</h4>
+<div class="paragraph">
+<p>Eine Installation von WPN-XM kann mit jedem anderen WAMP-Stack, z.B. XAMPP, zusammenstoßen.
+Es sind zusätzliche Schritte erforderlich, um sie parallel laufen zu lassen.</p>
+</div>
+<div class="paragraph">
+<p>Vergewissern Sie sich, dass kein anderer Webserver, z.B. Apache, Tomcat, IIS oder WebMatrix läuft und den Port bereits verwendet,
+oder konfigurieren Sie die Stacks so, dass Sie unterschiedliche Ports verwenden.</p>
+</div>
+<div class="paragraph">
+<p>IIS kann entfernt werden, indem er in den <a href="http://windows.microsoft.com/en-us/windows/turn-windows-features-on-off#1TC=windows-7">Windows Features</a> deaktiviert wird. Auf einem Windows Server kann er durch das <a href="http://technet.microsoft.com/en-us/library/cc779925(v=ws.10).aspx">Entfernen von Rollen und Komponenten</a> entfernt werden.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_skype">Skype</h4>
+<div class="paragraph">
+<p>Skype verwendet die Ports 80 und 443.</p>
+</div>
+<div class="paragraph">
+<p>Um das zu ändern, müssen Sie Skype stoppen und dann den Konfigurationsdialog benutzen:</p>
+</div>
+<div class="paragraph">
+<p>Gehen Sie zu <code>Tools &gt; Options &gt; Advanced &gt; Connection</code> und</p>
+</div>
+<div class="paragraph">
+<p>entfernen Sie den Haken bei <code>Use Port 80 and 443 for incoming connections</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_windows_systemdienste">Windows-Systemdienste</h4>
+<div class="paragraph">
+<p>Einige Windows-Systemdienste nutzen bekanntermaßen Port 80.</p>
+</div>
+<div class="paragraph">
+<p>Möglicherweise sind auf Ihrem System einige dieser Dienste installiert und werden ausgeführt.</p>
+</div>
+<div class="paragraph">
+<p>Sie haben folgende Möglichkeiten, sie zu stoppen und zu deaktivieren:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Zum Öffnen von Windows Services führen Sie <code>services.msc</code> aus, um den Dienste-Manager zu öffnen.
+Sie können dann Windows Services starten, stoppen, deaktivieren oder den Start verzögern.</p>
+</li>
+<li>
+<p>Alternativ können Sie <code>sc.exe</code> (<code>sc stop &lt;name&gt;</code>) zum Starten, Stoppen und Konfigurieren von Diensten verwenden.</p>
+</li>
+<li>
+<p>Sie können auch <code>net</code> (<code>net stopservice &lt;name&gt;</code>) verwenden.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>World Wide Web Publishing Service (W3SVC)</strong></p>
+</div>
+<div class="paragraph">
+<p>Wird der Port von "System PID 4" verwendet, dann verwendet der Dienst "WWW-Publishingservice" (w3svc) den Port.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop W3SVC
+sc config "W3SVC" start=disabled</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Web Deployment Agent Service (MsDepSvc)</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop MsDepSvc
+sc config "MsDepSvc" start=disabled</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>SQL Server Reporting Services (ReportServer)</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop ReportServer
+sc config "ReportServer" start=disabled</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>BranchCache (PeerDistSvc)</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop PeerDistSvc
+sc config "PeerDistSvc" start=disabled</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Sync Share Service (SyncShareSvc)</strong></p>
+</div>
+<div class="paragraph">
+<p>Microsoft hat ein Feature mit dem Namen Arbeitsordner-Synchronisation (<code>Work Folders</code>) zu Windows Server 2012 R2 und Windows 8+ hinzugefügt.
+Diese Funktion nutzt den Dienst <code>SyncShareSvc</code>, um Dateien und Ordner zwischen verschiedenen Rechnern zu synchronisieren.
+Standardmäßig belegt <code>SyncShareSvc</code> die Ports 80 und 443.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop SyncShareSvc
+sc config "SyncShareSvc" start=disabled</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Wenn Sie die Funktion Arbeitsordner-Synchronisation (<code>Work Folders</code>) benötigen, dann müssen Sie die Ports so abändern, dass keine Kollision entsteht.
+Beispielsweise können Sie die Ports 10080 und 10443 verwenden, indem Sie die Datei <code>C:\Windows\System32\SyncShareSvc.config</code> bearbeiten.
+Danach müssen Sie die neuen Ports mittels Admin-Eingabeaufforderung registrieren:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Netsh http add urlacl url=http://*:&lt;10080&gt;/ user="NT Authority\LOCAL SERVICE"
+Netsh http add urlacl url=https://*:&lt;10443&gt;/ user="NT Authority\LOCAL SERVICE"</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Internet Information Server (WAS, IISADMIN)</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop WAS
+sc config "WAS" start=disabled</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>sc stop IISADMIN
+sc config "IISADMIN" start=disabled</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_teamviewer">TeamViewer</h4>
+<div class="paragraph">
+<p>Wenn TeamViewer installiert ist, dann verwendet er standardmäßig Port 80.</p>
+</div>
+<div class="paragraph">
+<p>Verwenden Sie den Konfigurationsdialog und gehen Sie zu
+<code>Extras &gt; Options &gt; Advanced</code> und <code>aktivieren</code> Sie die Option <code>Don&#8217;t use incoming port 80</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wie_wird_der_installationsassistent_im_freigegebenen_ordner_einer_vm_gestartet">Wie wird der Installationsassistent im freigegebenen Ordner einer VM gestartet?</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>ShellExecuteEx Error - System kann den angegebenen Pfad nicht finden.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Das Installationsprogramm kann nicht im freigegebenen Ordner einer virtuellen Maschine ausgeführt werden.
+Es muss in einen nicht freigegebenen Ordner kopiert und dort gestartet werden.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wie_kann_ich_den_mailversand_auf_windows_testen">Wie kann ich den Mailversand auf Windows testen?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sie könnten einen "falschen" Sendmail-Server installieren. Dieser verwendet einen bestimmten Port (gewöhnlich 25),
+um auf neue Mails zu warten und diese lokal in einem bestimmten Ordner abzuspeichern, ohne die Mails tatsächlich zu versenden.
+Sie können die Dateien dann einfach einlesen und somit den Inhalt und die E-Mail-Darstellung testen.</p>
+</div>
+<div class="paragraph">
+<p>Alternativ könnten Sie auch einen echten Sendmail Server einsetzen und die Mails an ein "Entwicklerpostfach" schicken,
+welches Sie dann abrufen, um Inhalt und Darstellung zu testen.</p>
+</div>
+<div class="paragraph">
+<p>Es gibt mehrere "falsche" Sendmail Server (1-5) und echte Server (5-6) herum:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Test Mail Server Tool - <a href="http://www.toolheap.com/test-mail-server-tool/" class="bare">http://www.toolheap.com/test-mail-server-tool/</a></p>
+</li>
+<li>
+<p>Fake Sendmail - <a href="http://glob.com.au/sendmail/" class="bare">http://glob.com.au/sendmail/</a></p>
+</li>
+<li>
+<p>smtp4dev - <a href="http://smtp4dev.codeplex.com/" class="bare">http://smtp4dev.codeplex.com/</a></p>
+</li>
+<li>
+<p>Papercut - <a href="http://papercut.codeplex.com/" class="bare">http://papercut.codeplex.com/</a></p>
+</li>
+<li>
+<p>xmailserver - 1,4MB - <a href="http://www.xmailserver.org/" class="bare">http://www.xmailserver.org/</a></p>
+</li>
+<li>
+<p>hmailserver - 3,4MB - <a href="http://www.hmailserver.com/" class="bare">http://www.hmailserver.com/</a></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>WPN-XM liefert "Fake Sendmail".</p>
+</div>
+<div class="paragraph">
+<p>Wenn Sie ein echtes SMTP-Tool benötigen , versuchen Sie <a href="http://www.blat.net/">Blat</a> oder <a href="http://msmtp.sourceforge.net/">MSMPT</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_warum_gibt_es_ein_umgekehrtes_n_in_wpи_xm">Warum gibt es ein "umgekehrtes" N in WPИ-XM?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Das "umgekehrte" N ist kyrillisch und wird absichtlich verwendet, um anzuzeigen, dass der Server Stack Nginx ("engine x") enthält.
+Wir verwenden das "umgekehrte" N als Anfangsbuchstaben für Nginx in unserem Projektnamen und Logo.</p>
+</div>
+<div class="paragraph">
+<p>Andere Logos verwenden den gleichen "grafischen Hinweis" und kehren das zweite N in Nginx um:</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="../../images/nginx-logo-small.png" alt="Nginx Logo"></span></p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+ v1.0<br>
+Last updated 2019-03-29 13:36:49 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

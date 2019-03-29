@@ -1,0 +1,2397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.3">
+<meta name="description" content="This document is the WPN-XM Developer Manual.">
+<meta name="keywords" content="wpn-xm, wpnxm, server stack, Windows, PHP, Nginx, XDebug, MariaDB">
+<meta name="author" content="Jens A. Koch">
+<title>WPN-XM Server Stack - Developer Manual</title>
+<link rel="stylesheet" href="./../stylesheets/foundation.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>WPN-XM Server Stack - Developer Manual</h1>
+<div class="details">
+<span id="author" class="author">Jens A. Koch</span><br>
+<span id="email" class="email"><a href="mailto:jakoch@web.de">jakoch@web.de</a></span><br>
+<span id="revnumber"> 1.0-dev-d5386bf,</span>
+<span id="revdate">2019-03-29</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_overview">1. Overview</a></li>
+<li><a href="#_adding_a_new_component">2. Adding a new component</a>
+<ul class="sectlevel2">
+<li><a href="#_add_component_to_software_registry">2.1. Add component to software registry</a></li>
+<li><a href="#_add_component_to_updater">2.2. Add component to Updater</a></li>
+<li><a href="#_add_component_to_installation_wizards">2.3. Add component to installation wizards</a></li>
+<li><a href="#_add_component_to_wpn_xm_environment">2.4. Add component to WPN-XM environment</a></li>
+</ul>
+</li>
+<li><a href="#_building_installers">3. Building Installers</a>
+<ul class="sectlevel2">
+<li><a href="#_clone_the_repository">3.1. Clone the repository</a></li>
+<li><a href="#_install_build_time_dependencies">3.2. Install build-time dependencies</a></li>
+<li><a href="#_how_to_build_the_installers_automatically">3.3. How to build the installers automatically</a></li>
+<li><a href="#_how_to_build_the_installers_manually">3.4. How to build the installers manually</a></li>
+<li><a href="#_the_one_click_build_process">3.5. The One-Click-Build Process</a></li>
+<li><a href="#_versioning_and_file_names">3.6. Versioning and File Names</a></li>
+</ul>
+</li>
+<li><a href="#_release_process">4. Release Process</a>
+<ul class="sectlevel2">
+<li><a href="#_prerequisites_for_doing_any_release">4.1. Prerequisites for doing any release</a></li>
+<li><a href="#_prerequisites_for_specific_releases">4.2. Prerequisites for specific releases</a></li>
+<li><a href="#_validating_binaries">4.3. Validating "binaries"</a></li>
+<li><a href="#_validate_external_services_are_functional">4.4. Validate external services are functional</a></li>
+<li><a href="#_a_github_issue_exists_for_the_release">4.5. A GitHub issue exists for the release</a></li>
+<li><a href="#_release_policy">4.6. Release Policy</a></li>
+<li><a href="#_release_steps">4.7. Release Steps</a></li>
+</ul>
+</li>
+<li><a href="#_software_registries">5. Software Registries</a>
+<ul class="sectlevel2">
+<li><a href="#_installation_wizards_registries">5.1. Installation Wizards Registries</a></li>
+<li><a href="#_software_registry">5.2. Software Registry</a></li>
+<li><a href="#_software_registry_metadata_wpnxm_registry_metadata_php">5.3. Software Registry Metadata (wpnxm-registry-metadata.php)</a></li>
+<li><a href="#_php_software_registry_wpnxm_php_software_registry_php">5.4. PHP Software Registry (wpnxm-php-software-registry.php)</a></li>
+</ul>
+</li>
+<li><a href="#_software_asset_repositories">6. Software Asset Repositories</a></li>
+<li><a href="#_updater">7. Updater</a>
+<ul class="sectlevel2">
+<li><a href="#_features">7.1. Features</a></li>
+<li><a href="#_crawlers">7.2. Crawlers</a></li>
+<li><a href="#_actions">7.3. Actions</a></li>
+</ul>
+</li>
+<li><a href="#_website">8. Website</a>
+<ul class="sectlevel2">
+<li><a href="#_installer_comparison_view">8.1. Installer Comparison View</a></li>
+<li><a href="#_version_matrix">8.2. Version Matrix</a></li>
+<li><a href="#_configuration_comparison_view">8.3. Configuration Comparison View</a></li>
+</ul>
+</li>
+<li><a href="#_api">9. API</a>
+<ul class="sectlevel2">
+<li><a href="#_get">9.1. Get</a></li>
+<li><a href="#_update_check">9.2. Update Check</a></li>
+</ul>
+</li>
+<li><a href="#_documentation">10. Documentation</a>
+<ul class="sectlevel2">
+<li><a href="#_asciidoc">10.1. AsciiDoc</a></li>
+<li><a href="#_source_folder_layout">10.2. Source Folder Layout</a></li>
+<li><a href="#_target_folder_layout">10.3. Target Folder Layout</a></li>
+<li><a href="#_deployment_to_github_pages">10.4. Deployment To Github Pages</a></li>
+<li><a href="#_translation">10.5. Translation</a></li>
+</ul>
+</li>
+<li><a href="#_history">11. History</a>
+<ul class="sectlevel2">
+<li><a href="#_release_notes">11.1. Release Notes</a></li>
+<li><a href="#_jakochs_devlog">11.2. jakoch&#8217;s DevLog</a></li>
+</ul>
+</li>
+<li><a href="#_related_projects">12. Related projects</a></li>
+<li><a href="#_overview_of_issue_labels">13. Overview of issue labels</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">This document is under active development and discussion!</div>
+<div class="paragraph">
+<p>If you find errors or omissions in this document, please don&#8217;t hesitate to <a href="https://github.com/WPN-XM/WPN-XM/issues">submit an issue or open a pull request</a> with a fix.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_introduction"><a class="anchor" href="#_introduction"></a><a class="link" href="#_introduction">Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WPИ-XM is an open-source web server solution stack for professional PHP development on the Windows® platform.</p>
+</div>
+<div class="paragraph">
+<p>This manual documents WPN-XM Server Stack internals:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Repositories</p>
+</li>
+<li>
+<p>building, packaging and releasing of Installation Wizards</p>
+</li>
+<li>
+<p>Software Registries and API</p>
+</li>
+<li>
+<p>Updater</p>
+</li>
+<li>
+<p>Webinterface</p>
+</li>
+<li>
+<p>Server Control Panel</p>
+</li>
+<li>
+<p>How to contribute to WPN-XM</p>
+</li>
+<li>
+<p>Coding Rules</p>
+</li>
+<li>
+<p>Documentation Toolchain</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview"><a class="anchor" href="#_overview"></a><a class="link" href="#_overview">1. Overview</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_adding_a_new_component"><a class="anchor" href="#_adding_a_new_component"></a><a class="link" href="#_adding_a_new_component">2. Adding a new component</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter describes, how to add a new component to the server stack.
+Adding a new component is quite complex, because of the dependencies to other components
+and the adjustments to be made to several files of the WPN-XM environment.</p>
+</div>
+<div class="sect2">
+<h3 id="_add_component_to_software_registry"><a class="anchor" href="#_add_component_to_software_registry"></a><a class="link" href="#_add_component_to_software_registry">2.1. Add component to software registry</a></h3>
+<div class="paragraph">
+<p>The first step is to add the new component to the software registry.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>wpnxm-software-registry</code> is located in the <code>registry</code> repository:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/WPN-XM/registry/blob/master/wpnxm-software-registry.php" class="bare">https://github.com/WPN-XM/registry/blob/master/wpnxm-software-registry.php</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>It&#8217;s a plain simple PHP array.</p>
+</li>
+<li>
+<p>This is the template used for inserting a new component:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">'component' =&gt;
+  array (
+    'name' =&gt; 'Component',
+    'website' =&gt; 'http://component.com/',
+    '0.0.1' =&gt; 'http://component.com/downloads/Component-0.0.1.zip',
+    'latest' =&gt;
+    array (
+      'version' =&gt; '0.0.1',
+      'url' =&gt; 'http://component.com/downloads/Component-0.0.1.zip',
+    ),
+  ),</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It doesn&#8217;t matter where you insert the new component. The registry array is automatically sorted, when it is updated.</p>
+</li>
+<li>
+<p>You could add all possible "Version" to "URL" relationships, when adding the array. But, it is easier to set only one relationship and have the missing relations inserted automatically (by the version crawler).</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Be advised to use a lower version, then the current latest version of the component. This comes handy for testing the version scraping and updating process.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_component_to_updater"><a class="anchor" href="#_add_component_to_updater"></a><a class="link" href="#_add_component_to_updater">2.2. Add component to Updater</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updating the "Version" to "URL" relationships is tedious work. It&#8217;s possible to update the registry manually (see above), but letting an automated tool do the job, is more fun and takes some work out of our hands.</p>
+</li>
+<li>
+<p>The registry updater is located in the "updater" repository:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/WPN-XM/updater" class="bare">https://github.com/WPN-XM/updater</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/updater/blob/master/registry-update.php" class="bare">https://github.com/WPN-XM/updater/blob/master/registry-update.php</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Adding a new crawler</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You need to add a version crawler class. The crawler classes are located in the <code>crawler</code> folder.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example-wise we will take a look at the Version Crawler for Adminer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">namespace WPNXM\Updater\Crawler;
+
+use WPNXM\Updater\VersionCrawler;
+
+/**
+ * Adminer - Version Crawler
+ */
+class Adminer extends VersionCrawler <i class="conum" data-value="1"></i><b>(1)</b>
+{
+  public $url = 'http://www.adminer.org/#download'; <i class="conum" data-value="2"></i><b>(2)</b>
+
+  public function crawlVersion() <i class="conum" data-value="3"></i><b>(3)</b>
+  {
+    return $this-&gt;filter('a')-&gt;each(function ($node) { <i class="conum" data-value="4"></i><b>(4)</b>
+
+      if (preg_match("#(\d+\.\d+(\.\d+)*)#", $node-&gt;text(), $matches)) { <i class="conum" data-value="5"></i><b>(5)</b>
+        $version = $matches[0];
+
+        if (version_compare($version, $this-&gt;registry['adminer']['latest']['version'], '&gt;=') === true) { <i class="conum" data-value="6"></i><b>(6)</b>
+          return array(
+            'version' =&gt; $version,
+            'url'     =&gt; 'https://www.adminer.org/static/download/' . $version . '/adminer-' . $version . '.php',
+          ); <i class="conum" data-value="7"></i><b>(7)</b>
+        }
+      }
+    });
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Each Crawler class extends the VersionCrawler base class.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The class property <code>$url</code> defines the URL to scrape.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Each Crawler class implements the main method: <code>crawlVersion()</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>We are using the <code>dom-selector</code> to filter the content and get closer to the version string.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>We are working on the filtered <code>$node&#8594;text()</code> and grab the version by using a regexp for a version scheme.
+The matched value is then assigned to <code>$version</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>We compare the scraped version number with the latest version of our registry.
+When the scraped version is newer, than the latest version of our registry, we return an array as response.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>The response is an array with the two keys <code>version</code> and <code>url</code> and their values.
+<div class="ulist">
+<ul>
+<li>
+<p>We are using the Symfony components <code>dom-selector</code> and <code>css-selector</code> for DOM content filtering.</p>
+</li>
+<li>
+<p>Guzzle is used for crawling and content fetching (<a href="http://www.guzzlephp.org/" class="bare">http://www.guzzlephp.org/</a>).</p>
+</li>
+<li>
+<p>There is no standard of asking a project for the latest version number of a software component. So, the only way is to scrape the webpages and evaluate the content with string handling or regular expressions, scanning it for the desired version(s).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The output of your version scraping method contains one or more new version numbers and their urls. These must be added to the registry.</p>
+</li>
+<li>
+<p>Run the http://localhost/.../updater/registry-update.php in your browser. It will display a version table.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The method consists of two run modes. The default mode is a "dry-run".</p>
+</li>
+<li>
+<p>The "dry-run" does not modify the "wpnxm-software-registry.php" file.</p>
+</li>
+<li>
+<p>The "write-file" mode modifies the "wpnxm-software-registry.php" file. You call it by appending "action=write-file" when calling the script, like so http://localhost/.../updater/registry-update.php?action=write-file.</p>
+</li>
+<li>
+<p>Alternatively, you might just call http://localhost/.../updater/index.php and follow the links provided there.</p>
+</li>
+</ul>
+</div></td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_summary"><a class="anchor" href="#_summary"></a><a class="link" href="#_summary">2.2.1. Summary</a></h4>
+<div class="paragraph">
+<p>You added a new component to the registry and to the updater.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The registry is synced to the server. This is done by a cronjob.
+It may take a while, but expect it to be done within 3 to 6 hours.</p>
+</li>
+<li>
+<p>When the new registry comes alive, calls to
+<code><a href="http://wpn-xm.org/get.php" class="bare">http://wpn-xm.org/get.php</a></code> and <a href="http://wpn-xm.org/updatecheck.php" class="bare">http://wpn-xm.org/updatecheck.php</a> are possible.</p>
+</li>
+<li>
+<p>You might check the download link status by calling http://localhost/…/updater/registry-status.php.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Please see <a href="https://github.com/WPN-XM/WPN-XM/wiki/How-to-update" class="bare">https://github.com/WPN-XM/WPN-XM/wiki/How-to-update</a> for more details.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_component_to_installation_wizards"><a class="anchor" href="#_add_component_to_installation_wizards"></a><a class="link" href="#_add_component_to_installation_wizards">2.3. Add component to installation wizards</a></h3>
+<div class="paragraph">
+<p>Now that we have the download links available, we add them to the installation wizards.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The installation wizards are build from innosetup scripts.</p>
+</li>
+<li>
+<p>They are located in the main project folder of WPN-XM:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/tree/master/innosetup" class="bare">https://github.com/WPN-XM/WPN-XM/tree/master/innosetup</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The are several InnoSetup Script files.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>wpn-xm-allinone-installer.iss
+This is the AllInOne Installation Wizards.</p>
+</li>
+<li>
+<p>wpn-xm-webinstaller.iss
+This is the base for the Webinstallation Wizards.</p>
+</li>
+<li>
+<p>wpn-xm-webinstaller-debug.iss
+A Webinstallation wizard with enabled Debug mode.
+You will get some Message Boxes, when switching through the install pages of the wizard.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>When inserting a new component, we need to modify all of them. You might edit one installer script and transfer the content via a diff tool, like TortoiseGitMerge, to the other files. Take good care, when transfering from a Webinstallation script to the AllInOne installation script. The script files have a big difference, due to the missing download procedures in the AllInOne script.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You can enable the debug mode by setting the <code>#define DEBUG "false"</code> to <code>true</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_adding_component_to_full_installation_script"><a class="anchor" href="#_adding_component_to_full_installation_script"></a><a class="link" href="#_adding_component_to_full_installation_script">2.3.1. Adding component to Full Installation Script</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>[Components] section</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the new component to the [Components] section. The components section is the list with checkboxes at the start of the installation wizard, where you can select the components to install.</p>
+</li>
+<li>
+<p>You might use the following line as a template:
+Name: component; Description: Component - Component does X; ExtraDiskSpaceRequired: 10000; Types: full</p>
+</li>
+<li>
+<p>Please adjust name, description, size.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>[Files] section</p>
+<div class="ulist">
+<ul>
+<li>
+<p>You don&#8217;t need to add the download file in the [Files] section. All files of the download folder are added automatically.</p>
+</li>
+<li>
+<p>But you might add an additional configuration file needed by the new component.</p>
+</li>
+<li>
+<p>This is done in two steps:
+Firstly, by adding the configuration file to the configs folder of the WPN-XM main repository: https://github.com/WPN-XM/WPN-XM/tree/master/configs. The file is then copied to the target folder during installation. Secondly, you add the line to copy the file to the [Files] section.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>[code] section - "const"</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the download filename as a constant to the const section inside the [code] section.</p>
+</li>
+<li>
+<p>Filename_component = 'component.zip';</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>[code] section - "procedure UnzipFiles()".</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a new section for handling the unzipping of your component</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">if Pos('component', selectedComponents) &gt; 0 then
+  begin
+    UpdateCurrentComponentName('Component');
+      ExtractTemporaryFile(Filename_component);
+      DoUnzip(targetPath + Filename_component, ExpandConstant('{app}\bin\component'));
+        UpdateTotalProgressBar();
+  end;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The correct folder is "/www/componentname". Do not use an abbreviation here. Keep it 1:1.</p>
+</li>
+<li>
+<p>If your component doesn&#8217;t need to be unzipped, just some file copying, see the handling of APC or XDEBUG, on how to do it.</p>
+</li>
+<li>
+<p>If your zip file contains a component folder inside, you simply unzip to the parent dir:
+ DoUnzip(targetPath + Filename_component, ExpandConstant('{app}\bin')); </p>
+</li>
+<li>
+<p>Sometimes the component folder names are a bit crappy, e.g. component-x86. You might add
+an additional rename step to the procedure moveFiles() to make it nicer.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">if Pos('memcached', selectedComponents) &gt; 0 then
+begin
+  // rename the existing directory
+  Exec('cmd.exe', '/c "move ' + appPath + '\bin\component-x86 ' + appPath + '\bin\component"',
+end;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Now, during installation, the component will be extracted or copied to the target folder.</p>
+</li>
+<li>
+<p>Additionally, it&#8217;s possible to do a configuration step, like modifying the config files of other components. A good example is the modification of php.ini, when you add a new extension. You might add this to the procedure Configure();</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the component to the array in the file "generate-downloads-csv.php"</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>https://github.com/WPN-XM/updater/generate-downloads-csv.php</p>
+</li>
+<li>
+<p>exec script and copy downloads.csv to WPN-XM main folder</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_adding_component_to_web_installation_scripts"><a class="anchor" href="#_adding_component_to_web_installation_scripts"></a><a class="link" href="#_adding_component_to_web_installation_scripts">2.3.2. Adding component to Web Installation Scripts</a></h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_component_to_wpn_xm_environment"><a class="anchor" href="#_add_component_to_wpn_xm_environment"></a><a class="link" href="#_add_component_to_wpn_xm_environment">2.4. Add component to WPN-XM environment</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>If you added a tool, you need to register it at the "webinterface".</p>
+<div class="ulist">
+<ul>
+<li>
+<p>It&#8217;s located in the "webinterface" repository: https://github.com/WPN-XM/webinterface</p>
+</li>
+<li>
+<p>Update the array $toolDirectories in the file "/webinterface/php/helper/projects.php".
+https://github.com/WPN-XM/webinterface/blob/master/php/helper/projects.php#L49
+This array is used for dividing "Your Project" folders from "WPN-XM Tool" folders.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>If you added a server, you need to modify the start/stop executables and SCP files.</p>
+</li>
+<li>
+<p>If you added a PHP extension: add the extensions software/php/configs/php.ini, but comment the entry out.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_installers"><a class="anchor" href="#_building_installers"></a><a class="link" href="#_building_installers">3. Building Installers</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document describes the steps to take, for building a new version of WPN-XM.</p>
+</div>
+<div class="paragraph">
+<p>Building a new version means to create the installation wizards of WPN-XM.</p>
+</div>
+<div class="sect2">
+<h3 id="_clone_the_repository"><a class="anchor" href="#_clone_the_repository"></a><a class="link" href="#_clone_the_repository">3.1. Clone the repository</a></h3>
+<div class="paragraph">
+<p>If you prefer to compile your own WPN-XM installer,
+or if you want to modify it, you will need to obtain a copy of the sources.</p>
+</div>
+<div class="paragraph">
+<p>Please fetch the repository located at <a href="https://github.com/WPN-XM/WPN-XM/" class="bare">https://github.com/WPN-XM/WPN-XM/</a>,
+it will give you access to the current development.</p>
+</div>
+<div class="paragraph">
+<p>You must issue the following command on your command line, DOS box, or terminal:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git clone https://github.com/WPN-XM/WPN-XM/ WPN-XM</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will clone the repository and place it into a directory named <code>WPN-XM</code>.</p>
+</div>
+<div class="paragraph">
+<p>We try to ensure that the master branch is always stable, but it might occasionally be broken.
+In that case, take a look at Travis-CI an pick the latest "green" commit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_install_build_time_dependencies"><a class="anchor" href="#_install_build_time_dependencies"></a><a class="link" href="#_install_build_time_dependencies">3.2. Install build-time dependencies</a></h3>
+<div class="paragraph">
+<p>We try to provide a self-contained build environment.
+You will find all build tools needed for building the installation wizards
+in the <code>bin</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>To build WPN-XM on Windows you need the following dependencies:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Innosetup (<a href="http://www.jrsoftware.org/isinfo.php" class="bare">http://www.jrsoftware.org/isinfo.php</a>) or</p>
+</li>
+<li>
+<p>ISTools (optional) (<a href="http://sourceforge.net/projects/istool/" class="bare">http://sourceforge.net/projects/istool/</a>)</p>
+</li>
+<li>
+<p>Phing</p>
+</li>
+<li>
+<p>7zip</p>
+</li>
+<li>
+<p>Aria2</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_build_the_installers_automatically"><a class="anchor" href="#_how_to_build_the_installers_automatically"></a><a class="link" href="#_how_to_build_the_installers_automatically">3.3. How to build the installers automatically</a></h3>
+<div class="paragraph">
+<p>Just execute <code>build.bat</code>. That&#8217;s it. It&#8217;s a one-click build.</p>
+</div>
+<div class="paragraph">
+<p>You might then find the setup executable(s) in the folder "_build".</p>
+</div>
+<div class="paragraph">
+<p>Find a detailed description on how this works in the
+<a href="http://wpn-xm.github.io/docs/developer-manual/en/#_the_one_click_build_process">documentation of the one-click build process</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_build_the_installers_manually"><a class="anchor" href="#_how_to_build_the_installers_manually"></a><a class="link" href="#_how_to_build_the_installers_manually">3.4. How to build the installers manually</a></h3>
+<div class="paragraph">
+<p>Building the installer manually means loading and compiling the InnoSetup Script with Innosetup.</p>
+</div>
+<div class="paragraph">
+<p>The InnoSetup script files (<code>.iss</code>) reside in the folder <code>WPN-XM/installers</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>open one of the InnoSetup Script files using InnoSetup or ISTools</p>
+</li>
+<li>
+<p>remove the semicolon from this line: <code>;#define COMPILE_FROM_IDE</code> to enable local IDE compiling</p>
+</li>
+<li>
+<p>if you need the debug mode, enable it by setting the <code>#define DEBUG "false"</code> to <code>true</code>.</p>
+</li>
+<li>
+<p>Note: the <code>@STACK_VERSION@</code> token is automatically replaced with the version number during CI builds.
+But, when working locally and compiling from an IDE the STACK_VERSION string is hard-coded to <code>LocalSnapshot</code>.</p>
+</li>
+<li>
+<p>finally, use the GUI to compile it</p>
+<div class="ulist">
+<ul>
+<li>
+<p>the webinstallers will compile immediately</p>
+</li>
+<li>
+<p>the packaged installers require their downloads</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If everything works correctly this will create the setup executable in the "_build" directory.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_one_click_build_process"><a class="anchor" href="#_the_one_click_build_process"></a><a class="link" href="#_the_one_click_build_process">3.5. The One-Click-Build Process</a></h3>
+<div class="paragraph">
+<p>This section describes the one-click-build process for the WPN-XM Installer.</p>
+</div>
+<div class="paragraph">
+<p><strong>build.bat</strong></p>
+</div>
+<div class="paragraph">
+<p>A build is triggered by executing <code>build.bat</code> in the root folder.
+The file calls Phing with the <code>build.xml</code>.</p>
+</div>
+<div class="paragraph">
+<p>Executing <code>build.bat</code> will show all kinds of build information on the screen.
+For easier debugging the output is also written to a file named <code>build.log</code>.</p>
+</div>
+<div class="paragraph">
+<p>This requires that you have <code>git</code> on path.
+Please add the path to <code>git</code> to your environment paths.</p>
+</div>
+<div class="paragraph">
+<p><strong>Phing</strong></p>
+</div>
+<div class="paragraph">
+<p>Phing is used build automation tool. It&#8217;s a lot like "Ant", but written in PHP.
+The official website with documentation is <a href="https://www.phing.info/" class="bare">https://www.phing.info/</a>
+You&#8217;ll find a comprehensive guide on over at <a href="https://www.phing.info/docs/guide/trunk/" class="bare">https://www.phing.info/docs/guide/trunk/</a></p>
+</div>
+<div class="paragraph">
+<p><strong>build.xml</strong></p>
+</div>
+<div class="paragraph">
+<p>Phing is feeded with a build description file.
+This file is located in the root folder and is named <code>build.xml</code>.
+The build description file contains properties and the tasks to perform during a build.</p>
+</div>
+<div class="paragraph">
+<p><strong>Modular Build File and Tasks for WPN-XM</strong></p>
+</div>
+<div class="paragraph">
+<p>WPN-XM uses a modular build file approach.
+That means the main build file <code>build.xml</code> includes several smaller build files, which group specific build tasks.</p>
+</div>
+<div class="paragraph">
+<p>These files reside in the <code>WPN-XM\build-scripts</code> folder:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>download.build.xml</p>
+</li>
+<li>
+<p>stripdown.build.xml</p>
+</li>
+<li>
+<p>compile-installers.build.xml</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Each build file might call PHP tasks to execute specific functionality.
+These files reside in the <code>WPN-XM\build-scripts\tasks</code> folder:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CheckFiles</p>
+</li>
+<li>
+<p>GenerateAriaDownloadLists</p>
+</li>
+<li>
+<p>Download</p>
+</li>
+<li>
+<p>CopyDownloads</p>
+</li>
+<li>
+<p>UpdateComponentSizes</p>
+</li>
+<li>
+<p>CheckInstallers</p>
+<div class="ulist">
+<ul>
+<li>
+<p>clean-build-dir</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>"clean-build-dir" recreates the directory <code>_build</code> in the WPN-XM folder.
+This directory will contain the executables and the modified innosetup script files, which are used for the build.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>bump-version-number</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Uses the APPVERSION property of the build.xml and inserts the current version number into the InnoScripts, Webinterface and Server-Control-Panel files.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>print-version-number</p>
+</li>
+<li>
+<p>several "compile-wpnxm-setup" and "compile-wpnxm-setup-*" tasks</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These tasks perform the compilation of the innosetup scripts into executables,
+by using the innosetup compiler.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>compile-wpnxm-webinstaller-setup</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Compiles the Web-Installation-Wizard.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>compile-wpnxm-webinstaller-debug-setup</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Compliles the Web-Installation-Wizard with enabled Debug Mode.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>compile-wpnxm-allinone-installer-no-download</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Builds the WPN-XM setup executable using already downloaded components.
+Assumes that stripdowns are done and components are in the downloads folder.
+This is for fast rebuilding of the All-In-One Installation Wizard.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>compile-wpnxm-allinone-installer</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This is the main build tasks for building the All-In-One Installation Wizard.
+This tasks depends on downloading all components and doing stripdowns on MariaDB and MongoDB.
+Then the WPN-XM setup executable is build.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>compile-wpnxm-bigpack-installer</p>
+</li>
+<li>
+<p>compile-wpnxm-lite-installer</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Several compile tasks. One for each of the innosetup files.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"stripdown-mariadb" and "stripdown-mongodb"</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Performs a re-packaging after performing a removal of unnecessary files from the zip archives
+and a compression of executables.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"download-components" &amp; "make.downloads.dir"</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Uses the "download-filelist.csv" to fetch all software components to the downloads folder.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_versioning_and_file_names"><a class="anchor" href="#_versioning_and_file_names"></a><a class="link" href="#_versioning_and_file_names">3.6. Versioning and File Names</a></h3>
+<div class="paragraph">
+<p>The WPN-XM installers use the following naming convention for executables:</p>
+</div>
+<div class="paragraph">
+<p>WPNXM-&lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;-&lt;installerType&gt;-Setup-php&lt;phpVersion&gt;-w&lt;phpBitsize&gt;.exe, e.g. "WPNXM-0.8.6-Full-Setup-php56-w64.exe".</p>
+</div>
+<div class="paragraph">
+<p>InstallerType is one of Full, Standard, Lite, Web.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_release_process"><a class="anchor" href="#_release_process"></a><a class="link" href="#_release_process">4. Release Process</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter documents the release process for WPN-XM.</p>
+</div>
+<div class="paragraph">
+<p>It is intended for members of the team, who might be cutting a release of WPN-XM.</p>
+</div>
+<div class="paragraph">
+<p>Releasing WPN-XM is a complicated task.</p>
+</div>
+<div class="paragraph">
+<p>This document serves as a checklist that can take you through doing a release step-by-step.</p>
+</div>
+<div class="paragraph">
+<p>We&#8217;ll cover the following products:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>the <strong>WPN-XM server stack installers</strong></p>
+</li>
+<li>
+<p>the <strong>Webinterface</strong></p>
+</li>
+<li>
+<p>the <strong>Server Control Panel</strong></p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites_for_doing_any_release"><a class="anchor" href="#_prerequisites_for_doing_any_release"></a><a class="link" href="#_prerequisites_for_doing_any_release">4.1. Prerequisites for doing any release</a></h3>
+<div class="paragraph">
+<p>In order to do a release, you absolutely must have:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Commit access to the registry and main WPN-XM repo</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>While not strictly required, you life will be made much easier if you:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Have github account and have been granted access to the WPN-XM organization by a "release admin"</p>
+</li>
+<li>
+<p>Have read and write access to the WPN-XM Travis-CI account</p>
+</li>
+<li>
+<p>Have read and write access to the WPN-XM Appveyor account</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_prerequisites_for_specific_releases"><a class="anchor" href="#_prerequisites_for_specific_releases"></a><a class="link" href="#_prerequisites_for_specific_releases">4.2. Prerequisites for specific releases</a></h3>
+<div class="paragraph">
+<p>Before getting started, you will need:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the new version number, that you will be releasing</p>
+</li>
+<li>
+<p>as well as an agreed upon "release commit" that will form the basis of the release</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A commit is eligible to be a "release commit" when:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the commit passed all CI checks</p>
+</li>
+<li>
+<p>and building the "installer binaries" succeeded</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validating_binaries"><a class="anchor" href="#_validating_binaries"></a><a class="link" href="#_validating_binaries">4.3. Validating "binaries"</a></h3>
+<div class="sect3">
+<h4 id="_server_control_panel"><a class="anchor" href="#_server_control_panel"></a><a class="link" href="#_server_control_panel">4.3.1. Server Control Panel</a></h4>
+<div class="paragraph">
+<p>The binary of the Server Control Panel is validated by executing <code>wpn-xm.exe --version</code>
+during the Appveyor build and checking the displayed version number.</p>
+</div>
+<div class="paragraph">
+<p>You find the version output in the
+<a href="https://ci.appveyor.com/project/jakoch/server-control-panel/history">Appveyor log</a> of the build.</p>
+</div>
+<div class="paragraph">
+<p>The version number should look something like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>WPN-XM Server Stack 0.8.3+2cdb580</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where the</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2cdb580</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is the sha for the commit we built from.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_installers"><a class="anchor" href="#_installers"></a><a class="link" href="#_installers">4.3.2. Installers</a></h4>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_validate_external_services_are_functional"><a class="anchor" href="#_validate_external_services_are_functional"></a><a class="link" href="#_validate_external_services_are_functional">4.4. Validate external services are functional</a></h3>
+<div class="paragraph">
+<p>The release process relies on Travis CI and Appveyor as external build and deployment services.
+Both need to be up and functional in order to do a release.</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Check the status of each before starting a release.
+If either is reporting issues, push the release back a day or until whenever they both are reporting no problems.</p>
+</li>
+<li>
+<p><a href="https://www.traviscistatus.com/">Travis CI Status</a></p>
+</li>
+<li>
+<p><a href="https://appveyor.statuspage.io/">Appveyor Status</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_github_issue_exists_for_the_release"><a class="anchor" href="#_a_github_issue_exists_for_the_release"></a><a class="link" href="#_a_github_issue_exists_for_the_release">4.5. A GitHub issue exists for the release</a></h3>
+<div class="paragraph">
+<p>All releases should have a corresponding issue in the WPN-XM repo.</p>
+</div>
+<div class="paragraph">
+<p>This issue should be used to communicate the progress of the release (updated as checklist steps are completed).</p>
+</div>
+<div class="paragraph">
+<p>You can also use the issue to notify other team members of problems.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_policy"><a class="anchor" href="#_release_policy"></a><a class="link" href="#_release_policy">4.6. Release Policy</a></h3>
+<div class="paragraph">
+<p>We try to create a stable release a few times a year.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_steps"><a class="anchor" href="#_release_steps"></a><a class="link" href="#_release_steps">4.7. Release Steps</a></h3>
+<div class="paragraph">
+<p>This section describes the steps to take for releasing a new version of WPN-XM.</p>
+</div>
+<div class="sect3">
+<h4 id="_webinterface"><a class="anchor" href="#_webinterface"></a><a class="link" href="#_webinterface">4.7.1. Webinterface</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="_server_control_panel_2"><a class="anchor" href="#_server_control_panel_2"></a><a class="link" href="#_server_control_panel_2">4.7.2. Server Control Panel</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="_wpn_xm_server_stack_installers"><a class="anchor" href="#_wpn_xm_server_stack_installers"></a><a class="link" href="#_wpn_xm_server_stack_installers">4.7.3. WPN-XM Server Stack Installers</a></h4>
+<div class="sect4">
+<h5 id="_update_the_github_issue"><a class="anchor" href="#_update_the_github_issue"></a><a class="link" href="#_update_the_github_issue">4.7.3.1. Update the GitHub issue</a></h5>
+<div class="paragraph">
+<p>Leave a comment on the GitHub issue for this release to let everyone know that you are starting.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_1_update_version"><a class="anchor" href="#_1_update_version"></a><a class="link" href="#_1_update_version">4.7.3.2. 1 Update VERSION</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>build.xml</p>
+<div class="ulist">
+<ul>
+<li>
+<p>adjust version.* properties</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>website-wpn-xm.org/index.html</p>
+<div class="ulist">
+<ul>
+<li>
+<p>update the download div with new links to Download, Changelog and ReleaseNotes-v1.2.3</p>
+</li>
+<li>
+<p>Do not worry about the version numbers. They are automatically loaded and always in sync with latest versions from registry.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_2_update_changelog"><a class="anchor" href="#_2_update_changelog"></a><a class="link" href="#_2_update_changelog">4.7.3.3. 2 Update CHANGELOG</a></h5>
+<div class="paragraph">
+<p>We maintain all changes in our CHANGELOG.</p>
+</div>
+<div class="paragraph">
+<p>The changes are kept in the unreleased section.</p>
+</div>
+<div class="paragraph">
+<p>At the time we do a release, we need to "roll" the CHANGELOG from one version to another.</p>
+</div>
+<div class="paragraph">
+<p>Open up CHANGELOG.md and you will see a series of changes that are in this commit under a section that says:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>## [unreleased] - unreleased</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should be changed to:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>## [1.2.3] - 2050-01-01</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note: we do not indicate version number changes of the bundled software components.
+This is automatically published on the website.</p>
+</div>
+<div class="paragraph">
+<p>If any of the sections, "Added", "Fixed" or "Changed" is empty, delete it.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_commit_your_changelog_and_version_updates"><a class="anchor" href="#_3_commit_your_changelog_and_version_updates"></a><a class="link" href="#_3_commit_your_changelog_and_version_updates">4.7.3.4. 3 Commit your CHANGELOG and VERSION updates</a></h5>
+<div class="paragraph">
+<p>git add CHANGELOG.md VERSION
+git commit -m "Preparing for 1.2.3 release"</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_tag_the_version"><a class="anchor" href="#_3_tag_the_version"></a><a class="link" href="#_3_tag_the_version">4.7.3.5. 3 Tag the Version</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>Be sure that all changes for this version are done, before you tag.</p>
+</li>
+<li>
+<p>Repositories: "WPN-XM", "webinterface"</p>
+</li>
+<li>
+<p>Switch to "master" branch: git checkout master.</p>
+</li>
+<li>
+<p>Use git tag -l to determine the upcoming version.</p>
+</li>
+<li>
+<p>Finally use git tag 1.2.3, done.</p>
+</li>
+<li>
+<p>Use git push --tags to push the tags to GitHub.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Travis will build the installers and upload them to Github releases.</strong></p>
+</div>
+<div class="paragraph">
+<p>(To build the installer locally click "build.bat" in the main folder and find the fresh build in the folder "_build".
+You might then upload the new installers installation wizards via FTP to the target folder "wpn-xm/downloads".)</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_wait_on_travis_and_appveyor"><a class="anchor" href="#_wait_on_travis_and_appveyor"></a><a class="link" href="#_wait_on_travis_and_appveyor">4.7.3.6. Wait on Travis and Appveyor</a></h5>
+<div class="paragraph">
+<p>During the time since you push to the release branch, Travis CI and Appveyor have been busy building release artifacts.
+It can take up to a couple hours depending on how busy they are, before building starts.
+After building started, it will take up to 40 minutes to build the installers.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_announcements"><a class="anchor" href="#_announcements"></a><a class="link" href="#_announcements">4.7.3.7. Announcements</a></h5>
+<div class="paragraph">
+<p>Now, it&#8217;s time to spread the word about the new release on multiple channels!</p>
+</div>
+<div class="paragraph">
+<p>You might use one of the following templates. Please don&#8217;t forget to adjust the version number.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"> I'm happy to announce the immediate release of WPN-XM v1.2.3.
+ For downloads and changelog, see https://github.com/WPN-XM/WPN-XM/releases/latest</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"> I'm happy to announce the immediate release of WPN-XM v1.2.3.
+ For downloads, see: http://wpn-xm.org/downloads</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"> WPN-XM v1.2.3 has been released! For details, see: http://wpn-xm.org/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Create Release Notes on Github</strong></p>
+</div>
+<div class="paragraph">
+<p>Use <code>Release-Notes-v1.2.3.md</code>, when manually creating the file. Keep the filename consistent.
+Use <code>Release Notes v1.2.3</code> as page title, when creating via the Github Webinterface.
+The easiest way is to clone an existing file and adjust the file content.</p>
+</div>
+<div class="paragraph">
+<p><strong>Inform IRC #wpnxm</strong></p>
+</div>
+<div class="paragraph">
+<p>Drop a note in the #wpnxm IRC channel on Freenode letting everyone know that the release is out
+and include a link the release notes so everyone can see the CHANGELOG.</p>
+</div>
+<div class="paragraph">
+<p><strong>Twitter</strong></p>
+</div>
+<div class="paragraph">
+<p>Tweet about the Release using one of these message templates:</p>
+</div>
+<div class="paragraph">
+<p><strong>Mailing list</strong></p>
+</div>
+<div class="paragraph">
+<p>Write a mail to <code>wpn-xm@googlegroups.com</code> or
+start a new topic via the <a href="https://groups.google.com/forum/?fromgroups#!forum/wpn-xm">Google Groups Webinterface</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Community Forum</strong></p>
+</div>
+<div class="paragraph">
+<p>Post a message on the Community Forum.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_software_registries"><a class="anchor" href="#_software_registries"></a><a class="link" href="#_software_registries">5. Software Registries</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter covers the software registries of the WPN-XM server stack.</p>
+</div>
+<div class="paragraph">
+<p>The WPN-XM project maintains multiple registries.
+A registry is a meta-data collection for multiple software package.
+It contains pieces of information about the software vendor, the download source and, of course, version information.</p>
+</div>
+<div class="paragraph">
+<p>The registries are located in the Registry have their own Git repository at <a href="https://github.com/WPN-XM/registry" class="bare">https://github.com/WPN-XM/registry</a>.</p>
+</div>
+<div class="paragraph">
+<p>When we take a look at the repository, you can find 5 registries in the root folder:</p>
+</div>
+<div class="listingblock">
+<div class="title">Overview Registries</div>
+<div class="content">
+<pre>1. `php-extensions-on-pecl.json`        <i class="conum" data-value="1"></i><b>(1)</b>
+2. `wpnxm-download-filenames.php`       <i class="conum" data-value="2"></i><b>(2)</b>
+3. `wpnxm-php-software-registry.php`    <i class="conum" data-value="3"></i><b>(3)</b>
+4. `wpnxm-registry-metadata.php`        <i class="conum" data-value="4"></i><b>(4)</b>
+5. `wpnxm-software-registry.php`        <i class="conum" data-value="5"></i><b>(5)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A list of all PHP extensions on PECL.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Provides download filenames for each software package.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A registry for PHP applications.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>A collection of meta-data for 5.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>A registry for all software packages of the stack.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Additionally, all released installer have (versionized) installer registries
+and all unreleased installers have a <code>next</code> version registry.</p>
+</div>
+<div class="sect2">
+<h3 id="_installation_wizards_registries"><a class="anchor" href="#_installation_wizards_registries"></a><a class="link" href="#_installation_wizards_registries">5.1. Installation Wizards Registries</a></h3>
+<div class="paragraph">
+<p>You will also find multiple registries in the installer folder.
+The installer registries reside in versionized subfolders.
+The installer registries for the next, upcoming, but yet unreleased version reside
+in the <code>installer\next</code> folder.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_software_registry"><a class="anchor" href="#_software_registry"></a><a class="link" href="#_software_registry">5.2. Software Registry</a></h3>
+<div class="paragraph">
+<p>The registry for the stack components is always kept in sync with latest versions.
+Therefore we are monitoring the websites of each software component for newly released versions.
+If a new version is detected, it is automatically inserted into our registry.
+In the following sections we explain how the update process of the registry works.</p>
+</div>
+<div class="paragraph">
+<p>At first, we will take a look at the registries and their underlying data-structure.
+After that, we take a look at the update mechanism.</p>
+</div>
+<div class="sect3">
+<h4 id="_wpn_xm_software_registry_wpnxm_php_software_registry_php"><a class="anchor" href="#_wpn_xm_software_registry_wpnxm_php_software_registry_php"></a><a class="link" href="#_wpn_xm_software_registry_wpnxm_php_software_registry_php">5.2.1. WPN-XM Software Registry (wpnxm-php-software-registry.php)</a></h4>
+<div class="paragraph">
+<p>The WPN-XM software registry
+(<a href="https://github.com/WPN-XM/registry/blob/master/wpnxm-php-software-registry.php"><code>wpnxm-php-software-registry.php</code></a>)
+is a plain and simple PHP array.
+The PHP file uses an <code>return array</code> style to make the inclusion of this file
+and more important the assignment of the data to a variable easy.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$registry = include __DIR__ . '/registry/wpnxm-software-registry.php';</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_array_structure"><a class="anchor" href="#_array_structure"></a><a class="link" href="#_array_structure">5.2.2. Array Structure</a></h4>
+<div class="paragraph">
+<p>Let&#8217;s take a look at the structure of that array.</p>
+</div>
+<div class="paragraph">
+<p>Example-wise, we take a look at the data structure for the component Adminer:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">  'adminer' =&gt; array( <i class="conum" data-value="1"></i><b>(1)</b>
+    'name' =&gt; 'Adminer', <i class="conum" data-value="2"></i><b>(2)</b>
+    'website' =&gt; 'http://adminer.org/', <i class="conum" data-value="3"></i><b>(3)</b>
+    <i class="conum" data-value="4"></i><b>(4)</b>
+    '3.5.0' =&gt; 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%203.5.0/adminer-3.5.0.php',
+    ...
+    '4.1.0' =&gt; 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%204.1.0/adminer-4.1.0.php',
+    'latest' =&gt; array( <i class="conum" data-value="5"></i><b>(5)</b>
+      'version' =&gt; '4.1.0',
+      'url' =&gt; 'http://garr.dl.sourceforge.net/project/adminer/Adminer/Adminer%204.1.0/adminer-4.1.0.php',
+    ),
+  ),</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The array key is the shorthand name for the software component. Its allows to use the char <code>-</code> (minus) as separator. A bitsize indication is appended like this:  <code>arangodb-x64</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The pretty printed <code>name</code> of the software.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The URL to the <code>website</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>One or more version to download URL relationships (<code>1..n</code>).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Finally, there is the array key <code>latest</code>, which contains another array as value. This array has the keys <code>version</code> and <code>url</code> and corresponding values.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_accessing_values"><a class="anchor" href="#_accessing_values"></a><a class="link" href="#_accessing_values">5.2.3. Accessing Values</a></h4>
+<div class="paragraph">
+<p>To get the details of a component, we can work with the <code>$registry</code> array in the following way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">  // Get "Name" and "Website" for the component
+  $name    = $registry['adminer']['name'];
+  $website = $registry['adminer']['website'];
+
+  // Get URL for a specific Version
+  $url = $registry['adminer']['3.5.0'];
+
+  // Get "Latest Version URL" and "Latest Version"
+  $url     = $registry['adminer']['latest']['url'];
+  $version = $registry['adminer']['latest']['version'];</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_software_registry_metadata_wpnxm_registry_metadata_php"><a class="anchor" href="#_software_registry_metadata_wpnxm_registry_metadata_php"></a><a class="link" href="#_software_registry_metadata_wpnxm_registry_metadata_php">5.3. Software Registry Metadata (wpnxm-registry-metadata.php)</a></h3>
+<div class="paragraph">
+<p>This file <a href="https://github.com/WPN-XM/registry/blob/master/wpnxm-registry-metadata.php"><code>wpnxm-registry-metadata.php</code></a> is a PHP array.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_php_software_registry_wpnxm_php_software_registry_php"><a class="anchor" href="#_php_software_registry_wpnxm_php_software_registry_php"></a><a class="link" href="#_php_software_registry_wpnxm_php_software_registry_php">5.4. PHP Software Registry (wpnxm-php-software-registry.php)</a></h3>
+<div class="paragraph">
+<p>This file <a href="https://github.com/WPN-XM/registry/blob/master/wpnxm-php-software-registry.php"><code>wpnxm-php-software-registry.php</code></a> is a PHP array.</p>
+</div>
+<div class="sect4">
+<h5 id="_array_structure_2"><a class="anchor" href="#_array_structure_2"></a><a class="link" href="#_array_structure_2">5.4.1. Array Structure</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"> 'backdrop' =&gt; array(
+    'name' =&gt; 'Backdrop',
+    'website' =&gt; 'https://backdropcms.org/',
+    'description' =&gt; 'The comprehensive CMS for small to medium sized businesses and non-profits.',
+    'category' =&gt; 'cms',
+    'tags' =&gt; array(
+    ),
+    'requirements' =&gt; array(
+      'php-version' =&gt; '5.3.2',
+      'php-extensions' =&gt; ''
+    ),
+    'source-url' =&gt; 'https://github.com/backdrop/backdrop',
+    'license' =&gt; 'GNU GPL v2',
+    'license-url' =&gt; 'https://github.com/backdrop/backdrop/blob/1.x/core/LICENSE.txt',
+    'docs-url' =&gt; 'https://backdropcms.org/handbook',
+    'twitter' =&gt; array(
+      'url' =&gt; 'https://twitter.com/backdropcms',
+      'hashtag' =&gt; '#backdropcms',
+    ),
+    'logo' =&gt; '',
+    'screenshots' =&gt; array(
+    ),
+    'versions' =&gt; array(
+    ),
+    'latest' =&gt; array(
+      'version' =&gt; '',
+      'url' =&gt; '',
+    ),
+  ),</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_php_extensions_on_pecl_php_extensions_on_pecl_json"><a class="anchor" href="#_php_extensions_on_pecl_php_extensions_on_pecl_json"></a><a class="link" href="#_php_extensions_on_pecl_php_extensions_on_pecl_json">5.4.2. PHP Extensions on PECL (php-extensions-on-pecl.json)</a></h4>
+<div class="paragraph">
+<p>This file <a href="https://github.com/WPN-XM/registry/blob/master/php-extensions-on-pecl.json"><code>php-extensions-on-pecl.json</code></a> is a JSON dataset with all extensions on PECL.</p>
+</div>
+<div class="paragraph">
+<p>It is used for auto-completion of PHP extensions names in the "Install PHP Extension" dialog of the webinterface.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_download_filenames_wpnxm_download_filenames_php"><a class="anchor" href="#_download_filenames_wpnxm_download_filenames_php"></a><a class="link" href="#_download_filenames_wpnxm_download_filenames_php">5.4.3. Download Filenames (wpnxm-download-filenames.php)</a></h4>
+<div class="paragraph">
+<p>This file <a href="https://github.com/WPN-XM/registry/blob/master/wpnxm-download-filenames.php"><code>wpnxm-download-filenames.php</code></a> is a PHP array.</p>
+</div>
+<div class="paragraph">
+<p>It defines the relationship between</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a "component" in the software registry (array key)</p>
+</li>
+<li>
+<p>and it&#8217;s "filename" in the downloads directory.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Why are we normalizing filenames?</strong></p>
+</div>
+<div class="paragraph">
+<p>The unmodified download filenames carry a lot of constantly changing pieces of
+information on their filenames, e.g. version or bitsize information. While
+hardcoding the original download filenames in the installers is possible,  it
+implies a lot of maintainance effort for keeping them up to date. That&#8217;s why we
+are normalizing the download filenames by removing all changing parts.</p>
+</div>
+<div class="paragraph">
+<p>We end up with static, normalized filenames. The filenames are used during
+downloading of components as the "download target" file name.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_software_asset_repositories"><a class="anchor" href="#_software_asset_repositories"></a><a class="link" href="#_software_asset_repositories">6. Software Asset Repositories</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_updater"><a class="anchor" href="#_updater"></a><a class="link" href="#_updater">7. Updater</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter describes the Updater, an update and maintainance tool for the software registries and installation wizard registries.</p>
+</div>
+<div class="paragraph">
+<p>The Update Tool has it&#8217;s own Git repository at <a href="https://github.com/WPN-XM/updater" class="bare">https://github.com/WPN-XM/updater</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://cloud.githubusercontent.com/assets/85608/4353482/9e38b69e-4233-11e4-9d29-79845ce324a6.jpg" alt="9e38b69e 4233 11e4 9d29 79845ce324a6">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_features"><a class="anchor" href="#_features"></a><a class="link" href="#_features">7.1. Features</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>CLI and GUI mode</p>
+</li>
+<li>
+<p>fast URL crawling using Guzzle</p>
+</li>
+<li>
+<p>fast version scraping using <code>symfony/dom-crawler</code>, <code>symfony/css-selector</code>, string matching and regular expressions</p>
+</li>
+<li>
+<p>supports version crawling for a single, multiple or all registry component(s)</p>
+</li>
+<li>
+<p>registry health check</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_crawlers"><a class="anchor" href="#_crawlers"></a><a class="link" href="#_crawlers">7.2. Crawlers</a></h3>
+<div class="paragraph">
+<p>The following version crawlers exist: <a href="https://github.com/WPN-XM/updater/tree/master/src/crawler" class="bare">https://github.com/WPN-XM/updater/tree/master/src/crawler</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_actions"><a class="anchor" href="#_actions"></a><a class="link" href="#_actions">7.3. Actions</a></h3>
+<div class="sect3">
+<h4 id="_action_status"><a class="anchor" href="#_action_status"></a><a class="link" href="#_action_status">7.3.1. Action: "Status"</a></h4>
+<div class="paragraph">
+<p>The registry status script (registry-status.php) tests the http access state (200, 404) of the links in the wpnxm-software-registry.php. The test is performed on each components latest version url ($registry[*]['latest']['version']).</p>
+</div>
+<div class="paragraph">
+<p>The following image shows the output of the dead-links-test. The table column "Download URL" shows the status of latest versions urls on your localhost wpnxm-software-registry.php. The table column "Forwarding URL" shows the status of the links on the server. These links are accessed by the installation wizard.</p>
+</div>
+<div class="paragraph">
+<p>The results screen after a Registry Status Scan. Here most of the components are green. In most of these cases a 404 indicates that a new version was released by a software vendor. The next step is to scan for a new version and to update the registry accordingly.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/registry-status.png" alt="registry status">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_action_scan"><a class="anchor" href="#_action_scan"></a><a class="link" href="#_action_scan">7.3.2. Action: "Scan"</a></h4>
+<div class="paragraph">
+<p>The registry update script (registry-update.php?action=scan) scans vendor websites for newly released versions
+and updates the wpnxm-software-registry.php accordingly.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_action_update"><a class="anchor" href="#_action_update"></a><a class="link" href="#_action_update">7.3.3. Action: "Update"</a></h4>
+<div class="paragraph">
+<p>During a registry scan the newly released versions are stored in to the folder <code>/scans</code>
+as fragments of the registry. It&#8217;s possible to make manual modifications to the data before they are inserted into the registry. After that you might call "Update" to insert the Scans into the registry registry-update.php?action=update.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_website"><a class="anchor" href="#_website"></a><a class="link" href="#_website">8. Website</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_installer_comparison_view"><a class="anchor" href="#_installer_comparison_view"></a><a class="link" href="#_installer_comparison_view">8.1. Installer Comparison View</a></h3>
+<div class="paragraph">
+<p>The installer comparison view is a table showing the comparison between two
+installers, which are selected by the user.
+For each installer, you see the software components shipped and the versions.
+The "change" column indicates, when a software was added, updated or removed.
+This allows you to quickly notice changes between installers.</p>
+</div>
+<div class="paragraph">
+<p><a href="http://wpn-xm.org/compare-installers.php" class="bare">http://wpn-xm.org/compare-installers.php</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_version_matrix"><a class="anchor" href="#_version_matrix"></a><a class="link" href="#_version_matrix">8.2. Version Matrix</a></h3>
+<div class="paragraph">
+<p>The version matrix shows all installation wizards and all software components.</p>
+</div>
+<div class="paragraph">
+<p>This tool helps to avoid version incompatibilities by defining stable version
+sets of components, which simply work together.  It shows already released
+installers, the current release and the "next" releases. Each installer has it&#8217;s
+own column, while each row contains a software component from our registry.</p>
+</div>
+<div class="paragraph">
+<p>A green box indicates, that a component is included, also showing it&#8217;s version number.</p>
+</div>
+<div class="paragraph">
+<p><strong>Editor</strong></p>
+</div>
+<div class="paragraph">
+<p>The editor enables you to create new installer registries.</p>
+</div>
+<div class="paragraph">
+<p>It allows you to derive installers form already existing ones and to
+update version numbers of software components by using dropdown menus.</p>
+</div>
+<div class="paragraph">
+<p>The blue column indicates the "latest version" from the registry.</p>
+</div>
+<div class="paragraph">
+<p>The installer registries are saved as easy consumable JSON files.
+They are used in two ways:
+ - to create the download description file
+ - and to provide details about the components included in a release.</p>
+</div>
+<div class="paragraph">
+<p>The download description file is later used by the download tool
+to download the components for the packaged installers.</p>
+</div>
+<div class="paragraph">
+<p>The installer registry json files are used
+to "show the components included" for a download,
+for the "installer comparison view" and the "version matrix."</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration_comparison_view"><a class="anchor" href="#_configuration_comparison_view"></a><a class="link" href="#_configuration_comparison_view">8.3. Configuration Comparison View</a></h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">This feature isn&#8217;t implemented, yet!</div>
+<div class="paragraph">
+<p>The configuration comparison view will display the difference between two versions of a configuration file.
+Please don&#8217;t hesitate to contribute. See GitHub <a href="https://github.com/WPN-XM/WPN-XM/issues/577">Issue 577</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_api"><a class="anchor" href="#_api"></a><a class="link" href="#_api">9. API</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You find the API documentation here: <a href="http://wpn-xm.org/api-docu/api-doc.htm" class="bare">http://wpn-xm.org/api-docu/api-doc.htm</a></p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s go through the most important API queries: <code>get</code> and <code>updatecheck</code>:</p>
+</div>
+<div class="sect2">
+<h3 id="_get"><a class="anchor" href="#_get"></a><a class="link" href="#_get">9.1. Get</a></h3>
+<div class="paragraph">
+<p><a href="https://wpn-xm.org/get.php" class="bare">https://wpn-xm.org/get.php</a></p>
+</div>
+<div class="paragraph">
+<p>This is the header redirection script. The script provides a header response to
+a software and version request in form of a header redirection to the download URL.</p>
+</div>
+<div class="paragraph">
+<p>The webinstallation wizards use these hard-coded links for downloading components.</p>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Request (GET)</strong> for latest version</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"> https://wpn-xm.org/get.php?s=nginx</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Request (GET)</strong> for specific version</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs"> https://wpn-xm.org/get.php?s=nginx&amp;v=1.2.1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Response is a header redirection to the download URL.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_check"><a class="anchor" href="#_update_check"></a><a class="link" href="#_update_check">9.2. Update Check</a></h3>
+<div class="paragraph">
+<p><a href="https://wpn-xm.org/updatecheck.php" class="bare">https://wpn-xm.org/updatecheck.php</a></p>
+</div>
+<div class="paragraph">
+<p>You want to know, if you are running an old version of a software component and should update?</p>
+</div>
+<div class="paragraph">
+<p>The <code>updatecheck.php</code> script provides a JSON response to a update-check request
+for individual components of the WPN-XM Server Stack.</p>
+</div>
+<div class="paragraph">
+<p>The script accepts two parameters <code>s</code> and <code>v</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Parameter <code>s</code> is the name of a software component.</p>
+</li>
+<li>
+<p>Parameter <code>v</code> is the version of this software component.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>Request (GET)</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">https://wpn-xm.org/updatecheck.php?s=nginx&amp;v=1.2.1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Respone (JSON)</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">{
+   "software" : "nginx",
+   "your_version" : "1.2.1",
+   "latest_version" : "1.3.7",
+   "href" : "http:\/\/www.nginx.org\/download\/nginx-1.3.7.zip",
+   "message" : "You are running an old version of Nginx and should update immediately."
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_documentation"><a class="anchor" href="#_documentation"></a><a class="link" href="#_documentation">10. Documentation</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This chapter describes our documentation toolchain.</p>
+</div>
+<div class="sect2">
+<h3 id="_asciidoc"><a class="anchor" href="#_asciidoc"></a><a class="link" href="#_asciidoc">10.1. AsciiDoc</a></h3>
+<div class="paragraph">
+<p>The documentation is written in Asciidoc and built by using the Asciidoctor toolchain.</p>
+</div>
+<div class="paragraph">
+<p>Asciidoc is a human-readable document format, semantically equivalent to DocBook XML, but using plain-text mark-up conventions.</p>
+</div>
+<div class="paragraph">
+<p>We create the user-manual and this developer-manual in two formats: HTML and PDF.</p>
+</div>
+<div class="paragraph">
+<p>The HTML output is generated by by <code>asciidoctor</code>.
+The PDF output is generated by <code>asciidoctor-pdf</code>.</p>
+</div>
+<div class="paragraph">
+<p>Diagrams are created on-the-fly by <code>asciidoctor-diagram</code> and using <code>ditaa</code>. <code>plantuml</code> or <code>graphviz</code> as renderers.</p>
+</div>
+<div class="sect3">
+<h4 id="_using_asciidoc"><a class="anchor" href="#_using_asciidoc"></a><a class="link" href="#_using_asciidoc">10.1.1. Using AsciiDoc</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/">AsciiDoc Syntax Reference</a></p>
+</li>
+<li>
+<p><a href="http://asciidoctor.org/man/asciidoctor/">Asciidoctor CLI Commands</a></p>
+</li>
+<li>
+<p><a href="http://asciidoctor.org/docs/user-manual/">Asciidoctor Manual</a></p>
+</li>
+<li>
+<p><a href="https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc">Asciidoctor PDF Theming Guide</a></p>
+</li>
+<li>
+<p><a href="https://asciidoclive.com">AsciiDocLive Online Editor</a></p>
+</li>
+<li>
+<p><a href="http://asciiflow.com/">AsciiFlow Online Drawing</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_source_folder_layout"><a class="anchor" href="#_source_folder_layout"></a><a class="link" href="#_source_folder_layout">10.2. Source Folder Layout</a></h3>
+<div class="paragraph">
+<p>The source folder layout supports the translation of manuals.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_target_folder_layout"><a class="anchor" href="#_target_folder_layout"></a><a class="link" href="#_target_folder_layout">10.3. Target Folder Layout</a></h3>
+
+</div>
+<div class="sect2">
+<h3 id="_deployment_to_github_pages"><a class="anchor" href="#_deployment_to_github_pages"></a><a class="link" href="#_deployment_to_github_pages">10.4. Deployment To Github Pages</a></h3>
+<div class="paragraph">
+<p>The deployment to Github Pages is automated.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_translation"><a class="anchor" href="#_translation"></a><a class="link" href="#_translation">10.5. Translation</a></h3>
+<div class="paragraph">
+<p>The Asciidoc files are in locale directories: <code>user-manual/XX/</code> where <code>XX</code> is language (en, fr, de, it, …​).</p>
+</div>
+<div class="paragraph">
+<p>To start a translation, you would first make a copy of the <code>adoc</code> file source language into the target language.
+For instance, when translating the Installation chapter from English to Italian,
+you would copy the English <code>user-manual/en/chapter01-installation.adoc</code> to
+<code>user-manual/it/chapter01-installation.adoc</code> and then work on it.</p>
+</div>
+<div class="paragraph">
+<p>The translations missing in files are indicated by this string:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>// TRANSLATION MISSING</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You must translate whole files, except links and special keywords for notes, warnings.
+These words must be kept unchanged, because they are Asciidoc Language Syntax and affect output generation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[[link_name]]
+&lt;&lt;link_name&gt;&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[NOTE]
+[TIP]
+[IMPORTANT]
+[WARNING]
+[CAUTION]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When there is a name after [link_name], then you must translate it:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;&lt;link_name,this text must be translated&gt;&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_history"><a class="anchor" href="#_history"></a><a class="link" href="#_history">11. History</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_release_notes"><a class="anchor" href="#_release_notes"></a><a class="link" href="#_release_notes">11.1. Release Notes</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.1.0">Release-Notes-v0.1.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.2.0">Release-Notes-v0.2.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.3.0">Release-Notes-v0.3.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.4.0">Release-Notes-v0.4.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.0">Release-Notes-v0.5.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.1">Release-Notes-v0.5.1</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.2">Release-Notes-v0.5.2</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.3">Release-Notes-v0.5.3</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.5.4">Release-Notes-v0.5.4</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.6.0">Release-Notes-v0.6.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.7.0">Release-Notes-v0.7.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.0">Release-Notes-v0.8.0</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.1">Release-Notes-v0.8.1</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.2">Release-Notes-v0.8.2</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.3">Release-Notes-v0.8.3</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.4">Release-Notes-v0.8.4</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.5">Release-Notes-v0.8.5</a></p>
+</li>
+<li>
+<p><a href="https://github.com/WPN-XM/WPN-XM/wiki/Release-Notes-v0.8.6">Release-Notes-v0.8.6</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jakochs_devlog"><a class="anchor" href="#_jakochs_devlog"></a><a class="link" href="#_jakochs_devlog">11.2. jakoch&#8217;s DevLog</a></h3>
+<div class="paragraph">
+<p>This chapter contains a bit of history and some brief notes about the start and
+the evolution of this project. Because i tend to forget, how the WPN-XM project
+started and before all my memories are lost to John Alzheimer, i prefer keeping
+some. These notes are mainly for myself. If you find them interesting, you are a
+lucky person.</p>
+</div>
+<div class="sect3">
+<h4 id="_before_2010"><a class="anchor" href="#_before_2010"></a><a class="link" href="#_before_2010">11.2.1. Before 2010</a></h4>
+<div class="paragraph">
+<p>Eloy Lafuente (stronk7) from the Moodle Project created <strong>Moodle for Windows
+Builder</strong> (<code>m4w_builder</code>, GPL). It was a build tool for a webserver
+stack based on XAMPPlight, including the PHP application Moodle for the
+developers of the Moodle project. The goal was to provide a quick starter.</p>
+</div>
+<div class="paragraph">
+<p>I forked it, updated XAMPPlight and integrated our CMS. The goal was to have an
+out-of-the-box working developer environment.  The project was named <code>Clansuite-
+Serverpack-Builder</code>. It was a subproject of the Clansuite CMS.  I made only two
+releases, which had the same version numbers as the included XAMPPlight version:
+1.7.2 and 1.7.3. The builder was batch file based and required many manual release
+preparation tasks to ship a new version.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2010"><a class="anchor" href="#_2010"></a><a class="link" href="#_2010">11.2.2. 2010</a></h4>
+<div class="paragraph">
+<p>XAMPP releases got somehow stuck: only full releases were made and the
+XAMPPLight releases, which i relied upon became seldom.  I was in a vendor lock-
+in, where i couldn&#8217;t release a new Serverpack, because the main dependency it
+was based on wasn&#8217;t updated itself.</p>
+</div>
+<div class="paragraph">
+<p>Then suddenly out of nothing the XAMPP project was acquired for an undisclosed
+amount of money by Bitnami.</p>
+</div>
+<div class="paragraph">
+<p>Kai Vogelsang stated that things got more and more complicated in managing and
+releasing the XAMPP stack and it was the right time to give his project in the
+hands of a company and step back.</p>
+</div>
+<div class="paragraph">
+<p>I was wondering about this statement and tried to figure out, if it&#8217;s really
+that complicated to create a build system for a server stack.  I knew, that 3
+guys behind XAMPP have tried to create a Python based  build system for it
+(<a href="https://github.com/ApacheFriends/XAMPP-Builder" class="bare">https://github.com/ApacheFriends/XAMPP-Builder</a>). They got stuck during
+development and failed to replace their bash-based build system.</p>
+</div>
+<div class="paragraph">
+<p>I came up with an idea of creating a stack, which partly would solve one of the
+most important issue on Windows: the not existing package management. The idea
+was simple.  All components which were packaged by installers would have to live
+in a software components registry, short: <code>the registry</code>.</p>
+</div>
+<div class="paragraph">
+<p>Because manual maintenance of such a registry is only possible for a few
+components, i would need to automate the fetching and insertion of latest
+versions numbers and their URLS. So i started to develop the "Registry Updater",
+short: <code>the updater</code>. The updater scans the vendor, which provides new releases,
+fetches any new version number and constructs the new URL for a download and
+inserts it into the registry.</p>
+</div>
+<div class="paragraph">
+<p>The next problem i faced was: component incompatibility.  I learned the hard
+way, that some components don&#8217;t play well with other components. I came up with
+the idea of building a version matrix with dropdown form elements  for the
+selection of components and versions, which are known as being compatible. The
+<code>installer registry</code> was born.</p>
+</div>
+<div class="paragraph">
+<p>The installer registry is the description file of all components for a certain
+installer, their download source, their version and their name.  By looking at
+the installer registry file, it&#8217;s possible to figure out,  which software is
+included in a certain installer.</p>
+</div>
+<div class="paragraph">
+<p>I had to make sure that all components got downloaded and were available for
+inclusion, before the packaging of installers. I tried make the downloads work
+with curl and wget, but finally ended up working with one of the most amazing
+download tools i encountered so far: aria2c. It was the first multi-threaded
+parallel download tool allowing to specify an external file with a set of
+download URLs and their target folders.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2011_2014"><a class="anchor" href="#_2011_2014"></a><a class="link" href="#_2011_2014">11.2.3. 2011 - 2014</a></h4>
+<div class="paragraph">
+<p>I can&#8217;t remember anything. See Changelogs and <code>git log</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2015"><a class="anchor" href="#_2015"></a><a class="link" href="#_2015">11.2.4. 2015</a></h4>
+<div class="paragraph">
+<p>After 3 months (Dec 2014 - Feb 2015) of intensive hacking, i finally got Travis
+builds and deployment working. This was not easy at all and the first time i
+build something (the installers) for Windows on Linux under Wine.</p>
+</div>
+<div class="paragraph">
+<p>But it was more complicated to get the right dependencies for a cross-platform
+build of the Server Control Panel, which at that time was a Qt5.3+ application.
+All related toolchain and build issues had quite huge money bounties on them,
+but i got no feedback and no contributions.</p>
+</div>
+<div class="paragraph">
+<p>WPN-XM is now the only project with a complete open-source build toolchain for
+server stacks on Windows. The first releases shipped by the new continuous
+integration and deployment toolchain was v0.8.1.  All 22 installers were build
+an Travis in under 50 minutes and automatically deployed to Github Releases. We
+are talking about a release of roughly 3GB of installer executables. Keeping
+below the build time limit on Travis-CI was a crazy task. I had to tweak memory,
+iterations and processing and go through everything over and over, just to get
+below 50 minutes.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_2016"><a class="anchor" href="#_2016"></a><a class="link" href="#_2016">11.2.5. 2016</a></h4>
+<div class="paragraph">
+<p>The project is stuck since the release of v0.8.7, because the new features are
+hard to implement. On the one hand, we have the new process monitoring, PHP
+spawn handling, the new configuration interface for several components in the
+SCP, and on the other, the rewrite to short-URLs and security fixes for the
+webinterface.</p>
+</div>
+<div class="paragraph">
+<p>I got some contributions, e.g. slashfixes and one-liners. But not a single major
+feature or bug issue of the Github tracker was solved and implemented by an
+outside contributor.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+Open-source is a morbid software development curiosity,
+where people are rubbernecking continuously working developers
+and enjoying the fruits of free and unpaid labor.
+</blockquote>
+<div class="attribution">
+&#8212; Jens A. Koch
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_related_projects"><a class="anchor" href="#_related_projects"></a><a class="link" href="#_related_projects">12. Related projects</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In case, you are still not convinced about using the WPN-XM Server Stack,
+then go try a different server stack for Windows.</p>
+</div>
+<div class="paragraph">
+<p><strong>Here’s a comprehensive list for your convenience:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>XAMPP for Windows       <a href="https://www.apachefriends.org/download.html" class="bare">https://www.apachefriends.org/download.html</a></p>
+</li>
+<li>
+<p>Zend Server             <a href="http://www.zend.com/en/products/server/downloads" class="bare">http://www.zend.com/en/products/server/downloads</a></p>
+</li>
+<li>
+<p>OpenServer              <a href="http://open-server.ru/" class="bare">http://open-server.ru/</a> &amp; <a href="https://ospanel.io/" class="bare">https://ospanel.io/</a></p>
+</li>
+<li>
+<p>Winginx                 <a href="http://winginx.com/" class="bare">http://winginx.com/</a></p>
+</li>
+<li>
+<p>VertrigoServ            <a href="http://vertrigo.sourceforge.net/" class="bare">http://vertrigo.sourceforge.net/</a></p>
+</li>
+<li>
+<p>Bitnami WAMPStack       <a href="http://bitnami.org/stack/wampstack" class="bare">http://bitnami.org/stack/wampstack</a></p>
+</li>
+<li>
+<p>EasyPHP                 <a href="http://easyphp.org" class="bare">http://easyphp.org</a></p>
+</li>
+<li>
+<p>uWamp                   <a href="http://www.uwamp.com/" class="bare">http://www.uwamp.com/</a></p>
+</li>
+<li>
+<p>WNMP                    <a href="https://github.com/wnmp/wnmp" class="bare">https://github.com/wnmp/wnmp</a> &amp; <a href="https://sourceforge.net/projects/wnmp-env/" class="bare">https://sourceforge.net/projects/wnmp-env/</a></p>
+</li>
+<li>
+<p>WampServer              <a href="http://www.wampserver.com/en/" class="bare">http://www.wampserver.com/en/</a></p>
+</li>
+<li>
+<p>NwimpServer             <a href="https://sourceforge.net/projects/nwimpserver/" class="bare">https://sourceforge.net/projects/nwimpserver/</a></p>
+</li>
+<li>
+<p>WTServer (WTNMP)        <a href="http://sourceforge.net/projects/wtnmp" class="bare">http://sourceforge.net/projects/wtnmp</a></p>
+</li>
+<li>
+<p>Ampps                   <a href="http://www.ampps.com/" class="bare">http://www.ampps.com/</a></p>
+</li>
+<li>
+<p>Wamp Developer Pro      <a href="https://www.devside.net/" class="bare">https://www.devside.net/</a></p>
+</li>
+<li>
+<p>MAMP for Windows        <a href="http://www.mamp.info/" class="bare">http://www.mamp.info/</a></p>
+</li>
+<li>
+<p>AppServNetwork          <a href="http://www.appservnetwork.com/" class="bare">http://www.appservnetwork.com/</a></p>
+</li>
+<li>
+<p>AutoSet                 <a href="http://autoset.net/xe/" class="bare">http://autoset.net/xe/</a> - <a href="https://sourceforge.net/projects/project-autoset" class="bare">https://sourceforge.net/projects/project-autoset</a> (South Korea)</p>
+</li>
+<li>
+<p>WWebserver              <a href="https://www.mwiede.de/windows-php-webserver/" class="bare">https://www.mwiede.de/windows-php-webserver/</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>These projects are no longer maintained or updated</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>NimpBox                 <a href="http://nimpbox.ru/" class="bare">http://nimpbox.ru/</a> &amp; <a href="https://sourceforge.net/projects/nimpserver/" class="bare">https://sourceforge.net/projects/nimpserver/</a></p>
+</li>
+<li>
+<p>NginxMP                 <a href="http://www.sourceforge.net/projects/nginxmp/" class="bare">http://www.sourceforge.net/projects/nginxmp/</a></p>
+</li>
+<li>
+<p>XenStack                <a href="http://sourceforge.net/projects/xenstack/" class="bare">http://sourceforge.net/projects/xenstack/</a></p>
+</li>
+<li>
+<p>PHPNginx                <a href="http://phpnginx.sourceforge.net/" class="bare">http://phpnginx.sourceforge.net/</a></p>
+</li>
+<li>
+<p>Porter                  <a href="https://sourceforge.net/projects/litporter" class="bare">https://sourceforge.net/projects/litporter</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>General</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Overview1               <a href="http://alternativeto.net/software/xampp/" class="bare">http://alternativeto.net/software/xampp/</a></p>
+</li>
+<li>
+<p>Overview2               <a href="https://en.wikipedia.org/wiki/List_of_Apache%E2%80%93MySQL%E2%80%93PHP_packages" class="bare">https://en.wikipedia.org/wiki/List_of_Apache%E2%80%93MySQL%E2%80%93PHP_packages</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_overview_of_issue_labels"><a class="anchor" href="#_overview_of_issue_labels"></a><a class="link" href="#_overview_of_issue_labels">13. Overview of issue labels</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here is a full list of labels that we use in the
+<a href="https://github.com/wpn-xm/wpn-xm">GitHub issue tracker</a> and what they stand for.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Label</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/api" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">api</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tickets that require changes of API services.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/blocker" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">blocker</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ticket cannot be resolved until some other ticket has been closed. See the ticket’s log for which ticket is blocking this ticket.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/bounty" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #129e5e;">bounty</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This labels marks tickets with compensation for implementing a feature or reporting and closing a bug.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/bug" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e10c02;">bug</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An issue describing unexpected or malicious behaviour of the software.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/build%20tools" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">build tools</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label indicates a problem with one of our build tools or our build toolchain in general.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/component%20related" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">component related</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">There is an issue with a bundled component.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/configuration" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">configuration</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label marks a configuration issue.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/documentation" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">documentation</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If an issue involves creating or refining documentation, this label will be assigned.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/duplicate%20bug" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e99695;">duplicate bug</a> </p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/easy%20pick" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #bfe5bf;">easy pick</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label marks tickets that are easy to get started with. The ticket should be ideal for beginners to dive into the code base.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/feature" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #DDDDDD;">feature</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feature requests and ideas, about how to make the software better, will have this label.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/in%20progress" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #ededed;">in progress</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label marks tickets, that are not complete yet, but worked upon.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/installation%20wizard" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">installation wizard</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label indicates an issue with an installation wizard script.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/installer%20registries%20(next%20version)" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">installer registries (next version)</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ticket related to software components in the installer registries of the upcoming, next version.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/ready" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e6e6e6;">ready</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label marks feature tickets, which contain enough information to start the implementation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/registry" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">registry</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label indicates a problem with related to data entries in the installer registries.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/registry%20out-of-sync" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e10c02;">registry out-of-sync</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label indicates that an entry in one of the installer registries is no longer up to date or is no longer updated by a crawler.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/security" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">security</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label indicates a security issue.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/server%20control%20panel" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">server control panel</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ticket marks issues with the bundled Server Control Panel.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/support" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #fbca04;">support</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Questions that needs answering but do not require code changes or issues that only require a one time action on the server will have this label. See the documentation about our triage process for more information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/updater" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">updater</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label indicates an issue with the Updater.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/verify%20bug" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e99695;">verify bug</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Before the label bug is attached to an issue, the bug needs to be reproduced.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/version%20crawler" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #e11d21;">version crawler</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This label indicates a problem with one of our version crawlers.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/webinterface" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">webinterface</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ticket marks issues with the bundled Webinterfaces.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <a href="https://api.github.com/repos/WPN-XM/WPN-XM/labels/website" style="padding: 5px; font-weight: bold; font-size: 14px; border-radius: 3px; color: #fff;background-color: #444444;">website</a> </p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The ticket marks issues with the offical website wpn-xm.org.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+ 1.0-dev-d5386bf<br>
+Last updated 2019-03-29 13:36:49 UTC
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/monokai_sublime.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
